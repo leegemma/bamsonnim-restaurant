@@ -118,6 +118,9 @@ export const ASSET_MANIFEST={
     anchor:{x:444,y:1629},view:'front-elevation',
     note:'닫힌 문 한 짝과 나무 문틀의 정면 수직 그림. 원근 없음. 벽·바닥 없이 렌더 단계에서 왼쪽 벽 affine(1,-.5,0,1) 적용.',
   }),
+  zombieEntrance:asset('zombieEntrance','좀비 손님 해골 출입문',{
+    url:'/assets/zombie-entrance.png',width:887,height:1774,cols:1,rows:1,type:'wall-overlay',trim:true,
+  }),
   furniture:asset('furniture','한옥 가구·네 방향 의자',{
     width:1254,height:1254,cols:4,type:'atlas',
     chairs:[

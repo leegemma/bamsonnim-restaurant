@@ -44,3 +44,10 @@ test('the completion bell is one short metal strike on the effects bus and remai
  for(const tone of tones){const envelope=tone.connections[0];assert.deepEqual(envelope.connections,[sound.effectsBus]);assert.ok(envelope.gain.events.some(e=>e[0]==='linear'&&e[2]-10<=.005));tone.onended();assert.equal(tone.disconnected,true);assert.equal(envelope.disconnected,true);}
  assert.equal(sound.coinTails,undefined);assert.equal(sound.timer,null);assert.equal(context.nodes.some(n=>n.connections.includes(sound.musicBus)),false);
 });
+
+test('one ignition schedules a short wood-fire whoosh and crackles on the effects bus',()=>{
+ const sound=new Sound();assert.equal(sound.effect('ignite'),false);const context=fakeContext();sound.context=context;sound.effectsBus=context.createGain();sound.noise={};sound.musicMuted=true;
+ assert.equal(sound.effect('ignite'),true);const sources=context.nodes.filter(n=>n.kind==='noise');assert.equal(sources.length,6);assert.ok(sources.every(n=>n.starts.length===1&&n.starts[0][2]<=.6));assert.equal(context.nodes.some(n=>n.kind==='oscillator'),false);
+ for(const source of sources){const filter=source.connections[0],gain=filter.connections[0];assert.deepEqual(gain.connections,[sound.effectsBus]);source.onended();assert.equal(source.disconnected,true);assert.equal(filter.disconnected,true);assert.equal(gain.disconnected,true);}
+ let count=context.nodes.length;sound.effects=0;assert.equal(sound.effect('ignite'),false);assert.equal(context.nodes.length,count);sound.effects=1;context.state='suspended';count=context.nodes.length;assert.equal(sound.effect('ignite'),false);assert.equal(context.nodes.length,count);
+});

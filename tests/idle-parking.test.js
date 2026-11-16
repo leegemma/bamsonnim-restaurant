@@ -19,17 +19,16 @@ test('idle staff wait briefly, then walk to a legal counter-side floor position'
 });
 
 test('several idle workers choose distinct reserved destinations and leave seat approaches open',()=>{
- const s=E.newGame();s.spawnIn=1e9;s.level=30;s.coins=1e6;while(s.waiters.length<8)assert.equal(E.hire(s),null);const starts=new Map(s.waiters.map(w=>[w.uid,[w.x,w.y]]));
+ const s=E.newGame();s.spawnIn=1e9;s.level=30;s.coins=1e6;while(s.waiters.length<8)assert.equal(E.hire(s),null);for(const [i,w] of s.waiters.entries())Object.assign(w,{x:i,y:7,path:[],task:null});const starts=new Map(s.waiters.map(w=>[w.uid,[w.x,w.y]]));
  for(let i=0;i<160;i++)safeStep(s);
  const moved=s.waiters.filter(w=>Math.hypot(w.x-starts.get(w.uid)[0],w.y-starts.get(w.uid)[1])>1e-6);assert.ok(moved.length>=3,'available resting places attract staff');
  for(const w of moved){assert.equal(w.task,null);assert.ok(Math.abs(w.x-server(s).x)+Math.abs(w.y-server(s).y)<=3);assert.ok(!s.objects.some(o=>o.x===w.x&&o.y===w.y));assert.ok(s.objects.filter(o=>o.type==='chair').every(ch=>Math.abs(ch.x-w.x)+Math.abs(ch.y-w.y)>1));}
  assert.equal(new Set(s.waiters.map(w=>`${w.x},${w.y}`)).size,8);
 });
 
-for(const kind of ['serve','transfer','clean'])test(`new ${kind} work interrupts a parking walk at a safe segment endpoint`,()=>{
+for(const kind of ['serve','clean'])test(`new ${kind} work interrupts a parking walk at a safe segment endpoint`,()=>{
  const s=idleGame(),w=s.waiters[0];firstParkingStep(s);
  if(kind==='serve'){Object.assign(server(s),{foodId:'rice',stock:20});const chair=s.objects.find(o=>o.type==='chair');s.customers.push({uid:'waiting-work',zombieId:'wanderer',x:chair.x,y:chair.y,phase:'waiting',wait:0,path:[],seat:chair.uid});}
- if(kind==='transfer'){const stove=s.objects.find(o=>o.type==='stove');assert.equal(E.cook(s,stove.uid,'rice'),null);assert.equal(E.instant(s,stove.uid),null);assert.equal(E.collect(s,stove.uid),null);}
  if(kind==='clean')s.objects.find(o=>o.type==='chair').dirty=true;
  safeStep(s);assert.equal(w.task?.kind,kind,'real work starts on the next tick');for(let i=0;i<20;i++)safeStep(s);
 });
@@ -45,7 +44,7 @@ test('a counter with only narrow entrance and seating routes does not attract an
 });
 
 test('a departing guest crosses a head-on worker without entering the chair bay',()=>{
- const s=E.newGame();s.spawnIn=1e9;s.objects=[];const floor=new Set(['0,7','0,6','0,5','1,5','2,5','3,5','1,4','3,4','4,4']);
+ const s=E.newGame();s.zombieEntrance=E.staffEntrance(s);s.spawnIn=1e9;s.objects=[];const floor=new Set(['0,7','0,6','0,5','1,5','2,5','3,5','1,4','3,4','4,4']);
  for(let x=0;x<8;x++)for(let y=0;y<8;y++)if(!floor.has(`${x},${y}`))s.objects.push({uid:`pocket-wall-${x}-${y}`,type:'jars',x,y,dir:0});
  s.objects.push({uid:'temporary-chair-bay',type:'chair',x:1,y:4,dir:0},{uid:'work-chair',type:'chair',x:3,y:4,dir:0,dirty:true},{uid:'work-table',type:'table',x:4,y:4,dir:0});
  const w=s.waiters[0];Object.assign(w,{x:0,y:5,path:[[1,5],[2,5],[3,5]],task:{kind:'clean',chair:'work-chair',work:0}});s.objects.find(o=>o.uid==='work-chair').cleaner=w.uid;
@@ -61,11 +60,11 @@ test('an available doorway admits another guest while a distant guest is leaving
 
 test('actors at a free doorway may cross while actual furniture still blocks entry',()=>{
  for(const barrier of ['mobile','worker','seated','furniture']){
-  const s=E.newGame();s.spawnIn=0;Object.assign(server(s),{foodId:'rice',stock:20});
-  if(barrier==='mobile')s.customers.push({uid:'near-departure',zombieId:'wanderer',x:.4,y:7,phase:'leaving',wait:0,path:[[0,7]],seat:null});
-  if(barrier==='worker')Object.assign(s.waiters[0],{x:0,y:7});
-  if(barrier==='seated'){s.objects.push({uid:'door-chair',type:'chair',x:0,y:7,dir:0});s.customers.push({uid:'door-sitter',zombieId:'wanderer',x:0,y:7,phase:'waiting',wait:0,path:[],seat:'door-chair'});}
-  if(barrier==='furniture')s.objects.push({uid:'door-wall',type:'jars',x:0,y:7,dir:0});
+  const s=E.newGame();s.spawnIn=0;const gate=E.zombieEntrance(s);Object.assign(server(s),{foodId:'rice',stock:20});
+  if(barrier==='mobile')s.customers.push({uid:'near-departure',zombieId:'wanderer',x:gate.x+.4,y:gate.y,phase:'leaving',wait:0,path:[[gate.x,gate.y]],seat:null});
+  if(barrier==='worker')Object.assign(s.waiters[0],gate);
+  if(barrier==='seated'){s.objects.push({uid:'door-chair',type:'chair',x:gate.x,y:gate.y,dir:0});s.customers.push({uid:'door-sitter',zombieId:'wanderer',x:gate.x,y:gate.y,phase:'waiting',wait:0,path:[],seat:'door-chair'});}
+  if(barrier==='furniture')s.objects.push({uid:'door-wall',type:'jars',x:gate.x,y:gate.y,dir:0});
   safeStep(s);const newcomers=s.customers.filter(c=>c.enteredAt===s.time);assert.equal(newcomers.length,['mobile','worker'].includes(barrier)?1:0,barrier);
  }
 });
@@ -77,7 +76,7 @@ test('indoor capacity continues to count every departing guest',()=>{
 });
 
 test('a worker in the only exit corridor does not block admission',()=>{
- const s=E.newGame();s.spawnIn=0;s.objects=[];const allowed=new Set(['0,5','0,6','0,7','1,5','2,5','4,1']);
+ const s=E.newGame();s.zombieEntrance=E.staffEntrance(s);s.spawnIn=0;s.objects=[];const allowed=new Set(['0,5','0,6','0,7','1,5','2,5','4,1']);
  for(let x=0;x<8;x++)for(let y=0;y<8;y++)if(!allowed.has(`${x},${y}`))s.objects.push({uid:`entry-wall-${x}-${y}`,type:'jars',x,y,dir:0});
  s.objects.push({uid:'route-chair',type:'chair',x:1,y:5,dir:0},{uid:'route-table',type:'table',x:2,y:5,dir:0},{uid:'route-food',type:'server',x:4,y:1,dir:0,foodId:'rice',stock:20});Object.assign(s.waiters[0],{x:0,y:6,path:[],task:null});s.customers=[{uid:'sealed-route-leaver',zombieId:'wanderer',x:0,y:5,phase:'leaving',wait:0,path:[],seat:null}];
  assert.equal(E.trafficStatus(s).entryBlocked,false);safeStep(s);assert.equal(s.customers.some(c=>c.enteredAt===s.time),true,'the staff member is not a terrain obstacle');

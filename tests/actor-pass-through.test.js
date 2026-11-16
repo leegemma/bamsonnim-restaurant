@@ -34,12 +34,12 @@ test('two workers may use the same service access tile and reload without separa
 });
 
 test('a worker standing at a furniture-free entrance does not block a new guest',()=>{
- const s=E.newGame();s.spawnIn=0;Object.assign(s.objects.find(o=>o.type==='server'),{foodId:'rice',stock:20});Object.assign(s.waiters[0],{x:0,y:7});E.advance(s,.25);const c=s.customers.find(c=>c.enteredAt===s.time);assert.ok(c);assert.equal(E.trafficStatus(s).entryBlocked,false);assert.deepEqual([s.waiters[0].x,s.waiters[0].y],[0,7]);assert.deepEqual([c.x,c.y],[0,7]);
+ const s=E.newGame();s.spawnIn=0;Object.assign(s.objects.find(o=>o.type==='server'),{foodId:'rice',stock:20});Object.assign(s.waiters[0],E.zombieEntrance(s));E.advance(s,.25);const c=s.customers.find(c=>c.enteredAt===s.time);assert.ok(c);assert.equal(E.trafficStatus(s).entryBlocked,false);assert.deepEqual([s.waiters[0].x,s.waiters[0].y],[6,0]);assert.deepEqual([c.x,c.y],[6,0]);
 });
 
 test('an unreachable old seat reservation is released while the guest walks back out from its current floor',()=>{
  const raw=E.newGame();raw.spawnIn=1e9;raw.objects=[{uid:'isolated-chair',type:'chair',x:4,y:4,dir:0},{uid:'isolated-table',type:'table',x:5,y:4,dir:0},...[ [3,4],[4,3],[4,5] ].map(([x,y],i)=>({uid:`sealed-seat-${i}`,type:'jars',x,y,dir:0}))];raw.customers=[{uid:'old-unreachable-reservation',zombieId:'wanderer',x:0,y:7,phase:'seating',wait:0,path:[],seat:'isolated-chair'}];
- const s=E.validateSave(raw);assert.equal(s.customers[0].phase,'leaving');assert.equal(s.customers[0].seat,null);assert.deepEqual([s.customers[0].x,s.customers[0].y],[0,7]);E.advance(s,.25);assert.equal(s.customers.length,0);assert.equal(raw.customers[0].phase,'seating');
+ const s=E.validateSave(raw);assert.equal(s.customers[0].phase,'leaving');assert.equal(s.customers[0].seat,null);assert.deepEqual([s.customers[0].x,s.customers[0].y],[0,7]);E.advance(s,.25);assert.equal(s.customers.length,1,'old guests walk to the new guest portal');E.advance(s,20);assert.equal(s.customers.length,0);assert.equal(raw.customers[0].phase,'seating');
 });
 
 test('a decorative chair may be placed unless it seals the last free-floor approach to a counter',()=>{

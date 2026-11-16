@@ -234,7 +234,7 @@ export async function runExtendedChecks(browser,baseURL,output,results){
   await page.locator('[data-act="decorate"]').click();await page.locator('[data-act="shop-tab"][data-id="stove"]').click();
   const stove=page.locator('[data-act="buy-furniture"][data-id="stove"]'),text=await stove.textContent();
   assert.equal(await stove.isDisabled(),true);assert.match(text,/2\/2/);assert.match(text,/Lv\.4/);
-  const typography=await page.evaluate(()=>Object.fromEntries(['#hunger-caption','#quest-count','.shop-tabs button','#edit-info'].map(selector=>[selector,getComputedStyle(document.querySelector(selector)).fontSize])));
+  const typography=await page.evaluate(()=>Object.fromEntries(['#hunger-value','.shop-tabs button','#edit-info'].map(selector=>[selector,getComputedStyle(document.querySelector(selector)).fontSize])));
   return{errorPersists:true,errorDismissed:true,shopLimit:text,typography};
  });
 

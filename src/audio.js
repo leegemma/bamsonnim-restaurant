@@ -108,6 +108,19 @@ export class Sound{
     }
     return true;
   }
-  effect(kind='click'){if(kind==='done')return this.cookingDoneBell();if(kind==='payment'){this.coinJingle();return;}const notes=kind==='danger'?[50,49,45]:['album','level','mastery'].includes(kind)?[74,77,81,86]:kind==='cook'?[69,74]:[81,86];notes.forEach((n,i)=>this.tone(n,.08,.3,'bell',i*.075));}
+  igniteWoodFire(){
+    if(this.context?.state!=='running'||this._effects===0||!this.effectsBus||!this.noise)return false;
+    const context=this.context,at=context.currentTime;
+    const burst=(delay,duration,frequency,level,type)=>{
+      const source=context.createBufferSource(),filter=context.createBiquadFilter(),gain=context.createGain(),start=at+delay;
+      source.buffer=this.noise;filter.type=type;filter.frequency.value=frequency;filter.Q.value=.7;
+      gain.gain.setValueAtTime(.00001,start);gain.gain.linearRampToValueAtTime(level,start+(duration>.1?.025:.001));gain.gain.exponentialRampToValueAtTime(.00001,start+duration);
+      source.connect(filter);filter.connect(gain);gain.connect(this.effectsBus);source.start(start,.09,duration);source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect();};
+    };
+    burst(0,.58,700,.65,'lowpass');
+    for(const [delay,duration,frequency,level] of [[.04,.018,1800,.23],[.11,.013,2800,.28],[.19,.025,1400,.19],[.29,.012,3400,.24],[.41,.021,2100,.16]])burst(delay,duration,frequency,level,'highpass');
+    return true;
+  }
+  effect(kind='click'){if(kind==='ignite')return this.igniteWoodFire();if(kind==='done')return this.cookingDoneBell();if(kind==='payment'){this.coinJingle();return;}const notes=kind==='danger'?[50,49,45]:['album','level','mastery'].includes(kind)?[74,77,81,86]:kind==='cook'?[69,74]:[81,86];notes.forEach((n,i)=>this.tone(n,.08,.3,'bell',i*.075));}
   stop(){if(this.timer)clearInterval(this.timer);this.timer=null;if(!this.context)return;const context=this.context;this.bus.gain.cancelScheduledValues(context.currentTime);this.bus.gain.setTargetAtTime(.0001,context.currentTime,.02);this.suspendTimer=setTimeout(()=>context.suspend(),90);}
 }

@@ -31,6 +31,9 @@ export function createCookingDoneCue(){
       }
       next.set(id,current);
     }
+    // Collection now removes the pot's batch immediately. A batch observed
+    // while cooking can still finish and be collected between two frames.
+    for(const [id,previous] of batches)if(next.get(id)?.cook!==previous.cook&&previous.armed&&!previous.finished&&state.time>=previous.cook.readyAt&&state.time<previous.cook.spoilAt)completed++;
     batches=next;return{completed,play:!!audible&&completed>0};
   }
   return{sync,scan};

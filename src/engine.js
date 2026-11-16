@@ -1,4 +1,6 @@
 import {SAVE_VERSION,OFFLINE_CAP,RECIPES,ZOMBIES,FURNITURE,SKINS,WAITER_NAMES,WAITER_NAME_UPDATES,LIMITS,EXPANSIONS,QUESTS,DIRECTIONS,recipe,zombie,furniture,xpNeeded} from './data.js';
+import {staffEntrance,zombieEntrance,zombieExit,customerExit,atEntrance} from './entrances.js';
+export {staffEntrance,zombieEntrance} from './entrances.js';
 
 const trafficState=new WeakMap();
 const seated=c=>['seating','waiting','eating'].includes(c.phase);
@@ -9,7 +11,7 @@ function traffic(a){let value=trafficState.get(a);if(!value){value={blocked:0};t
 
 export function newGame(now=Date.now()){
   const state={version:SAVE_VERSION,savedAt:now,time:0,seed:67291,coins:500,hearts:10,xp:0,level:1,size:8,hunger:0,
-    floor:'wood',wall:'paper',ownedSkins:['wood','paper'],storage:[],objects:[],waiters:[],customers:[],transfers:[],
+    floor:'wood',wall:'paper',ownedSkins:['wood','paper'],storage:[],objects:[],waiters:[],customers:[],transfers:[],zombieEntrance:{x:6,y:0},
     mastery:{},knownRecipes:{},album:{},events:{christmas:'upcoming'},eventBooks:{},
     stats:{cooked:0,served:0,sold:0,earned:0,tablesBought:0,chairsBought:0,hired:0,fevers:0,fed:{}},
     questIndex:0,questBase:0,combo:0,lastServe:-100,feverUntil:0,spawnIn:7,nextId:1,serveCursor:0,seatCursor:0,
@@ -42,7 +44,7 @@ export function cook(s,stoveId,foodId){
   const grace=Math.min(21600,Math.max(180,r.duration*2));
   o.cook={foodId:r.id,started:s.time,readyAt:s.time+r.duration,spoilAt:s.time+r.duration+grace};
   if(r.event)s.eventBooks[r.event]=true;
-  s.tutorial=Math.max(s.tutorial,1);notify(s,`${r.name} 조리를 시작했어요.`, 'cook');return null;
+  s.tutorial=Math.max(s.tutorial,1);notify(s,`${r.name} 조리를 시작했어요.`, 'cook-start');return null;
 }
 export function instant(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||stoveStatus(s,o)!=='cooking')return '조리 중인 음식이 없어요.';const r=recipe(o.cook.foodId),cost=Math.max(1,Math.ceil((r.duration<=600?1:Math.ceil(r.duration/3600))*Math.max(0,o.cook.readyAt-s.time)/r.duration));if(s.hearts<cost)return '심장이 부족해요.';s.hearts-=cost;const grace=o.cook.spoilAt-o.cook.readyAt;o.cook.readyAt=s.time;o.cook.spoilAt=s.time+grace;notify(s,'심장으로 요리를 즉시 완성했어요.','cook');return null;}
 export function discard(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||o.cook.collecting)return '이미 운반 중이에요.';delete o.cook;return null;}
@@ -110,7 +112,7 @@ function higherPriority(a,b){
 }
 function missionRoute(s,actor){
   if(actor.task){const target=workerTarget(s,actor);return target?accessPath(s,actor,target):null;}
-  if(actor.phase==='leaving')return path(s,actor,[0,s.size-1],{allowBlockedTarget:false});
+  if(actor.phase==='leaving')return path(s,actor,customerExit(s,actor),{allowBlockedTarget:false});
   if(actor.phase==='seating'){const chair=s.objects.find(o=>o.uid===actor.seat);return chair?path(s,actor,[chair.x,chair.y]):null;}
   const parking=trafficState.get(actor)?.parking;if(parking)return path(s,actor,[parking.x,parking.y],{avoidActors:true});
   return actor.path?.length?path(s,actor,actor.path.at(-1),{avoidActors:true}):[];
@@ -137,7 +139,7 @@ function move(s,actor,dt,speed){
 function freePosition(s,from,{ignore=null,avoidEntry=false,spread=false}={}){
   const blocked=blockedTiles(s),q=[[Math.max(0,Math.min(s.size-1,Math.round(from.x))),Math.max(0,Math.min(s.size-1,Math.round(from.y)))]],seen=new Set([q[0].join(',')]);
   const candidates=[];
-  for(let i=0;i<q.length;i++){const [x,y]=q[i];if(walkable(s,x,y,blocked)&&(!avoidEntry||x!==0||y!==s.size-1)&&!s.objects.some(o=>o.x===x&&o.y===y)){if(!spread)return{x,y};candidates.push({x,y});}for(const [dx,dy] of DIRECTIONS){const a=x+dx,b=y+dy,k=tileKey(a,b);if(walkable(s,a,b)&&!seen.has(k)){seen.add(k);q.push([a,b]);}}}
+  for(let i=0;i<q.length;i++){const [x,y]=q[i];if(walkable(s,x,y,blocked)&&(!avoidEntry||!atEntrance(s,x,y))&&!s.objects.some(o=>o.x===x&&o.y===y)){if(!spread)return{x,y};candidates.push({x,y});}for(const [dx,dy] of DIRECTIONS){const a=x+dx,b=y+dy,k=tileKey(a,b);if(walkable(s,a,b)&&!seen.has(k)){seen.add(k);q.push([a,b]);}}}
   const existing=actors(s).filter(a=>a!==ignore),score=p=>Math.min(...existing.map(a=>Math.abs(p.x-a.x)+Math.abs(p.y-a.y)),Math.abs(p.x)+Math.abs(p.y-(s.size-1)));
   return candidates.sort((a,b)=>score(b)-score(a))[0]||null;
 }
@@ -175,8 +177,19 @@ function finishTransfer(s,transfer){
 export function collect(s,id){
   const o=s.objects.find(o=>o.uid===id);if(stoveStatus(s,o)!=='done')return '완성된 요리를 선택해주세요.';
   const target=reservedServer(s,o.cook.foodId);if(!target)return '서빙대가 모두 차 있어요. 빈 서빙대를 마련해주세요.';
-  if(!s.waiters.some(w=>accessPath(s,w,o)!==null&&accessPath(s,w,target)!==null))return '직원이 가마솥과 서빙대에 갈 수 없어요. 통로를 확인해주세요.';
-  target.reservedFood=o.cook.foodId;o.cook.collecting=true;s.transfers.push({uid:uid(s),stove:id,server:target.uid,foodId:o.cook.foodId});return null;
+  const foodId=o.cook.foodId;target.foodId=foodId;target.stock=(target.stock||0)+recipe(foodId).servings;delete o.cook;completeCooking(s,foodId);refreshServerReservation(s,target.uid);return null;
+}
+function settleLegacyTransfers(s){
+  if(!s.transfers.length)return;
+  for(const w of s.waiters)if(w.task?.kind==='transfer'){w.task=null;settleWorker(s,w,true);}
+  for(const transfer of [...s.transfers]){
+    delete transfer.worker;
+    const original=s.objects.find(o=>o.uid===transfer.server),target=original&&(!(original.stock>0)||original.foodId===transfer.foodId)?original:reservedServer(s,transfer.foodId);
+    if(!target)continue;
+    target.foodId=transfer.foodId;target.stock=(target.stock||0)+recipe(transfer.foodId).servings;
+    const stove=s.objects.find(o=>o.uid===transfer.stove);if(stove?.cook?.collecting)delete stove.cook;
+    completeCooking(s,transfer.foodId);finishTransfer(s,transfer);refreshServerReservation(s,target.uid);
+  }
 }
 function completeCooking(s,foodId){
   const before=recipeLevel(s),old=stars(s,foodId),r=recipe(foodId);s.mastery[foodId]=(s.mastery[foodId]||0)+1;s.stats.cooked++;s.knownRecipes[foodId]=true;s.tutorial=Math.max(s.tutorial,2);
@@ -190,15 +203,15 @@ function chooseCustomer(s){
   const available=s.objects.filter(o=>o.stock>0).map(o=>o.foodId);const weighted=pool.flatMap(z=>Array(z.id==='wanderer'?3:available.includes(z.favorite)?4:1).fill(z));return weighted[Math.floor(random(s)*weighted.length)]||ZOMBIES[0];
 }
 function entryBlocked(s){
-  const x=0,y=s.size-1;
+  const {x,y}=zombieEntrance(s);
   return s.objects.some(o=>o.x===x&&o.y===y);
 }
-function exitTrafficBlocked(s){return s.customers.some(c=>c.phase==='leaving'&&path(s,c,[0,s.size-1],{allowBlockedTarget:false})===null);}
+function exitTrafficBlocked(s){return s.customers.some(c=>c.phase==='leaving'&&path(s,c,customerExit(s,c),{allowBlockedTarget:false})===null);}
 function createCustomer(s){
   if(entryBlocked(s)||exitTrafficBlocked(s))return false;
-  const def=chooseCustomer(s);s.customers.push({uid:uid(s),zombieId:def.id,x:0,y:s.size-1,phase:'queue',wait:0,path:[],seat:null,red:!!def.red,enteredAt:s.time});return true;
+  const def=chooseCustomer(s);s.customers.push({uid:uid(s),zombieId:def.id,...zombieEntrance(s),phase:'queue',wait:0,path:[],seat:null,red:!!def.red,enteredAt:s.time});s.zombieDoorOpenedAt=s.time;return true;
 }
-function leave(s,c){c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,[0,s.size-1],{allowBlockedTarget:false})||[];traffic(c).exitDistance=c.path.length;c.seat=null;}
+function leave(s,c){c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,customerExit(s,c),{allowBlockedTarget:false})||[];traffic(c).exitDistance=c.path.length;c.seat=null;}
 function releaseInactiveSeats(s){
   for(const c of s.customers){
     if(!['seating','waiting'].includes(c.phase))continue;
@@ -209,7 +222,7 @@ function releaseInactiveSeats(s){
 }
 export function trafficStatus(s){
   const leaving=s.customers.filter(c=>c.phase==='leaving'),capacity=seats(s).length+1,oldestLeaving=Math.max(0,...leaving.map(c=>s.time-(c.leavingAt??s.time))),oldestSeating=Math.max(0,...s.customers.filter(c=>c.phase==='seating').map(c=>s.time-(c.seatingAt??s.time))),congested=oldestLeaving>=8||oldestSeating>=20||s.customers.length>capacity;
-  return{congested,customers:s.customers.length,capacity,leaving:leaving.length,oldestLeaving,oldestSeating,entryBlocked:entryBlocked(s),admissionBlocked:entryBlocked(s)||exitTrafficBlocked(s),capacityReached:s.customers.length>=capacity,exitBlocked:congested&&leaving.some(c=>path(s,c,[0,s.size-1],{allowBlockedTarget:false})===null)};
+  return{congested,customers:s.customers.length,capacity,leaving:leaving.length,oldestLeaving,oldestSeating,entryBlocked:entryBlocked(s),admissionBlocked:entryBlocked(s)||exitTrafficBlocked(s),capacityReached:s.customers.length>=capacity,exitBlocked:congested&&leaving.some(c=>path(s,c,customerExit(s,c),{allowBlockedTarget:false})===null)};
 }
 function angry(s,c,queue=false){s.hunger=Math.min(100,s.hunger+(queue?4:8));s.combo=0;if(c.red){const w=s.waiters.filter(w=>w.infectedUntil<=s.time).sort((a,b)=>Math.hypot(a.x-c.x,a.y-c.y)-Math.hypot(b.x-c.x,b.y-c.y))[0];if(w){c.phase='chasing';c.target=w.uid;c.seat=null;c.chaseTime=0;c.path=[];return;}}leave(s,c);}
 function pay(s,c,offline){
@@ -240,9 +253,6 @@ function cancelTask(s,w){
   if(t.kind==='serve')refreshServerReservation(s,t.server);
 }
 function assign(s,w){
-  for(const x of s.transfers.filter(x=>!x.worker)){
-    const o=s.objects.find(o=>o.uid===x.stove);if(!o?.cook)continue;if(!setRoute(s,w,o))continue;x.worker=w.uid;w.task={kind:'transfer',transfer:x.uid,phase:'pickup',work:0};return;
-  }
   const waiting=s.customers.filter(c=>c.phase==='waiting'&&!c.worker).sort((a,b)=>b.wait-a.wait);
   for(const c of waiting){
     const favorite=zombie(c.zombieId)?.favorite,counters=s.objects.filter(o=>furniture(o.type)?.category==='server'),start=(s.serveCursor||0)%Math.max(1,counters.length),servers=[...counters.slice(start),...counters.slice(0,start)].sort((a,b)=>(b.foodId===favorite)-(a.foodId===favorite));
@@ -275,7 +285,7 @@ function parkIdle(s,w){
   const choices=[];
   for(let x=0;x<s.size;x++)for(let y=0;y<s.size;y++){
     const key=tileKey(x,y),distance=Math.min(...counters.map(o=>Math.abs(o.x-x)+Math.abs(o.y-y)));
-    if(distance>3||x+Math.abs(y-(s.size-1))<=2||occupied.has(key)||blocked.has(key)||claims.has(key)||routes.has(key)||chairs.some(o=>Math.abs(o.x-x)+Math.abs(o.y-y)<=1)||!safeParkingTile(s,[x,y],claims))continue;
+    if(distance>3||[staffEntrance(s),zombieEntrance(s)].some(p=>Math.abs(x-p.x)+Math.abs(y-p.y)<=2)||occupied.has(key)||blocked.has(key)||claims.has(key)||routes.has(key)||chairs.some(o=>Math.abs(o.x-x)+Math.abs(o.y-y)<=1)||!safeParkingTile(s,[x,y],claims))continue;
     const route=path(s,w,[x,y],{avoidActors:true});if(route!==null)choices.push({x,y,route,distance});
   }
   const choice=choices.sort((a,b)=>a.distance-b.distance||a.route.length-b.route.length||a.y-b.y||a.x-b.x)[0];
@@ -317,6 +327,7 @@ function updateWorker(s,w,dt,offline){
 }
 function step(s,dt,offline){
   s.time+=dt;
+  settleLegacyTransfers(s);
   repairActorPositions(s);
   const seatList=seats(s);
   releaseInactiveSeats(s);
@@ -330,7 +341,7 @@ function step(s,dt,offline){
     // indoor capacity; only furniture blocks the entrance tile itself.
     if((hasFood(s)||s.stats.served>0)&&s.customers.length<seatList.length+1){if(!createCustomer(s))s.spawnIn=.5;}else s.spawnIn=.5;
   }
-  for(const c of s.customers){if(c.phase==='leaving'){if(c.leavingAt===undefined)c.leavingAt=s.time;traffic(c).exitDistance=path(s,c,[0,s.size-1],{allowBlockedTarget:false})?.length??Infinity;}else if(c.phase==='seating'&&c.seatingAt===undefined)c.seatingAt=s.time;}
+  for(const c of s.customers){if(c.phase==='leaving'){if(c.leavingAt===undefined)c.leavingAt=s.time;traffic(c).exitDistance=path(s,c,customerExit(s,c),{allowBlockedTarget:false})?.length??Infinity;}else if(c.phase==='seating'&&c.seatingAt===undefined)c.seatingAt=s.time;}
   const ordered=[...s.customers].sort((a,b)=>higherPriority(a,b)?-1:higherPriority(b,a)?1:0);
   for(const c of ordered){
     if(c.phase==='queue'){
@@ -340,7 +351,7 @@ function step(s,dt,offline){
       const seat=available.find(x=>path(s,c,[x.chair.x,x.chair.y])!==null);
       if(seat){c.seat=seat.uid;c.path=path(s,c,[seat.chair.x,seat.chair.y]);c.phase='seating';c.seatingAt=s.time;c.wait=0;}
       else{c.wait+=dt;if(c.wait>=20)angry(s,c,true);}
-    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=s.objects.find(o=>o.uid===c.seat);if(!chair)leave(s,c);else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
+    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=s.objects.find(o=>o.uid===c.seat);if(!chair)leave(s,c);else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.x=chair.x;c.y=chair.y;c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
     else if(c.phase==='waiting'){
       c.wait+=dt;const worker=s.waiters.find(w=>w.uid===c.worker),service=worker?.task?.kind==='serve'&&worker.task.customer===c.uid?worker.task:null,patience=c.red?25:45;
       // Carrying a meal gives a short grace period, not unlimited patience. A
@@ -354,7 +365,7 @@ function step(s,dt,offline){
       else{if(!c.path?.length||atTile(c)){const route=accessPath(s,c,{x:Math.round(target.x),y:Math.round(target.y)});if(route===null){leave(s,c);continue;}c.path=route;}move(s,c,dt,1.5);}
     }
     else if(c.phase==='eating'){if(s.time>=c.eatUntil)pay(s,c,offline);}
-    else if(c.phase==='leaving'){if(!c.path?.length)c.path=missionRoute(s,c)||[];if(move(s,c,dt,1.6)){if(Math.hypot(c.x,c.y-(s.size-1))<1e-6)c.removed=true;else c.path=missionRoute(s,c)||[];}}
+    else if(c.phase==='leaving'){if(!c.path?.length)c.path=missionRoute(s,c)||[];if(move(s,c,dt,1.6)){if(Math.hypot(c.x-customerExit(s,c)[0],c.y-customerExit(s,c)[1])<1e-6){c.removed=true;s.zombieDoorOpenedAt=s.time;}else c.path=missionRoute(s,c)||[];}}
   }
   s.customers=s.customers.filter(c=>!c.removed);
   for(const w of s.waiters)updateWorker(s,w,dt,offline);
@@ -373,13 +384,13 @@ export function reconcileOffline(s,now=Date.now()){
   advance(s,seconds,{offline:true});s.savedAt=now;
   return {seconds,simulated:Math.min(seconds,OFFLINE_CAP),coins:s.coins-before.coins,sold:s.stats.sold-before.sold,levels:s.level-before.level,done:s.objects.filter(o=>stoveStatus(s,o)==='done').length,spoiled:s.objects.filter(o=>stoveStatus(s,o)==='spoiled').length,infected:s.waiters.filter(w=>w.infectedUntil>s.time).length};
 }
-export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 레벨의 고용 한도에 도달했어요.';const cost=hireCost(s);if(s.coins<cost)return '코인이 부족해요.';const position=freePosition(s,{x:0,y:s.size-1},{avoidEntry:true,spread:true});if(!position)return '직원이 설 빈 공간과 통로가 필요해요.';s.coins-=cost;const name=WAITER_NAMES.find(n=>!s.waiters.some(w=>w.name===n))||`직원 ${s.nextId}`,appearance=Array.from({length:8},(_,i)=>i).find(i=>!s.waiters.some(w=>w.appearance===i));s.waiters.push({uid:uid(s),name,appearance,...position,path:[],task:null,infectedUntil:0});s.stats.hired++;notify(s,`${name}가 식당에 합류했어요!`, 'hire');return null;}
+export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 레벨의 고용 한도에 도달했어요.';const cost=hireCost(s);if(s.coins<cost)return '코인이 부족해요.';const position=freePosition(s,{x:0,y:s.size-1},{avoidEntry:true,spread:true});if(!position)return '직원이 설 빈 공간과 통로가 필요해요.';s.coins-=cost;const name=WAITER_NAMES.find(n=>!s.waiters.some(w=>w.name===n))||`직원 ${s.nextId}`,appearance=Array.from({length:8},(_,i)=>i).find(i=>!s.waiters.some(w=>w.appearance===i));const entry=staffEntrance(s),start=walkable(s,entry.x,entry.y)?entry:position;s.waiters.push({uid:uid(s),name,appearance,...start,path:path(s,start,[position.x,position.y])||[],task:null,infectedUntil:0});s.staffDoorOpenedAt=s.time;s.stats.hired++;notify(s,`${name}가 식당에 합류했어요!`, 'hire');return null;}
 export function fire(s,id){if(s.waiters.length<=1)return '직원은 최소 1명 필요해요.';const w=s.waiters.find(w=>w.uid===id);if(!w)return '직원을 찾을 수 없어요.';cancelTask(s,w);s.waiters=s.waiters.filter(w=>w.uid!==id);return null;}
 export function cure(s,id){const w=s.waiters.find(w=>w.uid===id);if(!w||w.infectedUntil<=s.time)return '치료가 필요하지 않아요.';if(s.coins<cureCost(s))return '치료 비용이 부족해요.';s.coins-=cureCost(s);w.infectedUntil=0;return null;}
 
 export function placementProblem(s,type,x,y,dir=0,ignore=null,{ignoreStaff=false}={}){
   if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=s.size||y>=s.size)return '식당 안에 배치해주세요.';
-  if(x===0&&y===s.size-1)return '출입구는 비워주세요.';
+  if(atEntrance(s,x,y))return '출입구는 비워주세요.';
   if(type==='poster'&&x!==0&&y!==0)return '포스터는 뒤쪽 벽면에 붙여주세요.';
   if(s.objects.some(o=>o.uid!==ignore&&o.x===x&&o.y===y))return '다른 가구와 겹쳐요.';
   const candidate={uid:ignore||'preview',type,x,y,dir};
@@ -387,7 +398,8 @@ export function placementProblem(s,type,x,y,dir=0,ignore=null,{ignoreStaff=false
   if(!ignoreStaff&&s.waiters.some(w=>!atTile(w)&&!segmentEnds(w).some(([x,y])=>walkable(temp,x,y))))return '직원이 걷는 칸 옆에 빈 공간을 남겨주세요.';
   // Preserve working approaches without making an already blocked old layout
   // impossible to repair. An unpaired decorative chair needs no service side.
-  const door={x:0,y:s.size-1},before=reachableTiles(s,door),reachable=reachableTiles(temp,door);
+  const door=staffEntrance(s),before=reachableTiles(s,door),reachable=reachableTiles(temp,door),guestDoor=zombieEntrance(s);
+  if(before.has(tileKey(guestDoor.x,guestDoor.y))&&!reachable.has(tileKey(guestDoor.x,guestDoor.y)))return '두 출입문을 잇는 통로를 비워주세요.';
   if(ignoreStaff&&s.waiters.length&&![...reachable].some(key=>key!==tileKey(door.x,door.y)))return '직원이 설 빈 바닥을 남겨주세요.';
   for(const o of temp.objects){const category=furniture(o.type)?.category;if(!['stove','server'].includes(category))continue;const old=s.objects.find(old=>old.uid===o.uid);if((o.uid===candidate.uid||old&&accessPath(s,door,old)!==null)&&accessPath(temp,door,o)===null)return '직원이 지나다닐 통로가 필요해요.';}
   for(const chair of temp.objects.filter(o=>furniture(o.type)?.category==='chair')){
@@ -449,6 +461,7 @@ export function validateSave(raw){
   for(const id of s.storage)if(!furniture(id))throw new Error('창고 정보가 손상되었습니다.');
   for(const [id,count] of Object.entries(s.mastery))if(!recipe(id)||!Number.isInteger(count)||count<0)throw new Error('숙련도 정보가 손상되었습니다.');
   for(const [id,count] of Object.entries(s.album))if(!zombie(id)||!Number.isInteger(count)||count<1)throw new Error('도감 정보가 손상되었습니다.');
+  for(const c of s.customers)if(c.exitDoor!==undefined&&(!c.exitDoor||!Number.isInteger(c.exitDoor.x)||!Number.isInteger(c.exitDoor.y)||c.exitDoor.x<0||c.exitDoor.y<0||c.exitDoor.x>=s.size||c.exitDoor.y>=s.size||(c.exitDoor.x!==0&&c.exitDoor.y!==0)))throw new Error('손님 출구 정보가 올바르지 않습니다.');
   const validPath=p=>Array.isArray(p)&&p.length<=256&&p.every(t=>Array.isArray(t)&&t.length===2&&t.every(n=>Number.isInteger(n)&&n>=0&&n<s.size));
   const appearances=new Set();
   for(const w of s.waiters){
@@ -476,6 +489,26 @@ export function validateSave(raw){
   if(!SKINS.some(x=>x.id===s.floor&&x.type==='floor')||!SKINS.some(x=>x.id===s.wall&&x.type==='wall'))throw new Error('인테리어 정보가 손상되었습니다.');
   s.settings.music=Math.max(0,Math.min(1,Number(s.settings.music)||0));s.settings.sfx=Math.max(0,Math.min(1,Number(s.settings.sfx)||0));
   for(const o of s.objects)if(furniture(o.type)?.category==='server')refreshServerReservation(s,o.uid);
+  if(s.zombieEntrance===undefined){
+    // Old layouts keep their furniture: choose a connected free right-wall tile.
+    const preferred=Math.min(6,s.size-2),xs=[preferred,...Array.from({length:s.size},(_,x)=>x).filter(x=>x!==preferred)];
+    let x=xs.find(x=>path(s,staffEntrance(s),[x,0],{allowBlockedTarget:false})!==null);
+    if(x===undefined)for(const candidateX of xs){
+      if(path(s,staffEntrance(s),[candidateX,0])===null)continue;
+      const obstacle=s.objects.find(o=>o.x===candidateX&&o.y===0);if(!obstacle)continue;
+      s.zombieEntrance={x:candidateX,y:0};
+      let position=null;
+      for(let y=0;y<s.size&&!position;y++)for(let gx=0;gx<s.size;gx++){
+        if(actors(s).some(a=>Math.round(a.x)===gx&&Math.round(a.y)===y))continue;
+        if(!placementProblem(s,obstacle.type,gx,y,obstacle.dir,obstacle.uid,{ignoreStaff:true})){position={x:gx,y};break;}
+      }
+      if(position){Object.assign(obstacle,position);x=candidateX;notify(s,'좀비 출입구를 비우기 위해 가구를 빈 자리로 옮겼어요.');break;}
+    }
+    s.zombieEntrance={x:x??preferred,y:0};
+    if(x===undefined)for(const c of s.customers)c.exitDoor=staffEntrance(s);
+  }else if(!s.zombieEntrance||!Number.isInteger(s.zombieEntrance.x)||s.zombieEntrance.x<0||s.zombieEntrance.x>=s.size||!Number.isInteger(s.zombieEntrance.y)||s.zombieEntrance.y<0||s.zombieEntrance.y>=s.size||(s.zombieEntrance.x!==0&&s.zombieEntrance.y!==0))throw new Error('좀비 출입구 정보가 올바르지 않습니다.');
+  for(const key of ['zombieDoorOpenedAt','staffDoorOpenedAt'])if(s[key]!==undefined&&!Number.isFinite(s[key]))throw new Error('출입문 상태가 올바르지 않습니다.');
+  settleLegacyTransfers(s);
   releaseInactiveSeats(s);
   repairActorPositions(s);
   for(const w of s.waiters)if(!w.path?.length&&!atTile(w))settleWorker(s,w,true);

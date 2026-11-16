@@ -7,7 +7,7 @@ import {RECIPES,ZOMBIES,OFFLINE_CAP,recipe,DIRECTIONS} from '../src/data.js';
 const stove=s=>s.objects.find(o=>o.type==='stove');
 const server=s=>s.objects.find(o=>o.type==='server');
 function supply(s,stock=1000,foodId='rice'){Object.assign(server(s),{stock,foodId});}
-function batch(s,id='rice'){const o=stove(s),before=s.stats.cooked;assert.equal(E.cook(s,o.uid,id),null);E.advance(s,recipe(id).duration);assert.equal(E.collect(s,o.uid),null);advanceUntil(s,()=>s.stats.cooked===before+1,'staff completes the cooking transfer');}
+function batch(s,id='rice'){const o=stove(s),before=s.stats.cooked;assert.equal(E.cook(s,o.uid,id),null);E.advance(s,recipe(id).duration);assert.equal(E.collect(s,o.uid),null);advanceUntil(s,()=>s.stats.cooked===before+1,'collection completes immediately');}
 function singleChairGame(dir=0){
  const s=E.newGame(1000),[dx,dy]=DIRECTIONS[dir];s.objects=[stove(s),server(s),{uid:'test-chair',type:'chair',x:3,y:5,dir},{uid:'test-table',type:'table',x:3+dx,y:5+dy,dir:0}];s.spawnIn=1e9;return s;
 }
@@ -34,7 +34,7 @@ function corridorGame(bay=true){
 }
 function longRunGame(count=4,seed=67291){
  const s=E.newGame(1000);s.seed=seed;s.level=30;s.coins=1e6;s.mastery=Object.fromEntries(RECIPES.map(r=>[r.id,r.milestones.at(-1)]));
- if(count===4)s.objects.push({uid:'counter-soup',type:'server',x:5,y:1,dir:0},{uid:'counter-skewer',type:'server',x:6,y:1,dir:0});
+ if(count===4)s.objects.push({uid:'counter-soup',type:'server',x:5,y:2,dir:0},{uid:'counter-skewer',type:'server',x:6,y:2,dir:0});
  else{s.size=12;s.objects=[{uid:'run-stove-1',type:'stove',x:1,y:1,dir:0},{uid:'run-stove-2',type:'stove',x:2,y:1,dir:0},...[4,7,10].map((x,i)=>({uid:`run-counter-${i}`,type:'server',x,y:1,dir:0}))];for(let i=0;i<count;i++){const x=2+i%4*3,y=4+Math.floor(i/4)*3,dir=i%4,[dx,dy]=DIRECTIONS[dir];s.objects.push({uid:`run-chair-${i}`,type:'chair',x,y,dir},{uid:`run-table-${i}`,type:'table',x:x+dx,y:y+dy,dir:0});}}
  while(s.waiters.length<8)assert.equal(E.hire(s),null);for(const [i,o]of s.objects.filter(o=>o.type==='server').entries())Object.assign(o,{foodId:['rice','soup','skewer'][i],stock:100000});return s;
 }
@@ -44,40 +44,39 @@ test('content IDs are unique and every favorite resolves to an available food',(
  assert.equal(new Set(ZOMBIES.map(z=>z.id)).size,ZOMBIES.length);
  for(const z of ZOMBIES)if(z.favorite)assert.ok(recipe(z.favorite));
 });
-test('completed cooking waits for DONE, physically transfers, and never automatically recooks',()=>{
+test('completed cooking waits for collection, instantly reaches the counter, and never automatically recooks',()=>{
  const s=E.newGame(),o=stove(s);assert.equal(E.cook(s,o.uid,'rice'),null);E.advance(s,11.75);assert.equal(E.stoveStatus(s,o),'cooking');E.advance(s,.25);assert.equal(E.stoveStatus(s,o),'done');assert.equal(s.stats.cooked,0);assert.equal(server(s).stock,undefined);
- assert.equal(E.collect(s,o.uid),null);assert.equal(E.stoveStatus(s,o),'collecting');E.advance(s,7);assert.equal(s.stats.cooked,1);assert.equal(E.stoveStatus(s,o),'empty');assert.ok(server(s).stock>0);E.advance(s,15);assert.equal(E.stoveStatus(s,o),'empty');
+ assert.equal(E.collect(s,o.uid),null);assert.equal(E.stoveStatus(s,o),'empty');assert.deepEqual(s.transfers,[]);E.advance(s,7);assert.equal(s.stats.cooked,1);assert.equal(E.stoveStatus(s,o),'empty');assert.ok(server(s).stock>0);E.advance(s,15);assert.equal(E.stoveStatus(s,o),'empty');
 });
 test('repeated soup batches merge into existing soup stock even when an empty counter comes first',()=>{
  const s=twoCounterGame(),[empty,soup]=s.objects.filter(o=>o.type==='server'),o=stove(s);Object.assign(soup,{foodId:'soup',stock:7});
  for(let batch=1;batch<=2;batch++){
-  assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);assert.equal(E.collect(s,o.uid),null);assert.equal(s.transfers[0].server,soup.uid);
+  assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);assert.equal(E.collect(s,o.uid),null);assert.equal(soup.foodId,'soup');assert.deepEqual(s.transfers,[]);
   advanceUntil(s,()=>s.stats.cooked===batch,'soup is carried to its existing counter');assert.equal(soup.stock,7+batch*recipe('soup').servings);assert.ok(!(empty.stock>0));
  }
  assert.equal(soup.stock,67);assert.equal(s.mastery.soup,2);assert.equal(s.objects.filter(o=>o.type==='server'&&o.foodId==='soup'&&o.stock>0).length,1);
 });
-test('simultaneous soup collections share their reserved counter ahead of an earlier empty counter',()=>{
+test('simultaneous soup collections merge into the existing soup counter ahead of an empty counter',()=>{
  const s=twoCounterGame(),[first,target]=s.objects.filter(o=>o.type==='server'),stoves=s.objects.filter(o=>o.type==='stove');Object.assign(first,{foodId:'rice',stock:1});
  for(const o of stoves)assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);
- assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(target.reservedFood,'soup');first.stock=0;
- assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers.map(x=>x.server),[target.uid,target.uid]);
+ assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(target.foodId,'soup');assert.equal(target.stock,30);first.stock=0;
+ assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers,[]);assert.equal(target.stock,60);
  advanceUntil(s,()=>s.stats.cooked===2,'both soup batches reach the shared counter');assert.equal(target.stock,60);assert.equal(target.reservedFood,undefined);assert.equal(first.stock,0);
 });
-test('remaining soup transfers keep their counter reserved after its current stock sells out',()=>{
+test('two immediate soup collections total both batches and a sold-out counter accepts another dish',()=>{
  const s=twoCounterGame(),counter=server(s),stoves=s.objects.filter(o=>o.type==='stove');s.objects=s.objects.filter(o=>o.uid!=='extra-counter');
  for(const o of stoves)assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);for(const o of stoves)assert.equal(E.collect(s,o.uid),null);
- advanceUntil(s,()=>s.stats.cooked===1,'first soup batch arrives');assert.equal(counter.stock,30);assert.equal(counter.reservedFood,'soup');assert.equal(s.transfers.length,1);
- counter.stock=0;assert.equal(E.cook(s,stoves[0].uid,'rice'),null);assert.equal(E.instant(s,stoves[0].uid),null);
- assert.equal(E.collect(s,stoves[0].uid),'서빙대가 모두 차 있어요. 빈 서빙대를 마련해주세요.');assert.equal(E.stoveStatus(s,stoves[0]),'done');
- advanceUntil(s,()=>s.stats.cooked===2,'remaining reserved soup arrives');assert.equal(counter.stock,30);assert.equal(counter.foodId,'soup');assert.equal(counter.reservedFood,undefined);
+ assert.equal(s.stats.cooked,2);assert.equal(counter.stock,60);assert.equal(counter.reservedFood,undefined);assert.deepEqual(s.transfers,[]);
+ counter.stock=0;assert.equal(E.cook(s,stoves[0].uid,'rice'),null);assert.equal(E.instant(s,stoves[0].uid),null);assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(counter.foodId,'rice');assert.equal(counter.stock,6);assert.equal(s.stats.cooked,3);
 });
+
 test('different dishes reserve separate counters, preserve DONE when full and reuse sold-out counters',()=>{
  const s=twoCounterGame(),[rice,soup]=s.objects.filter(o=>o.type==='server'),stoves=s.objects.filter(o=>o.type==='stove');
  assert.equal(E.cook(s,stoves[0].uid,'rice'),null);assert.equal(E.cook(s,stoves[1].uid,'soup'),null);E.advance(s,recipe('soup').duration);
- assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers.map(x=>x.server),[rice.uid,soup.uid]);
+ assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers,[]);assert.equal(rice.foodId,'rice');assert.equal(soup.foodId,'soup');
  advanceUntil(s,()=>s.stats.cooked===2,'different dishes reach separate counters');assert.equal(rice.foodId,'rice');assert.equal(rice.stock,6);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,30);
  assert.equal(E.cook(s,stoves[0].uid,'skewer'),null);E.advance(s,recipe('skewer').duration);assert.equal(E.collect(s,stoves[0].uid),'서빙대가 모두 차 있어요. 빈 서빙대를 마련해주세요.');assert.equal(E.stoveStatus(s,stoves[0]),'done');assert.equal(s.transfers.length,0);
- rice.stock=0;assert.equal(rice.reservedFood,undefined);assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(s.transfers[0].server,rice.uid);
+ rice.stock=0;assert.equal(rice.reservedFood,undefined);assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(rice.foodId,'skewer');assert.equal(rice.stock,10);assert.deepEqual(s.transfers,[]);
  advanceUntil(s,()=>s.stats.cooked===3,'sold-out counter is reused for another dish');assert.equal(rice.foodId,'skewer');assert.equal(rice.stock,10);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,30);
 });
 test('cooking spends only once and rejects locked or unaffordable recipes',()=>{
@@ -99,7 +98,7 @@ test('eight workers keep separate positions during real service and every initia
  for(const seat of E.seats(s).filter(seat=>seat.chair.y===5&&seat.chair.dir===3))assert.ok(used.has(seat.uid),'lower backward-facing chair is occupied');
 });
 test('walking guests pass through one another and keep their overlapping positions on v1 reload',()=>{
- const s=singleChairGame(),chair=s.objects.find(o=>o.type==='chair');Object.assign(chair,{x:6,y:7});Object.assign(s.objects.find(o=>o.uid==='test-table'),{x:7,y:7});
+ const s=singleChairGame(),chair=s.objects.find(o=>o.type==='chair');s.zombieEntrance=E.staffEntrance(s);Object.assign(chair,{x:6,y:7});Object.assign(s.objects.find(o=>o.uid==='test-table'),{x:7,y:7});
  const entering={uid:'crossing-in',zombieId:'wanderer',x:0,y:7,phase:'seating',wait:0,path:[],seat:chair.uid},leaving={uid:'crossing-out',zombieId:'wanderer',x:5.6,y:7,phase:'leaving',wait:0,path:[[5,7],[4,7],[3,7],[2,7],[1,7],[0,7]],seat:null};s.customers=[entering,leaving];let shared=false;
  for(let i=0;i<20;i++){
   const before=[{x:entering.x,y:entering.y},{x:leaving.x,y:leaving.y}],wasWalking=entering.phase==='seating';E.advance(s,.25);assertActorRules(s);
@@ -120,7 +119,7 @@ test('an incoming guest takes a free chair after yielding to staff while another
  assert.equal(incoming.phase,'waiting','unrelated walking departures do not hold a reachable reserved chair');assert.ok(s.customers.includes(outgoing));assert.deepEqual([incoming.x,incoming.y],[7,6]);
 });
 test('all actors pass through staff while empty and occupied chairs remain furniture obstacles',()=>{
- const s=singleChairGame(),w=s.waiters[0],chair=s.objects.find(o=>o.type==='chair');Object.assign(w,{x:2,y:7});const c={uid:'crossing-worker-guest',zombieId:'wanderer',x:4,y:7,phase:'leaving',wait:0,path:[],seat:null};s.customers=[c];let shared=false;
+ const s=singleChairGame(),w=s.waiters[0],chair=s.objects.find(o=>o.type==='chair');s.zombieEntrance=E.staffEntrance(s);Object.assign(w,{x:2,y:7});const c={uid:'crossing-worker-guest',zombieId:'wanderer',x:4,y:7,phase:'leaving',wait:0,path:[],seat:null};s.customers=[c];let shared=false;
  for(let i=0;i<20&&s.customers.includes(c);i++){const before={x:c.x,y:c.y};E.advance(s,.25);assertActorRules(s);if(s.customers.includes(c))assert.ok(Math.hypot(c.x-before.x,c.y-before.y)>.39);if(Math.hypot(c.x-w.x,c.y-w.y)<1e-6)shared=true;}
  assert.equal(s.customers.includes(c),false);assert.ok(shared);
  const fixed={uid:'fixed-seat-guest',zombieId:'wanderer',x:chair.x,y:chair.y,phase:'waiting',wait:0,path:[],seat:chair.uid},other={uid:'other-mobile-guest',zombieId:'wanderer',x:5,y:5,phase:'leaving',wait:0,path:[],seat:null};s.customers=[fixed,other];
@@ -137,14 +136,14 @@ for(const count of [4,8,12])test(`${count} chairs sustain one hour of service wi
  t.diagnostic(JSON.stringify({chairs:count,time:s.time,sold:s.stats.sold,maxCustomers,maxLeavingAge,arrivals:arrivals.size,seated:sat.size,exited,soldAt}));
 });
 test('a chair-blocked legacy layout preserves trapped guests and furniture while reachable guests leave',async t=>{
- const raw=JSON.parse(await readFile(new URL('./fixtures/traffic/12-seats-clutter-final.json',import.meta.url),'utf8')),s=E.validateSave(raw),start=s.time,layout=JSON.stringify(s.objects.map(o=>[o.uid,o.type,o.x,o.y,o.dir]));
+ const raw=JSON.parse(await readFile(new URL('./fixtures/traffic/12-seats-clutter-final.json',import.meta.url),'utf8')),s=E.validateSave(raw),start=s.time,layout=JSON.stringify(s.objects.map(o=>[o.uid,o.type,o.x,o.y,o.dir]));s.zombieEntrance=E.staffEntrance(s);
  const canExit=c=>{if(E.path(s,c,[0,s.size-1],{allowBlockedTarget:false})!==null)return true;const chair=c.phase==='seating'&&s.objects.find(o=>o.uid===c.seat);return !!chair&&E.path(s,c,[chair.x,chair.y])!==null&&E.path(s,chair,[0,s.size-1],{allowBlockedTarget:false})!==null;},reachable=new Set(s.customers.filter(canExit).map(c=>c.uid)),trapped=new Set(s.customers.filter(c=>!reachable.has(c.uid)&&c.phase!=='queue').map(c=>c.uid));assert.ok(reachable.size&&trapped.size);
  for(let i=0;i<2400;i++){E.advance(s,.25);assertActorRules(s);}
  assert.ok(!s.customers.some(c=>reachable.has(c.uid)),'all originally reachable guests leave');assert.ok([...trapped].every(id=>s.customers.some(c=>c.uid===id)),'trapped legacy guests are not discarded');assert.equal(JSON.stringify(s.objects.map(o=>[o.uid,o.type,o.x,o.y,o.dir])),layout);assert.equal(E.trafficStatus(s).exitBlocked,true);assert.ok(s.stats.sold>=raw.stats.sold);
  t.diagnostic(JSON.stringify({fixture:'12-seats-clutter-final',seconds:s.time-start,reachableOriginals:reachable.size,preservedBlockedOriginals:trapped.size,exitBlocked:true}));
 });
 test('a v1 save containing thirty departures drains through the door and resumes selling',t=>{
- const s=longRunGame(4);s.time=300;s.spawnIn=0;const legacyIds=new Set();
+ const s=longRunGame(4);s.zombieEntrance=E.staffEntrance(s);s.time=300;s.spawnIn=0;const legacyIds=new Set();
  for(let y=s.size-1;y>=0&&s.customers.length<30;y--)for(let x=0;x<s.size&&s.customers.length<30;x++){
   if(s.waiters.some(w=>Math.hypot(w.x-x,w.y-y)<1e-6)||E.path(s,{x:0,y:s.size-1},[x,y],{allowBlockedTarget:false})===null)continue;
   const c={uid:`legacy-departure-${s.customers.length}`,zombieId:'wanderer',x,y,phase:'leaving',wait:0,path:[],seat:null,red:false,leavingAt:0};c.path=E.path(s,c,[0,s.size-1])||[];s.customers.push(c);legacyIds.add(c.uid);
@@ -226,9 +225,9 @@ test('a chase ending between tiles finishes its segment before turning toward th
 test('infection and furniture edits cancel mid-segment jobs without stranding workers',()=>{
  const infected=singleChairGame(),w=infected.waiters[0],chair=infected.objects.find(o=>o.type==='chair'),c=queueGuest(infected);supply(infected,20);Object.assign(c,{x:chair.x,y:chair.y,phase:'waiting',seat:chair.uid,worker:w.uid});Object.assign(w,{x:1,y:5.3,path:[[1,6],[1,7]],task:{kind:'serve',customer:c.uid,server:server(infected).uid,foodId:'rice',portion:1,phase:'pickup',work:0}});
  infected.customers.push({uid:'mid-step-biter',zombieId:'red',red:true,x:1,y:4.5,path:[],seat:null,phase:'chasing',wait:0,chaseTime:0,target:w.uid});E.advance(infected,.25);assert.ok(w.infectedUntil>infected.time);assert.ok(w.y>5.3);assert.ok(w.y-5.3<=1.5*.25+1e-6);assertActorRules(infected);
- const edited=singleChairGame(),worker=edited.waiters[0],o=stove(edited);edited.level=30;edited.coins=10000;assert.equal(E.cook(edited,o.uid,'rice'),null);E.advance(edited,12);assert.equal(E.collect(edited,o.uid),null);E.advance(edited,.25);assert.equal(worker.task.kind,'transfer');Object.assign(worker,{x:1,y:5.3,path:[[1,6],[1,7]]});
- assert.equal(E.place(edited,{type:'jars',x:1,y:6}),null);assert.equal(worker.y,5.3);assert.equal(worker.task,null);E.advance(edited,.25);assert.equal(worker.y,5);assert.ok(worker.y!==6,'newly blocked forward endpoint is not used');assert.equal(edited.stats.cooked,0);
- advanceUntil(edited,()=>edited.stats.cooked===1,'cancelled transfer resumes after centering');assert.equal(server(edited).foodId,'rice');assert.equal(server(edited).stock,6);
+ const edited=singleChairGame(),worker=edited.waiters[0],o=stove(edited);edited.level=30;edited.coins=10000;assert.equal(E.cook(edited,o.uid,'rice'),null);E.advance(edited,12);assert.equal(E.collect(edited,o.uid),null);E.advance(edited,.25);assert.notEqual(worker.task?.kind,'transfer');const dirtyChair=edited.objects.find(o=>o.type==='chair');dirtyChair.dirty=true;Object.assign(worker,{x:1,y:5.3,path:[[1,6],[1,7]],task:{kind:'clean',chair:dirtyChair.uid,work:0}});
+ assert.equal(E.place(edited,{type:'jars',x:1,y:6}),null);assert.equal(worker.y,5.3);assert.equal(worker.task,null);E.advance(edited,.25);assert.equal(worker.y,5);assert.ok(worker.y!==6,'newly blocked forward endpoint is not used');assert.equal(edited.stats.cooked,1);
+ advanceUntil(edited,()=>edited.stats.cooked===1,'collected food is preserved while the cancelled worker centres');assert.equal(server(edited).foodId,'rice');assert.equal(server(edited).stock,6);
 });
 test('a fractional active worker centres before retrying an unreachable job',()=>{
  const s=singleChairGame(),w=s.waiters[0],chair=s.objects.find(o=>o.type==='chair');for(const [i,[x,y]]of [[2,5],[4,5],[3,4],[3,6]].entries())if(!s.objects.some(o=>o.x===x&&o.y===y))s.objects.push({uid:`centre-wall-${i}`,type:'jars',x,y,dir:0});
