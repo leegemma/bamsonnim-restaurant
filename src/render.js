@@ -15,11 +15,13 @@ import {pickHit} from './hit-testing.js';
 import {zombieEntrance} from './entrances.js';
 import {cookingCountdown,COOKING_TIMER_FONT} from './cooking-countdown.js';
 import {ASSET_MANIFEST,characterFrame,directionalCharacter,eatingCharacter,foodFrame} from './assets.js';
+const PREPARED_FOOD_SCALE=.44;
+const INITIAL_CAMERA_ZOOM=1.4;
 
 export class RestaurantView{
   constructor(canvas,{onSelect,onTile,onHover,onCameraChange}){
     this.canvas=canvas;this.ctx=canvas.getContext('2d');this.images={};this.sprites={};this.hits=[];this.onSelect=onSelect;this.onTile=onTile;this.onHover=onHover;this.hover=null;this.width=0;this.height=0;this.walkingStates=new WeakMap();this.paymentEffects=[];this.motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
-    this.camera=createCamera();this.onCameraChange=onCameraChange;
+    this.camera={...createCamera(),zoom:INITIAL_CAMERA_ZOOM};this.onCameraChange=onCameraChange;
     this.hitMasks=new WeakMap();
     this.gestures=bindCameraGestures(canvas,{toScreen:e=>this.screenPoint(e),getCamera:()=>this.camera,getViewport:()=>this.viewport(),getBounds:()=>this.cameraBounds,setCamera:value=>this.commitCamera(value),onTap:p=>this.tapAt(this.screenToScene(p)),onHover:p=>{if(!this.origin)return;const point=this.screenToScene(p);this.hover=this.grid(point.x,point.y);this.onHover?.(this.hover);canvas.style.cursor=this.edit?'crosshair':this.hitAt(point)?'pointer':'default';},onLeave:()=>{this.hover=null;},onGestureChange:active=>{this.hover=null;canvas.style.cursor=active?'grabbing':this.edit?'crosshair':'default';}});
     this.resize=new ResizeObserver(()=>this.measure());this.resize.observe(canvas);
@@ -79,7 +81,7 @@ export class RestaurantView{
   sceneToScreen(point){return sceneToScreen(point,this.camera,this.viewport());}
   screenToScene(point){return screenToScene(point,this.camera,this.viewport());}
   commitCamera(value){const next=clampCamera(value,this.viewport(),this.cameraBounds),old=this.camera||createCamera(),changed=Object.keys(next).some(k=>Math.abs(next[k]-old[k])>1e-8);this.camera??=createCamera();Object.assign(this.camera,next);if(changed){this.hover=null;this.onCameraChange?.({...this.camera});}}
-  resetCamera(){if(this.gestures?.input.active)this.gestures.cancel();this.commitCamera(createCamera());}
+  resetCamera(){if(this.gestures?.input.active)this.gestures.cancel();this.commitCamera({...createCamera(),zoom:INITIAL_CAMERA_ZOOM});}
   zoomCamera(factor,anchor){this.commitCamera(zoomCameraAt(this.camera,factor,anchor,this.viewport(),this.cameraBounds));}
   hitAt(p){return pickHit(this.hits,p);}
   tapAt(p){if(!this.origin||this.gestures?.input.active)return;if(this.edit?.ghost){this.onTile?.(this.grid(p.x,p.y));return;}const hit=this.hitAt(p);if(hit)this.onSelect?.(hit);else if(this.edit)this.onTile?.(this.grid(p.x,p.y));}
@@ -93,11 +95,11 @@ export class RestaurantView{
   grid(x,y){const a=(x-this.origin.x)/(this.tile/2),b=(y-this.origin.y)/(this.tile/4);return{x:Math.floor((a+b)/2+.5),y:Math.floor((b-a)/2+.5)};}
   polygon(points,fill,stroke=null,line=1){const c=this.ctx;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}}
   sprite(key,index,x,y,width,height,options={}){const im=this.sprites[key]?.[index],h=height||(im?width*im.height/im.width:width),w=width,c=this.ctx;c.save();if(options.alpha!==undefined)c.globalAlpha=options.alpha;if(options.filter)c.filter=options.filter;if(!im){c.fillStyle='#8b9c75';c.fillRect(x-w*.3,y-h*.7,w*.6,h*.7);c.fillStyle='#263b31';c.font='12px NeoDunggeunmo,monospace';c.textAlign='center';c.fillText((key==='food'||ASSET_MANIFEST[key]?.type==='food-atlas')?'요리':key==='furniture'?'가구':'손님',x,y-h*.2);}else if(options.flip){c.translate(x,y);c.scale(-1,1);c.drawImage(im,-w/2,-h,w,h);}else c.drawImage(im,x-w/2,y-h,w,h);c.restore();}
-  label(text,x,y,{color='#f5e7c5',background='#263b31',small=false,border='#a6ad75',width=null,fontSize=small?14:16,height=small?24:28,font=null}={}){
+  label(text,x,y,{color='#f5e7c5',background='#263b31',small=false,border='#a6ad75',width=null,fontSize=small?14:16,height=small?24:28,font=null,recordRect=true,textOffsetY=1}={}){
     const c=this.ctx;c.font=font||`${fontSize}px NeoDunggeunmo,monospace`;const w=width||Math.ceil(c.measureText(text).width)+16,h=height,left=Math.round(x-w/2),top=Math.round(y-h);
-    this.labelRects?.push({x:left,y:top,w:w+3,h:h+3});
+    if(recordRect)this.labelRects?.push({x:left,y:top,w:w+3,h:h+3});
     c.fillStyle='#0c181a';c.fillRect(left+3,top+3,w,h);c.fillStyle=border;c.fillRect(left+2,top,w-4,h);c.fillRect(left,top+2,w,h-4);c.fillStyle=background;c.fillRect(left+3,top+2,w-6,h-4);c.fillRect(left+2,top+3,w-4,h-6);
-    c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.fillText(text,Math.round(x),top+h/2+1);
+    c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.fillText(text,Math.round(x),top+h/2+textOffsetY);
   }
   furnitureGeometry(o){
     const category=furniture(o.type)?.category,art=furnitureArt(category,o.dir||0),image=art&&this.sprites[art.key]?.[art.index];
@@ -105,7 +107,7 @@ export class RestaurantView{
   }
   serverFoodLayout(o){
     const t=this.tile,p=this.world(o.x,o.y),geometry=this.furnitureGeometry(o),anchor=geometry?.surface||{x:p.x,y:p.y-t*.49};
-    const {key,index}=foodFrame(recipe(o.foodId)?.sprite||0),food=this.sprites[key]?.[index],width=t*.42,height=food?width*food.height/food.width:t*.32;
+    const {key,index}=foodFrame(recipe(o.foodId)?.sprite||0),food=this.sprites[key]?.[index],width=t*PREPARED_FOOD_SCALE,height=food?width*food.height/food.width:t*.32;
     return{key,index,x:anchor.x,y:anchor.y+height*.14,width,height,surface:anchor};
   }
   drawFoodOnSurface(foodId,x,y,width,options={}){
@@ -118,19 +120,19 @@ export class RestaurantView{
     const c=this.ctx;c.save();c.beginPath();meta.front.forEach(([px,py],i)=>{const a=x+w*px/meta.width,b=y+h*py/meta.height;i?c.lineTo(a,b):c.moveTo(a,b);});c.closePath();c.clip();c.drawImage(im,x,y,w,h);c.restore();
   }
   stoveControlLayout(s){
-    const c=this.ctx;
+    const c=this.ctx,scale=1/Math.max(1,this.camera?.zoom||1),viewportTop=this.camera?this.screenToScene({x:0,y:4}).y:4;
     const items=s.objects.filter(o=>furniture(o.type)?.category==='stove').map(o=>{
-      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'+ COOK':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=status==='cooking'?12:14,font=status==='cooking'?COOKING_TIMER_FONT:null;
+      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'COOK':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=12,font=status==='cooking'?COOKING_TIMER_FONT:null;
       c.font=font||`${fontSize}px NeoDunggeunmo,monospace`;
-      const diameter=Math.min(28,Math.max(18,this.tile*.5)),height=status==='done'?diameter:status==='cooking'?20:24;
-      const geometry=this.furnitureGeometry(o),visibleTop=geometry?geometry.y+geometry.h*(geometry.meta.bounds?.y||0)/geometry.meta.height:p.y-this.tile*.86,baseY=Math.max(height+4,visibleTop-this.tile*.12);
-      return{o,status,text,fontSize,font,height,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:status==='done'?diameter:Math.ceil(c.measureText(text).width)+(status==='cooking'?12:16)};
+      const diameter=Math.min(28,Math.max(18,this.tile*.5))*scale,height=status==='done'?diameter:20*scale;
+      const geometry=this.furnitureGeometry(o),visibleTop=geometry?geometry.y+geometry.h*(geometry.meta.bounds?.y||0)/geometry.meta.height:p.y-this.tile*.86,minY=viewportTop+height,naturalY=visibleTop-6*scale,baseY=Math.max(minY,naturalY);
+      return{o,status,text,fontSize,font,height,scale,minY,naturalY,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:status==='done'?diameter:(Math.ceil(c.measureText(text).width)+8)*scale};
     }).sort((a,b)=>(a.status==='done'?-1:0)-(b.status==='done'?-1:0)||b.y-a.y||a.x-b.x);
     // Keep every badge over its own pot. Only lift rear badges if their
     // actual circle or rectangle would touch an already placed badge.
     const placed=[];
-    const overlaps=(a,b)=>a.status==='done'&&b.status==='done'?Math.hypot(a.x-b.x,(a.y-a.height/2)-(b.y-b.height/2))<(a.width+b.width)/2+3:Math.abs(a.x-b.x)<(a.width+b.width)/2+4&&a.y+3>b.y-b.height-4&&a.y-a.height<b.y+7;
-    for(const item of items){while(placed.some(other=>overlaps(item,other)))item.y-=2;placed.push(item);}
+    const overlaps=(a,b)=>a.status==='done'&&b.status==='done'?Math.hypot(a.x-b.x,(a.y-a.height/2)-(b.y-b.height/2))<(a.width+b.width)/2+3*scale:Math.abs(a.x-b.x)<(a.width+b.width)/2+scale&&a.y>b.y-b.height&&a.y-a.height<b.y;
+    for(const item of items){while(placed.some(other=>overlaps(item,other)))item.y-=2*scale;if(item.y<item.minY){item.y=item.baseY;while(placed.some(other=>overlaps(item,other)))item.y+=2*scale;}placed.push(item);}
     return new Map(items.map(item=>[item.o.uid,item]));
   }
   drawBackgroundEffects(s,background){
@@ -185,16 +187,18 @@ export class RestaurantView{
     // Controls share one layout pass, with each displaced badge tied to its pot.
     this.stoveControls=this.stoveControlLayout(s);
     if(!edit){
-      for(const control of this.stoveControls.values())if(control.baseY-control.y>2){c.strokeStyle='#bda77b';c.lineWidth=1;c.beginPath();c.moveTo(Math.round(control.x),control.y+4);c.lineTo(control.sourceX,control.sourceY);c.stroke();}
+      for(const control of this.stoveControls.values())if(Math.abs(control.naturalY-control.y)>2*control.scale){c.strokeStyle='#bda77b';c.lineWidth=control.scale;c.beginPath();c.moveTo(control.x,control.y+4*control.scale);c.lineTo(control.sourceX,control.sourceY);c.stroke();}
       for(const control of this.stoveControls.values()){
-        const {o,status,text,x,y,width,height,fontSize,font}=control,options=status==='cooking'?{background:'#6b4d33',border:'#d6ae66'}:status==='spoiled'?{background:'#704a4a',border:'#d58e75'}:{};
+        const {o,status,text,x,y,width,height,fontSize,font,scale}=control,localWidth=width/scale,localHeight=height/scale,options=status==='cooking'?{background:'#6b4d33',border:'#d6ae66'}:status==='spoiled'?{background:'#704a4a',border:'#d58e75'}:{};
+        c.save();c.translate(x,y);c.scale(scale,scale);
         if(status==='done'){
-          const radius=width/2-1,cy=y-height/2;
-          c.save();c.fillStyle='#3c9956';c.strokeStyle='#23663a';c.lineWidth=2;c.beginPath();c.arc(x,cy,radius,0,Math.PI*2);c.fill();c.stroke();
-          c.strokeStyle='#ffffff';c.lineWidth=Math.max(2,radius*.24);c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(x-radius*.48,cy);c.lineTo(x-radius*.15,cy+radius*.32);c.lineTo(x+radius*.5,cy-radius*.38);c.stroke();c.restore();
-        }else this.label(text,x,y,{small:true,width,height,fontSize,font,...options});
-        if(status==='cooking'){const r=recipe(o.cook.foodId),progress=Math.max(0,Math.min(1,1-(o.cook.readyAt-s.time)/r.duration)),barWidth=width-10;c.fillStyle='#342b24';c.fillRect(x-barWidth/2,y+4,barWidth,3);c.fillStyle='#e4b76b';c.fillRect(x-barWidth/2,y+4,barWidth*progress,3);}
-        this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-height,w:width+(status==='done'?0:3),h:height+(status==='done'?0:3),...(status==='done'?{circle:true}:{})});
+          const radius=localWidth/2-1,cy=-localHeight/2;
+          c.fillStyle='#3c9956';c.strokeStyle='#23663a';c.lineWidth=2;c.beginPath();c.arc(0,cy,radius,0,Math.PI*2);c.fill();c.stroke();
+          c.strokeStyle='#ffffff';c.lineWidth=Math.max(2,radius*.24);c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(-radius*.48,cy);c.lineTo(-radius*.15,cy+radius*.32);c.lineTo(radius*.5,cy-radius*.38);c.stroke();
+        }else this.label(text,0,0,{small:true,width:localWidth,height:localHeight,fontSize,font,recordRect:false,textOffsetY:status==='cooking'?-2:1,...options});
+        if(status==='cooking'){const r=recipe(o.cook.foodId),progress=Math.max(0,Math.min(1,1-(o.cook.readyAt-s.time)/r.duration)),barWidth=localWidth-10;c.fillStyle='#342b24';c.fillRect(-barWidth/2,-5,barWidth,2);c.fillStyle='#e4b76b';c.fillRect(-barWidth/2,-5,barWidth*progress,2);}
+        c.restore();this.labelRects?.push({x:x-width/2,y:y-height,w:width+3*scale,h:height+3*scale});
+        this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-height,w:width+(status==='done'?0:3*scale),h:height+(status==='done'?0:3*scale),...(status==='done'?{circle:true}:{})});
       }
       for(const o of s.objects)if(furniture(o.type)?.category==='server'&&(o.stock>0||o.reservedFood)){const carrying=s.waiters.some(w=>w.task?.kind==='serve'&&w.task.server===o.uid&&w.task.picked),food=this.serverFoodLayout(o),labelY=o.stock>0?food.y-food.height-8:food.surface.y-this.tile*.14;this.label(o.stock>0?`${Math.ceil(o.stock)}개`:carrying?'서빙 중':'운반 예약',food.x,labelY,{small:true,background:'#eee0ba',color:'#50452e',border:'#9d8555'});}
     }
@@ -239,7 +243,7 @@ export class RestaurantView{
     }else this.sprite(placed?.meta.key||(isometricImage?isometricKey:'furniture'),placed?.meta.index??(isometricImage?0:index),placed?.centerX??p.x,placed?.bottom??p.y+t*.15,w,h,{flip:placed?.flip??(!!isometricImage&&o.dir%2===1),alpha:edit?.ghost?.existing===o.uid ? .35 : edit?.ghost===true ? .7 : 1});this.ctx.restore();
     if(o.type==='poster')return;
     if(f.category==='server'&&o.stock>0){const food=this.serverFoodLayout(o);this.sprite(food.key,food.index,food.x,food.y,food.width,food.height);}
-    if(f.category==='stove'&&o.cook){const status=stoveStatus(s,o);if(status!=='cooking')this.drawFoodOnSurface(o.cook.foodId,placed?.surface?.x??p.x,placed?.surface?.y??p.y-t*.48,t*.44,{filter:status==='spoiled'?'hue-rotate(100deg) saturate(.45)':''});else{const c=this.ctx;c.fillStyle='#f3ebc488';for(let i=0;i<3;i++){const phase=(clock*.6+i*.3)%1;c.fillRect(p.x-13+i*12+Math.sin(clock*2+i)*3,p.y-t*.72-phase*20,4,6);}}}
+    if(f.category==='stove'&&o.cook){const status=stoveStatus(s,o);if(status!=='cooking')this.drawFoodOnSurface(o.cook.foodId,placed?.surface?.x??p.x,placed?.surface?.y??p.y-t*.48,t*PREPARED_FOOD_SCALE,{filter:status==='spoiled'?'hue-rotate(100deg) saturate(.45)':''});else{const c=this.ctx;c.fillStyle='#f3ebc488';for(let i=0;i<3;i++){const phase=(clock*.6+i*.3)%1;c.fillRect(p.x-13+i*12+Math.sin(clock*2+i)*3,p.y-t*.72-phase*20,4,6);}}}
     const hitKey=placed?.meta.key||(isometricImage?isometricKey:'furniture'),hitIndex=placed?.meta.index??(isometricImage?0:index),hitImage=this.sprites[hitKey]?.[hitIndex];
     this.hits.push({kind:'object',uid:o.uid,x:placed?.x??p.x-w/2,y:placed?.y??p.y+t*.15-h,w,h,flip:placed?.flip??(!!isometricImage&&o.dir%2===1),mask:this.hitMask(hitImage)});
   }
