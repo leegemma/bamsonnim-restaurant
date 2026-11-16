@@ -32,7 +32,7 @@ test('wheel zoom is pointer-centered, clamped and leaves independent keyboard ac
 });
 
 class Canvas extends EventTarget{
- constructor(){super();this.ownerDocument={defaultView:new EventTarget()};this.captured=new Set();}
+ constructor(){super();this.ownerDocument=new EventTarget();this.ownerDocument.defaultView=new EventTarget();this.captured=new Set();}
  focus(){this.focused=true;}
  setPointerCapture(id){this.captured.add(id);}
  hasPointerCapture(id){return this.captured.has(id);}
@@ -46,4 +46,16 @@ test('DOM binding captures pointers, suppresses compatibility clicks, and permit
 
 test('pointer cancellation and window blur release captured inputs without selecting or hovering',()=>{
  const r=rig(),canvas=new Canvas(),bound=bindCameraGestures(canvas,{...r.options,toScreen:e=>({x:e.clientX||0,y:e.clientY||0})}),fields={pointerId:1,button:0,buttons:1,pointerType:'touch',clientX:100,clientY:100};canvas.emit('pointerdown',fields);canvas.emit('pointercancel',fields);assert.equal(canvas.captured.size,0);canvas.emit('pointerup',fields);canvas.emit('click',{detail:0});assert.equal(r.taps.length,0);canvas.emit('pointerdown',fields);canvas.ownerDocument.defaultView.dispatchEvent(new Event('blur'));assert.equal(canvas.captured.size,0);assert.equal(bound.input.active,false);assert.equal(r.taps.length,0);bound.destroy();
+});
+
+test('a canvas tap consumes its retargeted modal click but permits the next real gesture and keyboard click',()=>{
+ const r=rig(),canvas=new Canvas(),bound=bindCameraGestures(canvas,{...r.options,toScreen:e=>({x:e.clientX,y:e.clientY})}),fields={pointerId:1,button:0,buttons:1,pointerType:'touch',clientX:100,clientY:100};
+ const documentEvent=(type,fields)=>Canvas.prototype.emit.call(canvas.ownerDocument,type,fields);
+ canvas.emit('pointerdown',fields);canvas.emit('pointerup',{...fields,buttons:0});assert.equal(r.taps.length,1);
+ assert.equal(documentEvent('click',{detail:1,clientX:100,clientY:100}).defaultPrevented,true);
+ canvas.emit('pointerdown',fields);canvas.emit('pointerup',{...fields,buttons:0});
+ assert.equal(documentEvent('click',{detail:0,clientX:100,clientY:100}).defaultPrevented,false);
+ documentEvent('pointerdown',{...fields,pointerId:2});
+ assert.equal(documentEvent('click',{detail:1,clientX:100,clientY:100}).defaultPrevented,false);
+ bound.destroy();
 });

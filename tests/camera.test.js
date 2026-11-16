@@ -36,6 +36,6 @@ test('room tiles and furniture placement invert correctly at every zoom for size
 });
 
 test('transformed taps select logical stove hits and short editor taps use the correct grid',()=>{
- const selected=[],placed=[],v={origin:{x:400,y:40},tile:50,hits:[{kind:'stove',uid:'pot',x:300,y:100,w:60,h:32}],onSelect:h=>selected.push(h.uid),onTile:p=>placed.push(p),grid:RestaurantView.prototype.grid};
+ const selected=[],placed=[],v={origin:{x:400,y:40},tile:50,hits:[{kind:'stove',uid:'pot',x:300,y:100,w:60,h:32}],onSelect:h=>selected.push(h.uid),onTile:p=>placed.push(p),grid:RestaurantView.prototype.grid,hitAt:RestaurantView.prototype.hitAt};
  const c={zoom:1.8,panX:53,panY:-17},screen=sceneToScreen({x:330,y:116},c,view),p=screenToScene(screen,c,view);RestaurantView.prototype.tapAt.call(v,p);assert.deepEqual(selected,['pot']);v.edit={ghost:{type:'chair'}};const floor=RestaurantView.prototype.world.call(v,3,4),at=screenToScene(sceneToScreen(floor,c,view),c,view);RestaurantView.prototype.tapAt.call(v,at);assert.deepEqual(placed,[{x:3,y:4}]);v.gestures={input:{active:true}};RestaurantView.prototype.tapAt.call(v,at);assert.equal(placed.length,1);
 });

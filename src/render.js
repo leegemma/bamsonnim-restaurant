@@ -19,7 +19,7 @@ export class RestaurantView{
     this.canvas=canvas;this.ctx=canvas.getContext('2d');this.images={};this.sprites={};this.hits=[];this.onSelect=onSelect;this.onTile=onTile;this.onHover=onHover;this.hover=null;this.width=0;this.height=0;this.walkingStates=new WeakMap();this.paymentEffects=[];this.motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
     this.camera=createCamera();this.onCameraChange=onCameraChange;
     this.hitMasks=new WeakMap();
-    this.gestures=bindCameraGestures(canvas,{toScreen:e=>this.screenPoint(e),getCamera:()=>this.camera,getViewport:()=>this.viewport(),getBounds:()=>this.cameraBounds,setCamera:value=>this.commitCamera(value),onTap:p=>this.tapAt(this.screenToScene(p)),onHover:p=>{if(!this.origin)return;const point=this.screenToScene(p);this.hover=this.grid(point.x,point.y);this.onHover?.(this.hover);canvas.style.cursor=this.edit?'crosshair':pickHit(this.hits,point)?'pointer':'default';},onLeave:()=>{this.hover=null;},onGestureChange:active=>{this.hover=null;canvas.style.cursor=active?'grabbing':this.edit?'crosshair':'default';}});
+    this.gestures=bindCameraGestures(canvas,{toScreen:e=>this.screenPoint(e),getCamera:()=>this.camera,getViewport:()=>this.viewport(),getBounds:()=>this.cameraBounds,setCamera:value=>this.commitCamera(value),onTap:p=>this.tapAt(this.screenToScene(p)),onHover:p=>{if(!this.origin)return;const point=this.screenToScene(p);this.hover=this.grid(point.x,point.y);this.onHover?.(this.hover);canvas.style.cursor=this.edit?'crosshair':this.hitAt(point)?'pointer':'default';},onLeave:()=>{this.hover=null;},onGestureChange:active=>{this.hover=null;canvas.style.cursor=active?'grabbing':this.edit?'crosshair':'default';}});
     this.resize=new ResizeObserver(()=>this.measure());this.resize.observe(canvas);
   }
   async load(){
@@ -79,7 +79,8 @@ export class RestaurantView{
   commitCamera(value){const next=clampCamera(value,this.viewport(),this.cameraBounds),old=this.camera||createCamera(),changed=Object.keys(next).some(k=>Math.abs(next[k]-old[k])>1e-8);this.camera??=createCamera();Object.assign(this.camera,next);if(changed){this.hover=null;this.onCameraChange?.({...this.camera});}}
   resetCamera(){if(this.gestures?.input.active)this.gestures.cancel();this.commitCamera(createCamera());}
   zoomCamera(factor,anchor){this.commitCamera(zoomCameraAt(this.camera,factor,anchor,this.viewport(),this.cameraBounds));}
-  tapAt(p){if(!this.origin||this.gestures?.input.active)return;if(this.edit?.ghost){this.onTile?.(this.grid(p.x,p.y));return;}const hit=pickHit(this.hits,p);if(hit)this.onSelect?.(hit);else if(this.edit)this.onTile?.(this.grid(p.x,p.y));}
+  hitAt(p){return pickHit(this.hits,p);}
+  tapAt(p){if(!this.origin||this.gestures?.input.active)return;if(this.edit?.ghost){this.onTile?.(this.grid(p.x,p.y));return;}const hit=this.hitAt(p);if(hit)this.onSelect?.(hit);else if(this.edit)this.onTile?.(this.grid(p.x,p.y));}
   hitMask(image){
     if(!image?.getContext)return null;
     let mask=this.hitMasks.get(image);

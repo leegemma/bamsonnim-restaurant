@@ -44,10 +44,20 @@ export function createCameraGestures({getCamera,setCamera,getViewport,getBounds,
 }
 
 export function bindCameraGestures(canvas,options){
+  let consumedClick=null;
   const input=createCameraGestures(options),listeners=[],listen=(target,type,handler,settings)=>{target.addEventListener(type,handler,settings);listeners.push(()=>target.removeEventListener(type,handler,settings));},point=e=>({...options.toScreen(e),id:e.pointerId,button:e.button,buttons:e.buttons,pointerType:e.pointerType}),release=id=>{try{if(canvas.hasPointerCapture?.(id))canvas.releasePointerCapture(id);}catch{}};
+  // A pointerup can open a modal before the browser dispatches its click. That
+  // click may target the new modal, so a canvas-only listener cannot consume it.
+  listen(canvas.ownerDocument,'pointerdown',()=>{consumedClick=null;},true);
+  listen(canvas.ownerDocument,'click',e=>{
+    const consumed=consumedClick;
+    if(!consumed||e.detail===0)return;
+    consumedClick=null;
+    if(Math.hypot(e.clientX-consumed.x,e.clientY-consumed.y)<=8){e.preventDefault();e.stopImmediatePropagation();}
+  },true);
   listen(canvas,'pointerdown',e=>{if(!input.down(point(e)))return;e.preventDefault();canvas.focus?.({preventScroll:true});try{canvas.setPointerCapture(e.pointerId);}catch{}});
   listen(canvas,'pointermove',e=>{input.move(point(e));if(input.active)e.preventDefault();});
-  listen(canvas,'pointerup',e=>{if(!input.pointerIds.includes(e.pointerId))return;e.preventDefault();input.up(point(e));release(e.pointerId);});
+  listen(canvas,'pointerup',e=>{if(!input.pointerIds.includes(e.pointerId))return;e.preventDefault();consumedClick={x:e.clientX,y:e.clientY};input.up(point(e));release(e.pointerId);});
   listen(canvas,'pointercancel',e=>{input.cancelPointer(point(e));release(e.pointerId);});
   listen(canvas,'lostpointercapture',e=>input.cancelPointer(point(e)));
   listen(canvas,'pointerleave',()=>{if(!input.active)options.onLeave?.();});
