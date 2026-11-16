@@ -1,0 +1,8 @@
+Approval: user confirmed final moon festival design on 2026-11-16 (달밤의축제 컨펌완료). Approved for integration and deployment. Original generation instructions follow.
+Mode: built-in image_gen; transparent PNG; PREVIEW ONLY. User approval required before app integration or deployment.
+Use case: text-localization. Asset type: transparent festival banner PNG for the Korean game 밤손님 식당.
+Image 1 is the EDIT TARGET: the already-created teal cloth festival banner with rope, warm lanterns, gold stitch border, crescent moon, and burgundy tassels.
+Image 2 is the EXACT LETTERING STYLE reference: the user's white Korean brush-written title "달밤의 축제".
+Change ONLY the banner's central lettering: replace the current rounded chunky block letters with the energetic white brush calligraphy shown in Image 2, as faithful to that reference's individual Hangul letterforms and thick/thin stroke rhythm as possible. Exact text is "달밤의 축제", one horizontal line. No other words.
+Keep the cloth shape, rope, lanterns, crescent, tassels, border, composition, palette, and the genuinely transparent background from Image 1 unchanged. Keep all lettering clear of the lanterns and crescent and large enough for a game fever-time title. Maintain consistent hand-painted pixel-cluster material art on the cloth; calligraphy may have natural brush edges as in Image 2.
+No dark rectangle behind the letters, no background scene, no people, no new decorative clutter, no added English. Preserve transparency outside the banner and hanging ornaments.

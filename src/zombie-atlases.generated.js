@@ -7156,7 +7156,7 @@ export const ZOMBIE_ATLASES=[
     "key": "zombieHiker",
     "actorId": "hiker",
     "name": "정상 찍은 등산객 · 네 방향 세 포즈 걷기·앉기",
-    "url": "/assets/zombies/hiker-broken-lens-v1.png",
+    "url": "/assets/zombies/hiker-short-black-hair-v2.png",
     "width": 1254,
     "height": 1254,
     "type": "directional-atlas",

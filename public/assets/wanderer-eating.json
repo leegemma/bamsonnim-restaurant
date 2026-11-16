@@ -126,7 +126,9 @@
             "width": 177,
             "height": 26
           }
-        ]
+        ],
+        "headBottomY": 174,
+        "foregroundHands": []
       }
     },
     {
@@ -187,6 +189,97 @@
             "width": 177,
             "height": 26
           }
+        ],
+        "headBottomY": 174,
+        "foregroundHands": [
+          [
+            [
+              137,
+              178
+            ],
+            [
+              144,
+              170
+            ],
+            [
+              154,
+              164
+            ],
+            [
+              164,
+              164
+            ],
+            [
+              171,
+              170
+            ],
+            [
+              176,
+              173
+            ],
+            [
+              180,
+              182
+            ],
+            [
+              176,
+              195
+            ],
+            [
+              165,
+              203
+            ],
+            [
+              147,
+              203
+            ],
+            [
+              137,
+              193
+            ]
+          ],
+          [
+            [
+              181,
+              180
+            ],
+            [
+              188,
+              172
+            ],
+            [
+              198,
+              168
+            ],
+            [
+              210,
+              163
+            ],
+            [
+              218,
+              164
+            ],
+            [
+              224,
+              170
+            ],
+            [
+              226,
+              182
+            ],
+            [
+              220,
+              193
+            ],
+            [
+              200,
+              197
+            ],
+            [
+              185,
+              191
+            ]
+          ]
         ]
       }
     },
@@ -254,7 +347,9 @@
             "width": 70,
             "height": 30
           }
-        ]
+        ],
+        "headBottomY": 180,
+        "foregroundHands": []
       }
     },
     {
@@ -321,6 +416,93 @@
             "width": 70,
             "height": 30
           }
+        ],
+        "headBottomY": 180,
+        "foregroundHands": [
+          [
+            [
+              98,
+              180
+            ],
+            [
+              101,
+              174
+            ],
+            [
+              108,
+              172
+            ],
+            [
+              117,
+              175
+            ],
+            [
+              125,
+              174
+            ],
+            [
+              132,
+              181
+            ],
+            [
+              134,
+              193
+            ],
+            [
+              128,
+              201
+            ],
+            [
+              112,
+              201
+            ],
+            [
+              101,
+              193
+            ]
+          ],
+          [
+            [
+              134,
+              181
+            ],
+            [
+              137,
+              173
+            ],
+            [
+              144,
+              170
+            ],
+            [
+              154,
+              170
+            ],
+            [
+              163,
+              174
+            ],
+            [
+              170,
+              180
+            ],
+            [
+              175,
+              191
+            ],
+            [
+              171,
+              201
+            ],
+            [
+              155,
+              202
+            ],
+            [
+              142,
+              194
+            ]
+          ]
         ]
       }
     },
@@ -382,6 +564,47 @@
             "width": 150,
             "height": 35
           }
+        ],
+        "headBottomY": 174,
+        "foregroundHands": [
+          [
+            [
+              75,
+              185
+            ],
+            [
+              79,
+              176
+            ],
+            [
+              87,
+              171
+            ],
+            [
+              98,
+              172
+            ],
+            [
+              109,
+              180
+            ],
+            [
+              112,
+              190
+            ],
+            [
+              105,
+              202
+            ],
+            [
+              88,
+              204
+            ],
+            [
+              76,
+              196
+            ]
+          ]
         ]
       }
     },
@@ -443,6 +666,51 @@
             "width": 150,
             "height": 35
           }
+        ],
+        "headBottomY": 174,
+        "foregroundHands": [
+          [
+            [
+              87,
+              177
+            ],
+            [
+              91,
+              167
+            ],
+            [
+              99,
+              162
+            ],
+            [
+              106,
+              162
+            ],
+            [
+              113,
+              167
+            ],
+            [
+              119,
+              174
+            ],
+            [
+              118,
+              184
+            ],
+            [
+              110,
+              192
+            ],
+            [
+              96,
+              192
+            ],
+            [
+              88,
+              186
+            ]
+          ]
         ]
       }
     },
@@ -510,7 +778,9 @@
             "width": 106,
             "height": 10
           }
-        ]
+        ],
+        "headBottomY": 174,
+        "foregroundHands": []
       }
     },
     {
@@ -577,6 +847,47 @@
             "width": 106,
             "height": 10
           }
+        ],
+        "headBottomY": 174,
+        "foregroundHands": [
+          [
+            [
+              200,
+              187
+            ],
+            [
+              202,
+              178
+            ],
+            [
+              210,
+              173
+            ],
+            [
+              217,
+              172
+            ],
+            [
+              224,
+              177
+            ],
+            [
+              228,
+              187
+            ],
+            [
+              224,
+              197
+            ],
+            [
+              212,
+              201
+            ],
+            [
+              201,
+              194
+            ]
+          ]
         ]
       }
     }
@@ -685,6 +996,7 @@
   },
   "review": {
     "rootVisualApproval": "Four directions x existing neutral plus two additions; chairs.png, stable face/hips/feet and separate hands/mouth reviewed.",
-    "cacheProof": "artifacts/wanderer-eating-review/cache-registration-proof.json"
+    "cacheProof": "artifacts/wanderer-eating-review/cache-registration-proof.json",
+    "fixedHead": "2026-11-16: canonical head fixed; outlined raised hands composited in front to preserve full fingers and avoid horizontal clipping."
   }
 }

@@ -1,0 +1,6 @@
+Mode: built-in image_gen; transparent PNG; PREVIEW ONLY. User approval required before app integration or deployment.
+Use case: text-localization / background-extraction. Asset type: transparent PNG heading for a new-zombie arrival notification.
+Input image is the user's desired Korean brush-lettering style and text reference. Create the exact Korean heading "새로운 좀비 방문!" with that same thick lively white hand-painted brush calligraphy, retaining the distinctive informal irregular stroke style. Preserve each syllable exactly: 새 / 로 / 운 / 좀 / 비 / 방 / 문, followed by !.
+One horizontal line, white/ivory brush strokes with a thin dark teal-black outline and subtle warm gold offset shadow so it stays legible on the game scene. Full heading large and highly readable at 320px display width, generous spacing between the three word groups.
+Do not include a zombie portrait, placeholder name, subtitle, UI card, background scene, or decorative object; the game will compose the real zombie portrait and name beneath this heading.
+Truly alpha-transparent outside the lettering. Remove the reference charcoal rectangle entirely. Fully visible with margins, no cropping, no baked checkerboard, no extra text.

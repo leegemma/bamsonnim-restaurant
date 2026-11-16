@@ -12,13 +12,13 @@ function traffic(a){let value=trafficState.get(a);if(!value){value={blocked:0};t
 export function newGame(now=Date.now()){
   const state={version:SAVE_VERSION,savedAt:now,time:0,seed:67291,coins:500,hearts:10,xp:0,level:1,size:8,hunger:0,
     floor:'wood',wall:'paper',ownedSkins:['wood','paper'],storage:[],objects:[],waiters:[],customers:[],transfers:[],zombieEntrance:{x:6,y:0},
-    mastery:{},knownRecipes:{},album:{},events:{christmas:'upcoming'},eventBooks:{},
+    mastery:{},knownRecipes:{},album:{},seenVisitors:[],events:{christmas:'upcoming'},eventBooks:{},
     stats:{cooked:0,served:0,sold:0,earned:0,tablesBought:0,chairsBought:0,hired:0,fevers:0,fed:{}},
     questIndex:0,questBase:0,combo:0,lastServe:-100,feverUntil:0,spawnIn:7,nextId:1,serveCursor:0,seatCursor:0,
     settings:{music:.22,sfx:.45},tutorial:0,notifications:[],dailyClaim:'',fraction:0,
   };
   for(const [type,x,y,dir] of [['stove',1,1,0],['stove',2,1,1],['server',4,1,0],['table',2,4,0],['chair',2,5,3],['chair',1,4,0],['table',5,4,0],['chair',5,5,3],['chair',6,4,2],['jars',0,1,0],['lantern',7,0,0],['poster',3,0,0]])state.objects.push({uid:uid(state),type,x,y,dir});
-  state.waiters.push({uid:uid(state),name:WAITER_NAMES[0],appearance:0,x:3,y:3,infectedUntil:0,task:null,path:[]});
+  state.waiters.push({uid:uid(state),name:WAITER_NAMES[0],appearance:0,x:3,y:3,infectedUntil:0,task:null,path:[],speedLevel:0,kindnessLevel:0});
   return state;
 }
 function uid(s){return `o${s.nextId++}`;}
@@ -29,6 +29,17 @@ export const recipeLevel=s=>RECIPES.reduce((n,r)=>n+stars(s,r.id),0);
 export const limit=(s,type)=>LIMITS[type].reduce((n,[level,value])=>s.level>=level?value:n,0);
 export const hireCost=s=>100*(s.waiters.length+1)**2;
 export const cureCost=s=>20+5*s.level;
+export const STAFF_UPGRADE_MAX=5;
+export const staffSpeedMultiplier=w=>1+(w.speedLevel||0)*.1;
+export const staffTipChance=w=>(w.kindnessLevel||0)*.1;
+export const staffMoveSpeed=(s,w)=>(w.infectedUntil>s.time?1.5:2.6)*staffSpeedMultiplier(w);
+export const staffUpgradeCost=(w,kind)=>2*((w[kind==='speed'?'speedLevel':'kindnessLevel']||0)+1);
+export function upgradeStaff(s,id,kind){
+  const w=s.waiters.find(w=>w.uid===id);if(!w||!['speed','kindness'].includes(kind))return '강화할 직원과 능력을 선택해주세요.';
+  const key=kind==='speed'?'speedLevel':'kindnessLevel',level=w[key]||0;if(level>=STAFF_UPGRADE_MAX)return '이미 최고 단계예요.';
+  const cost=staffUpgradeCost(w,kind);if(s.hearts<cost)return `심장 ${cost}개가 필요해요.`;
+  s.hearts-=cost;w[key]=level+1;return null;
+}
 export function addXp(s,amount){
   s.xp+=amount;
   while(s.xp>=xpNeeded(s.level)){s.xp-=xpNeeded(s.level);s.level++;s.hearts++;notify(s,`식당 레벨 ${s.level}! 새 손님과 심장 1개가 기다려요.`, 'level');}
@@ -207,9 +218,14 @@ function entryBlocked(s){
   return s.objects.some(o=>o.x===x&&o.y===y);
 }
 function exitTrafficBlocked(s){return s.customers.some(c=>c.phase==='leaving'&&path(s,c,customerExit(s,c),{allowBlockedTarget:false})===null);}
-function createCustomer(s){
+function announceGuest(s,c){
+  if(c.red||c.phase==='leaving'||!zombie(c.zombieId))return;
+  const seen=s.seenVisitors??=Object.keys(s.album);if(seen.includes(c.zombieId))return;seen.push(c.zombieId);
+  if(!s.album[c.zombieId])notify(s,`새로운 좀비 방문! ${zombie(c.zombieId).name}`,'new-guest',{zombieId:c.zombieId});
+}
+function createCustomer(s,offline=false){
   if(entryBlocked(s)||exitTrafficBlocked(s))return false;
-  const def=chooseCustomer(s);s.customers.push({uid:uid(s),zombieId:def.id,...zombieEntrance(s),phase:'queue',wait:0,path:[],seat:null,red:!!def.red,enteredAt:s.time});s.zombieDoorOpenedAt=s.time;return true;
+  const def=chooseCustomer(s),c={uid:uid(s),zombieId:def.id,...zombieEntrance(s),phase:'queue',wait:0,path:[],seat:null,red:!!def.red,enteredAt:s.time};s.customers.push(c);if(!offline)announceGuest(s,c);s.zombieDoorOpenedAt=s.time;return true;
 }
 function leave(s,c){c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,customerExit(s,c),{allowBlockedTarget:false})||[];traffic(c).exitDistance=c.path.length;c.seat=null;}
 function releaseInactiveSeats(s){
@@ -227,10 +243,10 @@ export function trafficStatus(s){
 function angry(s,c,queue=false){s.hunger=Math.min(100,s.hunger+(queue?4:8));s.combo=0;if(c.red){const w=s.waiters.filter(w=>w.infectedUntil<=s.time).sort((a,b)=>Math.hypot(a.x-c.x,a.y-c.y)-Math.hypot(b.x-c.x,b.y-c.y))[0];if(w){c.phase='chasing';c.target=w.uid;c.seat=null;c.chaseTime=0;c.path=[];return;}}leave(s,c);}
 function pay(s,c,offline){
   const r=recipe(c.foodId);if(!r)return;
-  const fav=zombie(c.zombieId)?.favorite===r.id,base=r.price*(c.portion||1),xp=Math.round(base*(fav?1.5:1)),coins=Math.round(base*(fav?1.5:1)*(s.feverUntil>s.time?2:1));s.coins+=coins;s.stats.earned+=coins;s.stats.sold++;s.stats.fed[c.zombieId]=(s.stats.fed[c.zombieId]||0)+1;addXp(s,xp);
-  if(!offline&&!c.red){if(!s.album[c.zombieId])notify(s,`새 밤손님 · ${zombie(c.zombieId).name}`, 'album');s.album[c.zombieId]=(s.album[c.zombieId]||0)+1;}
+  const fav=zombie(c.zombieId)?.favorite===r.id,base=r.price*(c.portion||1),xp=Math.round(base*(fav?1.5:1)),coins=Math.round(base*(fav?1.5:1)*(s.feverUntil>s.time?2:1));const tip=(c.tipChance||0)>0&&random(s)<c.tipChance?Math.max(1,Math.ceil(coins*.2)):0,paid=coins+tip;s.coins+=paid;s.stats.earned+=paid;if(tip)s.stats.tips=(s.stats.tips||0)+tip;s.stats.sold++;s.stats.fed[c.zombieId]=(s.stats.fed[c.zombieId]||0)+1;addXp(s,xp);
+  if(!offline&&!c.red){if(!s.album[c.zombieId])notify(s,`캐릭터북 등록 · ${zombie(c.zombieId).name}`, 'album');s.album[c.zombieId]=(s.album[c.zombieId]||0)+1;}
   const seat=s.objects.find(o=>o.uid===c.seat);if(seat)seat.dirty=true;s.tutorial=Math.max(s.tutorial,3);leave(s,c);
-  if(!offline)notify(s,`손님이 ${coins}코인을 냈어요.`,'payment',{amount:coins,xp,x:c.x,y:c.y,favorite:fav});
+  if(!offline)notify(s,`손님이 ${paid}코인을 냈어요.${tip?` 팁 +${tip}코인!`:''}`,'payment',{amount:paid,tip,xp,x:c.x,y:c.y,favorite:fav});
 }
 function hasFood(s){return s.objects.some(o=>furniture(o.type)?.category==='server'&&o.stock>0);}
 function addCombo(s,offline){
@@ -297,19 +313,19 @@ function updateWorker(s,w,dt,offline){
   // new work; path() preserves the current segment before the worker turns.
   if(!w.task&&(state.parking||w.path?.length)){assign(s,w);if(w.task){delete state.parking;delete state.idleSince;delete state.nextParkAt;}}
   if((!atTile(w)||!walkable(s,w.x,w.y))&&(traffic(w).settling||!w.path?.length||atTile(w)&&!walkable(s,w.x,w.y))){
-    settleWorker(s,w);if(w.path.length)move(s,w,dt,w.infectedUntil>s.time?1.5:2.6);
+    settleWorker(s,w);if(w.path.length)move(s,w,dt,staffMoveSpeed(s,w));
     if(atTile(w))traffic(w).settling=false;return;
   }
   if(!w.task){
     if(state.parking&&atTile(w)&&w.path?.length&&blockedTiles(s).has(w.path[0].join(','))){delete state.parking;state.idleSince=s.time;state.nextParkAt=s.time+2;w.path=[];return;}
-    if(w.path?.length&&!move(s,w,dt,w.infectedUntil>s.time?1.5:2.6))return;
+    if(w.path?.length&&!move(s,w,dt,staffMoveSpeed(s,w)))return;
     if(!atTile(w))return;traffic(w).settling=false;assign(s,w);if(!w.task)parkIdle(s,w);else{delete state.parking;delete state.idleSince;delete state.nextParkAt;}return;
   }
   delete state.parking;delete state.idleSince;delete state.nextParkAt;
   let target=workerTarget(s,w);if(!w.path?.length&&target&&!beside(w,target)&&!setRoute(s,w,target))return;
-  if(!move(s,w,dt,w.infectedUntil>s.time?1.5:2.6))return;
+  if(!move(s,w,dt,staffMoveSpeed(s,w)))return;
   target=workerTarget(s,w);if(target&&!beside(w,target)){setRoute(s,w,target);return;}
-  const t=w.task;t.work+=dt;if(t.work<(t.kind==='clean'?1.2:.6)*(w.infectedUntil>s.time?1.4:1))return;t.work=0;
+  const t=w.task;t.work+=dt;if(t.work<(t.kind==='clean'?1.2:.6)*(w.infectedUntil>s.time?1.4:1)/staffSpeedMultiplier(w))return;t.work=0;
   if(t.kind==='transfer'){
     const x=s.transfers.find(x=>x.uid===t.transfer);if(!x){w.task=null;return;}
     if(t.phase==='pickup'){const o=s.objects.find(o=>o.uid===x.stove),target=s.objects.find(o=>o.uid===x.server);if(!o?.cook||!target||!setRoute(s,w,target)){cancelTask(s,w);return;}delete o.cook;t.picked=true;t.foodId=x.foodId;t.phase='deliver';}
@@ -321,7 +337,7 @@ function updateWorker(s,w,dt,offline){
     else{
       // Older v1 saves may still be walking to the former table service point.
       if(!beside(w,seat.chair)){if(!setRoute(s,w,seat.chair))cancelTask(s,w);return;}
-      c.phase='eating';c.foodId=t.foodId;c.portion=t.portion;c.eatUntil=s.time+6;c.worker=null;w.task=null;refreshServerReservation(s,t.server);addCombo(s,offline);
+      c.phase='eating';c.foodId=t.foodId;c.portion=t.portion;c.eatUntil=s.time+6;c.worker=null;if(staffTipChance(w)>0){c.tipChance=staffTipChance(w);c.tipStaffName=w.name;}w.task=null;refreshServerReservation(s,t.server);addCombo(s,offline);
     }
   }else{const chair=s.objects.find(o=>o.uid===t.chair);if(chair){if(!beside(w,chair)){if(!setRoute(s,w,chair))cancelTask(s,w);return;}chair.dirty=false;chair.cleaner=null;}w.task=null;}
 }
@@ -330,6 +346,7 @@ function step(s,dt,offline){
   settleLegacyTransfers(s);
   repairActorPositions(s);
   const seatList=seats(s);
+  if(!offline)for(const c of s.customers)announceGuest(s,c);
   releaseInactiveSeats(s);
   if(s.stats.served>0){s.hunger=Math.min(100,s.hunger+(.5+(hasFood(s)?0:6))*dt/60);}
   if(!offline&&s.time-s.lastServe>9)s.combo=0;
@@ -339,7 +356,7 @@ function step(s,dt,offline){
     s.spawnIn=6.5*(1.15-s.hunger/400)/(1+seatList.length*.06)*(hasFood(s)?1:1.6)*(.7+random(s)*.6)/(s.feverUntil>s.time?3:1);
     // Every actor pair can cross at the door. Departures still count toward
     // indoor capacity; only furniture blocks the entrance tile itself.
-    if((hasFood(s)||s.stats.served>0)&&s.customers.length<seatList.length+1){if(!createCustomer(s))s.spawnIn=.5;}else s.spawnIn=.5;
+    if((hasFood(s)||s.stats.served>0)&&s.customers.length<seatList.length+1){if(!createCustomer(s,offline))s.spawnIn=.5;}else s.spawnIn=.5;
   }
   for(const c of s.customers){if(c.phase==='leaving'){if(c.leavingAt===undefined)c.leavingAt=s.time;traffic(c).exitDistance=path(s,c,customerExit(s,c),{allowBlockedTarget:false})?.length??Infinity;}else if(c.phase==='seating'&&c.seatingAt===undefined)c.seatingAt=s.time;}
   const ordered=[...s.customers].sort((a,b)=>higherPriority(a,b)?-1:higherPriority(b,a)?1:0);
@@ -384,7 +401,7 @@ export function reconcileOffline(s,now=Date.now()){
   advance(s,seconds,{offline:true});s.savedAt=now;
   return {seconds,simulated:Math.min(seconds,OFFLINE_CAP),coins:s.coins-before.coins,sold:s.stats.sold-before.sold,levels:s.level-before.level,done:s.objects.filter(o=>stoveStatus(s,o)==='done').length,spoiled:s.objects.filter(o=>stoveStatus(s,o)==='spoiled').length,infected:s.waiters.filter(w=>w.infectedUntil>s.time).length};
 }
-export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 레벨의 고용 한도에 도달했어요.';const cost=hireCost(s);if(s.coins<cost)return '코인이 부족해요.';const position=freePosition(s,{x:0,y:s.size-1},{avoidEntry:true,spread:true});if(!position)return '직원이 설 빈 공간과 통로가 필요해요.';s.coins-=cost;const name=WAITER_NAMES.find(n=>!s.waiters.some(w=>w.name===n))||`직원 ${s.nextId}`,appearance=Array.from({length:8},(_,i)=>i).find(i=>!s.waiters.some(w=>w.appearance===i));const entry=staffEntrance(s),start=walkable(s,entry.x,entry.y)?entry:position;s.waiters.push({uid:uid(s),name,appearance,...start,path:path(s,start,[position.x,position.y])||[],task:null,infectedUntil:0});s.staffDoorOpenedAt=s.time;s.stats.hired++;notify(s,`${name}가 식당에 합류했어요!`, 'hire');return null;}
+export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 레벨의 고용 한도에 도달했어요.';const cost=hireCost(s);if(s.coins<cost)return '코인이 부족해요.';const position=freePosition(s,{x:0,y:s.size-1},{avoidEntry:true,spread:true});if(!position)return '직원이 설 빈 공간과 통로가 필요해요.';s.coins-=cost;const name=WAITER_NAMES.find(n=>!s.waiters.some(w=>w.name===n))||`직원 ${s.nextId}`,appearance=Array.from({length:8},(_,i)=>i).find(i=>!s.waiters.some(w=>w.appearance===i));const entry=staffEntrance(s),start=walkable(s,entry.x,entry.y)?entry:position;s.waiters.push({uid:uid(s),name,appearance,speedLevel:0,kindnessLevel:0,...start,path:path(s,start,[position.x,position.y])||[],task:null,infectedUntil:0});s.staffDoorOpenedAt=s.time;s.stats.hired++;notify(s,`${name}가 식당에 합류했어요!`, 'hire');return null;}
 export function fire(s,id){if(s.waiters.length<=1)return '직원은 최소 1명 필요해요.';const w=s.waiters.find(w=>w.uid===id);if(!w)return '직원을 찾을 수 없어요.';cancelTask(s,w);s.waiters=s.waiters.filter(w=>w.uid!==id);return null;}
 export function cure(s,id){const w=s.waiters.find(w=>w.uid===id);if(!w||w.infectedUntil<=s.time)return '치료가 필요하지 않아요.';if(s.coins<cureCost(s))return '치료 비용이 부족해요.';s.coins-=cureCost(s);w.infectedUntil=0;return null;}
 
@@ -458,6 +475,8 @@ export function validateSave(raw){
   if(!['upcoming','active','ended'].includes(s.events.christmas))throw new Error('이벤트 정보가 올바르지 않습니다.');
   const ids=new Set(),positions=new Set();
   for(const o of s.objects){if(!furniture(o.type)||typeof o.uid!=='string'||ids.has(o.uid)||!Number.isInteger(o.x)||!Number.isInteger(o.y)||o.x<0||o.y<0||o.x>=s.size||o.y>=s.size||!Number.isInteger(o.dir)||o.dir<0||o.dir>3)throw new Error('가구 정보가 올바르지 않습니다.');ids.add(o.uid);const k=`${o.x},${o.y}`;if(positions.has(k))throw new Error('가구 위치가 겹칩니다.');positions.add(k);if(o.stock!==undefined&&(!Number.isFinite(o.stock)||o.stock<0||!recipe(o.foodId)))throw new Error('음식 재고 정보가 손상되었습니다.');if(o.cook&&(!recipe(o.cook.foodId)||!['started','readyAt','spoilAt'].every(k=>Number.isFinite(o.cook[k]))))throw new Error('조리 정보가 손상되었습니다.');}
+  if(s.seenVisitors===undefined)s.seenVisitors=[...new Set([...Object.keys(s.album),...s.customers.map(c=>c.zombieId).filter(id=>zombie(id))])];
+  if(!Array.isArray(s.seenVisitors)||s.seenVisitors.length>ZOMBIES.length||new Set(s.seenVisitors).size!==s.seenVisitors.length||s.seenVisitors.some(id=>typeof id!=='string'||!zombie(id)))throw new Error('손님 방문 기록이 올바르지 않습니다.');
   for(const id of s.storage)if(!furniture(id))throw new Error('창고 정보가 손상되었습니다.');
   for(const [id,count] of Object.entries(s.mastery))if(!recipe(id)||!Number.isInteger(count)||count<0)throw new Error('숙련도 정보가 손상되었습니다.');
   for(const [id,count] of Object.entries(s.album))if(!zombie(id)||!Number.isInteger(count)||count<1)throw new Error('도감 정보가 손상되었습니다.');
@@ -469,6 +488,8 @@ export function validateSave(raw){
     if(w.task&&(!['serve','transfer','clean'].includes(w.task.kind)||!Number.isFinite(w.task.work)||w.task.work<0||w.task.portion!==undefined&&(!Number.isFinite(w.task.portion)||w.task.portion<0)))throw new Error('직원 작업이 손상되었습니다.');
     if(w.appearance!==undefined){if(!Number.isInteger(w.appearance)||w.appearance<0||w.appearance>7||appearances.has(w.appearance))throw new Error('직원 외모 정보가 손상되었습니다.');appearances.add(w.appearance);}
   }
+  for(const w of s.waiters)for(const key of ['speedLevel','kindnessLevel']){if(w[key]===undefined)w[key]=0;if(!Number.isInteger(w[key])||w[key]<0||w[key]>STAFF_UPGRADE_MAX)throw new Error('직원 강화 정보가 올바르지 않습니다.');}
+  for(const c of s.customers)if(c.tipChance!==undefined&&(!Number.isFinite(c.tipChance)||c.tipChance<0||c.tipChance>.5))throw new Error('손님 팁 정보가 올바르지 않습니다.');
   // Rename only the four retired defaults; preserve custom names and staff state.
   for(const w of s.waiters)if(Object.hasOwn(WAITER_NAME_UPDATES,w.name))w.name=WAITER_NAME_UPDATES[w.name];
   // Fill missing v1 appearances after reserving all explicitly saved numbers.

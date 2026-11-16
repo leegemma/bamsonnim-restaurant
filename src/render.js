@@ -122,16 +122,16 @@ export class RestaurantView{
   stoveControlLayout(s){
     const c=this.ctx,scale=1/Math.max(1,this.camera?.zoom||1),viewportTop=this.camera?this.screenToScene({x:0,y:4}).y:4;
     const items=s.objects.filter(o=>furniture(o.type)?.category==='stove').map(o=>{
-      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'COOK':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=12,font=status==='cooking'?COOKING_TIMER_FONT:null;
+      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=12,font=status==='cooking'?COOKING_TIMER_FONT:null;
       c.font=font||`${fontSize}px NeoDunggeunmo,monospace`;
-      const diameter=Math.min(28,Math.max(18,this.tile*.5))*scale,height=status==='done'?diameter:20*scale;
+      const diameter=Math.min(28,Math.max(18,this.tile*.5))*scale,height=['empty','done'].includes(status)?diameter:20*scale;
       const geometry=this.furnitureGeometry(o),visibleTop=geometry?geometry.y+geometry.h*(geometry.meta.bounds?.y||0)/geometry.meta.height:p.y-this.tile*.86,minY=viewportTop+height,naturalY=visibleTop-6*scale,baseY=Math.max(minY,naturalY);
-      return{o,status,text,fontSize,font,height,scale,minY,naturalY,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:status==='done'?diameter:(Math.ceil(c.measureText(text).width)+8)*scale};
+      return{o,status,text,fontSize,font,height,scale,minY,naturalY,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:['empty','done'].includes(status)?diameter:(Math.ceil(c.measureText(text).width)+8)*scale};
     }).sort((a,b)=>(a.status==='done'?-1:0)-(b.status==='done'?-1:0)||b.y-a.y||a.x-b.x);
     // Keep every badge over its own pot. Only lift rear badges if their
     // actual circle or rectangle would touch an already placed badge.
     const placed=[];
-    const overlaps=(a,b)=>a.status==='done'&&b.status==='done'?Math.hypot(a.x-b.x,(a.y-a.height/2)-(b.y-b.height/2))<(a.width+b.width)/2+3*scale:Math.abs(a.x-b.x)<(a.width+b.width)/2+scale&&a.y>b.y-b.height&&a.y-a.height<b.y;
+    const overlaps=(a,b)=>['empty','done'].includes(a.status)&&['empty','done'].includes(b.status)?Math.hypot(a.x-b.x,(a.y-a.height/2)-(b.y-b.height/2))<(a.width+b.width)/2+3*scale:Math.abs(a.x-b.x)<(a.width+b.width)/2+scale&&a.y>b.y-b.height&&a.y-a.height<b.y;
     for(const item of items){while(placed.some(other=>overlaps(item,other)))item.y-=2*scale;if(item.y<item.minY){item.y=item.baseY;while(placed.some(other=>overlaps(item,other)))item.y+=2*scale;}placed.push(item);}
     return new Map(items.map(item=>[item.o.uid,item]));
   }
@@ -195,15 +195,20 @@ export class RestaurantView{
           const radius=localWidth/2-1,cy=-localHeight/2;
           c.fillStyle='#3c9956';c.strokeStyle='#23663a';c.lineWidth=2;c.beginPath();c.arc(0,cy,radius,0,Math.PI*2);c.fill();c.stroke();
           c.strokeStyle='#ffffff';c.lineWidth=Math.max(2,radius*.24);c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(-radius*.48,cy);c.lineTo(-radius*.15,cy+radius*.32);c.lineTo(radius*.5,cy-radius*.38);c.stroke();
+        }else if(status==='empty'){
+          const radius=localWidth/2-1,cy=-localHeight/2;
+          c.fillStyle='#c8443f';c.strokeStyle='#802e2d';c.lineWidth=2;c.beginPath();c.arc(0,cy,radius,0,Math.PI*2);c.fill();c.stroke();
+          // Cream ladle: a long handle and a deep, round bowl.
+          c.strokeStyle='#fff4da';c.lineWidth=Math.max(2,radius*.2);c.lineCap='round';c.beginPath();c.moveTo(radius*.43,cy-radius*.5);c.lineTo(-radius*.14,cy+radius*.13);c.stroke();
+          c.fillStyle='#fff4da';c.beginPath();c.ellipse(-radius*.24,cy+radius*.26,radius*.36,radius*.26,-Math.PI/4,0,Math.PI*2);c.fill();
         }else this.label(text,0,0,{small:true,width:localWidth,height:localHeight,fontSize,font,recordRect:false,textOffsetY:status==='cooking'?-2:1,...options});
         if(status==='cooking'){const r=recipe(o.cook.foodId),progress=Math.max(0,Math.min(1,1-(o.cook.readyAt-s.time)/r.duration)),barWidth=localWidth-10;c.fillStyle='#342b24';c.fillRect(-barWidth/2,-5,barWidth,2);c.fillStyle='#e4b76b';c.fillRect(-barWidth/2,-5,barWidth*progress,2);}
         c.restore();this.labelRects?.push({x:x-width/2,y:y-height,w:width+3*scale,h:height+3*scale});
-        this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-height,w:width+(status==='done'?0:3*scale),h:height+(status==='done'?0:3*scale),...(status==='done'?{circle:true}:{})});
+        this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-height,w:width+(['empty','done'].includes(status)?0:3*scale),h:height+(['empty','done'].includes(status)?0:3*scale),...(['empty','done'].includes(status)?{circle:true}:{})});
       }
       for(const o of s.objects)if(furniture(o.type)?.category==='server'&&(o.stock>0||o.reservedFood)){const carrying=s.waiters.some(w=>w.task?.kind==='serve'&&w.task.server===o.uid&&w.task.picked),food=this.serverFoodLayout(o),labelY=o.stock>0?food.y-food.height-8:food.surface.y-this.tile*.14;this.label(o.stock>0?`${Math.ceil(o.stock)}개`:carrying?'서빙 중':'운반 예약',food.x,labelY,{small:true,background:'#eee0ba',color:'#50452e',border:'#9d8555'});}
     }
     if(edit?.ghost){const g=edit.ghost,t={x:g.x??3,y:g.y??3},error=placementProblem(s,g.type,t.x,t.y,g.dir,g.existing,{ignoreStaff:true}),p=this.world(t.x,t.y);this.polygon([this.world(t.x-.5,t.y-.5),this.world(t.x+.5,t.y-.5),this.world(t.x+.5,t.y+.5),this.world(t.x-.5,t.y+.5)],error?'#d97e6c88':'#bacb8799',error?'#fa9789':'#deefba',2);this.drawObject(s,{type:g.type,x:t.x,y:t.y,dir:g.dir,uid:'ghost'},clock,{ghost:true});}
-    const door=this.world(0,n-.5);if(!edit){c.fillStyle='#ded1a0';c.font='12px NeoDunggeunmo,monospace';c.textAlign='center';c.textBaseline='alphabetic';c.fillText('어서 오세요',door.x-4,door.y+34);}
     for(let i=0;i<16;i++){const x=(Math.sin(i*77.1)*.5+.5)*W,y=(Math.cos(i*31.4)*.5+.5)*H;const a=(Math.sin(clock*1.5+i*2)+1)/2;c.fillStyle=`rgba(226,220,143,${a*.6})`;c.fillRect(Math.round(x+Math.sin(clock*.4+i)*12),Math.round(y+Math.cos(clock*.3+i)*8),2,2);}
     if(s.feverUntil>s.time){c.save();c.setTransform(dpr,0,0,dpr,0,0);c.strokeStyle=`rgba(242,202,103,${.3+Math.sin(clock*7)*.2})`;c.lineWidth=5;c.strokeRect(3,3,W-6,H-6);c.restore();}
     if(!edit){this.drawPaymentEffects(effectClock);this.drawGuestLabels();}
@@ -221,8 +226,8 @@ export class RestaurantView{
       }
     }
   }
-  addPaymentEffect(event){if(![event.amount,event.xp,event.x,event.y].every(Number.isFinite))return;this.paymentEffects.push({amount:event.amount,xp:event.xp,x:event.x,y:event.y,favorite:!!event.favorite,startedAt:performance.now()/1000});this.paymentEffects=this.paymentEffects.slice(-20);}
-  drawPaymentEffects(clock){const c=this.ctx,reduced=this.motionPreference.matches;this.paymentEffects=this.paymentEffects.filter(effect=>clock-effect.startedAt<1.9);for(const effect of this.paymentEffects){const age=Math.max(0,clock-effect.startedAt),p=this.world(effect.x,effect.y),rise=reduced?0:Math.floor(age*14)*2,y=p.y-this.tile*1.15-rise;c.save();c.globalAlpha=reduced?1:Math.max(.25,Math.min(1,Math.ceil((1.9-age)/.4)/4));if(age<1.6){this.sprite('food',15,p.x-34,y,22,22);this.label(`+${effect.amount} 코인`,p.x+18,y,{small:true,color:'#ffe39b',background:'#423520',border:'#d7b36c'});}if(age>=.35)this.label(`+${effect.xp} XP`,p.x+8,y+28,{small:true,color:'#cbecdf',background:'#213e35',border:'#9cbf9b'});if(effect.favorite){const heart=['0110110','1111111','1111111','0111110','0011100','0001000'];c.fillStyle='#e59aab';heart.forEach((row,yy)=>[...row].forEach((bit,xx)=>{if(bit==='1')c.fillRect(Math.round(p.x+53+xx*2),Math.round(y-18+yy*2),2,2);}));}c.restore();}}
+  addPaymentEffect(event){if(![event.amount,event.xp,event.x,event.y].every(Number.isFinite))return;this.paymentEffects.push({amount:event.amount,xp:event.xp,x:event.x,y:event.y,favorite:!!event.favorite,tip:Number.isFinite(event.tip)?event.tip:0,startedAt:performance.now()/1000});this.paymentEffects=this.paymentEffects.slice(-20);}
+  drawPaymentEffects(clock){const c=this.ctx,reduced=this.motionPreference.matches;this.paymentEffects=this.paymentEffects.filter(effect=>clock-effect.startedAt<1.9);for(const effect of this.paymentEffects){const age=Math.max(0,clock-effect.startedAt),p=this.world(effect.x,effect.y),rise=reduced?0:Math.floor(age*14)*2,y=p.y-this.tile*1.15-rise;c.save();c.globalAlpha=reduced?1:Math.max(.25,Math.min(1,Math.ceil((1.9-age)/.4)/4));if(age<1.6){this.sprite('food',15,p.x-34,y,22,22);this.label(`+${effect.amount} 코인${effect.tip?` · 팁 ${effect.tip}`:''}`,p.x+18,y,{small:true,color:'#ffe39b',background:'#423520',border:'#d7b36c'});}if(age>=.35)this.label(`+${effect.xp} XP`,p.x+8,y+28,{small:true,color:'#cbecdf',background:'#213e35',border:'#9cbf9b'});if(effect.favorite){const heart=['0110110','1111111','1111111','0111110','0011100','0001000'];c.fillStyle='#e59aab';heart.forEach((row,yy)=>[...row].forEach((bit,xx)=>{if(bit==='1')c.fillRect(Math.round(p.x+53+xx*2),Math.round(y-18+yy*2),2,2);}));}c.restore();}}
   drawObject(s,o,clock,edit){
     const f=furniture(o.type);if(!f)return;const p=this.world(o.x,o.y),t=this.tile;let index=f.sprite;
     if(f.category==='chair')index=[1,2,3,4][o.dir||0];
@@ -281,15 +286,15 @@ export class RestaurantView{
       w=h*(image?image.width/image.height:.64);
       this.sprite(atlas,index,p.x,y,w,h,{flip,filter:waiter&&a.infectedUntil>s.time?'hue-rotate(65deg) saturate(.7)':''});
     }
-    if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.3);}
-    if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.27);}
+    if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.4);}
+    if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.38);}
     if(chair)this.drawChairFront(chair);
     if(a.red)this.label('!',p.x,p.y-h-1,{small:true,background:'#b65d4f',border:'#efbd82'});
     else if(waiter&&a.infectedUntil>s.time)this.label('치료',p.x,p.y-h,{small:true,background:'#8d5f66'});
     else if(!waiter){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={small:true,...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.label(line,p.x,p.y-h,options);}}
     if(waiter)this.hits.push({kind:'waiter',uid:a.uid,x:p.x-w/2,y:y-h,w,h,flip,mask:this.hitMask(image)});
   }
-  drawMeal(s,customer){const seat=seats(s).find(item=>item.uid===customer.seat);if(!seat?.table)return;const table=seat.table,dx=seat.chair.x-table.x,dy=seat.chair.y-table.y,p=this.world(table.x+dx*.4,table.y+dy*.4);const center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39};this.drawFoodOnSurface(customer.foodId,surface.x+p.x-center.x,surface.y+p.y-center.y,this.tile*.27);}
+  drawMeal(s,customer){const seat=seats(s).find(item=>item.uid===customer.seat);if(!seat?.table)return;const table=seat.table,dx=seat.chair.x-table.x,dy=seat.chair.y-table.y,p=this.world(table.x+dx*.4,table.y+dy*.4);const center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39};this.drawFoodOnSurface(customer.foodId,surface.x+p.x-center.x,surface.y+p.y-center.y,this.tile*.38);}
   drawEmptyDish(seat){const {table,chair}=seat,dx=chair.x-table.x,dy=chair.y-table.y,point=this.world(table.x+dx*.4,table.y+dy*.4),center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39},width=this.tile*.27,height=width*20/32;this.sprite('emptyDish',0,surface.x+point.x-center.x,surface.y+point.y-center.y+height*.14,width,height);}
   accessibleObjects(s){return s.objects.filter(o=>furniture(o.type)?.category==='stove').map((o,i)=>({uid:o.uid,label:`가마솥 ${i+1} · ${{empty:'비어 있음 · 요리 선택',cooking:'조리 중 · 남은 시간 보기',done:'완성 · 서빙대로 옮기기',collecting:'서빙대로 운반 중',spoiled:'상한 음식 · 되살리기 또는 버리기'}[stoveStatus(s,o)]}`}));}
 }
