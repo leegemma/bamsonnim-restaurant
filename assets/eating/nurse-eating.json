@@ -1,0 +1,559 @@
+{
+  "actorId": "nurse",
+  "key": "nurseEating",
+  "url": "/bamsonnim-restaurant/assets/eating/nurse-eating.png",
+  "baseAtlas": "zombieNurse",
+  "type": "eating-atlas",
+  "width": 887,
+  "height": 1774,
+  "cols": 2,
+  "rows": 4,
+  "trim": false,
+  "referenceHeight": 282,
+  "fps": 5,
+  "sequence": [
+    0,
+    1,
+    2
+  ],
+  "framesPerDirection": 2,
+  "status": "verified",
+  "promptFile": "/bamsonnim-restaurant/assets/eating/nurse-eating.prompt.txt",
+  "poses": [
+    {
+      "index": 0,
+      "dir": 0,
+      "state": "eat",
+      "frame": 1,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 96,
+        "y": 49,
+        "width": 273,
+        "height": 367
+      },
+      "hip": {
+        "x": 175.60077519379846,
+        "y": 380.437984496124
+      },
+      "anchor": {
+        "x": 232.5,
+        "y": 416
+      },
+      "registration": {
+        "baseIndex": 3,
+        "scale": 0.7029972752043597,
+        "lowerBodyTopY": 261,
+        "headBottomY": 180,
+        "foregroundHands": [],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 1,
+      "dir": 0,
+      "state": "eat",
+      "frame": 2,
+      "source": {
+        "x": 443.5,
+        "y": 0,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 97,
+        "y": 49,
+        "width": 272,
+        "height": 367
+      },
+      "hip": {
+        "x": 176.10077519379846,
+        "y": 380.437984496124
+      },
+      "anchor": {
+        "x": 233,
+        "y": 416
+      },
+      "registration": {
+        "baseIndex": 3,
+        "scale": 0.7029972752043597,
+        "lowerBodyTopY": 261,
+        "headBottomY": 180,
+        "foregroundHands": [
+          [
+            [
+              121,
+              164
+            ],
+            [
+              122,
+              162
+            ],
+            [
+              125,
+              159
+            ],
+            [
+              128,
+              157
+            ],
+            [
+              139,
+              157
+            ],
+            [
+              146,
+              162
+            ],
+            [
+              153,
+              171
+            ],
+            [
+              153,
+              179
+            ],
+            [
+              149,
+              183
+            ],
+            [
+              143,
+              186
+            ],
+            [
+              132,
+              186
+            ],
+            [
+              126,
+              183
+            ],
+            [
+              123,
+              179
+            ],
+            [
+              121,
+              175
+            ]
+          ]
+        ],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 2,
+      "dir": 1,
+      "state": "eat",
+      "frame": 1,
+      "source": {
+        "x": 0,
+        "y": 443.5,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 105,
+        "y": 49,
+        "width": 275,
+        "height": 366
+      },
+      "hip": {
+        "x": 297.1162790697674,
+        "y": 378.1162790697675
+      },
+      "anchor": {
+        "x": 242.5,
+        "y": 415
+      },
+      "registration": {
+        "baseIndex": 7,
+        "scale": 0.7049180327868853,
+        "lowerBodyTopY": 264,
+        "headBottomY": 180,
+        "foregroundHands": [],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 3,
+      "dir": 1,
+      "state": "eat",
+      "frame": 2,
+      "source": {
+        "x": 443.5,
+        "y": 443.5,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 105,
+        "y": 49,
+        "width": 275,
+        "height": 366
+      },
+      "hip": {
+        "x": 297.1162790697674,
+        "y": 378.1162790697675
+      },
+      "anchor": {
+        "x": 242.5,
+        "y": 415
+      },
+      "registration": {
+        "baseIndex": 7,
+        "scale": 0.7049180327868853,
+        "lowerBodyTopY": 264,
+        "headBottomY": 180,
+        "foregroundHands": [],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 4,
+      "dir": 2,
+      "state": "eat",
+      "frame": 1,
+      "source": {
+        "x": 0,
+        "y": 887,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 105,
+        "y": 51,
+        "width": 256,
+        "height": 360
+      },
+      "hip": {
+        "x": 251.4251968503937,
+        "y": 381.23622047244095
+      },
+      "anchor": {
+        "x": 233,
+        "y": 411
+      },
+      "registration": {
+        "baseIndex": 11,
+        "scale": 0.7055555555555556,
+        "lowerBodyTopY": 267,
+        "headBottomY": 183,
+        "foregroundHands": [
+          [
+            [
+              89,
+              164
+            ],
+            [
+              95,
+              164
+            ],
+            [
+              132,
+              187
+            ],
+            [
+              132,
+              193
+            ],
+            [
+              129,
+              195
+            ],
+            [
+              115,
+              195
+            ],
+            [
+              103,
+              191
+            ],
+            [
+              100,
+              189
+            ],
+            [
+              95,
+              184
+            ],
+            [
+              92,
+              180
+            ],
+            [
+              89,
+              174
+            ]
+          ]
+        ],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 5,
+      "dir": 2,
+      "state": "eat",
+      "frame": 2,
+      "source": {
+        "x": 443.5,
+        "y": 887,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 105,
+        "y": 51,
+        "width": 256,
+        "height": 360
+      },
+      "hip": {
+        "x": 251.4251968503937,
+        "y": 381.23622047244095
+      },
+      "anchor": {
+        "x": 233,
+        "y": 411
+      },
+      "registration": {
+        "baseIndex": 11,
+        "scale": 0.7055555555555556,
+        "lowerBodyTopY": 267,
+        "headBottomY": 183,
+        "foregroundHands": [
+          [
+            [
+              89,
+              164
+            ],
+            [
+              95,
+              164
+            ],
+            [
+              132,
+              186
+            ],
+            [
+              132,
+              193
+            ],
+            [
+              128,
+              195
+            ],
+            [
+              115,
+              195
+            ],
+            [
+              106,
+              192
+            ],
+            [
+              104,
+              191
+            ],
+            [
+              99,
+              188
+            ],
+            [
+              96,
+              186
+            ],
+            [
+              94,
+              184
+            ],
+            [
+              89,
+              174
+            ]
+          ]
+        ],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 6,
+      "dir": 3,
+      "state": "eat",
+      "frame": 1,
+      "source": {
+        "x": 0,
+        "y": 1330.5,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 103,
+        "y": 53,
+        "width": 253,
+        "height": 358
+      },
+      "hip": {
+        "x": 203.62890625,
+        "y": 377.4375
+      },
+      "anchor": {
+        "x": 229.5,
+        "y": 411
+      },
+      "registration": {
+        "baseIndex": 15,
+        "scale": 0.7150837988826816,
+        "lowerBodyTopY": 264,
+        "headBottomY": 183,
+        "foregroundHands": [
+          [
+            [
+              188,
+              182
+            ],
+            [
+              189,
+              180
+            ],
+            [
+              219,
+              164
+            ],
+            [
+              223,
+              162
+            ],
+            [
+              229,
+              162
+            ],
+            [
+              230,
+              165
+            ],
+            [
+              230,
+              172
+            ],
+            [
+              227,
+              178
+            ],
+            [
+              223,
+              182
+            ],
+            [
+              219,
+              185
+            ],
+            [
+              213,
+              189
+            ],
+            [
+              207,
+              190
+            ],
+            [
+              190,
+              190
+            ],
+            [
+              188,
+              188
+            ]
+          ]
+        ],
+        "lockLowerBody": false
+      }
+    },
+    {
+      "index": 7,
+      "dir": 3,
+      "state": "eat",
+      "frame": 2,
+      "source": {
+        "x": 443.5,
+        "y": 1330.5,
+        "width": 443.5,
+        "height": 443.5
+      },
+      "bounds": {
+        "x": 104,
+        "y": 53,
+        "width": 252,
+        "height": 358
+      },
+      "hip": {
+        "x": 204.12890625,
+        "y": 377.4375
+      },
+      "anchor": {
+        "x": 230,
+        "y": 411
+      },
+      "registration": {
+        "baseIndex": 15,
+        "scale": 0.7150837988826816,
+        "lowerBodyTopY": 264,
+        "headBottomY": 183,
+        "foregroundHands": [
+          [
+            [
+              183,
+              182
+            ],
+            [
+              224,
+              159
+            ],
+            [
+              230,
+              159
+            ],
+            [
+              231,
+              164
+            ],
+            [
+              231,
+              172
+            ],
+            [
+              227,
+              178
+            ],
+            [
+              221,
+              185
+            ],
+            [
+              212,
+              189
+            ],
+            [
+              207,
+              190
+            ],
+            [
+              189,
+              190
+            ],
+            [
+              183,
+              188
+            ]
+          ]
+        ],
+        "lockLowerBody": false
+      }
+    }
+  ]
+}

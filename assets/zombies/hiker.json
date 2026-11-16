@@ -2,7 +2,7 @@
   "actorId": "hiker",
   "key": "zombieHiker",
   "name": "정상 찍은 등산객 · 네 방향 세 포즈 걷기·앉기",
-  "url": "/bamsonnim-restaurant/assets/zombies/hiker-broken-lens-v1.png",
+  "url": "/bamsonnim-restaurant/assets/zombies/hiker-short-black-hair-v2.png",
   "type": "directional-atlas",
   "width": 1254,
   "height": 1254,
@@ -1161,7 +1161,7 @@
     "matteReviewEvidence": "artifacts/broken-lens-review/hiker-matte.png",
     "sourcePNGUnchanged": true
   },
-  "promptFile": "/bamsonnim-restaurant/assets/zombies/hiker-broken-lens-v1.prompt.txt",
+  "promptFile": "/bamsonnim-restaurant/assets/zombies/hiker-short-black-hair-v2.prompt.txt",
   "generation": {
     "tool": "image_gen",
     "originalFile": "exec-6f5eeb75-e2d3-45e8-be0d-bc7e02a4814e.png",
@@ -1180,5 +1180,6 @@
     ],
     "rearPolicy": "Keep original rear head/temple view; hidden eye remains hidden.",
     "otherLens": "intact red-tinted"
-  }
+  },
+  "appearance": "Ordinary adult male, short black hair, clean-shaven, no bandana; broken red sunglasses and original hiking outfit."
 }
