@@ -1,0 +1,3 @@
+Mode: built-in image_gen; transparent background.
+Style reference: public/assets/wooden-entrance.png.
+Use case: stylized-concept. One transparent game sprite: zombie guest doorway for a Korean hanok restaurant. New isolated narrow rectangular demonic doorway frame, weathered deep plum-purple carved wood, three small ivory skulls along the lintel, bony side posts, short dark burgundy curtain, opaque near-black opening. Flat front elevation; renderer supplies wall perspective. Chunky pixel-painted texture matching existing wooden doorway. Fully visible centered doorway, approximately 1:2 width:height. Transparent outside; opaque darkness inside. No floor, scene, characters, writing, glow halo, or UI.
