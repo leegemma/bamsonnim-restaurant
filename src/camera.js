@@ -31,10 +31,16 @@ export function resizeCamera(camera,before,after,bounds){
 }
 export function wheelZoomFactor(deltaY,deltaMode=0,viewport={height:1}){const pixels=finite(deltaY)*(deltaMode===1?16:deltaMode===2?viewport.height:1);return Math.exp(-Math.max(-100,Math.min(100,pixels))*.0015);}
 
+// The backdrop is a viewport layer; room zoom/pan must not magnify it again.
+export function backgroundCover(image,viewport){
+  const scale=Math.max(viewport.width/image.width,viewport.height/image.height),width=image.width*scale,height=image.height*scale;
+  return{x:(viewport.width-width)/2,y:(viewport.height-height)/2,width,height};
+}
+
 // Only margins beyond the original cover image are reflected. The original
 // central draw is identical at the default camera, including its color/alpha.
 export function backgroundCopies(image,viewport,camera){
-  const scale=Math.max(viewport.width/image.width,viewport.height/image.height),width=image.width*scale,height=image.height*scale,x=(viewport.width-width)/2,y=(viewport.height-height)/2,visible=visibleSceneRect(camera,viewport),out=[];
+  const {x,y,width,height}=backgroundCover(image,viewport),visible=visibleSceneRect(camera,viewport),out=[];
   if(!(width>0&&height>0))return out;
   for(let row=Math.floor((visible.y-y)/height);row<Math.ceil((visible.y+visible.height-y)/height);row++)for(let col=Math.floor((visible.x-x)/width);col<Math.ceil((visible.x+visible.width-x)/width);col++)out.push({x:x+col*width,y:y+row*height,width,height,flipX:Math.abs(col%2)===1,flipY:Math.abs(row%2)===1});
   return out;

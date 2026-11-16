@@ -34,3 +34,14 @@ dialog.hire[open]{width:min(720px,calc(100vw - 24px))}
  .hire .staff-card{grid-template-columns:48px minmax(0,1fr) 218px;gap:8px}
  .hire .staff-card>.sprite{width:48px;height:48px}
 }
+
+/* Keep the title and roster count on one compact line. */
+.hire[open] .dialog-heading{padding:8px 56px 8px 18px}
+.hire[open] #dialog-title{display:flex;align-items:baseline;gap:12px;white-space:nowrap;font-size:22px;line-height:1.3;margin:0}
+.hire .staff-count{font-size:12px;font-weight:400;letter-spacing:0;color:#71654a}
+.hire[open] .dialog-heading p{display:none}
+.hire[open] .close-button{top:6px;right:12px}
+.hire[open] .staff-list{padding-block:8px}
+.hire[open] .hire-footer{justify-content:flex-end;padding:8px 18px}
+.hire[open] .hire-footer>.button{min-height:36px;padding:5px 12px}
+@media(max-height:500px){.hire[open] #dialog-title{font-size:20px}.hire[open] .dialog-heading{padding-block:7px}.hire[open] .close-button{top:4px}}

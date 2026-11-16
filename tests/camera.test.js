@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {createCamera,cameraTransform,sceneToScreen,screenToScene,clientToScreen,clampCamera,zoomCameraAt,panCameraBy,resizeCamera,visibleSceneRect,backgroundCopies,wheelZoomFactor} from '../src/camera.js';
+import {createCamera,cameraTransform,sceneToScreen,screenToScene,clientToScreen,clampCamera,zoomCameraAt,panCameraBy,resizeCamera,visibleSceneRect,backgroundCover,backgroundCopies,wheelZoomFactor} from '../src/camera.js';
 import {RestaurantView} from '../src/render.js';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} != ${b}`),view={width:844,height:302},bounds={x:-1000,y:-1000,width:2844,height:2302};
 
@@ -38,4 +38,12 @@ test('room tiles and furniture placement invert correctly at every zoom for size
 test('transformed taps select logical stove hits and short editor taps use the correct grid',()=>{
  const selected=[],placed=[],v={origin:{x:400,y:40},tile:50,hits:[{kind:'stove',uid:'pot',x:300,y:100,w:60,h:32}],onSelect:h=>selected.push(h.uid),onTile:p=>placed.push(p),grid:RestaurantView.prototype.grid,hitAt:RestaurantView.prototype.hitAt};
  const c={zoom:1.8,panX:53,panY:-17},screen=sceneToScreen({x:330,y:116},c,view),p=screenToScene(screen,c,view);RestaurantView.prototype.tapAt.call(v,p);assert.deepEqual(selected,['pot']);v.edit={ghost:{type:'chair'}};const floor=RestaurantView.prototype.world.call(v,3,4),at=screenToScene(sceneToScreen(floor,c,view),c,view);RestaurantView.prototype.tapAt.call(v,at);assert.deepEqual(placed,[{x:3,y:4}]);v.gestures={input:{active:true}};RestaurantView.prototype.tapAt.call(v,at);assert.equal(placed.length,1);
+});
+
+
+test('the viewport backdrop preserves its aspect ratio and covers wide and tall screens without camera zoom',()=>{
+ const image={width:1670,height:941};
+ for(const viewport of [{width:1807,height:1376},{width:1280,height:631},{width:844,height:302},{width:568,height:152}]){
+  const r=backgroundCover(image,viewport);near(r.width/r.height,image.width/image.height);assert.ok(r.x<=0&&r.y<=0);assert.ok(r.x+r.width>=viewport.width-1e-7&&r.y+r.height>=viewport.height-1e-7);near(r.x+r.width/2,viewport.width/2);near(r.y+r.height/2,viewport.height/2);
+ }
 });

@@ -8,7 +8,7 @@ import {eatingAnimationFrame,eatingSpriteFrame} from './eating.js';
 import {registerEatingFrames} from './eating-registration.js';
 import {BACKGROUND_SCENE} from './background-fx.generated.js';
 import {backgroundFrame,backgroundFxGeometry} from './background-fx.js';
-import {createCamera,cameraTransform,sceneToScreen,screenToScene,clientToScreen,clampCamera,zoomCameraAt,resizeCamera,visibleSceneRect,backgroundCopies} from './camera.js';
+import {createCamera,cameraTransform,sceneToScreen,screenToScene,clientToScreen,clampCamera,zoomCameraAt,resizeCamera,visibleSceneRect,backgroundCover} from './camera.js';
 import {bindCameraGestures} from './camera-gestures.js';
 import {furnitureArt,placedFurniture} from './furniture-placement.js';
 import {pickHit} from './hit-testing.js';
@@ -150,8 +150,9 @@ export class RestaurantView{
     const availableH=H-(edit?150:0);this.tile=Math.min(83,(W-(W<800?165:260))/s.size,availableH<400?(availableH-30)/(s.size*.5+1.5):(availableH-155)/(s.size/2));this.tile=Math.max(22,this.tile);const n=s.size;this.origin={x:W*(W<750?.57:.575),y:(availableH-n*this.tile/2)/2+(availableH<400?this.tile*.6:58)};
     const left=this.world(-.5,n-.5),right=this.world(n-.5,-.5),front=this.world(n-.5,n-.5),back=this.world(-.5,-.5);
     this.cameraBounds={x:left.x-20,y:back.y-this.tile*1.4-18,width:right.x-left.x+40,height:front.y+55-(back.y-this.tile*1.4-18)};this.commitCamera(this.camera);
-    const matrix=cameraTransform(this.camera,this.viewport()),visible=visibleSceneRect(this.camera,this.viewport());c.save();c.setTransform(dpr*matrix.zoom,0,0,dpr*matrix.zoom,dpr*matrix.x,dpr*matrix.y);c.imageSmoothingEnabled=false;
-    const bg=this.images.night;if(bg){c.globalAlpha=.6;for(const copy of backgroundCopies(bg,this.viewport(),this.camera)){if(!copy.flipX&&!copy.flipY)c.drawImage(bg,copy.x,copy.y,copy.width,copy.height);else{c.save();c.translate(copy.x+(copy.flipX?copy.width:0),copy.y+(copy.flipY?copy.height:0));c.scale(copy.flipX?-1:1,copy.flipY?-1:1);c.drawImage(bg,0,0,copy.width,copy.height);c.restore();}}this.drawBackgroundEffects(s,bg);c.globalAlpha=1;}
+    const matrix=cameraTransform(this.camera,this.viewport()),visible=visibleSceneRect(this.camera,this.viewport());c.imageSmoothingEnabled=false;
+    const bg=this.images.night;if(bg){const backdrop=backgroundCover(bg,this.viewport());c.save();c.globalAlpha=.6;c.drawImage(bg,backdrop.x,backdrop.y,backdrop.width,backdrop.height);this.drawBackgroundEffects(s,bg);c.restore();}
+    c.save();c.setTransform(dpr*matrix.zoom,0,0,dpr*matrix.zoom,dpr*matrix.x,dpr*matrix.y);
     const grd=c.createLinearGradient(0,visible.y,0,visible.y+visible.height);grd.addColorStop(0,'#102c2822');grd.addColorStop(1,'#0c2528aa');c.fillStyle=grd;c.fillRect(visible.x,visible.y,visible.width,visible.height);
     this.polygon([{x:left.x-20,y:left.y+12},{x:front.x,y:front.y+30},{x:right.x+20,y:right.y+12},{x:back.x,y:back.y}], '#07191c66');
     this.polygon([left,front,{x:front.x,y:front.y+21},{x:left.x,y:left.y+21}],'#443f34','#1e3029',2);
