@@ -1,15 +1,36 @@
-.staff-card{display:grid;grid-template-columns:64px minmax(0,1fr) auto;align-items:start}
-.staff-card>div{min-width:0}
-.staff-card>.sprite{width:64px;height:64px}
-.staff-card>.staff-actions{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
-.hire .staff-card>.staff-upgrades{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:10px;width:100%;border-top:1px solid #b8a777;padding-top:10px}
-.staff-upgrade{min-width:0;padding:8px;background:#e6dab7;border:1px solid #ac9663}
-.staff-upgrade h3{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:14px;line-height:1.35;margin:0 0 5px;color:#3a4934}
-.staff-upgrade p{font-size:12px!important;line-height:1.5;margin:3px 0;color:#534b36}
-.staff-upgrade .button{width:100%;margin-top:7px;display:flex;align-items:center;justify-content:center;gap:5px;min-height:38px;padding:5px 8px}
+dialog.hire[open]{width:min(720px,calc(100vw - 24px))}
+.hire .dialog-heading{padding:16px 20px}
+.hire .dialog-overline{display:none}
+.hire .dialog-heading h1{font-size:23px;margin:0;line-height:1.4}
+.hire .dialog-heading p{margin:5px 0 0;font-size:12px}
+.hire .staff-list{padding:14px 18px;gap:10px}
+.hire .staff-card{display:grid;grid-template-columns:64px minmax(0,1fr) 248px;align-items:center;gap:12px;padding:10px 12px}
+.hire .staff-card>.sprite{width:64px;height:64px}
+.hire .staff-card>.staff-info{min-width:0}
+.hire .staff-card h2{font-size:18px;margin:0 0 3px}
+.hire .staff-info>p{margin:4px 0 0}
+.hire .staff-actions{display:flex;align-items:center;flex-wrap:wrap;gap:5px 8px;margin-top:5px}
+.hire .staff-actions:empty{display:none}
+.hire .staff-actions .button{min-height:30px;padding:3px 6px;font-size:11px}
+.hire .staff-actions .text-button{font-size:11px}
+.hire .staff-card>.staff-upgrades{grid-column:3;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;justify-items:stretch;gap:8px;width:100%;border:0;padding:0}
+.staff-upgrade{min-width:0;padding:7px;background:#e6dab7;border:1px solid #ac9663}
+.staff-upgrade h3{display:flex;align-items:center;justify-content:space-between;gap:5px;white-space:nowrap;font-size:12px;line-height:1.4;margin:0 0 6px;color:#3a4934}
+.staff-upgrade h3 span{color:#706346;font-variant-numeric:tabular-nums}
+.staff-upgrade .button{width:100%;display:flex;align-items:center;justify-content:center;gap:5px;min-height:36px;padding:4px 7px}
 .staff-upgrade .mini{width:22px;height:22px;flex-shrink:0}
-.upgrade-guide{grid-column:1/-1;margin:0!important;font-size:11px!important;line-height:1.5;color:#6e6046}
-@media(max-height:500px){.staff-card{grid-template-columns:52px minmax(0,1fr) auto}.staff-card>.sprite{width:52px;height:52px}.hire .staff-card>.staff-upgrades{gap:6px;padding-top:6px}.staff-upgrade{padding:6px}.staff-upgrade h3{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}.staff-upgrade .button{font-size:11px;min-height:34px}.upgrade-guide{font-size:10px!important}}
-
-.hire .staff-card>.staff-upgrades{justify-items:stretch;align-items:stretch;flex-direction:initial}
-.staff-upgrade h3 span{white-space:nowrap;color:#706346;font-variant-numeric:tabular-nums}
+.hire .hire-footer{padding:12px 18px;gap:12px}
+.hire .hire-footer p{font-size:11px;line-height:1.5;margin:0;max-width:240px}
+@media(max-width:650px){
+ .hire .staff-card{grid-template-columns:48px minmax(0,1fr) 218px;gap:8px;padding:8px}
+ .hire .staff-card>.sprite{width:48px;height:48px}
+ .hire .staff-card h2{font-size:16px}
+ .hire .staff-card>.staff-upgrades{gap:6px}
+ .staff-upgrade{padding:6px}.staff-upgrade h3{font-size:11px;gap:3px}
+}
+@media(max-height:500px){
+ .hire .dialog-heading{padding:8px 16px}.hire .dialog-heading h1{font-size:20px}
+ .hire .staff-list{padding:10px 14px}.hire .hire-footer{padding:8px 16px}
+ .hire .staff-card{grid-template-columns:48px minmax(0,1fr) 218px;gap:8px}
+ .hire .staff-card>.sprite{width:48px;height:48px}
+}
