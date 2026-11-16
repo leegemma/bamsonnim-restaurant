@@ -1,0 +1,713 @@
+{
+  "actorId": "prince",
+  "key": "zombiePrince",
+  "url": "/bamsonnim-restaurant/assets/zombies/prince-directional-shuffle-v2.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 279,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 340,
+      "height": 317,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 340,
+        "height": 317
+      },
+      "bounds": {
+        "x": 113,
+        "y": 22,
+        "width": 166,
+        "height": 281
+      },
+      "anchor": {
+        "x": 180,
+        "y": 303
+      },
+      "validation": {
+        "opaquePixels": 33035,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e942bea2d44566cd"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 1,
+      "x": 340,
+      "y": 0,
+      "width": 300,
+      "height": 317,
+      "source": {
+        "x": 340,
+        "y": 0,
+        "width": 300,
+        "height": 317
+      },
+      "bounds": {
+        "x": 66,
+        "y": 22,
+        "width": 168,
+        "height": 281
+      },
+      "anchor": {
+        "x": 136,
+        "y": 303
+      },
+      "validation": {
+        "opaquePixels": 33556,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "bcff660c592d9717"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 2,
+      "x": 640,
+      "y": 0,
+      "width": 296,
+      "height": 317,
+      "source": {
+        "x": 640,
+        "y": 0,
+        "width": 296,
+        "height": 317
+      },
+      "bounds": {
+        "x": 67,
+        "y": 22,
+        "width": 164,
+        "height": 282
+      },
+      "anchor": {
+        "x": 132,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 33026,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "dfa8de52b3faf1ab"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "prince",
+      "state": "sit",
+      "frame": 0,
+      "x": 936,
+      "y": 0,
+      "width": 318,
+      "height": 317,
+      "source": {
+        "x": 936,
+        "y": 0,
+        "width": 318,
+        "height": 317
+      },
+      "bounds": {
+        "x": 66,
+        "y": 50,
+        "width": 174,
+        "height": 252
+      },
+      "anchor": {
+        "x": 150,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 31568,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "66459478e932d053"
+      },
+      "hip": {
+        "x": 112,
+        "y": 276
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 317,
+      "width": 319,
+      "height": 316,
+      "source": {
+        "x": 0,
+        "y": 317,
+        "width": 319,
+        "height": 316
+      },
+      "bounds": {
+        "x": 80,
+        "y": 15,
+        "width": 175,
+        "height": 283
+      },
+      "anchor": {
+        "x": 177,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 33829,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5ded7e8d33174893"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 1,
+      "x": 319,
+      "y": 317,
+      "width": 303,
+      "height": 316,
+      "source": {
+        "x": 319,
+        "y": 317,
+        "width": 303,
+        "height": 316
+      },
+      "bounds": {
+        "x": 65,
+        "y": 17,
+        "width": 174,
+        "height": 281
+      },
+      "anchor": {
+        "x": 158,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 33936,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "57beb0a85be008dc"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 2,
+      "x": 622,
+      "y": 317,
+      "width": 298,
+      "height": 316,
+      "source": {
+        "x": 622,
+        "y": 317,
+        "width": 298,
+        "height": 316
+      },
+      "bounds": {
+        "x": 66,
+        "y": 16,
+        "width": 170,
+        "height": 280
+      },
+      "anchor": {
+        "x": 162,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 33561,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f42025ef7fa37903"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "prince",
+      "state": "sit",
+      "frame": 0,
+      "x": 920,
+      "y": 317,
+      "width": 334,
+      "height": 316,
+      "source": {
+        "x": 920,
+        "y": 317,
+        "width": 334,
+        "height": 316
+      },
+      "bounds": {
+        "x": 64,
+        "y": 46,
+        "width": 187,
+        "height": 250
+      },
+      "anchor": {
+        "x": 160,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 32647,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "edc743aad63a3dbf"
+      },
+      "hip": {
+        "x": 203,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 633,
+      "width": 317,
+      "height": 307,
+      "source": {
+        "x": 0,
+        "y": 633,
+        "width": 317,
+        "height": 307
+      },
+      "bounds": {
+        "x": 90,
+        "y": 19,
+        "width": 165,
+        "height": 270
+      },
+      "anchor": {
+        "x": 184,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 30514,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7a82ba71f8aa7bc6"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 633,
+      "width": 293,
+      "height": 307,
+      "source": {
+        "x": 317,
+        "y": 633,
+        "width": 293,
+        "height": 307
+      },
+      "bounds": {
+        "x": 63,
+        "y": 20,
+        "width": 165,
+        "height": 270
+      },
+      "anchor": {
+        "x": 161,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 31425,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d28b2f9a03bcdd10"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 2,
+      "x": 610,
+      "y": 633,
+      "width": 304,
+      "height": 307,
+      "source": {
+        "x": 610,
+        "y": 633,
+        "width": 304,
+        "height": 307
+      },
+      "bounds": {
+        "x": 66,
+        "y": 21,
+        "width": 165,
+        "height": 268
+      },
+      "anchor": {
+        "x": 168,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 30602,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "606053a6b6ff7818"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "prince",
+      "state": "sit",
+      "frame": 0,
+      "x": 914,
+      "y": 633,
+      "width": 340,
+      "height": 307,
+      "source": {
+        "x": 914,
+        "y": 633,
+        "width": 340,
+        "height": 307
+      },
+      "bounds": {
+        "x": 63,
+        "y": 42,
+        "width": 185,
+        "height": 242
+      },
+      "anchor": {
+        "x": 168,
+        "y": 284
+      },
+      "validation": {
+        "opaquePixels": 30874,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "650e1cb03914c760"
+      },
+      "hip": {
+        "x": 177,
+        "y": 264
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 940,
+      "width": 339,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 940,
+        "width": 339,
+        "height": 314
+      },
+      "bounds": {
+        "x": 108,
+        "y": 18,
+        "width": 169,
+        "height": 278
+      },
+      "anchor": {
+        "x": 180,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 32633,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5cefa064f96fab46"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 1,
+      "x": 339,
+      "y": 940,
+      "width": 301,
+      "height": 314,
+      "source": {
+        "x": 339,
+        "y": 940,
+        "width": 301,
+        "height": 314
+      },
+      "bounds": {
+        "x": 65,
+        "y": 21,
+        "width": 172,
+        "height": 276
+      },
+      "anchor": {
+        "x": 135,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 32511,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c14d810f5f1c68e0"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "prince",
+      "state": "walk",
+      "frame": 2,
+      "x": 640,
+      "y": 940,
+      "width": 298,
+      "height": 314,
+      "source": {
+        "x": 640,
+        "y": 940,
+        "width": 298,
+        "height": 314
+      },
+      "bounds": {
+        "x": 65,
+        "y": 21,
+        "width": 170,
+        "height": 273
+      },
+      "anchor": {
+        "x": 132,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 33017,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1305c0caea07b0a8"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "prince",
+      "state": "sit",
+      "frame": 0,
+      "x": 938,
+      "y": 940,
+      "width": 316,
+      "height": 314,
+      "source": {
+        "x": 938,
+        "y": 940,
+        "width": 316,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 53,
+        "width": 181,
+        "height": 243
+      },
+      "anchor": {
+        "x": 152,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 31241,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "049d9e45156a52dc"
+      },
+      "hip": {
+        "x": 137,
+        "y": 270
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 982516,
+    "sourceGutters": {
+      "y": [
+        0,
+        317,
+        633,
+        940,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          340,
+          640,
+          936,
+          1254
+        ],
+        [
+          0,
+          319,
+          622,
+          920,
+          1254
+        ],
+        [
+          0,
+          317,
+          610,
+          914,
+          1254
+        ],
+        [
+          0,
+          339,
+          640,
+          938,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 v2 poses reviewed: small prince, tall gold-bound topknot and red/gold dragon robe retained. Original duplicate rear-right row corrected by built-in v2 edit into actual rear-left; both rear directions and low foot phases verified. Same-chair contact review uses actual shorter .8-tile prince scale.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch5.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "세자 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "prince",
+    "originalFile": "exec-50f3fe5e-d158-4f13-910c-52c4986de87c.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/prince-shuffle-v2.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

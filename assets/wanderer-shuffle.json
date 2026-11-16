@@ -1,0 +1,1400 @@
+{
+  "actorId": "wanderer",
+  "key": "wandererShuffle",
+  "url": "/bamsonnim-restaurant/assets/wanderer-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 270,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 330,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 330,
+        "height": 310
+      },
+      "bounds": {
+        "x": 93,
+        "y": 13,
+        "width": 168,
+        "height": 275
+      },
+      "anchor": {
+        "x": 164,
+        "y": 288
+      },
+      "validation": {
+        "opaquePixels": 31965,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6fe58ab50b7a62be"
+      },
+      "headPolygon": [
+        [
+          92,
+          8
+        ],
+        [
+          265,
+          8
+        ],
+        [
+          265,
+          118
+        ],
+        [
+          250,
+          132
+        ],
+        [
+          243,
+          153
+        ],
+        [
+          234,
+          161
+        ],
+        [
+          217,
+          161
+        ],
+        [
+          209,
+          143
+        ],
+        [
+          175,
+          157
+        ],
+        [
+          131,
+          137
+        ],
+        [
+          108,
+          126
+        ],
+        [
+          92,
+          113
+        ]
+      ],
+      "neckAnchor": {
+        "x": 180,
+        "y": 157
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 1,
+      "x": 330,
+      "y": 0,
+      "width": 312,
+      "height": 310,
+      "source": {
+        "x": 330,
+        "y": 0,
+        "width": 312,
+        "height": 310
+      },
+      "bounds": {
+        "x": 70,
+        "y": 13,
+        "width": 170,
+        "height": 273
+      },
+      "anchor": {
+        "x": 145,
+        "y": 286
+      },
+      "validation": {
+        "opaquePixels": 31064,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fb5954c57c4a9d5e"
+      },
+      "headPolygon": [
+        [
+          73,
+          8
+        ],
+        [
+          244,
+          8
+        ],
+        [
+          244,
+          118
+        ],
+        [
+          229,
+          132
+        ],
+        [
+          222,
+          153
+        ],
+        [
+          213,
+          161
+        ],
+        [
+          196,
+          161
+        ],
+        [
+          188,
+          143
+        ],
+        [
+          155,
+          158
+        ],
+        [
+          112,
+          137
+        ],
+        [
+          89,
+          126
+        ],
+        [
+          73,
+          113
+        ]
+      ],
+      "neckAnchor": {
+        "x": 160,
+        "y": 158
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 2,
+      "x": 642,
+      "y": 0,
+      "width": 312,
+      "height": 310,
+      "source": {
+        "x": 642,
+        "y": 0,
+        "width": 312,
+        "height": 310
+      },
+      "bounds": {
+        "x": 76,
+        "y": 13,
+        "width": 169,
+        "height": 279
+      },
+      "anchor": {
+        "x": 142,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 31015,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "63c2e8ffb25e1650"
+      },
+      "headPolygon": [
+        [
+          75,
+          8
+        ],
+        [
+          249,
+          8
+        ],
+        [
+          249,
+          118
+        ],
+        [
+          234,
+          132
+        ],
+        [
+          227,
+          153
+        ],
+        [
+          218,
+          161
+        ],
+        [
+          201,
+          161
+        ],
+        [
+          193,
+          143
+        ],
+        [
+          158,
+          158
+        ],
+        [
+          114,
+          137
+        ],
+        [
+          91,
+          126
+        ],
+        [
+          75,
+          113
+        ]
+      ],
+      "neckAnchor": {
+        "x": 163,
+        "y": 158
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "wanderer",
+      "state": "sit",
+      "frame": 0,
+      "x": 954,
+      "y": 0,
+      "width": 300,
+      "height": 310,
+      "source": {
+        "x": 954,
+        "y": 0,
+        "width": 300,
+        "height": 310
+      },
+      "bounds": {
+        "x": 68,
+        "y": 30,
+        "width": 170,
+        "height": 255
+      },
+      "anchor": {
+        "x": 142,
+        "y": 285
+      },
+      "validation": {
+        "opaquePixels": 31060,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3f17c65da761b8fa"
+      },
+      "hip": {
+        "x": 121,
+        "y": 248
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 310,
+      "width": 309,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 310,
+        "width": 309,
+        "height": 313
+      },
+      "bounds": {
+        "x": 72,
+        "y": 19,
+        "width": 166,
+        "height": 273
+      },
+      "anchor": {
+        "x": 164,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 31170,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8da5ec983b0282e3"
+      },
+      "headPolygon": [
+        [
+          67,
+          14
+        ],
+        [
+          242,
+          14
+        ],
+        [
+          242,
+          121
+        ],
+        [
+          227,
+          137
+        ],
+        [
+          207,
+          150
+        ],
+        [
+          161,
+          161
+        ],
+        [
+          120,
+          150
+        ],
+        [
+          110,
+          163
+        ],
+        [
+          95,
+          166
+        ],
+        [
+          83,
+          156
+        ],
+        [
+          77,
+          138
+        ],
+        [
+          67,
+          123
+        ]
+      ],
+      "neckAnchor": {
+        "x": 156,
+        "y": 161
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 1,
+      "x": 309,
+      "y": 310,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 309,
+        "y": 310,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 21,
+        "width": 167,
+        "height": 268
+      },
+      "anchor": {
+        "x": 161,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 30702,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "234ddcdea1c08159"
+      },
+      "headPolygon": [
+        [
+          68,
+          16
+        ],
+        [
+          243,
+          16
+        ],
+        [
+          243,
+          123
+        ],
+        [
+          228,
+          139
+        ],
+        [
+          208,
+          152
+        ],
+        [
+          160,
+          163
+        ],
+        [
+          121,
+          152
+        ],
+        [
+          111,
+          165
+        ],
+        [
+          96,
+          168
+        ],
+        [
+          84,
+          158
+        ],
+        [
+          78,
+          140
+        ],
+        [
+          68,
+          125
+        ]
+      ],
+      "neckAnchor": {
+        "x": 155,
+        "y": 163
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 2,
+      "x": 621,
+      "y": 310,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 621,
+        "y": 310,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 21,
+        "width": 170,
+        "height": 274
+      },
+      "anchor": {
+        "x": 171,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 30553,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8f3697bc1178a96b"
+      },
+      "headPolygon": [
+        [
+          68,
+          16
+        ],
+        [
+          243,
+          16
+        ],
+        [
+          243,
+          123
+        ],
+        [
+          228,
+          139
+        ],
+        [
+          208,
+          152
+        ],
+        [
+          160,
+          163
+        ],
+        [
+          121,
+          152
+        ],
+        [
+          111,
+          165
+        ],
+        [
+          96,
+          168
+        ],
+        [
+          84,
+          158
+        ],
+        [
+          78,
+          140
+        ],
+        [
+          68,
+          125
+        ]
+      ],
+      "neckAnchor": {
+        "x": 155,
+        "y": 163
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "wanderer",
+      "state": "sit",
+      "frame": 0,
+      "x": 935,
+      "y": 310,
+      "width": 319,
+      "height": 313,
+      "source": {
+        "x": 935,
+        "y": 310,
+        "width": 319,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 35,
+        "width": 170,
+        "height": 255
+      },
+      "anchor": {
+        "x": 169,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 31019,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cf77636d7b94c3e3"
+      },
+      "hip": {
+        "x": 198,
+        "y": 249
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 623,
+      "width": 319,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 623,
+        "width": 319,
+        "height": 311
+      },
+      "bounds": {
+        "x": 85,
+        "y": 20,
+        "width": 161,
+        "height": 270
+      },
+      "anchor": {
+        "x": 166,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 29506,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f60b00d20efed598"
+      },
+      "headPolygon": [
+        [
+          81,
+          15
+        ],
+        [
+          250,
+          15
+        ],
+        [
+          250,
+          117
+        ],
+        [
+          237,
+          143
+        ],
+        [
+          207,
+          154
+        ],
+        [
+          176,
+          157
+        ],
+        [
+          146,
+          155
+        ],
+        [
+          114,
+          147
+        ],
+        [
+          92,
+          133
+        ],
+        [
+          81,
+          113
+        ]
+      ],
+      "neckAnchor": {
+        "x": 163,
+        "y": 156
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 1,
+      "x": 319,
+      "y": 623,
+      "width": 310,
+      "height": 311,
+      "source": {
+        "x": 319,
+        "y": 623,
+        "width": 310,
+        "height": 311
+      },
+      "bounds": {
+        "x": 74,
+        "y": 21,
+        "width": 161,
+        "height": 268
+      },
+      "anchor": {
+        "x": 151,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 28642,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ff184a5246e0d5c5"
+      },
+      "headPolygon": [
+        [
+          69,
+          16
+        ],
+        [
+          239,
+          16
+        ],
+        [
+          239,
+          118
+        ],
+        [
+          226,
+          144
+        ],
+        [
+          196,
+          155
+        ],
+        [
+          165,
+          159
+        ],
+        [
+          135,
+          157
+        ],
+        [
+          102,
+          148
+        ],
+        [
+          80,
+          134
+        ],
+        [
+          69,
+          114
+        ]
+      ],
+      "neckAnchor": {
+        "x": 152,
+        "y": 158
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 2,
+      "x": 629,
+      "y": 623,
+      "width": 311,
+      "height": 311,
+      "source": {
+        "x": 629,
+        "y": 623,
+        "width": 311,
+        "height": 311
+      },
+      "bounds": {
+        "x": 76,
+        "y": 21,
+        "width": 163,
+        "height": 270
+      },
+      "anchor": {
+        "x": 161,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 30486,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7103f3c0fc7477b6"
+      },
+      "headPolygon": [
+        [
+          71,
+          16
+        ],
+        [
+          243,
+          16
+        ],
+        [
+          243,
+          118
+        ],
+        [
+          230,
+          144
+        ],
+        [
+          200,
+          155
+        ],
+        [
+          168,
+          160
+        ],
+        [
+          138,
+          158
+        ],
+        [
+          104,
+          148
+        ],
+        [
+          82,
+          134
+        ],
+        [
+          71,
+          114
+        ]
+      ],
+      "neckAnchor": {
+        "x": 155,
+        "y": 159
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "wanderer",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 623,
+      "width": 314,
+      "height": 311,
+      "source": {
+        "x": 940,
+        "y": 623,
+        "width": 314,
+        "height": 311
+      },
+      "bounds": {
+        "x": 73,
+        "y": 37,
+        "width": 164,
+        "height": 254
+      },
+      "anchor": {
+        "x": 156,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 31197,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1ee3c17d4c7182b5"
+      },
+      "hip": {
+        "x": 174,
+        "y": 253
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 934,
+      "width": 321,
+      "height": 320,
+      "source": {
+        "x": 0,
+        "y": 934,
+        "width": 321,
+        "height": 320
+      },
+      "bounds": {
+        "x": 84,
+        "y": 21,
+        "width": 164,
+        "height": 271
+      },
+      "anchor": {
+        "x": 162,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 30273,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "969e46e8c7812709"
+      },
+      "headPolygon": [
+        [
+          79,
+          16
+        ],
+        [
+          252,
+          16
+        ],
+        [
+          252,
+          118
+        ],
+        [
+          242,
+          136
+        ],
+        [
+          223,
+          150
+        ],
+        [
+          181,
+          159
+        ],
+        [
+          151,
+          160
+        ],
+        [
+          113,
+          152
+        ],
+        [
+          90,
+          136
+        ],
+        [
+          79,
+          115
+        ]
+      ],
+      "neckAnchor": {
+        "x": 164,
+        "y": 159
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 1,
+      "x": 321,
+      "y": 934,
+      "width": 313,
+      "height": 320,
+      "source": {
+        "x": 321,
+        "y": 934,
+        "width": 313,
+        "height": 320
+      },
+      "bounds": {
+        "x": 75,
+        "y": 23,
+        "width": 165,
+        "height": 269
+      },
+      "anchor": {
+        "x": 156,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 28773,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "364b3db229bbb59a"
+      },
+      "headPolygon": [
+        [
+          70,
+          18
+        ],
+        [
+          244,
+          18
+        ],
+        [
+          244,
+          120
+        ],
+        [
+          234,
+          138
+        ],
+        [
+          215,
+          152
+        ],
+        [
+          172,
+          160
+        ],
+        [
+          142,
+          161
+        ],
+        [
+          104,
+          154
+        ],
+        [
+          81,
+          138
+        ],
+        [
+          70,
+          117
+        ]
+      ],
+      "neckAnchor": {
+        "x": 155,
+        "y": 160
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "wanderer",
+      "state": "walk",
+      "frame": 2,
+      "x": 634,
+      "y": 934,
+      "width": 312,
+      "height": 320,
+      "source": {
+        "x": 634,
+        "y": 934,
+        "width": 312,
+        "height": 320
+      },
+      "bounds": {
+        "x": 74,
+        "y": 25,
+        "width": 166,
+        "height": 270
+      },
+      "anchor": {
+        "x": 154,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 29441,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1ecfa2719a3688ad"
+      },
+      "headPolygon": [
+        [
+          69,
+          20
+        ],
+        [
+          244,
+          20
+        ],
+        [
+          244,
+          122
+        ],
+        [
+          234,
+          140
+        ],
+        [
+          215,
+          154
+        ],
+        [
+          172,
+          162
+        ],
+        [
+          142,
+          163
+        ],
+        [
+          103,
+          156
+        ],
+        [
+          80,
+          140
+        ],
+        [
+          69,
+          119
+        ]
+      ],
+      "neckAnchor": {
+        "x": 155,
+        "y": 162
+      },
+      "headMeasurement": "Per-source upper alpha extents measured; lower jaw/tongue/rear hair and neck junction visually calibrated. Source-relative mask excludes shoulders and hands."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "wanderer",
+      "state": "sit",
+      "frame": 0,
+      "x": 946,
+      "y": 934,
+      "width": 308,
+      "height": 320,
+      "source": {
+        "x": 946,
+        "y": 934,
+        "width": 308,
+        "height": 320
+      },
+      "bounds": {
+        "x": 73,
+        "y": 42,
+        "width": 166,
+        "height": 252
+      },
+      "anchor": {
+        "x": 152,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 31114,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cb9a3ffcccbaba64"
+      },
+      "hip": {
+        "x": 152,
+        "y": 256
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 1005241,
+    "sourceGutters": {
+      "y": [
+        0,
+        310,
+        623,
+        934,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          330,
+          642,
+          954,
+          1254
+        ],
+        [
+          0,
+          309,
+          621,
+          935,
+          1254
+        ],
+        [
+          0,
+          319,
+          629,
+          940,
+          1254
+        ],
+        [
+          0,
+          321,
+          634,
+          946,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "Viewed all16 poses: neutral/left/right low-foot shuffle (no high knee), true SE/SW/NW/NE anatomy and original costume identity. Head/body ratios inspected against base on same chair.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch1.png",
+    "seatReview": "Re-reviewed against actual quarterFurniture chair geometry and rear foreground masks in production renderer. Posterior thigh support points adjusted from source anatomy, with before/after four-direction composites and four-seat table scenes. Original source PNG and uniform aspect unchanged.",
+    "hipCorrectionReview": {
+      "reason": "Some prior hip anchors lay near shoe tops or outer clothing edge, placing the body too high or too far forward on the cushion.",
+      "poses": [
+        {
+          "dir": 0,
+          "before": {
+            "x": 107,
+            "y": 253
+          },
+          "after": {
+            "x": 121,
+            "y": 248
+          },
+          "sourceDelta": {
+            "x": 14,
+            "y": -5
+          }
+        },
+        {
+          "dir": 1,
+          "before": {
+            "x": 209,
+            "y": 258
+          },
+          "after": {
+            "x": 198,
+            "y": 249
+          },
+          "sourceDelta": {
+            "x": -11,
+            "y": -9
+          }
+        },
+        {
+          "dir": 2,
+          "before": {
+            "x": 174,
+            "y": 259
+          },
+          "after": {
+            "x": 174,
+            "y": 253
+          },
+          "sourceDelta": {
+            "x": 0,
+            "y": -6
+          }
+        },
+        {
+          "dir": 3,
+          "before": {
+            "x": 139,
+            "y": 270
+          },
+          "after": {
+            "x": 152,
+            "y": 256
+          },
+          "sourceDelta": {
+            "x": 13,
+            "y": -14
+          }
+        }
+      ],
+      "evidence": "artifacts/designer-live-seating-review/hip-corrections/wanderer-before-after.png",
+      "sourcePNGUnchanged": true
+    }
+  },
+  "headStabilization": {
+    "canonicalFrame": 0,
+    "perDirection": true,
+    "scope": "walk",
+    "mode": "runtime cached canonical head over original body; original PNG unchanged",
+    "measuredWalkingHeads": 12,
+    "measurementScript": "zombie_shuffle_heads.py"
+  },
+  "name": "허기진 행인 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "wanderer",
+    "originalFile": "exec-bf9acf65-1bab-4359-b1c2-1ec7086e97b4.png",
+    "promptFile": "/bamsonnim-restaurant/assets/wanderer-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

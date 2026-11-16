@@ -1,0 +1,995 @@
+{
+  "actorId": "ghost",
+  "key": "zombieGhost",
+  "url": "/bamsonnim-restaurant/assets/zombies/ghost-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 269,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 318,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 318,
+        "height": 312
+      },
+      "bounds": {
+        "x": 67,
+        "y": 20,
+        "width": 189,
+        "height": 270
+      },
+      "anchor": {
+        "x": 178,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 40829,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "af75b595cc87d46c"
+      },
+      "footContactRegion": {
+        "x": 127,
+        "y": 277,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 168.372,
+          "y": 69.593
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 178,
+        "y": 290
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 1,
+      "x": 318,
+      "y": 0,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 318,
+        "y": 0,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 63,
+        "y": 20,
+        "width": 191,
+        "height": 270
+      },
+      "anchor": {
+        "x": 173.517,
+        "y": 289.992
+      },
+      "validation": {
+        "opaquePixels": 40765,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "126c984e8ec0c368"
+      },
+      "footContactRegion": {
+        "x": 123,
+        "y": 277,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.889,
+          "y": 69.585
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 172.5,
+        "y": 290
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 0,
+      "width": 308,
+      "height": 312,
+      "source": {
+        "x": 632,
+        "y": 0,
+        "width": 308,
+        "height": 312
+      },
+      "bounds": {
+        "x": 62,
+        "y": 20,
+        "width": 193,
+        "height": 270
+      },
+      "anchor": {
+        "x": 173.113,
+        "y": 289.948
+      },
+      "validation": {
+        "opaquePixels": 40665,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b27e69b9998d0dbb"
+      },
+      "footContactRegion": {
+        "x": 122,
+        "y": 277,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.485,
+          "y": 69.541
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 173,
+        "y": 290
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "ghost",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 940,
+        "y": 0,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 54,
+        "y": 28,
+        "width": 198,
+        "height": 262
+      },
+      "anchor": {
+        "x": 152,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 41033,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "07ae146f14e8cc4e"
+      },
+      "hip": {
+        "x": 116,
+        "y": 264
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 312,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 312,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 59,
+        "y": 23,
+        "width": 197,
+        "height": 269
+      },
+      "anchor": {
+        "x": 144,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 42185,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2eba6553a5eb845a"
+      },
+      "footContactRegion": {
+        "x": 93,
+        "y": 279,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154.476,
+          "y": 72.341
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 144,
+        "y": 292
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 1,
+      "x": 313,
+      "y": 312,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 313,
+        "y": 312,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 59,
+        "y": 23,
+        "width": 198,
+        "height": 269
+      },
+      "anchor": {
+        "x": 144.613,
+        "y": 291.91
+      },
+      "validation": {
+        "opaquePixels": 41961,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "05a1d0e84b3b104c"
+      },
+      "footContactRegion": {
+        "x": 94,
+        "y": 279,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.089,
+          "y": 72.251
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 145,
+        "y": 292
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 312,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 626,
+        "y": 312,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 58,
+        "y": 23,
+        "width": 200,
+        "height": 271
+      },
+      "anchor": {
+        "x": 145.276,
+        "y": 291.97
+      },
+      "validation": {
+        "opaquePixels": 41890,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e8d0303316bac8b4"
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 281,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.752,
+          "y": 72.311
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 149,
+        "y": 294
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "ghost",
+      "state": "sit",
+      "frame": 0,
+      "x": 939,
+      "y": 312,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 939,
+        "y": 312,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 57,
+        "y": 31,
+        "width": 203,
+        "height": 261
+      },
+      "anchor": {
+        "x": 157,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 42291,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cd5f869f9e158a5c"
+      },
+      "hip": {
+        "x": 198,
+        "y": 267
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 626,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 626,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 22,
+        "width": 193,
+        "height": 269
+      },
+      "anchor": {
+        "x": 165,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 38446,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e8a4b98af47bd648"
+      },
+      "footContactRegion": {
+        "x": 114,
+        "y": 278,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154.964,
+          "y": 70.854
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 165,
+        "y": 291
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 1,
+      "x": 312,
+      "y": 626,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 312,
+        "y": 626,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 22,
+        "width": 194,
+        "height": 269
+      },
+      "anchor": {
+        "x": 166.646,
+        "y": 291.042
+      },
+      "validation": {
+        "opaquePixels": 38463,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "81d62b9eec1aee0b"
+      },
+      "footContactRegion": {
+        "x": 116,
+        "y": 278,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 156.61,
+          "y": 70.896
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 167,
+        "y": 291
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 2,
+      "x": 625,
+      "y": 626,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 625,
+        "y": 626,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 61,
+        "y": 22,
+        "width": 194,
+        "height": 267
+      },
+      "anchor": {
+        "x": 167.166,
+        "y": 291.044
+      },
+      "validation": {
+        "opaquePixels": 38180,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ec1b1ed06d6568cb"
+      },
+      "footContactRegion": {
+        "x": 116,
+        "y": 276,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 157.13,
+          "y": 70.898
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 167,
+        "y": 289
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "ghost",
+      "state": "sit",
+      "frame": 0,
+      "x": 939,
+      "y": 626,
+      "width": 315,
+      "height": 313,
+      "source": {
+        "x": 939,
+        "y": 626,
+        "width": 315,
+        "height": 313
+      },
+      "bounds": {
+        "x": 61,
+        "y": 32,
+        "width": 197,
+        "height": 259
+      },
+      "anchor": {
+        "x": 163,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 38274,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "dab7b4b34e625084"
+      },
+      "hip": {
+        "x": 177,
+        "y": 266
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 314,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 314,
+        "height": 315
+      },
+      "bounds": {
+        "x": 61,
+        "y": 24,
+        "width": 192,
+        "height": 267
+      },
+      "anchor": {
+        "x": 151,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 38418,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3994ca72c1f9704f"
+      },
+      "footContactRegion": {
+        "x": 100,
+        "y": 278,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.328,
+          "y": 72.781
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 151,
+        "y": 291
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 939,
+      "width": 311,
+      "height": 315,
+      "source": {
+        "x": 314,
+        "y": 939,
+        "width": 311,
+        "height": 315
+      },
+      "bounds": {
+        "x": 62,
+        "y": 24,
+        "width": 188,
+        "height": 268
+      },
+      "anchor": {
+        "x": 149.557,
+        "y": 291.214
+      },
+      "validation": {
+        "opaquePixels": 37695,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6b028aa86169542a"
+      },
+      "footContactRegion": {
+        "x": 99,
+        "y": 279,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 159.885,
+          "y": 72.995
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 150,
+        "y": 292
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "ghost",
+      "state": "walk",
+      "frame": 2,
+      "x": 625,
+      "y": 939,
+      "width": 310,
+      "height": 315,
+      "source": {
+        "x": 625,
+        "y": 939,
+        "width": 310,
+        "height": 315
+      },
+      "bounds": {
+        "x": 63,
+        "y": 24,
+        "width": 191,
+        "height": 268
+      },
+      "anchor": {
+        "x": 153.038,
+        "y": 291.009
+      },
+      "validation": {
+        "opaquePixels": 37415,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ce9156fefce04c06"
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 279,
+        "width": 103,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.366,
+          "y": 72.79
+        },
+        "regionHeight": 86,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 153,
+        "y": 292
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "ghost",
+      "state": "sit",
+      "frame": 0,
+      "x": 935,
+      "y": 939,
+      "width": 319,
+      "height": 315,
+      "source": {
+        "x": 935,
+        "y": 939,
+        "width": 319,
+        "height": 315
+      },
+      "bounds": {
+        "x": 58,
+        "y": 35,
+        "width": 198,
+        "height": 255
+      },
+      "anchor": {
+        "x": 153,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 39055,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "89a067c373f5a014"
+      },
+      "hip": {
+        "x": 137,
+        "y": 268
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 852303,
+    "sourceGutters": {
+      "y": [
+        0,
+        312,
+        626,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          318,
+          632,
+          940,
+          1254
+        ],
+        [
+          0,
+          313,
+          626,
+          939,
+          1254
+        ],
+        [
+          0,
+          312,
+          625,
+          939,
+          1254
+        ],
+        [
+          0,
+          314,
+          625,
+          935,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: long black/brown hair, blood-spattered white sobok and stained hair ribbon retained, true rear hair and low feet under hem. Four seated folded-robe contacts reviewed on matching chairs. Owner shoe ground calibration excludes trailing hair, with neutral head/body x/y registration.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "ownerFootReview": {
+      "method": "Neutral owner shoe ground center from lowest5% shoe pixels in body-foot ROI, registered in x/y to upper head mass so torso does not follow prop bounds. Kongjwi frog region excluded including one-pixel skirt bridges. Foot fore/aft isometric projection is retained. No artwork altered.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.052,
+          "at83pxTileSoleProjectionRangePx": 0.017,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.03,
+          "at83pxTileSoleProjectionRangePx": 0.67,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.044,
+          "at83pxTileSoleProjectionRangePx": 0.675,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.991,
+          "at83pxTileSoleProjectionRangePx": 0.327,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatContactSheet": "zombie-seat-shuffle-batch7.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "처녀귀신 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "ghost",
+    "originalFile": "exec-54883450-9c1e-4839-99cd-9348096a6bb8.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/ghost-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

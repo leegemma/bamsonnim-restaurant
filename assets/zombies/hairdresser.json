@@ -1,0 +1,713 @@
+{
+  "actorId": "hairdresser",
+  "key": "zombieHairdresser",
+  "url": "/bamsonnim-restaurant/assets/zombies/hairdresser-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 272,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 326,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 326,
+        "height": 312
+      },
+      "bounds": {
+        "x": 84,
+        "y": 18,
+        "width": 181,
+        "height": 272
+      },
+      "anchor": {
+        "x": 171,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 34342,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "43eeeadcf175acc5"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 1,
+      "x": 326,
+      "y": 0,
+      "width": 306,
+      "height": 312,
+      "source": {
+        "x": 326,
+        "y": 0,
+        "width": 306,
+        "height": 312
+      },
+      "bounds": {
+        "x": 63,
+        "y": 19,
+        "width": 181,
+        "height": 274
+      },
+      "anchor": {
+        "x": 152,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 34345,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7dcd70247f0284c8"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 0,
+      "width": 304,
+      "height": 312,
+      "source": {
+        "x": 632,
+        "y": 0,
+        "width": 304,
+        "height": 312
+      },
+      "bounds": {
+        "x": 64,
+        "y": 19,
+        "width": 180,
+        "height": 275
+      },
+      "anchor": {
+        "x": 148,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 33466,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "158082c1710a68fc"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hairdresser",
+      "state": "sit",
+      "frame": 0,
+      "x": 936,
+      "y": 0,
+      "width": 318,
+      "height": 312,
+      "source": {
+        "x": 936,
+        "y": 0,
+        "width": 318,
+        "height": 312
+      },
+      "bounds": {
+        "x": 62,
+        "y": 35,
+        "width": 184,
+        "height": 258
+      },
+      "anchor": {
+        "x": 154,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 34242,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9c876cad0378bb3f"
+      },
+      "hip": {
+        "x": 111,
+        "y": 262
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 312,
+      "width": 324,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 312,
+        "width": 324,
+        "height": 310
+      },
+      "bounds": {
+        "x": 79,
+        "y": 19,
+        "width": 185,
+        "height": 272
+      },
+      "anchor": {
+        "x": 174,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 34080,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4af981cf589fdca5"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 1,
+      "x": 324,
+      "y": 312,
+      "width": 306,
+      "height": 310,
+      "source": {
+        "x": 324,
+        "y": 312,
+        "width": 306,
+        "height": 310
+      },
+      "bounds": {
+        "x": 62,
+        "y": 19,
+        "width": 184,
+        "height": 268
+      },
+      "anchor": {
+        "x": 152,
+        "y": 287
+      },
+      "validation": {
+        "opaquePixels": 33470,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1831a37f4fe8200f"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 2,
+      "x": 630,
+      "y": 312,
+      "width": 307,
+      "height": 310,
+      "source": {
+        "x": 630,
+        "y": 312,
+        "width": 307,
+        "height": 310
+      },
+      "bounds": {
+        "x": 62,
+        "y": 19,
+        "width": 184,
+        "height": 272
+      },
+      "anchor": {
+        "x": 154,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 33702,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "72aa3da83e558c49"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hairdresser",
+      "state": "sit",
+      "frame": 0,
+      "x": 937,
+      "y": 312,
+      "width": 317,
+      "height": 310,
+      "source": {
+        "x": 937,
+        "y": 312,
+        "width": 317,
+        "height": 310
+      },
+      "bounds": {
+        "x": 62,
+        "y": 38,
+        "width": 186,
+        "height": 257
+      },
+      "anchor": {
+        "x": 149,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 34224,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2d1c5bc092211012"
+      },
+      "hip": {
+        "x": 191,
+        "y": 261
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 622,
+      "width": 329,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 622,
+        "width": 329,
+        "height": 310
+      },
+      "bounds": {
+        "x": 89,
+        "y": 16,
+        "width": 176,
+        "height": 271
+      },
+      "anchor": {
+        "x": 174,
+        "y": 287
+      },
+      "validation": {
+        "opaquePixels": 31569,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e42bf2d88b796a67"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 1,
+      "x": 329,
+      "y": 622,
+      "width": 301,
+      "height": 310,
+      "source": {
+        "x": 329,
+        "y": 622,
+        "width": 301,
+        "height": 310
+      },
+      "bounds": {
+        "x": 65,
+        "y": 17,
+        "width": 171,
+        "height": 272
+      },
+      "anchor": {
+        "x": 147,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 30995,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fc97a378549758d0"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 2,
+      "x": 630,
+      "y": 622,
+      "width": 309,
+      "height": 310,
+      "source": {
+        "x": 630,
+        "y": 622,
+        "width": 309,
+        "height": 310
+      },
+      "bounds": {
+        "x": 67,
+        "y": 19,
+        "width": 176,
+        "height": 270
+      },
+      "anchor": {
+        "x": 138,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 30512,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7140b076b13ee31e"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hairdresser",
+      "state": "sit",
+      "frame": 0,
+      "x": 939,
+      "y": 622,
+      "width": 315,
+      "height": 310,
+      "source": {
+        "x": 939,
+        "y": 622,
+        "width": 315,
+        "height": 310
+      },
+      "bounds": {
+        "x": 67,
+        "y": 38,
+        "width": 170,
+        "height": 254
+      },
+      "anchor": {
+        "x": 145,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 31681,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1ac0d6da844fc66a"
+      },
+      "hip": {
+        "x": 169,
+        "y": 264
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 932,
+      "width": 323,
+      "height": 322,
+      "source": {
+        "x": 0,
+        "y": 932,
+        "width": 323,
+        "height": 322
+      },
+      "bounds": {
+        "x": 84,
+        "y": 20,
+        "width": 175,
+        "height": 272
+      },
+      "anchor": {
+        "x": 172,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 31953,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cffb466ce82253cc"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 1,
+      "x": 323,
+      "y": 932,
+      "width": 304,
+      "height": 322,
+      "source": {
+        "x": 323,
+        "y": 932,
+        "width": 304,
+        "height": 322
+      },
+      "bounds": {
+        "x": 66,
+        "y": 19,
+        "width": 173,
+        "height": 272
+      },
+      "anchor": {
+        "x": 153,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 31522,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d2d33a14be9f99fb"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hairdresser",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 932,
+      "width": 305,
+      "height": 322,
+      "source": {
+        "x": 627,
+        "y": 932,
+        "width": 305,
+        "height": 322
+      },
+      "bounds": {
+        "x": 67,
+        "y": 20,
+        "width": 174,
+        "height": 272
+      },
+      "anchor": {
+        "x": 153,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 30484,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "02cc20ee0c10e76c"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hairdresser",
+      "state": "sit",
+      "frame": 0,
+      "x": 932,
+      "y": 932,
+      "width": 322,
+      "height": 322,
+      "source": {
+        "x": 932,
+        "y": 932,
+        "width": 322,
+        "height": 322
+      },
+      "bounds": {
+        "x": 65,
+        "y": 36,
+        "width": 181,
+        "height": 256
+      },
+      "anchor": {
+        "x": 162,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 33231,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a7f59c2637939294"
+      },
+      "hip": {
+        "x": 136,
+        "y": 269
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 981670,
+    "sourceGutters": {
+      "y": [
+        0,
+        312,
+        622,
+        932,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          326,
+          632,
+          936,
+          1254
+        ],
+        [
+          0,
+          324,
+          630,
+          937,
+          1254
+        ],
+        [
+          0,
+          329,
+          630,
+          939,
+          1254
+        ],
+        [
+          0,
+          323,
+          627,
+          932,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: cream comb in brown bun, gold hoops, green apron with scissors tool pocket, cream sleeves and ragged trousers remain; actual rear crossed apron ties. Three low steps, seated hips and head/body scale reviewed in same-chair comparison.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch4.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "동네 미용사 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "hairdresser",
+    "originalFile": "exec-73c35486-5760-418c-90e1-2e805a44caa4.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/hairdresser-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

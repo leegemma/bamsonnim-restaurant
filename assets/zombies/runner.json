@@ -1,0 +1,713 @@
+{
+  "actorId": "runner",
+  "key": "zombieRunner",
+  "url": "/bamsonnim-restaurant/assets/zombies/runner-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 290,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 336,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 336,
+        "height": 314
+      },
+      "bounds": {
+        "x": 87,
+        "y": 10,
+        "width": 185,
+        "height": 294
+      },
+      "anchor": {
+        "x": 172,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 38072,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d03f76634d4a00b9"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 1,
+      "x": 336,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 336,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 65,
+        "y": 10,
+        "width": 184,
+        "height": 291
+      },
+      "anchor": {
+        "x": 146,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 37851,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9cca937797f162c8"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 2,
+      "x": 649,
+      "y": 0,
+      "width": 305,
+      "height": 314,
+      "source": {
+        "x": 649,
+        "y": 0,
+        "width": 305,
+        "height": 314
+      },
+      "bounds": {
+        "x": 65,
+        "y": 10,
+        "width": 185,
+        "height": 294
+      },
+      "anchor": {
+        "x": 146,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 36576,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9f9d238edab30d6b"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "runner",
+      "state": "sit",
+      "frame": 0,
+      "x": 954,
+      "y": 0,
+      "width": 300,
+      "height": 314,
+      "source": {
+        "x": 954,
+        "y": 0,
+        "width": 300,
+        "height": 314
+      },
+      "bounds": {
+        "x": 57,
+        "y": 41,
+        "width": 180,
+        "height": 265
+      },
+      "anchor": {
+        "x": 143,
+        "y": 306
+      },
+      "validation": {
+        "opaquePixels": 35159,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9c850dfd8ed56222"
+      },
+      "hip": {
+        "x": 102,
+        "y": 273
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 319,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 319,
+        "height": 314
+      },
+      "bounds": {
+        "x": 67,
+        "y": 11,
+        "width": 192,
+        "height": 290
+      },
+      "anchor": {
+        "x": 169,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 36579,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2c0a9588e1252d56"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 1,
+      "x": 319,
+      "y": 314,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 319,
+        "y": 314,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 62,
+        "y": 10,
+        "width": 191,
+        "height": 290
+      },
+      "anchor": {
+        "x": 163,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 37172,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a55fb611ab0ed7c9"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 314,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 632,
+        "y": 314,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 62,
+        "y": 11,
+        "width": 191,
+        "height": 293
+      },
+      "anchor": {
+        "x": 165,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 36094,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9de9b6f3f790b5f3"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "runner",
+      "state": "sit",
+      "frame": 0,
+      "x": 946,
+      "y": 314,
+      "width": 308,
+      "height": 314,
+      "source": {
+        "x": 946,
+        "y": 314,
+        "width": 308,
+        "height": 314
+      },
+      "bounds": {
+        "x": 63,
+        "y": 41,
+        "width": 190,
+        "height": 263
+      },
+      "anchor": {
+        "x": 155,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 34911,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1561d871463eb4de"
+      },
+      "hip": {
+        "x": 198,
+        "y": 271
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 628,
+      "width": 321,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 628,
+        "width": 321,
+        "height": 311
+      },
+      "bounds": {
+        "x": 72,
+        "y": 11,
+        "width": 186,
+        "height": 287
+      },
+      "anchor": {
+        "x": 176,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 38003,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f43a3ea40e5a32a4"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 1,
+      "x": 321,
+      "y": 628,
+      "width": 314,
+      "height": 311,
+      "source": {
+        "x": 321,
+        "y": 628,
+        "width": 314,
+        "height": 311
+      },
+      "bounds": {
+        "x": 65,
+        "y": 11,
+        "width": 186,
+        "height": 285
+      },
+      "anchor": {
+        "x": 153,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 37745,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3fb8ed6699ccb79e"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 2,
+      "x": 635,
+      "y": 628,
+      "width": 308,
+      "height": 311,
+      "source": {
+        "x": 635,
+        "y": 628,
+        "width": 308,
+        "height": 311
+      },
+      "bounds": {
+        "x": 65,
+        "y": 11,
+        "width": 185,
+        "height": 291
+      },
+      "anchor": {
+        "x": 159,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 37994,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "434e6261cb1b3389"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "runner",
+      "state": "sit",
+      "frame": 0,
+      "x": 943,
+      "y": 628,
+      "width": 311,
+      "height": 311,
+      "source": {
+        "x": 943,
+        "y": 628,
+        "width": 311,
+        "height": 311
+      },
+      "bounds": {
+        "x": 59,
+        "y": 43,
+        "width": 184,
+        "height": 257
+      },
+      "anchor": {
+        "x": 147,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 35824,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a31e0a6e57ee2807"
+      },
+      "hip": {
+        "x": 170,
+        "y": 275
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 327,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 327,
+        "height": 315
+      },
+      "bounds": {
+        "x": 78,
+        "y": 11,
+        "width": 186,
+        "height": 288
+      },
+      "anchor": {
+        "x": 172,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 36637,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "27740882a9a0e3ce"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 1,
+      "x": 327,
+      "y": 939,
+      "width": 314,
+      "height": 315,
+      "source": {
+        "x": 327,
+        "y": 939,
+        "width": 314,
+        "height": 315
+      },
+      "bounds": {
+        "x": 64,
+        "y": 11,
+        "width": 187,
+        "height": 289
+      },
+      "anchor": {
+        "x": 158,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 36744,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "568b55abdc6212f3"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "runner",
+      "state": "walk",
+      "frame": 2,
+      "x": 641,
+      "y": 939,
+      "width": 312,
+      "height": 315,
+      "source": {
+        "x": 641,
+        "y": 939,
+        "width": 312,
+        "height": 315
+      },
+      "bounds": {
+        "x": 64,
+        "y": 11,
+        "width": 186,
+        "height": 291
+      },
+      "anchor": {
+        "x": 156,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 36632,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "00c9345fc81e0e0a"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "runner",
+      "state": "sit",
+      "frame": 0,
+      "x": 953,
+      "y": 939,
+      "width": 301,
+      "height": 315,
+      "source": {
+        "x": 953,
+        "y": 939,
+        "width": 301,
+        "height": 315
+      },
+      "bounds": {
+        "x": 64,
+        "y": 43,
+        "width": 190,
+        "height": 253
+      },
+      "anchor": {
+        "x": 159,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 35352,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "bd37c8f418256ceb"
+      },
+      "hip": {
+        "x": 134,
+        "y": 274
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 783769,
+    "sourceGutters": {
+      "y": [
+        0,
+        314,
+        628,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          336,
+          649,
+          954,
+          1254
+        ],
+        [
+          0,
+          319,
+          632,
+          946,
+          1254
+        ],
+        [
+          0,
+          321,
+          635,
+          943,
+          1254
+        ],
+        [
+          0,
+          327,
+          641,
+          953,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses reviewed: headband, red running vest, TWO blue chest bottles, orange energy gel, black shorts and coral/white shoes retained in all directions and seated views. Genuine back harness, low shuffle rather than running, four seated hips/body scale compared on same chairs.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch5.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "러닝 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "runner",
+    "originalFile": "exec-c8efa443-efae-4362-9c7b-678595139d66.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/runner-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

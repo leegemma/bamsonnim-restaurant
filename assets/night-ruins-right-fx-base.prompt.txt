@@ -1,0 +1,8 @@
+Use case: precise-object-edit.
+Asset type: opaque clean static base layer for a pixel-art game background.
+Input image 1 is the sole edit target: a 1671 x 941 abandoned Korean hanok courtyard.
+Perform surgical removal of only TWO tiny objects on the RIGHT SIDE MID-HEIGHT perimeter:
+1. Remove the small face-down gray-blue-clothed cartoon body at x=1467..1576, y=330..383, center around (1520,357), beside the bamboo at right edge. Fill its former silhouette with adjacent dark teal courtyard ground. Preserve surrounding plants and all existing debris.
+2. Remove ONLY the little orange fire and tiny scattered glowing embers at x=1490..1541,y=463..501, center (1511,483), just LEFT of the fallen tilted stone lantern. Preserve the tilted stone lantern, the little white ceramic debris, all roof tiles and the broken masonry exactly. Fill only the removed flame/embers with matching dark teal ground.
+CRITICAL: Keep the lower-right purple body near (1035,875) and bottom-center charred ember patch near (770,907) exactly as in the input. Keep ALL remaining bodies, lights, foliage, structures and debris unchanged. Preserve the EXACT existing composition, camera, color palette, pixel clusters, lighting and empty center. No redesign.
+Output the full same 1671x941 framing, opaque image, no crop, no zoom, no labels, no UI, no watermark. Cute eerie quarter-view pixel art, navy/teal palette. This is a clean base for separately animated small overlays.

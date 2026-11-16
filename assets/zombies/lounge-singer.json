@@ -1,0 +1,1184 @@
+{
+  "actorId": "lounge-singer",
+  "key": "zombieLoungeSinger",
+  "name": "밤무대 가수 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "url": "/bamsonnim-restaurant/assets/zombies/lounge-singer-broken-lens-v1.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Fixed 4×4 integer partitions; poses[].source is authoritative. No source pixels altered.",
+  "referenceHeight": 279,
+  "referenceHeightMethod": "Retain the existing canonical standing scale for this cosmetic edit. New walking bounds median is separately recorded in validation.measuredWalkingMedianHeight; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 11,
+        "width": 196,
+        "height": 280
+      },
+      "anchor": {
+        "x": 168,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 34737,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 124,
+        "lowerBodyPixelFingerprint": "5097bd2d6003b9424d30166c905d95b23f9cb4a45c0da0ad7e34f13a456752b0"
+      },
+      "footContactAnchor": {
+        "x": 168,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 93,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 157.812,
+          "y": 63.821
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 11,
+        "width": 198,
+        "height": 281
+      },
+      "anchor": {
+        "x": 167.695,
+        "y": 291.144
+      },
+      "validation": {
+        "opaquePixels": 35489,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 96,
+        "lowerBodyPixelFingerprint": "604d662d0044c574b482dc020958e68e2804c7003c6bc9c2a5abe8da6ccc9bff"
+      },
+      "footContactAnchor": {
+        "x": 160,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 93,
+        "y": 282,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 157.507,
+          "y": 63.965
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 69,
+        "y": 11,
+        "width": 195,
+        "height": 281
+      },
+      "anchor": {
+        "x": 169.155,
+        "y": 290.908
+      },
+      "validation": {
+        "opaquePixels": 34946,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 59,
+        "lowerBodyPixelFingerprint": "ac88b077016b71c3a97c091146abb460d7e4f3b071163a58141c39e8cae41d64"
+      },
+      "footContactAnchor": {
+        "x": 163.5,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 94,
+        "y": 282,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 158.967,
+          "y": 63.729
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "lounge-singer",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 32,
+        "width": 199,
+        "height": 260
+      },
+      "anchor": {
+        "x": 176,
+        "y": 292
+      },
+      "hip": {
+        "x": 123,
+        "y": 251
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 34501,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 78,
+        "lowerBodyPixelFingerprint": "2a50e155c6049b6b038a329b1d25f54cc6dede41c323779eb62dd28da07e6d0c"
+      },
+      "footContactAnchor": {
+        "x": 176,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 91,
+        "y": 282,
+        "width": 131,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 123,
+          "y": 251
+        },
+        "oldShoeContact": {
+          "x": 176,
+          "y": 292
+        },
+        "newShoeContact": {
+          "x": 176,
+          "y": 292
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": 0
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 55,
+        "y": 8,
+        "width": 198,
+        "height": 283
+      },
+      "anchor": {
+        "x": 152.5,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 34980,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 108,
+        "lowerBodyPixelFingerprint": "9e287be696908787b12cc82819e48e0fa51f40a14d3f0849b9e3f02f35b35b0f"
+      },
+      "footContactAnchor": {
+        "x": 152.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.151,
+          "y": 61.386
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 54,
+        "y": 8,
+        "width": 198,
+        "height": 283
+      },
+      "anchor": {
+        "x": 151.657,
+        "y": 290.952
+      },
+      "validation": {
+        "opaquePixels": 35694,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 57,
+        "lowerBodyPixelFingerprint": "beb9b59e1f847474e55d4fb385efbdd5fbc87290a13c7836bc36c61a0cf1237b"
+      },
+      "footContactAnchor": {
+        "x": 150,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 160.308,
+          "y": 61.338
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 56,
+        "y": 8,
+        "width": 198,
+        "height": 283
+      },
+      "anchor": {
+        "x": 153.476,
+        "y": 291.098
+      },
+      "validation": {
+        "opaquePixels": 35399,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 90,
+        "lowerBodyPixelFingerprint": "8416a8473729389473af5abadb71c65df450015565dd62bd07ae276ea4580c3e"
+      },
+      "footContactAnchor": {
+        "x": 145.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 97,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 162.127,
+          "y": 61.484
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "lounge-singer",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 58,
+        "y": 31,
+        "width": 196,
+        "height": 260
+      },
+      "anchor": {
+        "x": 141,
+        "y": 291
+      },
+      "hip": {
+        "x": 191,
+        "y": 252
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 34803,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 101,
+        "lowerBodyPixelFingerprint": "36afaafd8d984f14e873524b926fe043da4fa94a89d212694db662c0dfa3ae27"
+      },
+      "footContactAnchor": {
+        "x": 141,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 191,
+          "y": 252
+        },
+        "oldShoeContact": {
+          "x": 148,
+          "y": 290
+        },
+        "newShoeContact": {
+          "x": 141,
+          "y": 291
+        },
+        "sourceDelta": {
+          "x": -7,
+          "y": 1
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 58,
+        "y": 13,
+        "width": 177,
+        "height": 278
+      },
+      "anchor": {
+        "x": 153,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 31606,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 36,
+        "lowerBodyPixelFingerprint": "b5eba71b8307588107cd99656c0512111757972a8837db6ca11b54a83abe22ae"
+      },
+      "footContactAnchor": {
+        "x": 153,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 89,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.858,
+          "y": 65.233
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 59,
+        "y": 13,
+        "width": 178,
+        "height": 278
+      },
+      "anchor": {
+        "x": 153.643,
+        "y": 291.108
+      },
+      "validation": {
+        "opaquePixels": 32000,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 88,
+        "lowerBodyPixelFingerprint": "a8dc41c398ee007d5b010586ec8ab5f28f59fe25eee896bee2e9f373af6bf5b3"
+      },
+      "footContactAnchor": {
+        "x": 146.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 90,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154.501,
+          "y": 65.341
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 61,
+        "y": 13,
+        "width": 177,
+        "height": 278
+      },
+      "anchor": {
+        "x": 154.865,
+        "y": 291.227
+      },
+      "validation": {
+        "opaquePixels": 32144,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 76,
+        "lowerBodyPixelFingerprint": "d156c8d81f2f9e185ca5970084045dbcfef9a6a573c07407bef888e4543e9adf"
+      },
+      "footContactAnchor": {
+        "x": 146.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 91,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.723,
+          "y": 65.46
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "lounge-singer",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 34,
+        "width": 175,
+        "height": 254
+      },
+      "anchor": {
+        "x": 150,
+        "y": 288
+      },
+      "hip": {
+        "x": 165,
+        "y": 257
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 32402,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 59,
+        "lowerBodyPixelFingerprint": "cbf65fcb736e6c19515e02a70e466f4a7e0fabf30d0d64b0aca7e476a05d831e"
+      },
+      "footContactAnchor": {
+        "x": 150,
+        "y": 288
+      },
+      "footContactRegion": {
+        "x": 89,
+        "y": 278,
+        "width": 131,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 165,
+          "y": 257
+        },
+        "oldShoeContact": {
+          "x": 150,
+          "y": 288
+        },
+        "newShoeContact": {
+          "x": 150,
+          "y": 288
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": 0
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 75,
+        "y": 13,
+        "width": 176,
+        "height": 278
+      },
+      "anchor": {
+        "x": 160.5,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 31819,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 31,
+        "lowerBodyPixelFingerprint": "d4ce29bcc66cde18c5e81343025338cc06b2194656efe8aa6b3d4b4d44a29ee5"
+      },
+      "footContactAnchor": {
+        "x": 160.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 91,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.717,
+          "y": 65.628
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 14,
+        "width": 178,
+        "height": 277
+      },
+      "anchor": {
+        "x": 158.783,
+        "y": 291.773
+      },
+      "validation": {
+        "opaquePixels": 31649,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 73,
+        "lowerBodyPixelFingerprint": "57babe3d86043411a9fe488c8f4324746fc347260879b26f9dbc78d36e0e904c"
+      },
+      "footContactAnchor": {
+        "x": 131.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 89,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154,
+          "y": 66.401
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "lounge-singer",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 75,
+        "y": 14,
+        "width": 177,
+        "height": 277
+      },
+      "anchor": {
+        "x": 160.32,
+        "y": 291.966
+      },
+      "validation": {
+        "opaquePixels": 31299,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 55,
+        "lowerBodyPixelFingerprint": "c86940793a82067794287f54a5f8464cc86b499c2a46a19691be4664f2de6b76"
+      },
+      "footContactAnchor": {
+        "x": 130.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 91,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.537,
+          "y": 66.594
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "lounge-singer",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 72,
+        "y": 38,
+        "width": 181,
+        "height": 253
+      },
+      "anchor": {
+        "x": 164,
+        "y": 291
+      },
+      "hip": {
+        "x": 142,
+        "y": 259
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 32819,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 40,
+        "lowerBodyPixelFingerprint": "bd1c8f4254b4e87a045c819dbdef00f2939111fad6dff4529b1275cb40dd105f"
+      },
+      "footContactAnchor": {
+        "x": 164,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 90,
+        "y": 281,
+        "width": 131,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 142,
+          "y": 259
+        },
+        "oldShoeContact": {
+          "x": 163.5,
+          "y": 291
+        },
+        "newShoeContact": {
+          "x": 164,
+          "y": 291
+        },
+        "sourceDelta": {
+          "x": 0.5,
+          "y": 0
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "sourceSha256": "54190254406e6c31950d8f5ba84bd336dc450eaa1bf18b1c32ccdd8d0af67965",
+    "alphaThreshold": 80,
+    "transparentPixels": 949616,
+    "partialAlphaPixels": 622635,
+    "opaquePixels": 536287,
+    "footAnchorMethod": "Actual edited shoe regions measured with hiker poles and lateral hand props excluded; neutral walking shoe ground registered to upper head mass. Sitting hips retain prior anatomical points after body/boot mask and actual chair comparison.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "missingPoses": [],
+    "sourceGutters": {
+      "x": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ],
+      "y": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ]
+    },
+    "visualReview": "All sixteen views inspected. Same anatomical right lens (viewer-left in both SE/SW front rows) has broken glass remnants and a clearly visible white zombie eye with dark pupil in all eight front walking/sit drawings. Opposite lens remains intact. Rear rows retain actual back/temple silhouettes without invented visible eyes. Clothing, props, body scale and poses retained; source matte is clean.",
+    "ownerFootReview": {
+      "method": "Measure edited opaque shoe contact, excluding both trekking poles for hiker and lateral hand props for singer; register neutral shoe ground to upper head mass. PNG original pixels preserved.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.092,
+          "at83pxTileSoleProjectionRangePx": 0.348
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.146,
+          "at83pxTileSoleProjectionRangePx": 0.046
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.227,
+          "at83pxTileSoleProjectionRangePx": 0.072
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.966,
+          "at83pxTileSoleProjectionRangePx": 0.307
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatReview": "Original and edited four-direction production-chair composites directly reviewed by designer and root. All four source-local hip points retained; boot/body mask best translation is (0,0) in all four directions. Rear backrest occlusion and soles remain aligned.",
+    "measuredWalkingMedianHeight": 279,
+    "referenceHeightMethod": "Retain existing nominal standing scale for this identity; newly measured bounds and walking median are recorded. Source layout/size retained.",
+    "hipBodyRegistration": [
+      {
+        "dir": 0,
+        "method": "White shoe/flare mask",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.92486,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 123,
+          "y": 251
+        }
+      },
+      {
+        "dir": 1,
+        "method": "White shoe/flare mask",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.92861,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 191,
+          "y": 252
+        }
+      },
+      {
+        "dir": 2,
+        "method": "White shoe/flare mask",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.88249,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 165,
+          "y": 257
+        }
+      },
+      {
+        "dir": 3,
+        "method": "White shoe/flare mask",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.92337,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 142,
+          "y": 259
+        }
+      }
+    ],
+    "seatContactSheet": "artifacts/broken-lens-review/lounge-singer-chair-before-after.png",
+    "faceReviewEvidence": [
+      "artifacts/broken-lens-review/lounge-singer-face-row0.png",
+      "artifacts/broken-lens-review/lounge-singer-face-row1.png"
+    ],
+    "matteReviewEvidence": "artifacts/broken-lens-review/lounge-singer-matte.png",
+    "sourcePNGUnchanged": true
+  },
+  "promptFile": "/bamsonnim-restaurant/assets/zombies/lounge-singer-broken-lens-v1.prompt.txt",
+  "generation": {
+    "tool": "image_gen",
+    "originalFile": "exec-3869090c-08ac-4bc8-8953-4005405c5feb.png",
+    "selectedFile": "public/assets/zombies/lounge-singer-broken-lens-v1.png",
+    "promptFile": "public/assets/zombies/lounge-singer-broken-lens-v1.prompt.txt",
+    "sourceSha256": "54190254406e6c31950d8f5ba84bd336dc450eaa1bf18b1c32ccdd8d0af67965",
+    "inputOriginalFile": "public/assets/zombies/lounge-singer-directional-shuffle.png",
+    "inputOriginalSha256": "c6c0139ba8b4774e8f7294c70708feddd0de1262efcc160c8b3def9bef6602f5"
+  },
+  "brokenLens": {
+    "anatomicalSide": "right",
+    "frontViewerSide": "left",
+    "frontDirections": [
+      "se",
+      "sw"
+    ],
+    "rearPolicy": "Keep original rear head/temple view; hidden eye remains hidden.",
+    "otherLens": "intact dark lens in white frame"
+  }
+}

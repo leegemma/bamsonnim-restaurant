@@ -1,0 +1,713 @@
+{
+  "actorId": "diver",
+  "key": "zombieDiver",
+  "url": "/bamsonnim-restaurant/assets/zombies/diver-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 272,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 317,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 317,
+        "height": 314
+      },
+      "bounds": {
+        "x": 68,
+        "y": 20,
+        "width": 187,
+        "height": 273
+      },
+      "anchor": {
+        "x": 142,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 36577,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "64ee5a86b3203534"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 0,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 317,
+        "y": 0,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 20,
+        "width": 188,
+        "height": 272
+      },
+      "anchor": {
+        "x": 142,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 36201,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6b6a6d4ea5d1007f"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 632,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 65,
+        "y": 20,
+        "width": 185,
+        "height": 272
+      },
+      "anchor": {
+        "x": 140,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 35201,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c8e811734fd1aa54"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "diver",
+      "state": "sit",
+      "frame": 0,
+      "x": 945,
+      "y": 0,
+      "width": 309,
+      "height": 314,
+      "source": {
+        "x": 945,
+        "y": 0,
+        "width": 309,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 47,
+        "width": 187,
+        "height": 249
+      },
+      "anchor": {
+        "x": 156,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 35590,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c857477cac5cc047"
+      },
+      "hip": {
+        "x": 113,
+        "y": 266
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 20,
+        "width": 185,
+        "height": 272
+      },
+      "anchor": {
+        "x": 178,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 36532,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "47993db6fd60c11a"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 314,
+      "width": 316,
+      "height": 314,
+      "source": {
+        "x": 315,
+        "y": 314,
+        "width": 316,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 20,
+        "width": 187,
+        "height": 272
+      },
+      "anchor": {
+        "x": 169,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 36589,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "07bf990e4086ceaa"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 314,
+      "width": 311,
+      "height": 314,
+      "source": {
+        "x": 631,
+        "y": 314,
+        "width": 311,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 20,
+        "width": 183,
+        "height": 275
+      },
+      "anchor": {
+        "x": 172,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 36354,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e1ebf8f944a8eeef"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "diver",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 314,
+      "width": 312,
+      "height": 314,
+      "source": {
+        "x": 942,
+        "y": 314,
+        "width": 312,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 46,
+        "width": 184,
+        "height": 250
+      },
+      "anchor": {
+        "x": 160,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 36004,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cd39af2340bbc61d"
+      },
+      "hip": {
+        "x": 195,
+        "y": 264
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 628,
+      "width": 310,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 628,
+        "width": 310,
+        "height": 313
+      },
+      "bounds": {
+        "x": 68,
+        "y": 20,
+        "width": 173,
+        "height": 271
+      },
+      "anchor": {
+        "x": 170,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 33833,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9769a4e9ca61a90b"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 1,
+      "x": 310,
+      "y": 628,
+      "width": 316,
+      "height": 313,
+      "source": {
+        "x": 310,
+        "y": 628,
+        "width": 316,
+        "height": 313
+      },
+      "bounds": {
+        "x": 71,
+        "y": 20,
+        "width": 175,
+        "height": 272
+      },
+      "anchor": {
+        "x": 168,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 33606,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c7dd8913e7612cc4"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 628,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 626,
+        "y": 628,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 72,
+        "y": 20,
+        "width": 173,
+        "height": 272
+      },
+      "anchor": {
+        "x": 174,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 33634,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b73eb86d6f5bec93"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "diver",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 628,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 940,
+        "y": 628,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 71,
+        "y": 48,
+        "width": 173,
+        "height": 246
+      },
+      "anchor": {
+        "x": 158,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 34063,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7e6b4e2818f2a5c2"
+      },
+      "hip": {
+        "x": 171,
+        "y": 269
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 941,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 941,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 70,
+        "y": 20,
+        "width": 171,
+        "height": 273
+      },
+      "anchor": {
+        "x": 140,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 33871,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7d8cde70875fe0fc"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 1,
+      "x": 312,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 312,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 21,
+        "width": 170,
+        "height": 273
+      },
+      "anchor": {
+        "x": 148,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 33519,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "298de5616346b8e5"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "diver",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 626,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 20,
+        "width": 169,
+        "height": 273
+      },
+      "anchor": {
+        "x": 140,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 32370,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "85079328a7982ddb"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "diver",
+      "state": "sit",
+      "frame": 0,
+      "x": 939,
+      "y": 941,
+      "width": 315,
+      "height": 313,
+      "source": {
+        "x": 939,
+        "y": 941,
+        "width": 315,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 48,
+        "width": 172,
+        "height": 246
+      },
+      "anchor": {
+        "x": 159,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 33771,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e045f7814db122f0"
+      },
+      "hip": {
+        "x": 137,
+        "y": 270
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 935137,
+    "sourceGutters": {
+      "y": [
+        0,
+        314,
+        628,
+        941,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          317,
+          632,
+          945,
+          1254
+        ],
+        [
+          0,
+          315,
+          631,
+          942,
+          1254
+        ],
+        [
+          0,
+          310,
+          626,
+          940,
+          1254
+        ],
+        [
+          0,
+          312,
+          626,
+          939,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses reviewed: red goggles, black wetsuit, beige belt, green shellfish net and orange tewak buoy remain; genuine rear buoy/net and three low foot steps. Four seated pelvis anchors/body proportions compared beside base on same chairs.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch6.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "해녀 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "diver",
+    "originalFile": "exec-c214a471-a4a3-4c4e-9a5a-9d96e0d649a5.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/diver-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

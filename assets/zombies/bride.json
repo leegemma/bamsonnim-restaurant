@@ -1,0 +1,713 @@
+{
+  "actorId": "bride",
+  "key": "zombieBride",
+  "url": "/bamsonnim-restaurant/assets/zombies/bride-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 281,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 323,
+      "height": 308,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 323,
+        "height": 308
+      },
+      "bounds": {
+        "x": 72,
+        "y": 11,
+        "width": 186,
+        "height": 282
+      },
+      "anchor": {
+        "x": 152,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 35860,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ef9da07a31dc5cd0"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 1,
+      "x": 323,
+      "y": 0,
+      "width": 313,
+      "height": 308,
+      "source": {
+        "x": 323,
+        "y": 0,
+        "width": 313,
+        "height": 308
+      },
+      "bounds": {
+        "x": 67,
+        "y": 11,
+        "width": 181,
+        "height": 281
+      },
+      "anchor": {
+        "x": 145,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 35056,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "bb77272902a701d6"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 2,
+      "x": 636,
+      "y": 0,
+      "width": 309,
+      "height": 308,
+      "source": {
+        "x": 636,
+        "y": 0,
+        "width": 309,
+        "height": 308
+      },
+      "bounds": {
+        "x": 67,
+        "y": 11,
+        "width": 179,
+        "height": 282
+      },
+      "anchor": {
+        "x": 148,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 35893,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "bbf7af132ff25c66"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "bride",
+      "state": "sit",
+      "frame": 0,
+      "x": 945,
+      "y": 0,
+      "width": 309,
+      "height": 308,
+      "source": {
+        "x": 945,
+        "y": 0,
+        "width": 309,
+        "height": 308
+      },
+      "bounds": {
+        "x": 64,
+        "y": 23,
+        "width": 184,
+        "height": 269
+      },
+      "anchor": {
+        "x": 157,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 36264,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9b1f871185b7fdd1"
+      },
+      "hip": {
+        "x": 104,
+        "y": 260
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 308,
+      "width": 316,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 308,
+        "width": 316,
+        "height": 312
+      },
+      "bounds": {
+        "x": 65,
+        "y": 17,
+        "width": 187,
+        "height": 280
+      },
+      "anchor": {
+        "x": 163,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 35303,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "24f5df5a0a0fe518"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 1,
+      "x": 316,
+      "y": 308,
+      "width": 311,
+      "height": 312,
+      "source": {
+        "x": 316,
+        "y": 308,
+        "width": 311,
+        "height": 312
+      },
+      "bounds": {
+        "x": 65,
+        "y": 18,
+        "width": 183,
+        "height": 277
+      },
+      "anchor": {
+        "x": 162,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 35227,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "026ef737050610a0"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 308,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 627,
+        "y": 308,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 64,
+        "y": 18,
+        "width": 190,
+        "height": 281
+      },
+      "anchor": {
+        "x": 163,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 36478,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ffe9eee0f3487716"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "bride",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 308,
+      "width": 312,
+      "height": 312,
+      "source": {
+        "x": 942,
+        "y": 308,
+        "width": 312,
+        "height": 312
+      },
+      "bounds": {
+        "x": 62,
+        "y": 30,
+        "width": 185,
+        "height": 263
+      },
+      "anchor": {
+        "x": 153,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 35342,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "461523f1faec4e61"
+      },
+      "hip": {
+        "x": 203,
+        "y": 262
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 620,
+      "width": 315,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 620,
+        "width": 315,
+        "height": 315
+      },
+      "bounds": {
+        "x": 72,
+        "y": 15,
+        "width": 173,
+        "height": 284
+      },
+      "anchor": {
+        "x": 161,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 35613,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1313845d25a88b22"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 620,
+      "width": 312,
+      "height": 315,
+      "source": {
+        "x": 315,
+        "y": 620,
+        "width": 312,
+        "height": 315
+      },
+      "bounds": {
+        "x": 71,
+        "y": 15,
+        "width": 173,
+        "height": 284
+      },
+      "anchor": {
+        "x": 158,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 34803,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "94a1462e8cdfe8b9"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 620,
+      "width": 313,
+      "height": 315,
+      "source": {
+        "x": 627,
+        "y": 620,
+        "width": 313,
+        "height": 315
+      },
+      "bounds": {
+        "x": 70,
+        "y": 15,
+        "width": 177,
+        "height": 286
+      },
+      "anchor": {
+        "x": 161,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 35733,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ace865e7a310f717"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "bride",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 620,
+      "width": 314,
+      "height": 315,
+      "source": {
+        "x": 940,
+        "y": 620,
+        "width": 314,
+        "height": 315
+      },
+      "bounds": {
+        "x": 68,
+        "y": 36,
+        "width": 182,
+        "height": 259
+      },
+      "anchor": {
+        "x": 159,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 34543,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "bf682c684b2292fc"
+      },
+      "hip": {
+        "x": 176,
+        "y": 268
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 935,
+      "width": 320,
+      "height": 319,
+      "source": {
+        "x": 0,
+        "y": 935,
+        "width": 320,
+        "height": 319
+      },
+      "bounds": {
+        "x": 73,
+        "y": 15,
+        "width": 180,
+        "height": 279
+      },
+      "anchor": {
+        "x": 154,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 35628,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8d9bf0c36b684b19"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 1,
+      "x": 320,
+      "y": 935,
+      "width": 314,
+      "height": 319,
+      "source": {
+        "x": 320,
+        "y": 935,
+        "width": 314,
+        "height": 319
+      },
+      "bounds": {
+        "x": 68,
+        "y": 16,
+        "width": 181,
+        "height": 277
+      },
+      "anchor": {
+        "x": 148,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 34273,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b87d5633144de1ef"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "bride",
+      "state": "walk",
+      "frame": 2,
+      "x": 634,
+      "y": 935,
+      "width": 314,
+      "height": 319,
+      "source": {
+        "x": 634,
+        "y": 935,
+        "width": 314,
+        "height": 319
+      },
+      "bounds": {
+        "x": 67,
+        "y": 16,
+        "width": 182,
+        "height": 278
+      },
+      "anchor": {
+        "x": 149,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 35189,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cd0e80c0f264beba"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "bride",
+      "state": "sit",
+      "frame": 0,
+      "x": 948,
+      "y": 935,
+      "width": 306,
+      "height": 319,
+      "source": {
+        "x": 948,
+        "y": 935,
+        "width": 306,
+        "height": 319
+      },
+      "bounds": {
+        "x": 67,
+        "y": 36,
+        "width": 182,
+        "height": 256
+      },
+      "anchor": {
+        "x": 155,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 34469,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "960d42e094cda9b4"
+      },
+      "hip": {
+        "x": 140,
+        "y": 270
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 947701,
+    "sourceGutters": {
+      "y": [
+        0,
+        308,
+        620,
+        935,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          323,
+          636,
+          945,
+          1254
+        ],
+        [
+          0,
+          316,
+          627,
+          942,
+          1254
+        ],
+        [
+          0,
+          315,
+          627,
+          940,
+          1254
+        ],
+        [
+          0,
+          320,
+          634,
+          948,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: green wonsam, red skirt, multicolor sleeve bands, ceremonial red ribbons and detailed jokduri remain, with true rear hair/crown views. Low foot shuffle under hem and folded seated skirt, four pelvis contacts and same-chair body scale reviewed.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch4.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "전통혼례복 신부 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "bride",
+    "originalFile": "exec-5844091f-c659-4b80-a141-ddbfe82cfa1f.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/bride-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

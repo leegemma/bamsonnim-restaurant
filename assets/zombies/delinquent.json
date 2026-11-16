@@ -1,0 +1,713 @@
+{
+  "actorId": "delinquent",
+  "key": "zombieDelinquent",
+  "url": "/bamsonnim-restaurant/assets/zombies/delinquent-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 280,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 333,
+      "height": 308,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 333,
+        "height": 308
+      },
+      "bounds": {
+        "x": 75,
+        "y": 11,
+        "width": 216,
+        "height": 281
+      },
+      "anchor": {
+        "x": 170,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 39554,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8a575c25e4255182"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 1,
+      "x": 333,
+      "y": 0,
+      "width": 301,
+      "height": 308,
+      "source": {
+        "x": 333,
+        "y": 0,
+        "width": 301,
+        "height": 308
+      },
+      "bounds": {
+        "x": 43,
+        "y": 11,
+        "width": 212,
+        "height": 281
+      },
+      "anchor": {
+        "x": 139,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 39110,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "90eaac81ed695bf1"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 2,
+      "x": 634,
+      "y": 0,
+      "width": 304,
+      "height": 308,
+      "source": {
+        "x": 634,
+        "y": 0,
+        "width": 304,
+        "height": 308
+      },
+      "bounds": {
+        "x": 48,
+        "y": 12,
+        "width": 213,
+        "height": 281
+      },
+      "anchor": {
+        "x": 146,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 37963,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "686839f2b77cdc97"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "delinquent",
+      "state": "sit",
+      "frame": 0,
+      "x": 938,
+      "y": 0,
+      "width": 316,
+      "height": 308,
+      "source": {
+        "x": 938,
+        "y": 0,
+        "width": 316,
+        "height": 308
+      },
+      "bounds": {
+        "x": 44,
+        "y": 32,
+        "width": 202,
+        "height": 258
+      },
+      "anchor": {
+        "x": 132,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 37391,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e4ad323f1f3cb820"
+      },
+      "hip": {
+        "x": 109,
+        "y": 263
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 308,
+      "width": 316,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 308,
+        "width": 316,
+        "height": 312
+      },
+      "bounds": {
+        "x": 64,
+        "y": 17,
+        "width": 205,
+        "height": 281
+      },
+      "anchor": {
+        "x": 168,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 38330,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a180ccd62209e29a"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 1,
+      "x": 316,
+      "y": 308,
+      "width": 300,
+      "height": 312,
+      "source": {
+        "x": 316,
+        "y": 308,
+        "width": 300,
+        "height": 312
+      },
+      "bounds": {
+        "x": 49,
+        "y": 19,
+        "width": 206,
+        "height": 279
+      },
+      "anchor": {
+        "x": 154,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 38354,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5db0373b8554d9dd"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 2,
+      "x": 616,
+      "y": 308,
+      "width": 308,
+      "height": 312,
+      "source": {
+        "x": 616,
+        "y": 308,
+        "width": 308,
+        "height": 312
+      },
+      "bounds": {
+        "x": 47,
+        "y": 18,
+        "width": 209,
+        "height": 280
+      },
+      "anchor": {
+        "x": 160,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 38035,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cc6f9a964828ffac"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "delinquent",
+      "state": "sit",
+      "frame": 0,
+      "x": 924,
+      "y": 308,
+      "width": 330,
+      "height": 312,
+      "source": {
+        "x": 924,
+        "y": 308,
+        "width": 330,
+        "height": 312
+      },
+      "bounds": {
+        "x": 54,
+        "y": 35,
+        "width": 203,
+        "height": 260
+      },
+      "anchor": {
+        "x": 164,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 38202,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "88faec990e17948e"
+      },
+      "hip": {
+        "x": 192,
+        "y": 269
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 620,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 620,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 73,
+        "y": 16,
+        "width": 186,
+        "height": 280
+      },
+      "anchor": {
+        "x": 174,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 34710,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cc50d7bfb1db3c83"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 620,
+      "width": 304,
+      "height": 314,
+      "source": {
+        "x": 315,
+        "y": 620,
+        "width": 304,
+        "height": 314
+      },
+      "bounds": {
+        "x": 57,
+        "y": 18,
+        "width": 192,
+        "height": 275
+      },
+      "anchor": {
+        "x": 153,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 34505,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4ab9e79ca5859c29"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 2,
+      "x": 619,
+      "y": 620,
+      "width": 307,
+      "height": 314,
+      "source": {
+        "x": 619,
+        "y": 620,
+        "width": 307,
+        "height": 314
+      },
+      "bounds": {
+        "x": 56,
+        "y": 18,
+        "width": 194,
+        "height": 281
+      },
+      "anchor": {
+        "x": 157,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 35425,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8582f22b294d553c"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "delinquent",
+      "state": "sit",
+      "frame": 0,
+      "x": 926,
+      "y": 620,
+      "width": 328,
+      "height": 314,
+      "source": {
+        "x": 926,
+        "y": 620,
+        "width": 328,
+        "height": 314
+      },
+      "bounds": {
+        "x": 59,
+        "y": 39,
+        "width": 192,
+        "height": 255
+      },
+      "anchor": {
+        "x": 166,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 35778,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "79b333c68c8c81d0"
+      },
+      "hip": {
+        "x": 164,
+        "y": 276
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 934,
+      "width": 328,
+      "height": 320,
+      "source": {
+        "x": 0,
+        "y": 934,
+        "width": 328,
+        "height": 320
+      },
+      "bounds": {
+        "x": 85,
+        "y": 16,
+        "width": 192,
+        "height": 282
+      },
+      "anchor": {
+        "x": 172,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 35826,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8430b79b50c12018"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 1,
+      "x": 328,
+      "y": 934,
+      "width": 300,
+      "height": 320,
+      "source": {
+        "x": 328,
+        "y": 934,
+        "width": 300,
+        "height": 320
+      },
+      "bounds": {
+        "x": 53,
+        "y": 19,
+        "width": 195,
+        "height": 278
+      },
+      "anchor": {
+        "x": 143,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 34546,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5610b578738366eb"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "delinquent",
+      "state": "walk",
+      "frame": 2,
+      "x": 628,
+      "y": 934,
+      "width": 307,
+      "height": 320,
+      "source": {
+        "x": 628,
+        "y": 934,
+        "width": 307,
+        "height": 320
+      },
+      "bounds": {
+        "x": 54,
+        "y": 19,
+        "width": 203,
+        "height": 280
+      },
+      "anchor": {
+        "x": 142,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 35319,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "434a4e7914cedaec"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "delinquent",
+      "state": "sit",
+      "frame": 0,
+      "x": 935,
+      "y": 934,
+      "width": 319,
+      "height": 320,
+      "source": {
+        "x": 935,
+        "y": 934,
+        "width": 319,
+        "height": 320
+      },
+      "bounds": {
+        "x": 52,
+        "y": 39,
+        "width": 198,
+        "height": 255
+      },
+      "anchor": {
+        "x": 142,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 36348,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "50c69158e21afd29"
+      },
+      "hip": {
+        "x": 139,
+        "y": 276
+      },
+      "hipMeasurement": "Manually located source-local buttock/thigh seat contact beneath robe, trousers or pleated skirt; hair/cape/props excluded."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 922323,
+    "sourceGutters": {
+      "y": [
+        0,
+        308,
+        620,
+        934,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          333,
+          634,
+          938,
+          1254
+        ],
+        [
+          0,
+          316,
+          616,
+          924,
+          1254
+        ],
+        [
+          0,
+          315,
+          619,
+          926,
+          1254
+        ],
+        [
+          0,
+          328,
+          628,
+          935,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: two pink rollers, blunt bangs/long wavy hair, gray school vest/tie and beige skirt, one comb and one pink curling iron remain in all directions and seated poses. Actual rear views, low shuffle and four skirt/pelvis contacts reviewed on same chairs.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch4.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "일진 고딩 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "delinquent",
+    "originalFile": "exec-cc17d89f-a58c-458a-a750-dea05be8ade7.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/delinquent-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

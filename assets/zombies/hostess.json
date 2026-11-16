@@ -1,0 +1,713 @@
+{
+  "actorId": "hostess",
+  "key": "zombieHostess",
+  "url": "/bamsonnim-restaurant/assets/zombies/hostess-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 284,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 334,
+      "height": 307,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 334,
+        "height": 307
+      },
+      "bounds": {
+        "x": 64,
+        "y": 7,
+        "width": 227,
+        "height": 286
+      },
+      "anchor": {
+        "x": 154,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 42135,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a02dddbf62219faf"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 1,
+      "x": 334,
+      "y": 0,
+      "width": 313,
+      "height": 307,
+      "source": {
+        "x": 334,
+        "y": 0,
+        "width": 313,
+        "height": 307
+      },
+      "bounds": {
+        "x": 45,
+        "y": 7,
+        "width": 225,
+        "height": 289
+      },
+      "anchor": {
+        "x": 136,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 41419,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5d8a1e83ef47b306"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 2,
+      "x": 647,
+      "y": 0,
+      "width": 312,
+      "height": 307,
+      "source": {
+        "x": 647,
+        "y": 0,
+        "width": 312,
+        "height": 307
+      },
+      "bounds": {
+        "x": 44,
+        "y": 7,
+        "width": 227,
+        "height": 287
+      },
+      "anchor": {
+        "x": 135,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 41893,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b53bc7f9c8fc4c32"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hostess",
+      "state": "sit",
+      "frame": 0,
+      "x": 959,
+      "y": 0,
+      "width": 295,
+      "height": 307,
+      "source": {
+        "x": 959,
+        "y": 0,
+        "width": 295,
+        "height": 307
+      },
+      "bounds": {
+        "x": 42,
+        "y": 30,
+        "width": 229,
+        "height": 264
+      },
+      "anchor": {
+        "x": 139,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 39412,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9419bd0e122f24fc"
+      },
+      "hip": {
+        "x": 91,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 307,
+      "width": 305,
+      "height": 316,
+      "source": {
+        "x": 0,
+        "y": 307,
+        "width": 305,
+        "height": 316
+      },
+      "bounds": {
+        "x": 33,
+        "y": 13,
+        "width": 229,
+        "height": 286
+      },
+      "anchor": {
+        "x": 164,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 42561,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cfabc93c2babf6b5"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 1,
+      "x": 305,
+      "y": 307,
+      "width": 315,
+      "height": 316,
+      "source": {
+        "x": 305,
+        "y": 307,
+        "width": 315,
+        "height": 316
+      },
+      "bounds": {
+        "x": 45,
+        "y": 14,
+        "width": 229,
+        "height": 285
+      },
+      "anchor": {
+        "x": 172,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 41792,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "37c843b681d46dba"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 2,
+      "x": 620,
+      "y": 307,
+      "width": 317,
+      "height": 316,
+      "source": {
+        "x": 620,
+        "y": 307,
+        "width": 317,
+        "height": 316
+      },
+      "bounds": {
+        "x": 43,
+        "y": 13,
+        "width": 230,
+        "height": 288
+      },
+      "anchor": {
+        "x": 169,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 43144,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7fccaa624dc9e4dc"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hostess",
+      "state": "sit",
+      "frame": 0,
+      "x": 937,
+      "y": 307,
+      "width": 317,
+      "height": 316,
+      "source": {
+        "x": 937,
+        "y": 307,
+        "width": 317,
+        "height": 316
+      },
+      "bounds": {
+        "x": 45,
+        "y": 37,
+        "width": 232,
+        "height": 268
+      },
+      "anchor": {
+        "x": 175,
+        "y": 305
+      },
+      "validation": {
+        "opaquePixels": 40739,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fa6fe62fee99fa46"
+      },
+      "hip": {
+        "x": 205,
+        "y": 277
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 623,
+      "width": 304,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 623,
+        "width": 304,
+        "height": 312
+      },
+      "bounds": {
+        "x": 41,
+        "y": 15,
+        "width": 215,
+        "height": 282
+      },
+      "anchor": {
+        "x": 163,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 39888,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "40c1f3c67ba8002e"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 1,
+      "x": 304,
+      "y": 623,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 304,
+        "y": 623,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 50,
+        "y": 13,
+        "width": 216,
+        "height": 284
+      },
+      "anchor": {
+        "x": 172,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 39235,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6e5e0ff674afcd1d"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 2,
+      "x": 619,
+      "y": 623,
+      "width": 313,
+      "height": 312,
+      "source": {
+        "x": 619,
+        "y": 623,
+        "width": 313,
+        "height": 312
+      },
+      "bounds": {
+        "x": 50,
+        "y": 15,
+        "width": 215,
+        "height": 282
+      },
+      "anchor": {
+        "x": 167,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 39844,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "031e2d0cccb1001f"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hostess",
+      "state": "sit",
+      "frame": 0,
+      "x": 932,
+      "y": 623,
+      "width": 322,
+      "height": 312,
+      "source": {
+        "x": 932,
+        "y": 623,
+        "width": 322,
+        "height": 312
+      },
+      "bounds": {
+        "x": 50,
+        "y": 35,
+        "width": 216,
+        "height": 250
+      },
+      "anchor": {
+        "x": 178,
+        "y": 285
+      },
+      "validation": {
+        "opaquePixels": 37333,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "db3fc15fdd5a3cc4"
+      },
+      "hip": {
+        "x": 173,
+        "y": 272
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 935,
+      "width": 327,
+      "height": 319,
+      "source": {
+        "x": 0,
+        "y": 935,
+        "width": 327,
+        "height": 319
+      },
+      "bounds": {
+        "x": 63,
+        "y": 16,
+        "width": 215,
+        "height": 279
+      },
+      "anchor": {
+        "x": 158,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 38849,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5dbcb83dc3f0622c"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 1,
+      "x": 327,
+      "y": 935,
+      "width": 314,
+      "height": 319,
+      "source": {
+        "x": 327,
+        "y": 935,
+        "width": 314,
+        "height": 319
+      },
+      "bounds": {
+        "x": 51,
+        "y": 16,
+        "width": 214,
+        "height": 282
+      },
+      "anchor": {
+        "x": 141,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 38208,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "982d36c097e45bc5"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hostess",
+      "state": "walk",
+      "frame": 2,
+      "x": 641,
+      "y": 935,
+      "width": 316,
+      "height": 319,
+      "source": {
+        "x": 641,
+        "y": 935,
+        "width": 316,
+        "height": 319
+      },
+      "bounds": {
+        "x": 50,
+        "y": 16,
+        "width": 219,
+        "height": 280
+      },
+      "anchor": {
+        "x": 137,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 38826,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "04d3313d009668f0"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hostess",
+      "state": "sit",
+      "frame": 0,
+      "x": 957,
+      "y": 935,
+      "width": 297,
+      "height": 319,
+      "source": {
+        "x": 957,
+        "y": 935,
+        "width": 297,
+        "height": 319
+      },
+      "bounds": {
+        "x": 48,
+        "y": 41,
+        "width": 218,
+        "height": 248
+      },
+      "anchor": {
+        "x": 139,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 37351,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "73c53284a8e78180"
+      },
+      "hip": {
+        "x": 139,
+        "y": 276
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 657957,
+    "sourceGutters": {
+      "y": [
+        0,
+        307,
+        623,
+        935,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          334,
+          647,
+          959,
+          1254
+        ],
+        [
+          0,
+          305,
+          620,
+          937,
+          1254
+        ],
+        [
+          0,
+          304,
+          619,
+          932,
+          1254
+        ],
+        [
+          0,
+          327,
+          641,
+          957,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses reviewed: cheek mole, bun/ribbon, cream apron/red skirt and wooden ladle preserved, genuine rear costume, three low-foot steps. Four skirt/pelvis contacts and head/body proportions compared beside base on same chair.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch3.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "수다쟁이 주모 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "hostess",
+    "originalFile": "exec-ff7cb429-7c7b-4730-8668-79272605f6b9.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/hostess-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

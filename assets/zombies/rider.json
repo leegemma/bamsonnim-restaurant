@@ -1,0 +1,713 @@
+{
+  "actorId": "rider",
+  "key": "zombieRider",
+  "url": "/bamsonnim-restaurant/assets/zombies/rider-directional-shuffle-v2.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 284,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 313,
+      "height": 316,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 313,
+        "height": 316
+      },
+      "bounds": {
+        "x": 45,
+        "y": 15,
+        "width": 224,
+        "height": 284
+      },
+      "anchor": {
+        "x": 156,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 42944,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b6f29b352c3a6505"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 1,
+      "x": 313,
+      "y": 0,
+      "width": 314,
+      "height": 316,
+      "source": {
+        "x": 313,
+        "y": 0,
+        "width": 314,
+        "height": 316
+      },
+      "bounds": {
+        "x": 45,
+        "y": 15,
+        "width": 224,
+        "height": 284
+      },
+      "anchor": {
+        "x": 161,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 42590,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e3638d917a8e9032"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 313,
+      "height": 316,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 313,
+        "height": 316
+      },
+      "bounds": {
+        "x": 46,
+        "y": 15,
+        "width": 224,
+        "height": 289
+      },
+      "anchor": {
+        "x": 166,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 41914,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ed93a0e35a6cea09"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "rider",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 316,
+      "source": {
+        "x": 940,
+        "y": 0,
+        "width": 314,
+        "height": 316
+      },
+      "bounds": {
+        "x": 45,
+        "y": 32,
+        "width": 225,
+        "height": 266
+      },
+      "anchor": {
+        "x": 152,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 42092,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f248304a4d5e90f1"
+      },
+      "hip": {
+        "x": 124,
+        "y": 269
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 316,
+      "width": 317,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 316,
+        "width": 317,
+        "height": 311
+      },
+      "bounds": {
+        "x": 48,
+        "y": 13,
+        "width": 222,
+        "height": 281
+      },
+      "anchor": {
+        "x": 154,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 41668,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ee19d3154edf682a"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 316,
+      "width": 315,
+      "height": 311,
+      "source": {
+        "x": 317,
+        "y": 316,
+        "width": 315,
+        "height": 311
+      },
+      "bounds": {
+        "x": 49,
+        "y": 13,
+        "width": 219,
+        "height": 281
+      },
+      "anchor": {
+        "x": 140,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 41820,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8358bdef0295e066"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 316,
+      "width": 317,
+      "height": 311,
+      "source": {
+        "x": 632,
+        "y": 316,
+        "width": 317,
+        "height": 311
+      },
+      "bounds": {
+        "x": 48,
+        "y": 13,
+        "width": 221,
+        "height": 284
+      },
+      "anchor": {
+        "x": 146,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 41548,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ae108362f2ea74c6"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "rider",
+      "state": "sit",
+      "frame": 0,
+      "x": 949,
+      "y": 316,
+      "width": 305,
+      "height": 311,
+      "source": {
+        "x": 949,
+        "y": 316,
+        "width": 305,
+        "height": 311
+      },
+      "bounds": {
+        "x": 49,
+        "y": 30,
+        "width": 217,
+        "height": 260
+      },
+      "anchor": {
+        "x": 167,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 40307,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ed37da27ef4ccf5d"
+      },
+      "hip": {
+        "x": 180,
+        "y": 263
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 316,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 316,
+        "height": 312
+      },
+      "bounds": {
+        "x": 54,
+        "y": 15,
+        "width": 215,
+        "height": 279
+      },
+      "anchor": {
+        "x": 174,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 40917,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ccf57b28f925e06e"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 1,
+      "x": 316,
+      "y": 627,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 316,
+        "y": 627,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 49,
+        "y": 15,
+        "width": 216,
+        "height": 284
+      },
+      "anchor": {
+        "x": 152,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 40449,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "97f5211a95dba8a2"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 627,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 631,
+        "y": 627,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 51,
+        "y": 15,
+        "width": 214,
+        "height": 280
+      },
+      "anchor": {
+        "x": 158,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 40555,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6f0754c48d02ea88"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "rider",
+      "state": "sit",
+      "frame": 0,
+      "x": 945,
+      "y": 627,
+      "width": 309,
+      "height": 312,
+      "source": {
+        "x": 945,
+        "y": 627,
+        "width": 309,
+        "height": 312
+      },
+      "bounds": {
+        "x": 51,
+        "y": 32,
+        "width": 219,
+        "height": 258
+      },
+      "anchor": {
+        "x": 173,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 39934,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5dd9c04ad5cd7858"
+      },
+      "hip": {
+        "x": 165,
+        "y": 265
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 318,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 318,
+        "height": 315
+      },
+      "bounds": {
+        "x": 46,
+        "y": 14,
+        "width": 227,
+        "height": 286
+      },
+      "anchor": {
+        "x": 136,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 42220,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7b37d49b4feb7ce7"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 1,
+      "x": 318,
+      "y": 939,
+      "width": 313,
+      "height": 315,
+      "source": {
+        "x": 318,
+        "y": 939,
+        "width": 313,
+        "height": 315
+      },
+      "bounds": {
+        "x": 46,
+        "y": 14,
+        "width": 221,
+        "height": 286
+      },
+      "anchor": {
+        "x": 138,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 40505,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a4383aa9d6555c19"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "rider",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 939,
+      "width": 311,
+      "height": 315,
+      "source": {
+        "x": 631,
+        "y": 939,
+        "width": 311,
+        "height": 315
+      },
+      "bounds": {
+        "x": 48,
+        "y": 14,
+        "width": 222,
+        "height": 285
+      },
+      "anchor": {
+        "x": 144,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 40713,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "538cfa67e6f6ee38"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "rider",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 939,
+      "width": 312,
+      "height": 315,
+      "source": {
+        "x": 942,
+        "y": 939,
+        "width": 312,
+        "height": 315
+      },
+      "bounds": {
+        "x": 43,
+        "y": 30,
+        "width": 226,
+        "height": 264
+      },
+      "anchor": {
+        "x": 139,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 41686,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5c5eea10b7b1a320"
+      },
+      "hip": {
+        "x": 139,
+        "y": 267
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 829019,
+    "sourceGutters": {
+      "y": [
+        0,
+        316,
+        627,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          313,
+          627,
+          940,
+          1254
+        ],
+        [
+          0,
+          317,
+          632,
+          949,
+          1254
+        ],
+        [
+          0,
+          316,
+          631,
+          945,
+          1254
+        ],
+        [
+          0,
+          318,
+          631,
+          942,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 source poses visually reviewed: cracked mint helmet, camo jacket, mint delivery box and red sneakers preserved; true rear helmet/pack and three low shuffle poses. White backdrop was removed by built-in v2 edit; actual transparent gutters and four seated contacts reviewed.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch3.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "새벽 배달원 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "rider",
+    "originalFile": "exec-1046fbb7-4794-4a42-b90b-4718548ff682.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/rider-shuffle-v2.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

@@ -1,0 +1,995 @@
+{
+  "actorId": "tiger",
+  "key": "zombieTiger",
+  "url": "/bamsonnim-restaurant/assets/zombies/tiger-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 261,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 329,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 329,
+        "height": 312
+      },
+      "bounds": {
+        "x": 74,
+        "y": 23,
+        "width": 208,
+        "height": 266
+      },
+      "anchor": {
+        "x": 188.5,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 35968,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c0a6943f5bb46270"
+      },
+      "footContactRegion": {
+        "x": 147,
+        "y": 276,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 187.46,
+          "y": 72.245
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 188.5,
+        "y": 289
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 1,
+      "x": 329,
+      "y": 0,
+      "width": 302,
+      "height": 312,
+      "source": {
+        "x": 329,
+        "y": 0,
+        "width": 302,
+        "height": 312
+      },
+      "bounds": {
+        "x": 49,
+        "y": 23,
+        "width": 210,
+        "height": 265
+      },
+      "anchor": {
+        "x": 165.307,
+        "y": 289.086
+      },
+      "validation": {
+        "opaquePixels": 36143,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8d6365d94da4a09f"
+      },
+      "footContactRegion": {
+        "x": 124,
+        "y": 275,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 164.267,
+          "y": 72.331
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 171,
+        "y": 288
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 0,
+      "width": 302,
+      "height": 312,
+      "source": {
+        "x": 631,
+        "y": 0,
+        "width": 302,
+        "height": 312
+      },
+      "bounds": {
+        "x": 45,
+        "y": 23,
+        "width": 210,
+        "height": 267
+      },
+      "anchor": {
+        "x": 162.59,
+        "y": 289.025
+      },
+      "validation": {
+        "opaquePixels": 35699,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2bbb4e93cf8b16d3"
+      },
+      "footContactRegion": {
+        "x": 122,
+        "y": 277,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.55,
+          "y": 72.27
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 164,
+        "y": 290
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tiger",
+      "state": "sit",
+      "frame": 0,
+      "x": 933,
+      "y": 0,
+      "width": 321,
+      "height": 312,
+      "source": {
+        "x": 933,
+        "y": 0,
+        "width": 321,
+        "height": 312
+      },
+      "bounds": {
+        "x": 49,
+        "y": 46,
+        "width": 206,
+        "height": 243
+      },
+      "anchor": {
+        "x": 145,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 35088,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "eecd40713c29a528"
+      },
+      "hip": {
+        "x": 114,
+        "y": 260
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 312,
+      "width": 313,
+      "height": 316,
+      "source": {
+        "x": 0,
+        "y": 312,
+        "width": 313,
+        "height": 316
+      },
+      "bounds": {
+        "x": 53,
+        "y": 24,
+        "width": 216,
+        "height": 267
+      },
+      "anchor": {
+        "x": 145,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 36670,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "982fdd9395e3fc9b"
+      },
+      "footContactRegion": {
+        "x": 89,
+        "y": 278,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 149.195,
+          "y": 73.115
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 145,
+        "y": 291
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 1,
+      "x": 313,
+      "y": 312,
+      "width": 308,
+      "height": 316,
+      "source": {
+        "x": 313,
+        "y": 312,
+        "width": 308,
+        "height": 316
+      },
+      "bounds": {
+        "x": 46,
+        "y": 24,
+        "width": 216,
+        "height": 265
+      },
+      "anchor": {
+        "x": 137.19,
+        "y": 291.113
+      },
+      "validation": {
+        "opaquePixels": 36028,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3af8f92c56d37175"
+      },
+      "footContactRegion": {
+        "x": 81,
+        "y": 276,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 141.385,
+          "y": 73.228
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 131.5,
+        "y": 289
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 2,
+      "x": 621,
+      "y": 312,
+      "width": 306,
+      "height": 316,
+      "source": {
+        "x": 621,
+        "y": 312,
+        "width": 306,
+        "height": 316
+      },
+      "bounds": {
+        "x": 47,
+        "y": 24,
+        "width": 214,
+        "height": 267
+      },
+      "anchor": {
+        "x": 138.034,
+        "y": 291.174
+      },
+      "validation": {
+        "opaquePixels": 35927,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "94d055ea66dc3a71"
+      },
+      "footContactRegion": {
+        "x": 82,
+        "y": 278,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 142.229,
+          "y": 73.289
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 132.5,
+        "y": 291
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tiger",
+      "state": "sit",
+      "frame": 0,
+      "x": 927,
+      "y": 312,
+      "width": 327,
+      "height": 316,
+      "source": {
+        "x": 927,
+        "y": 312,
+        "width": 327,
+        "height": 316
+      },
+      "bounds": {
+        "x": 46,
+        "y": 48,
+        "width": 213,
+        "height": 243
+      },
+      "anchor": {
+        "x": 163,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 35646,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fd210ccb9c48ad75"
+      },
+      "hip": {
+        "x": 186,
+        "y": 265
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 628,
+      "width": 318,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 628,
+        "width": 318,
+        "height": 312
+      },
+      "bounds": {
+        "x": 69,
+        "y": 26,
+        "width": 196,
+        "height": 255
+      },
+      "anchor": {
+        "x": 168.5,
+        "y": 281
+      },
+      "validation": {
+        "opaquePixels": 35162,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "dc3d5583072d39a8"
+      },
+      "footContactRegion": {
+        "x": 122,
+        "y": 268,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.518,
+          "y": 73.1
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 168.5,
+        "y": 281
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 1,
+      "x": 318,
+      "y": 628,
+      "width": 308,
+      "height": 312,
+      "source": {
+        "x": 318,
+        "y": 628,
+        "width": 308,
+        "height": 312
+      },
+      "bounds": {
+        "x": 55,
+        "y": 29,
+        "width": 199,
+        "height": 257
+      },
+      "anchor": {
+        "x": 152.706,
+        "y": 283.596
+      },
+      "validation": {
+        "opaquePixels": 34773,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e6f9dbe850e76405"
+      },
+      "footContactRegion": {
+        "x": 106,
+        "y": 273,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 145.724,
+          "y": 75.696
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 156,
+        "y": 286
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 628,
+      "width": 307,
+      "height": 312,
+      "source": {
+        "x": 626,
+        "y": 628,
+        "width": 307,
+        "height": 312
+      },
+      "bounds": {
+        "x": 55,
+        "y": 30,
+        "width": 204,
+        "height": 256
+      },
+      "anchor": {
+        "x": 156.251,
+        "y": 284.279
+      },
+      "validation": {
+        "opaquePixels": 34868,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cb9ed32a73aa1b0b"
+      },
+      "footContactRegion": {
+        "x": 109,
+        "y": 273,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 149.269,
+          "y": 76.379
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 157.5,
+        "y": 286
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tiger",
+      "state": "sit",
+      "frame": 0,
+      "x": 933,
+      "y": 628,
+      "width": 321,
+      "height": 312,
+      "source": {
+        "x": 933,
+        "y": 628,
+        "width": 321,
+        "height": 312
+      },
+      "bounds": {
+        "x": 49,
+        "y": 51,
+        "width": 205,
+        "height": 235
+      },
+      "anchor": {
+        "x": 158,
+        "y": 286
+      },
+      "validation": {
+        "opaquePixels": 35234,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b362f1a69157aa37"
+      },
+      "hip": {
+        "x": 170,
+        "y": 265
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 940,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 940,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 62,
+        "y": 28,
+        "width": 201,
+        "height": 257
+      },
+      "anchor": {
+        "x": 162,
+        "y": 285
+      },
+      "validation": {
+        "opaquePixels": 34246,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "99568f515fce12b0"
+      },
+      "footContactRegion": {
+        "x": 110,
+        "y": 272,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 170.416,
+          "y": 75.062
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 162,
+        "y": 285
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 940,
+      "width": 308,
+      "height": 314,
+      "source": {
+        "x": 315,
+        "y": 940,
+        "width": 308,
+        "height": 314
+      },
+      "bounds": {
+        "x": 54,
+        "y": 30,
+        "width": 203,
+        "height": 255
+      },
+      "anchor": {
+        "x": 156.012,
+        "y": 287.121
+      },
+      "validation": {
+        "opaquePixels": 33787,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "35f26d6388f50e41"
+      },
+      "footContactRegion": {
+        "x": 104,
+        "y": 272,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 164.428,
+          "y": 77.183
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 155,
+        "y": 285
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tiger",
+      "state": "walk",
+      "frame": 2,
+      "x": 623,
+      "y": 940,
+      "width": 302,
+      "height": 314,
+      "source": {
+        "x": 623,
+        "y": 940,
+        "width": 302,
+        "height": 314
+      },
+      "bounds": {
+        "x": 53,
+        "y": 31,
+        "width": 202,
+        "height": 257
+      },
+      "anchor": {
+        "x": 154.296,
+        "y": 287.779
+      },
+      "validation": {
+        "opaquePixels": 34237,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ac23eddc103ba8b5"
+      },
+      "footContactRegion": {
+        "x": 103,
+        "y": 275,
+        "width": 101,
+        "height": 13
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 162.712,
+          "y": 77.841
+        },
+        "regionHeight": 84,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 127.5,
+        "y": 288
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tiger",
+      "state": "sit",
+      "frame": 0,
+      "x": 925,
+      "y": 940,
+      "width": 329,
+      "height": 314,
+      "source": {
+        "x": 925,
+        "y": 940,
+        "width": 329,
+        "height": 314
+      },
+      "bounds": {
+        "x": 49,
+        "y": 54,
+        "width": 205,
+        "height": 235
+      },
+      "anchor": {
+        "x": 147,
+        "y": 289
+      },
+      "validation": {
+        "opaquePixels": 34778,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6aec88af2316a891"
+      },
+      "hip": {
+        "x": 132,
+        "y": 270
+      },
+      "hipMeasurement": "Manually located source-local pelvis/upper-thigh contact; long hair, long skirt, tiger tail, cane and hoe excluded."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 903060,
+    "sourceGutters": {
+      "y": [
+        0,
+        312,
+        628,
+        940,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          329,
+          631,
+          933,
+          1254
+        ],
+        [
+          0,
+          313,
+          621,
+          927,
+          1254
+        ],
+        [
+          0,
+          318,
+          626,
+          933,
+          1254
+        ],
+        [
+          0,
+          315,
+          623,
+          925,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: orange stripes/cream cheeks-belly, round ears, long tail and bitten white rice cake with visible red-bean filling retained. Actual rear tiger, low upright shuffle and four seated haunch contacts. Walking owner feet exclude tail and mochi, stable neutral head/body registration.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "ownerFootReview": {
+      "method": "Neutral owner shoe ground center from lowest5% shoe pixels in body-foot ROI, registered in x/y to upper head mass so torso does not follow prop bounds. Kongjwi frog region excluded including one-pixel skirt bridges. Foot fore/aft isometric projection is retained. No artwork altered.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.061,
+          "at83pxTileSoleProjectionRangePx": 0.701,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.113,
+          "at83pxTileSoleProjectionRangePx": 0.719,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.404,
+          "at83pxTileSoleProjectionRangePx": 0.818,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.342,
+          "at83pxTileSoleProjectionRangePx": 0.797,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatContactSheet": "zombie-seat-shuffle-batch7.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "멍한 호랑이 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "tiger",
+    "originalFile": "exec-5c1a06e1-1943-4903-8d19-6002e242167f.png",
+    "promptFile": "/bamsonnim-restaurant/assets/zombies/tiger-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

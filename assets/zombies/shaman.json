@@ -1,0 +1,1161 @@
+{
+  "actorId": "shaman",
+  "key": "zombieShaman",
+  "name": "무당 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "url": "/bamsonnim-restaurant/assets/zombies/shaman-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Fixed 4×4 integer partitions; poses[].source is authoritative. No source pixels altered.",
+  "referenceHeight": 265.5,
+  "referenceHeightMethod": "Median measured alpha>80 bounds height of 12 walking frames.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 62,
+        "y": 30,
+        "width": 188,
+        "height": 264
+      },
+      "anchor": {
+        "x": 159,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 36331,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 34,
+        "ownerFeetRoi": {
+          "x": 95,
+          "y": 234,
+          "width": 121,
+          "height": 60
+        },
+        "ownerFootSamples": 6777,
+        "lowerBodyPixelFingerprint": "1a0de267d92746922ba90fe071a982cb824c470b906278cd8f3eaf1080bdee2d"
+      },
+      "footContactAnchor": {
+        "x": 159,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 97,
+        "y": 284,
+        "width": 124,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 158.483,
+          "y": 78.925
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 54,
+        "y": 30,
+        "width": 188,
+        "height": 265
+      },
+      "anchor": {
+        "x": 154.348,
+        "y": 293.926
+      },
+      "validation": {
+        "opaquePixels": 36385,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 64,
+        "ownerFeetRoi": {
+          "x": 87,
+          "y": 235,
+          "width": 121,
+          "height": 60
+        },
+        "ownerFootSamples": 6755,
+        "lowerBodyPixelFingerprint": "afb62137e0d9d02e0a89f6e519dd2585a5defa00f19e7f56878eadbbec28d3a7"
+      },
+      "footContactAnchor": {
+        "x": 150.5,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 93,
+        "y": 285,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.831,
+          "y": 78.851
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 58,
+        "y": 30,
+        "width": 189,
+        "height": 264
+      },
+      "anchor": {
+        "x": 157.512,
+        "y": 293.87
+      },
+      "validation": {
+        "opaquePixels": 36284,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 15,
+        "ownerFeetRoi": {
+          "x": 92,
+          "y": 234,
+          "width": 121,
+          "height": 60
+        },
+        "ownerFootSamples": 6693,
+        "lowerBodyPixelFingerprint": "305b3184216ba1de50c3ca999852e1680b4aee3d412161369d02deda1298a467"
+      },
+      "footContactAnchor": {
+        "x": 157,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 284,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 156.995,
+          "y": 78.795
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "shaman",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 39,
+        "y": 36,
+        "width": 221,
+        "height": 258
+      },
+      "anchor": {
+        "x": 149,
+        "y": 294
+      },
+      "hip": {
+        "x": 111,
+        "y": 253
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 37177,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 12,
+        "ownerFeetRoi": {
+          "x": 78,
+          "y": 236,
+          "width": 142,
+          "height": 58
+        },
+        "ownerFootSamples": 7750,
+        "lowerBodyPixelFingerprint": "898a7557f200b87b2c8101505140f699e28ebf60058f1070bf33cc91841fce8d"
+      }
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 40,
+        "y": 25,
+        "width": 220,
+        "height": 268
+      },
+      "anchor": {
+        "x": 160.5,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 38168,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 89,
+        "ownerFeetRoi": {
+          "x": 79,
+          "y": 233,
+          "width": 141,
+          "height": 60
+        },
+        "ownerFootSamples": 7297,
+        "lowerBodyPixelFingerprint": "95a8e5ddd7b80424dd58e93314837e7f48be44546624e746547bb4b444408d37"
+      },
+      "footContactAnchor": {
+        "x": 160.5,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 111,
+        "y": 283,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 172.091,
+          "y": 74.133
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 32,
+        "y": 25,
+        "width": 222,
+        "height": 267
+      },
+      "anchor": {
+        "x": 155.56,
+        "y": 292.926
+      },
+      "validation": {
+        "opaquePixels": 38151,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 35,
+        "ownerFeetRoi": {
+          "x": 71,
+          "y": 232,
+          "width": 143,
+          "height": 60
+        },
+        "ownerFootSamples": 7652,
+        "lowerBodyPixelFingerprint": "227ac3b733a1ae6cc7268280290e01b8f439f2e585dd82152b5f719b249e606c"
+      },
+      "footContactAnchor": {
+        "x": 163.5,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 106,
+        "y": 282,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 167.151,
+          "y": 74.059
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 27,
+        "y": 29,
+        "width": 222,
+        "height": 265
+      },
+      "anchor": {
+        "x": 149.858,
+        "y": 296.422
+      },
+      "validation": {
+        "opaquePixels": 38146,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 48,
+        "ownerFeetRoi": {
+          "x": 66,
+          "y": 234,
+          "width": 143,
+          "height": 60
+        },
+        "ownerFootSamples": 7223,
+        "lowerBodyPixelFingerprint": "3f03f21683782d73716574bf0dd399cf4b5fbd75afae6ffea4e34bff8ecdb729"
+      },
+      "footContactAnchor": {
+        "x": 157.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 100,
+        "y": 284,
+        "width": 124,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.449,
+          "y": 77.555
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "shaman",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 29,
+        "y": 35,
+        "width": 231,
+        "height": 258
+      },
+      "anchor": {
+        "x": 144,
+        "y": 293
+      },
+      "hip": {
+        "x": 205,
+        "y": 254
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 39686,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 10,
+        "ownerFeetRoi": {
+          "x": 70,
+          "y": 235,
+          "width": 148,
+          "height": 58
+        },
+        "ownerFootSamples": 8029,
+        "lowerBodyPixelFingerprint": "3d937207aa4f231a355b33720bd8e3f7f06e9f7843337f9d7f37c0e2020745d9"
+      }
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 71,
+        "y": 26,
+        "width": 202,
+        "height": 267
+      },
+      "anchor": {
+        "x": 160.5,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 36496,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 27,
+        "ownerFeetRoi": {
+          "x": 107,
+          "y": 233,
+          "width": 130,
+          "height": 60
+        },
+        "ownerFootSamples": 7110,
+        "lowerBodyPixelFingerprint": "75f7503f455bf2e37f2a720e32435ce213c19445394e7003e9ecc715df9054d6"
+      },
+      "footContactAnchor": {
+        "x": 160.5,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 97,
+        "y": 283,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 158.032,
+          "y": 75.048
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 64,
+        "y": 26,
+        "width": 205,
+        "height": 268
+      },
+      "anchor": {
+        "x": 155.053,
+        "y": 293.185
+      },
+      "validation": {
+        "opaquePixels": 36483,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 42,
+        "ownerFeetRoi": {
+          "x": 100,
+          "y": 234,
+          "width": 132,
+          "height": 60
+        },
+        "ownerFootSamples": 6666,
+        "lowerBodyPixelFingerprint": "fe3803187269e6c13575f085e2f54e78e4825a15dcd79ebb57e806f7d877ddcf"
+      },
+      "footContactAnchor": {
+        "x": 149,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 284,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 152.585,
+          "y": 75.233
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 66,
+        "y": 27,
+        "width": 207,
+        "height": 267
+      },
+      "anchor": {
+        "x": 155.744,
+        "y": 294.371
+      },
+      "validation": {
+        "opaquePixels": 36598,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 75,
+        "ownerFeetRoi": {
+          "x": 103,
+          "y": 234,
+          "width": 133,
+          "height": 60
+        },
+        "ownerFootSamples": 6633,
+        "lowerBodyPixelFingerprint": "12238d6c5f2ea00426bfe72010c458be4801f89dd46f196756a7554fb260c54c"
+      },
+      "footContactAnchor": {
+        "x": 152.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 284,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.276,
+          "y": 76.419
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "shaman",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 53,
+        "y": 37,
+        "width": 219,
+        "height": 252
+      },
+      "anchor": {
+        "x": 162,
+        "y": 289
+      },
+      "hip": {
+        "x": 183,
+        "y": 254
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 37014,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 55,
+        "ownerFeetRoi": {
+          "x": 92,
+          "y": 232,
+          "width": 141,
+          "height": 57
+        },
+        "ownerFootSamples": 7787,
+        "lowerBodyPixelFingerprint": "88968e32755c5d3e6926e0304df64f06c676a3a96a7e756187e0d372621bea4e"
+      }
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 72,
+        "y": 27,
+        "width": 207,
+        "height": 264
+      },
+      "anchor": {
+        "x": 163.5,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 35609,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 45,
+        "ownerFeetRoi": {
+          "x": 109,
+          "y": 231,
+          "width": 133,
+          "height": 60
+        },
+        "ownerFootSamples": 6952,
+        "lowerBodyPixelFingerprint": "8dc9a5b98f05be98fa55f5d8ce144050b074a8607770a6d320b4e64f82c1675f"
+      },
+      "footContactAnchor": {
+        "x": 163.5,
+        "y": 291
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 281,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 157.374,
+          "y": 76.761
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 57,
+        "y": 27,
+        "width": 215,
+        "height": 266
+      },
+      "anchor": {
+        "x": 149.762,
+        "y": 290.829
+      },
+      "validation": {
+        "opaquePixels": 36524,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 63,
+        "ownerFeetRoi": {
+          "x": 95,
+          "y": 233,
+          "width": 138,
+          "height": 60
+        },
+        "ownerFootSamples": 6758,
+        "lowerBodyPixelFingerprint": "88f9f36252aa4722cac7f2cd37b432db7e2f289fe13afed5ac5b0b9f5ce6a3a6"
+      },
+      "footContactAnchor": {
+        "x": 149,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 83,
+        "y": 283,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 143.636,
+          "y": 76.59
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "shaman",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 59,
+        "y": 28,
+        "width": 214,
+        "height": 265
+      },
+      "anchor": {
+        "x": 150.515,
+        "y": 291.687
+      },
+      "validation": {
+        "opaquePixels": 36427,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 91,
+        "ownerFeetRoi": {
+          "x": 97,
+          "y": 233,
+          "width": 137,
+          "height": 60
+        },
+        "ownerFootSamples": 6627,
+        "lowerBodyPixelFingerprint": "30a5caefa6cc1d13ab8c19a4a768664256a008ca14f1585c5ce7ed992016b2c3"
+      },
+      "footContactAnchor": {
+        "x": 113,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 83,
+        "y": 283,
+        "width": 123,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 144.389,
+          "y": 77.448
+        },
+        "regionHeight": 85,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "shaman",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 55,
+        "y": 38,
+        "width": 218,
+        "height": 253
+      },
+      "anchor": {
+        "x": 164,
+        "y": 291
+      },
+      "hip": {
+        "x": 142,
+        "y": 258
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 37543,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 87,
+        "ownerFeetRoi": {
+          "x": 94,
+          "y": 234,
+          "width": 140,
+          "height": 57
+        },
+        "ownerFootSamples": 7749,
+        "lowerBodyPixelFingerprint": "6c871475a421432a4a5ba7ee490bda8eca4dd9f89441e19241ae9b9b1322edd2"
+      }
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "sourceSha256": "eeb178b85ad352e696313efcb70575037edf108352fcd2d52dad3e7f7f67ad68",
+    "alphaThreshold": 80,
+    "transparentPixels": 895791,
+    "partialAlphaPixels": 676394,
+    "opaquePixels": 593022,
+    "footAnchorMethod": "Candidate only: midpoint and bottom of alpha>80 owner-lower-body ROI (central64%, lower22%). Lateral props excluded by ROI; designer must confirm shoe pixels versus skirt/pole.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "missingPoses": [],
+    "sourceGutters": {
+      "x": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ],
+      "y": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ]
+    },
+    "visualReview": "All sixteen real direction/pose drawings checked: neutral and two low shuffle phases plus seated pose. Props, costume and stable identity reviewed; shoes measured separately from poles/held props. No source artwork altered.",
+    "ownerFootReview": {
+      "method": "Shoe regions visually reviewed; lateral hand props and trekking poles excluded. Neutral shoe floor is registered to upper head mass without stretching the artwork.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.074,
+          "at83pxTileSoleProjectionRangePx": 0.359
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.422,
+          "at83pxTileSoleProjectionRangePx": 0.81
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.186,
+          "at83pxTileSoleProjectionRangePx": 0.397
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.171,
+          "at83pxTileSoleProjectionRangePx": 0.726
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatReview": "Designer reviewed source anatomy and before/after production chair renders in all four directions. Hip lies on posterior thigh/seat contact, above shoe soles and separate from hanging skirt hem. Rear chair foreground checked. Uniform source aspect preserved.",
+    "seatContactSheet": "artifacts/new-character-review/final/shaman-seat-before-after.png",
+    "hipCorrections": [
+      {
+        "dir": 0,
+        "before": {
+          "x": 87,
+          "y": 263
+        },
+        "after": {
+          "x": 111,
+          "y": 253
+        },
+        "sourceDelta": {
+          "x": 24,
+          "y": -10
+        }
+      },
+      {
+        "dir": 1,
+        "before": {
+          "x": 205,
+          "y": 263
+        },
+        "after": {
+          "x": 205,
+          "y": 254
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": -9
+        }
+      },
+      {
+        "dir": 2,
+        "before": {
+          "x": 183,
+          "y": 263
+        },
+        "after": {
+          "x": 183,
+          "y": 254
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": -9
+        }
+      },
+      {
+        "dir": 3,
+        "before": {
+          "x": 142,
+          "y": 269
+        },
+        "after": {
+          "x": 142,
+          "y": 258
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": -11
+        }
+      }
+    ]
+  },
+  "promptFile": "public/assets/zombies/shaman-directional-shuffle.prompt.txt",
+  "generation": {
+    "tool": "image_gen",
+    "generatedBy": "root",
+    "promptFile": "public/assets/zombies/shaman-directional-shuffle.prompt.txt",
+    "selectedFile": "public/assets/zombies/shaman-directional-shuffle.png",
+    "sourcePixelsUnchanged": true,
+    "sourceSha256": "eeb178b85ad352e696313efcb70575037edf108352fcd2d52dad3e7f7f67ad68"
+  }
+}

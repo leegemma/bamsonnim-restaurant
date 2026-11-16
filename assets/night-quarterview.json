@@ -1,0 +1,25 @@
+{
+  "key": "nightQuarterview",
+  "name": "2:1 쿼터뷰 폐허 한옥 마당",
+  "url": "/bamsonnim-restaurant/assets/night-ruins-quarterview.png",
+  "type": "background",
+  "width": 1671,
+  "height": 941,
+  "trim": false,
+  "status": "verified",
+  "projection": {
+    "type": "orthographic-isometric",
+    "axisSlope": 0.5,
+    "horizon": false
+  },
+  "validation": {
+    "visualReview": "Generated image viewed: ruined tiled roofs, collapsed palanquin, straw, broken lamps, small embers and cartoon bodies remain on outer margins. Runtime overlay check pending.",
+    "runtimeReview": "Seven desktop/mobile landscape fixtures: source aspect retained, background precedes restaurant and door, entry and floor remain inside viewport, zero image load failures. Artifacts: night-ruins-review/results.json."
+  },
+  "generation": {
+    "tool": "built-in image_gen",
+    "originalFile": "exec-f3e340bf-3836-4146-a6b1-e9954c1f881a.png",
+    "promptFile": "/bamsonnim-restaurant/assets/night-ruins-quarterview.prompt.txt",
+    "reference": "/bamsonnim-restaurant/assets/night-quarterview.png"
+  }
+}

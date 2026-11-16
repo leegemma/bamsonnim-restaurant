@@ -1,0 +1,33 @@
+{
+  "id": "/bamsonnim-restaurant/",
+  "name": "밤손님 식당",
+  "short_name": "밤손님 식당",
+  "description": "달이 뜨면 문을 여는 한옥 좀비 식당",
+  "lang": "ko-KR",
+  "start_url": "/bamsonnim-restaurant/",
+  "scope": "/bamsonnim-restaurant/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#142c2b",
+  "theme_color": "#142c2b",
+  "icons": [
+    {
+      "src": "/bamsonnim-restaurant/icons/gimbap-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/bamsonnim-restaurant/icons/gimbap-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/bamsonnim-restaurant/icons/gimbap-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
