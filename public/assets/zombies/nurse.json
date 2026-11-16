@@ -1,0 +1,729 @@
+{
+  "actorId": "nurse",
+  "key": "zombieNurse",
+  "url": "/assets/zombies/nurse-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source. Nurse rear rows physically generated in NE/NW order; metadata routes physical row3 to NW and row2 to NE after visual orientation review.",
+  "referenceHeight": 282,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 324,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 324,
+        "height": 313
+      },
+      "bounds": {
+        "x": 74,
+        "y": 13,
+        "width": 190,
+        "height": 283
+      },
+      "anchor": {
+        "x": 158,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 35113,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "750f959806f9d8c0"
+      },
+      "sourceRow": 0
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 1,
+      "x": 324,
+      "y": 0,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 324,
+        "y": 0,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 62,
+        "y": 13,
+        "width": 189,
+        "height": 286
+      },
+      "anchor": {
+        "x": 148,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 35471,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d10da9a7930b7c62"
+      },
+      "sourceRow": 0
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 2,
+      "x": 636,
+      "y": 0,
+      "width": 308,
+      "height": 313,
+      "source": {
+        "x": 636,
+        "y": 0,
+        "width": 308,
+        "height": 313
+      },
+      "bounds": {
+        "x": 62,
+        "y": 13,
+        "width": 188,
+        "height": 286
+      },
+      "anchor": {
+        "x": 145,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 34363,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "121f32c5a99cbf7b"
+      },
+      "sourceRow": 0
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "nurse",
+      "state": "sit",
+      "frame": 0,
+      "x": 944,
+      "y": 0,
+      "width": 310,
+      "height": 313,
+      "source": {
+        "x": 944,
+        "y": 0,
+        "width": 310,
+        "height": 313
+      },
+      "bounds": {
+        "x": 59,
+        "y": 38,
+        "width": 194,
+        "height": 258
+      },
+      "anchor": {
+        "x": 161,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 34214,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3a2d3785fbbed16f"
+      },
+      "hip": {
+        "x": 116,
+        "y": 271
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact.",
+      "sourceRow": 0
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 313,
+      "width": 320,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 313,
+        "width": 320,
+        "height": 313
+      },
+      "bounds": {
+        "x": 65,
+        "y": 15,
+        "width": 194,
+        "height": 282
+      },
+      "anchor": {
+        "x": 167,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 34668,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f32be59a309d49c4"
+      },
+      "sourceRow": 1
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 1,
+      "x": 320,
+      "y": 313,
+      "width": 316,
+      "height": 313,
+      "source": {
+        "x": 320,
+        "y": 313,
+        "width": 316,
+        "height": 313
+      },
+      "bounds": {
+        "x": 63,
+        "y": 15,
+        "width": 190,
+        "height": 283
+      },
+      "anchor": {
+        "x": 163,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 34827,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "896f153247b6bd2a"
+      },
+      "sourceRow": 1
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 2,
+      "x": 636,
+      "y": 313,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 636,
+        "y": 313,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 64,
+        "y": 15,
+        "width": 186,
+        "height": 285
+      },
+      "anchor": {
+        "x": 164,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 33317,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6a5a072cebb18024"
+      },
+      "sourceRow": 1
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "nurse",
+      "state": "sit",
+      "frame": 0,
+      "x": 948,
+      "y": 313,
+      "width": 306,
+      "height": 313,
+      "source": {
+        "x": 948,
+        "y": 313,
+        "width": 306,
+        "height": 313
+      },
+      "bounds": {
+        "x": 63,
+        "y": 42,
+        "width": 189,
+        "height": 258
+      },
+      "anchor": {
+        "x": 159,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 33824,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2fa052d64482871c"
+      },
+      "hip": {
+        "x": 196,
+        "y": 274
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact.",
+      "sourceRow": 1
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 317,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 317,
+        "height": 315
+      },
+      "bounds": {
+        "x": 66,
+        "y": 16,
+        "width": 188,
+        "height": 282
+      },
+      "anchor": {
+        "x": 166,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 32305,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b76ab88a6e3a8af2"
+      },
+      "sourceRow": 3
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 939,
+      "width": 315,
+      "height": 315,
+      "source": {
+        "x": 317,
+        "y": 939,
+        "width": 315,
+        "height": 315
+      },
+      "bounds": {
+        "x": 64,
+        "y": 16,
+        "width": 187,
+        "height": 278
+      },
+      "anchor": {
+        "x": 165,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 31837,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "71e3122723702fb0"
+      },
+      "sourceRow": 3
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 2,
+      "x": 632,
+      "y": 939,
+      "width": 312,
+      "height": 315,
+      "source": {
+        "x": 632,
+        "y": 939,
+        "width": 312,
+        "height": 315
+      },
+      "bounds": {
+        "x": 66,
+        "y": 16,
+        "width": 185,
+        "height": 282
+      },
+      "anchor": {
+        "x": 166,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 31297,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "8fe29868f6b08d5b"
+      },
+      "sourceRow": 3
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "nurse",
+      "state": "sit",
+      "frame": 0,
+      "x": 944,
+      "y": 939,
+      "width": 310,
+      "height": 315,
+      "source": {
+        "x": 944,
+        "y": 939,
+        "width": 310,
+        "height": 315
+      },
+      "bounds": {
+        "x": 63,
+        "y": 44,
+        "width": 188,
+        "height": 254
+      },
+      "anchor": {
+        "x": 154,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 32029,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cf9560e3c3dc09a9"
+      },
+      "hip": {
+        "x": 170,
+        "y": 277
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact.",
+      "sourceRow": 3
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 626,
+      "width": 317,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 626,
+        "width": 317,
+        "height": 313
+      },
+      "bounds": {
+        "x": 73,
+        "y": 14,
+        "width": 177,
+        "height": 282
+      },
+      "anchor": {
+        "x": 150,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 32198,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "009c9ad7e6fb9a4c"
+      },
+      "sourceRow": 2
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 626,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 317,
+        "y": 626,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 69,
+        "y": 14,
+        "width": 180,
+        "height": 279
+      },
+      "anchor": {
+        "x": 148,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 32397,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3373677dfad6b46a"
+      },
+      "sourceRow": 2
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "nurse",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 626,
+      "width": 311,
+      "height": 313,
+      "source": {
+        "x": 631,
+        "y": 626,
+        "width": 311,
+        "height": 313
+      },
+      "bounds": {
+        "x": 67,
+        "y": 14,
+        "width": 178,
+        "height": 282
+      },
+      "anchor": {
+        "x": 138,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 31579,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a9d788ab953c613f"
+      },
+      "sourceRow": 2
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "nurse",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 626,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 942,
+        "y": 626,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 68,
+        "y": 42,
+        "width": 185,
+        "height": 256
+      },
+      "anchor": {
+        "x": 162,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 31926,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1626059c75f132d6"
+      },
+      "hip": {
+        "x": 142,
+        "y": 274
+      },
+      "hipMeasurement": "Manually reviewed source-local lower pelvis and upper-thigh contact contour; prop bulk excluded from body contact.",
+      "sourceRow": 2
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 918473,
+    "sourceGutters": {
+      "y": [
+        0,
+        313,
+        626,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          324,
+          636,
+          944,
+          1254
+        ],
+        [
+          0,
+          320,
+          636,
+          948,
+          1254
+        ],
+        [
+          0,
+          317,
+          631,
+          942,
+          1254
+        ],
+        [
+          0,
+          317,
+          632,
+          944,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses reviewed: cap/red cross, forehead bandage, brown bun and cream dress remain. Physical rear rows were generated in NE/NW order and metadata routes them to actual NW/NE, verified on matching chairs. Low shuffle and seated hip/body proportions reviewed.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch3.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "퇴근한 간호사 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "nurse",
+    "originalFile": "exec-26d20291-7ee6-43f1-9beb-0575ffea3cfb.png",
+    "promptFile": "/assets/zombies/nurse-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

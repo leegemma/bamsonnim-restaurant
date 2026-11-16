@@ -1,0 +1,713 @@
+{
+  "actorId": "merchant",
+  "key": "zombieMerchant",
+  "url": "/assets/zombies/merchant-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 289,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 311
+      },
+      "bounds": {
+        "x": 36,
+        "y": 9,
+        "width": 242,
+        "height": 292
+      },
+      "anchor": {
+        "x": 151,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 47774,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4a2ceae5bb553dda"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 311,
+      "height": 311,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 311,
+        "height": 311
+      },
+      "bounds": {
+        "x": 37,
+        "y": 9,
+        "width": 238,
+        "height": 292
+      },
+      "anchor": {
+        "x": 151,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 46956,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "31414514cb04b4c7"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 2,
+      "x": 625,
+      "y": 0,
+      "width": 312,
+      "height": 311,
+      "source": {
+        "x": 625,
+        "y": 0,
+        "width": 312,
+        "height": 311
+      },
+      "bounds": {
+        "x": 38,
+        "y": 9,
+        "width": 239,
+        "height": 292
+      },
+      "anchor": {
+        "x": 151,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 46436,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "263052e6073081cc"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "merchant",
+      "state": "sit",
+      "frame": 0,
+      "x": 937,
+      "y": 0,
+      "width": 317,
+      "height": 311,
+      "source": {
+        "x": 937,
+        "y": 0,
+        "width": 317,
+        "height": 311
+      },
+      "bounds": {
+        "x": 37,
+        "y": 25,
+        "width": 241,
+        "height": 274
+      },
+      "anchor": {
+        "x": 152,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 46181,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "58c5a3d362df1b4f"
+      },
+      "hip": {
+        "x": 132,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 311,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 311,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 41,
+        "y": 11,
+        "width": 236,
+        "height": 290
+      },
+      "anchor": {
+        "x": 166,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 46468,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "37d2cf30a35450b9"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 311,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 315,
+        "y": 311,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 39,
+        "y": 12,
+        "width": 237,
+        "height": 290
+      },
+      "anchor": {
+        "x": 164,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 45781,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "75b2e6955bc9c290"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 2,
+      "x": 629,
+      "y": 311,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 629,
+        "y": 311,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 39,
+        "y": 11,
+        "width": 237,
+        "height": 290
+      },
+      "anchor": {
+        "x": 168,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 45024,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d07e95023c2d0dd8"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "merchant",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 311,
+      "width": 312,
+      "height": 314,
+      "source": {
+        "x": 942,
+        "y": 311,
+        "width": 312,
+        "height": 314
+      },
+      "bounds": {
+        "x": 38,
+        "y": 27,
+        "width": 243,
+        "height": 274
+      },
+      "anchor": {
+        "x": 158,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 46234,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4e46507c2632a67a"
+      },
+      "hip": {
+        "x": 201,
+        "y": 269
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 625,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 625,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 41,
+        "y": 14,
+        "width": 237,
+        "height": 281
+      },
+      "anchor": {
+        "x": 164,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 44436,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2c5c3d1a33b1fb04"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 625,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 315,
+        "y": 625,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 38,
+        "y": 14,
+        "width": 239,
+        "height": 288
+      },
+      "anchor": {
+        "x": 149,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 45255,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2961b0d0523e0568"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 2,
+      "x": 629,
+      "y": 625,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 629,
+        "y": 625,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 39,
+        "y": 14,
+        "width": 238,
+        "height": 280
+      },
+      "anchor": {
+        "x": 158,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 44283,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c9e81bae1f0fcc5c"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "merchant",
+      "state": "sit",
+      "frame": 0,
+      "x": 944,
+      "y": 625,
+      "width": 310,
+      "height": 314,
+      "source": {
+        "x": 944,
+        "y": 625,
+        "width": 310,
+        "height": 314
+      },
+      "bounds": {
+        "x": 39,
+        "y": 30,
+        "width": 236,
+        "height": 261
+      },
+      "anchor": {
+        "x": 160,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 43288,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3b6754504d1ce497"
+      },
+      "hip": {
+        "x": 172,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 311,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 311,
+        "height": 315
+      },
+      "bounds": {
+        "x": 35,
+        "y": 13,
+        "width": 237,
+        "height": 284
+      },
+      "anchor": {
+        "x": 150,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 45110,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6fca9a9b2ab214a4"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 1,
+      "x": 311,
+      "y": 939,
+      "width": 309,
+      "height": 315,
+      "source": {
+        "x": 311,
+        "y": 939,
+        "width": 309,
+        "height": 315
+      },
+      "bounds": {
+        "x": 40,
+        "y": 13,
+        "width": 229,
+        "height": 277
+      },
+      "anchor": {
+        "x": 147,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 43012,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3238ea33d1541b0c"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "merchant",
+      "state": "walk",
+      "frame": 2,
+      "x": 620,
+      "y": 939,
+      "width": 314,
+      "height": 315,
+      "source": {
+        "x": 620,
+        "y": 939,
+        "width": 314,
+        "height": 315
+      },
+      "bounds": {
+        "x": 42,
+        "y": 15,
+        "width": 232,
+        "height": 282
+      },
+      "anchor": {
+        "x": 148,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 42719,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9d3f70735123597c"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "merchant",
+      "state": "sit",
+      "frame": 0,
+      "x": 934,
+      "y": 939,
+      "width": 320,
+      "height": 315,
+      "source": {
+        "x": 934,
+        "y": 939,
+        "width": 320,
+        "height": 315
+      },
+      "bounds": {
+        "x": 42,
+        "y": 30,
+        "width": 237,
+        "height": 260
+      },
+      "anchor": {
+        "x": 150,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 43873,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b384571b274f4800"
+      },
+      "hip": {
+        "x": 145,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 434825,
+    "sourceGutters": {
+      "y": [
+        0,
+        311,
+        625,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          314,
+          625,
+          937,
+          1254
+        ],
+        [
+          0,
+          315,
+          629,
+          942,
+          1254
+        ],
+        [
+          0,
+          315,
+          629,
+          944,
+          1254
+        ],
+        [
+          0,
+          311,
+          620,
+          934,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 original poses reviewed: straw hat, pale headband/hair, slate short hanbok, wooden pack frame with bundles/mats and gourds remain; actual rear pack views. Low feet and four seated pelvis contacts compared on same chairs. Preview red RGB pixels measured alpha1-2, not opaque halo.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch5.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "장터 보부상 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "merchant",
+    "originalFile": "exec-b98f057e-ef36-454d-b28e-5c37a042d30f.png",
+    "promptFile": "/assets/zombies/merchant-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

@@ -1,0 +1,713 @@
+{
+  "actorId": "dancer",
+  "key": "zombieDancer",
+  "url": "/assets/zombies/dancer-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 280,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 328,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 328,
+        "height": 313
+      },
+      "bounds": {
+        "x": 54,
+        "y": 11,
+        "width": 239,
+        "height": 291
+      },
+      "anchor": {
+        "x": 171,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 46347,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cfe4c4dd5b160056"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 1,
+      "x": 328,
+      "y": 0,
+      "width": 309,
+      "height": 313,
+      "source": {
+        "x": 328,
+        "y": 0,
+        "width": 309,
+        "height": 313
+      },
+      "bounds": {
+        "x": 36,
+        "y": 13,
+        "width": 236,
+        "height": 291
+      },
+      "anchor": {
+        "x": 157,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 45250,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d4bdeda11da4821d"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 2,
+      "x": 637,
+      "y": 0,
+      "width": 318,
+      "height": 313,
+      "source": {
+        "x": 637,
+        "y": 0,
+        "width": 318,
+        "height": 313
+      },
+      "bounds": {
+        "x": 39,
+        "y": 19,
+        "width": 240,
+        "height": 285
+      },
+      "anchor": {
+        "x": 161,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 44962,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d48bdab21bc43b43"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "dancer",
+      "state": "sit",
+      "frame": 0,
+      "x": 955,
+      "y": 0,
+      "width": 299,
+      "height": 313,
+      "source": {
+        "x": 955,
+        "y": 0,
+        "width": 299,
+        "height": 313
+      },
+      "bounds": {
+        "x": 40,
+        "y": 37,
+        "width": 229,
+        "height": 265
+      },
+      "anchor": {
+        "x": 163,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 41194,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e9a812e6bc7e0d21"
+      },
+      "hip": {
+        "x": 110,
+        "y": 266
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 313,
+      "width": 311,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 313,
+        "width": 311,
+        "height": 310
+      },
+      "bounds": {
+        "x": 34,
+        "y": 10,
+        "width": 241,
+        "height": 286
+      },
+      "anchor": {
+        "x": 148,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 46695,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "10217c51b74a27f0"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 1,
+      "x": 311,
+      "y": 313,
+      "width": 311,
+      "height": 310,
+      "source": {
+        "x": 311,
+        "y": 313,
+        "width": 311,
+        "height": 310
+      },
+      "bounds": {
+        "x": 37,
+        "y": 13,
+        "width": 242,
+        "height": 284
+      },
+      "anchor": {
+        "x": 149,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 44443,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fc51ad529ec5d40c"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 2,
+      "x": 622,
+      "y": 313,
+      "width": 319,
+      "height": 310,
+      "source": {
+        "x": 622,
+        "y": 313,
+        "width": 319,
+        "height": 310
+      },
+      "bounds": {
+        "x": 34,
+        "y": 16,
+        "width": 251,
+        "height": 279
+      },
+      "anchor": {
+        "x": 152,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 44001,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6df280f9c9c4bd52"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "dancer",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 313,
+      "width": 313,
+      "height": 310,
+      "source": {
+        "x": 941,
+        "y": 313,
+        "width": 313,
+        "height": 310
+      },
+      "bounds": {
+        "x": 35,
+        "y": 35,
+        "width": 240,
+        "height": 255
+      },
+      "anchor": {
+        "x": 147,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 41104,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "0c5ccefb91abad8c"
+      },
+      "hip": {
+        "x": 205,
+        "y": 264
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 623,
+      "width": 316,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 623,
+        "width": 316,
+        "height": 310
+      },
+      "bounds": {
+        "x": 34,
+        "y": 14,
+        "width": 252,
+        "height": 280
+      },
+      "anchor": {
+        "x": 146,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 45752,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "0ce8fce14fe8b823"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 1,
+      "x": 316,
+      "y": 623,
+      "width": 308,
+      "height": 310,
+      "source": {
+        "x": 316,
+        "y": 623,
+        "width": 308,
+        "height": 310
+      },
+      "bounds": {
+        "x": 31,
+        "y": 14,
+        "width": 248,
+        "height": 281
+      },
+      "anchor": {
+        "x": 143,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 44138,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4590ce9db8eb4dd5"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 2,
+      "x": 624,
+      "y": 623,
+      "width": 322,
+      "height": 310,
+      "source": {
+        "x": 624,
+        "y": 623,
+        "width": 322,
+        "height": 310
+      },
+      "bounds": {
+        "x": 31,
+        "y": 15,
+        "width": 258,
+        "height": 277
+      },
+      "anchor": {
+        "x": 144,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 44728,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "10a8f2b5429c3ec0"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "dancer",
+      "state": "sit",
+      "frame": 0,
+      "x": 946,
+      "y": 623,
+      "width": 308,
+      "height": 310,
+      "source": {
+        "x": 946,
+        "y": 623,
+        "width": 308,
+        "height": 310
+      },
+      "bounds": {
+        "x": 34,
+        "y": 40,
+        "width": 244,
+        "height": 253
+      },
+      "anchor": {
+        "x": 138,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 40444,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "05eda92cffd0f6b5"
+      },
+      "hip": {
+        "x": 171,
+        "y": 268
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 933,
+      "width": 317,
+      "height": 321,
+      "source": {
+        "x": 0,
+        "y": 933,
+        "width": 317,
+        "height": 321
+      },
+      "bounds": {
+        "x": 38,
+        "y": 17,
+        "width": 244,
+        "height": 277
+      },
+      "anchor": {
+        "x": 172,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 44255,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "694316ee0a33fd85"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 933,
+      "width": 314,
+      "height": 321,
+      "source": {
+        "x": 317,
+        "y": 933,
+        "width": 314,
+        "height": 321
+      },
+      "bounds": {
+        "x": 36,
+        "y": 19,
+        "width": 242,
+        "height": 275
+      },
+      "anchor": {
+        "x": 165,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 43123,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b7678e5ef6261750"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "dancer",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 933,
+      "width": 316,
+      "height": 321,
+      "source": {
+        "x": 631,
+        "y": 933,
+        "width": 316,
+        "height": 321
+      },
+      "bounds": {
+        "x": 37,
+        "y": 21,
+        "width": 245,
+        "height": 278
+      },
+      "anchor": {
+        "x": 167,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 43507,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fd0f918b768b2092"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "dancer",
+      "state": "sit",
+      "frame": 0,
+      "x": 947,
+      "y": 933,
+      "width": 307,
+      "height": 321,
+      "source": {
+        "x": 947,
+        "y": 933,
+        "width": 307,
+        "height": 321
+      },
+      "bounds": {
+        "x": 35,
+        "y": 47,
+        "width": 237,
+        "height": 251
+      },
+      "anchor": {
+        "x": 163,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 40637,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "def8ad363e25ab8d"
+      },
+      "hip": {
+        "x": 139,
+        "y": 270
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat line; pack, cape and robe hem excluded from contact."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 668232,
+    "sourceGutters": {
+      "y": [
+        0,
+        313,
+        623,
+        933,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          328,
+          637,
+          955,
+          1254
+        ],
+        [
+          0,
+          311,
+          622,
+          941,
+          1254
+        ],
+        [
+          0,
+          316,
+          624,
+          946,
+          1254
+        ],
+        [
+          0,
+          317,
+          631,
+          947,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 original poses reviewed: topknot/red headband ribbon, cream broad sleeves, green vest, yellow sash and red/black panels retained. Actual rear anatomy, three low foot poses and four seated folded-thigh contacts. Preview bright red RGB is alpha1-2; same-chair browser composition is clean.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch5.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "춤추는 탈꾼 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "dancer",
+    "originalFile": "exec-60af2fc5-f5f3-4ef2-88e8-5c2383b55687.png",
+    "promptFile": "/assets/zombies/dancer-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

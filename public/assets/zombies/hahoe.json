@@ -1,0 +1,995 @@
+{
+  "actorId": "hahoe",
+  "key": "zombieHahoe",
+  "url": "/assets/zombies/hahoe-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 291,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 321,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 321,
+        "height": 313
+      },
+      "bounds": {
+        "x": 81,
+        "y": 11,
+        "width": 182,
+        "height": 294
+      },
+      "anchor": {
+        "x": 175.5,
+        "y": 305
+      },
+      "validation": {
+        "opaquePixels": 38647,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "a50846484221549b"
+      },
+      "footContactRegion": {
+        "x": 128,
+        "y": 290,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 173.268,
+          "y": 65.551
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 175.5,
+        "y": 305
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 1,
+      "x": 321,
+      "y": 0,
+      "width": 305,
+      "height": 313,
+      "source": {
+        "x": 321,
+        "y": 0,
+        "width": 305,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 11,
+        "width": 187,
+        "height": 293
+      },
+      "anchor": {
+        "x": 155.262,
+        "y": 304.758
+      },
+      "validation": {
+        "opaquePixels": 38969,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "214c5b815e332f40"
+      },
+      "footContactRegion": {
+        "x": 108,
+        "y": 289,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.03,
+          "y": 65.309
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 163,
+        "y": 304
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 0,
+      "width": 307,
+      "height": 313,
+      "source": {
+        "x": 626,
+        "y": 0,
+        "width": 307,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 10,
+        "width": 186,
+        "height": 291
+      },
+      "anchor": {
+        "x": 155.039,
+        "y": 303.771
+      },
+      "validation": {
+        "opaquePixels": 38459,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e2335da8c5027851"
+      },
+      "footContactRegion": {
+        "x": 108,
+        "y": 286,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 152.807,
+          "y": 64.322
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 158.5,
+        "y": 301
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hahoe",
+      "state": "sit",
+      "frame": 0,
+      "x": 933,
+      "y": 0,
+      "width": 321,
+      "height": 313,
+      "source": {
+        "x": 933,
+        "y": 0,
+        "width": 321,
+        "height": 313
+      },
+      "bounds": {
+        "x": 63,
+        "y": 31,
+        "width": 192,
+        "height": 273
+      },
+      "anchor": {
+        "x": 163,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 38357,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6b7a9dbfd7d0f143"
+      },
+      "hip": {
+        "x": 116,
+        "y": 277
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat contact, excluding mask/hat/hair/club/frog."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 313,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 313,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 71,
+        "y": 9,
+        "width": 189,
+        "height": 295
+      },
+      "anchor": {
+        "x": 156.5,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 39010,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d8b782d13001996f"
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 289,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 167.497,
+          "y": 64.204
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 156.5,
+        "y": 304
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 313,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 315,
+        "y": 313,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 57,
+        "y": 9,
+        "width": 196,
+        "height": 295
+      },
+      "anchor": {
+        "x": 150.052,
+        "y": 303.814
+      },
+      "validation": {
+        "opaquePixels": 38960,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cc45bec5974e6cca"
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 289,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.049,
+          "y": 64.018
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 148.5,
+        "y": 304
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 2,
+      "x": 630,
+      "y": 313,
+      "width": 315,
+      "height": 312,
+      "source": {
+        "x": 630,
+        "y": 313,
+        "width": 315,
+        "height": 312
+      },
+      "bounds": {
+        "x": 63,
+        "y": 9,
+        "width": 186,
+        "height": 295
+      },
+      "anchor": {
+        "x": 145.89,
+        "y": 303.931
+      },
+      "validation": {
+        "opaquePixels": 38158,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1a11b3bb2cb2e88e"
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 289,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 156.887,
+          "y": 64.135
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 142.5,
+        "y": 304
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hahoe",
+      "state": "sit",
+      "frame": 0,
+      "x": 945,
+      "y": 313,
+      "width": 309,
+      "height": 312,
+      "source": {
+        "x": 945,
+        "y": 313,
+        "width": 309,
+        "height": 312
+      },
+      "bounds": {
+        "x": 67,
+        "y": 36,
+        "width": 188,
+        "height": 268
+      },
+      "anchor": {
+        "x": 148,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 37733,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "14d616955634d784"
+      },
+      "hip": {
+        "x": 201,
+        "y": 278
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat contact, excluding mask/hat/hair/club/frog."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 625,
+      "width": 323,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 625,
+        "width": 323,
+        "height": 311
+      },
+      "bounds": {
+        "x": 73,
+        "y": 10,
+        "width": 190,
+        "height": 291
+      },
+      "anchor": {
+        "x": 164,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 36957,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "66239d00f7c533fc"
+      },
+      "footContactRegion": {
+        "x": 120,
+        "y": 286,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 165.46,
+          "y": 65.518
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 164,
+        "y": 301
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 1,
+      "x": 323,
+      "y": 625,
+      "width": 308,
+      "height": 311,
+      "source": {
+        "x": 323,
+        "y": 625,
+        "width": 308,
+        "height": 311
+      },
+      "bounds": {
+        "x": 62,
+        "y": 10,
+        "width": 190,
+        "height": 291
+      },
+      "anchor": {
+        "x": 152.341,
+        "y": 300.629
+      },
+      "validation": {
+        "opaquePixels": 37346,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1d879fae1401e53c"
+      },
+      "footContactRegion": {
+        "x": 109,
+        "y": 286,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.801,
+          "y": 65.147
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 152.5,
+        "y": 301
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 625,
+      "width": 311,
+      "height": 311,
+      "source": {
+        "x": 631,
+        "y": 625,
+        "width": 311,
+        "height": 311
+      },
+      "bounds": {
+        "x": 58,
+        "y": 10,
+        "width": 190,
+        "height": 291
+      },
+      "anchor": {
+        "x": 147.532,
+        "y": 299.938
+      },
+      "validation": {
+        "opaquePixels": 37413,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "83210d52afadb0b9"
+      },
+      "footContactRegion": {
+        "x": 104,
+        "y": 286,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 148.992,
+          "y": 64.456
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 153,
+        "y": 301
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hahoe",
+      "state": "sit",
+      "frame": 0,
+      "x": 942,
+      "y": 625,
+      "width": 312,
+      "height": 311,
+      "source": {
+        "x": 942,
+        "y": 625,
+        "width": 312,
+        "height": 311
+      },
+      "bounds": {
+        "x": 65,
+        "y": 36,
+        "width": 195,
+        "height": 264
+      },
+      "anchor": {
+        "x": 156,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 36709,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f6dfd15e4b789630"
+      },
+      "hip": {
+        "x": 175,
+        "y": 272
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat contact, excluding mask/hat/hair/club/frog."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 936,
+      "width": 315,
+      "height": 318,
+      "source": {
+        "x": 0,
+        "y": 936,
+        "width": 315,
+        "height": 318
+      },
+      "bounds": {
+        "x": 70,
+        "y": 11,
+        "width": 186,
+        "height": 291
+      },
+      "anchor": {
+        "x": 171.5,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 37541,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b2783aea14b48686"
+      },
+      "footContactRegion": {
+        "x": 104,
+        "y": 287,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 168.513,
+          "y": 65.835
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 171.5,
+        "y": 302
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 1,
+      "x": 315,
+      "y": 936,
+      "width": 309,
+      "height": 318,
+      "source": {
+        "x": 315,
+        "y": 936,
+        "width": 309,
+        "height": 318
+      },
+      "bounds": {
+        "x": 61,
+        "y": 12,
+        "width": 192,
+        "height": 288
+      },
+      "anchor": {
+        "x": 166.199,
+        "y": 302.916
+      },
+      "validation": {
+        "opaquePixels": 37601,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7971fd7d4354f252"
+      },
+      "footContactRegion": {
+        "x": 98,
+        "y": 285,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.212,
+          "y": 66.751
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 162,
+        "y": 300
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hahoe",
+      "state": "walk",
+      "frame": 2,
+      "x": 624,
+      "y": 936,
+      "width": 309,
+      "height": 318,
+      "source": {
+        "x": 624,
+        "y": 936,
+        "width": 309,
+        "height": 318
+      },
+      "bounds": {
+        "x": 58,
+        "y": 12,
+        "width": 193,
+        "height": 288
+      },
+      "anchor": {
+        "x": 162.154,
+        "y": 303.069
+      },
+      "validation": {
+        "opaquePixels": 37134,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "db9832dda5c03bf3"
+      },
+      "footContactRegion": {
+        "x": 94,
+        "y": 285,
+        "width": 111,
+        "height": 15
+      },
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 159.167,
+          "y": 66.904
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center calibrated from lowest5% owner foot pixels, then registered in x/y to the stable upper head-mass point across the three poses. Low foot fore/aft projection changes remain in artwork; floor props are excluded. Original PNG unchanged.",
+      "footContactAnchor": {
+        "x": 161.5,
+        "y": 300
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hahoe",
+      "state": "sit",
+      "frame": 0,
+      "x": 933,
+      "y": 936,
+      "width": 321,
+      "height": 318,
+      "source": {
+        "x": 933,
+        "y": 936,
+        "width": 321,
+        "height": 318
+      },
+      "bounds": {
+        "x": 59,
+        "y": 36,
+        "width": 197,
+        "height": 264
+      },
+      "anchor": {
+        "x": 165,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 37639,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c5b85bded5378147"
+      },
+      "hip": {
+        "x": 139,
+        "y": 271
+      },
+      "hipMeasurement": "Manually reviewed source-local pelvis/thigh seat contact, excluding mask/hat/hair/club/frog."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 868824,
+    "sourceGutters": {
+      "y": [
+        0,
+        313,
+        625,
+        936,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          321,
+          626,
+          933,
+          1254
+        ],
+        [
+          0,
+          315,
+          630,
+          945,
+          1254
+        ],
+        [
+          0,
+          323,
+          631,
+          942,
+          1254
+        ],
+        [
+          0,
+          315,
+          624,
+          933,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses viewed: asymmetric smiling brown Hahoe mask, gat, green hands, cream sleeves/blue cloud vest/plum sash and straw shoes retained; genuine rear hat/straps without front mask on back. Low steps and seated contacts reviewed, stable owner ground/body registration.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "ownerFootReview": {
+      "method": "Neutral owner shoe ground center from lowest5% shoe pixels in body-foot ROI, registered in x/y to upper head mass so torso does not follow prop bounds. Kongjwi frog region excluded including one-pixel skirt bridges. Foot fore/aft isometric projection is retained. No artwork altered.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.771,
+          "at83pxTileSoleProjectionRangePx": 0.846,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.186,
+          "at83pxTileSoleProjectionRangePx": 0.057,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.062,
+          "at83pxTileSoleProjectionRangePx": 0.324,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 3.069,
+          "at83pxTileSoleProjectionRangePx": 0.937,
+          "anchorXChanges": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatContactSheet": "zombie-seat-shuffle-batch8.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "하회탈 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "hahoe",
+    "originalFile": "exec-d17613e9-e9ef-4f06-b149-62dff29832c2.png",
+    "promptFile": "/assets/zombies/hahoe-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

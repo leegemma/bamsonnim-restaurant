@@ -1,0 +1,1184 @@
+{
+  "actorId": "hiker",
+  "key": "zombieHiker",
+  "name": "정상 찍은 등산객 · 네 방향 세 포즈 걷기·앉기",
+  "url": "/assets/zombies/hiker-broken-lens-v1.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Fixed 4×4 integer partitions; poses[].source is authoritative. No source pixels altered.",
+  "referenceHeight": 272.5,
+  "referenceHeightMethod": "Retain the existing canonical standing scale for this cosmetic edit. New walking bounds median is separately recorded in validation.measuredWalkingMedianHeight; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 48,
+        "y": 22,
+        "width": 219,
+        "height": 277
+      },
+      "anchor": {
+        "x": 163.5,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 42118,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 13,
+        "lowerBodyPixelFingerprint": "6a7ef11e6a845343059e7eaf8157f897942beffd9738874543a45ca1f0905a03"
+      },
+      "footContactAnchor": {
+        "x": 163.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 284,
+        "width": 127,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 169.304,
+          "y": 72.503
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 48,
+        "y": 22,
+        "width": 219,
+        "height": 278
+      },
+      "anchor": {
+        "x": 163.026,
+        "y": 294.065
+      },
+      "validation": {
+        "opaquePixels": 41344,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 45,
+        "lowerBodyPixelFingerprint": "7833e83875da7bc04bdd9eb2ab82b9af52ed2bc91b5d7e36de1f13960c8981a0"
+      },
+      "footContactAnchor": {
+        "x": 114.5,
+        "y": 300
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 290,
+        "width": 127,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 168.83,
+          "y": 72.568
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 49,
+        "y": 22,
+        "width": 222,
+        "height": 278
+      },
+      "anchor": {
+        "x": 163.622,
+        "y": 294.08
+      },
+      "validation": {
+        "opaquePixels": 41550,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 4,
+        "lowerBodyPixelFingerprint": "9671cf18d2a85ab146b7e5538b6fb8515fec599c25a08fe797e73a56c5a7b896"
+      },
+      "footContactAnchor": {
+        "x": 159.5,
+        "y": 300
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 290,
+        "width": 127,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 169.426,
+          "y": 72.583
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "hiker",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 42,
+        "y": 49,
+        "width": 224,
+        "height": 254
+      },
+      "anchor": {
+        "x": 168,
+        "y": 302
+      },
+      "hip": {
+        "x": 133,
+        "y": 258
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 41582,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 0,
+        "lowerBodyPixelFingerprint": "04656f560a5b7db21814d4897c58936e5907f5d62a32dc85d4e92deb264c063c"
+      },
+      "footContactAnchor": {
+        "x": 168,
+        "y": 302
+      },
+      "footContactRegion": {
+        "x": 102,
+        "y": 292,
+        "width": 127,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 133,
+          "y": 258
+        },
+        "oldShoeContact": {
+          "x": 168.5,
+          "y": 303
+        },
+        "newShoeContact": {
+          "x": 168,
+          "y": 302
+        },
+        "sourceDelta": {
+          "x": -0.5,
+          "y": -1
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 57,
+        "y": 21,
+        "width": 220,
+        "height": 275
+      },
+      "anchor": {
+        "x": 152,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 42124,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 14,
+        "lowerBodyPixelFingerprint": "a3077b8bb6cb79b78b11f3413eb3d6cf52cff90aeeaadbcec8a7ce951f0324b5"
+      },
+      "footContactAnchor": {
+        "x": 152,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 85,
+        "y": 282,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 148.781,
+          "y": 71.38
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 21,
+        "width": 218,
+        "height": 275
+      },
+      "anchor": {
+        "x": 149.722,
+        "y": 292.056
+      },
+      "validation": {
+        "opaquePixels": 42036,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 19,
+        "lowerBodyPixelFingerprint": "730c84a9faa283bca10e7b57336d42f87b93403d07fd80bc0b78e009547c200e"
+      },
+      "footContactAnchor": {
+        "x": 148,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 85,
+        "y": 285,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 146.503,
+          "y": 71.436
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 60,
+        "y": 21,
+        "width": 219,
+        "height": 275
+      },
+      "anchor": {
+        "x": 150.372,
+        "y": 292.239
+      },
+      "validation": {
+        "opaquePixels": 41597,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 0,
+        "lowerBodyPixelFingerprint": "1d0de99e187d471f9e568f1b59beb3b31dea353fdb6cb70a60fac303fd87e80d"
+      },
+      "footContactAnchor": {
+        "x": 160,
+        "y": 296
+      },
+      "footContactRegion": {
+        "x": 85,
+        "y": 286,
+        "width": 131,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 147.153,
+          "y": 71.619
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "hiker",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 51,
+        "y": 50,
+        "width": 229,
+        "height": 248
+      },
+      "anchor": {
+        "x": 144,
+        "y": 298
+      },
+      "hip": {
+        "x": 177,
+        "y": 255
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 41085,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 0,
+        "lowerBodyPixelFingerprint": "b180d746efd440180de1a24e41703c627cac54bc31fa0ecdf1f7ac8a9f5d3378"
+      },
+      "footContactAnchor": {
+        "x": 144,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 85,
+        "y": 288,
+        "width": 131,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 177,
+          "y": 255
+        },
+        "oldShoeContact": {
+          "x": 145,
+          "y": 299
+        },
+        "newShoeContact": {
+          "x": 144,
+          "y": 298
+        },
+        "sourceDelta": {
+          "x": -1,
+          "y": -1
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 60,
+        "y": 23,
+        "width": 214,
+        "height": 271
+      },
+      "anchor": {
+        "x": 166.5,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 38954,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 2,
+        "lowerBodyPixelFingerprint": "6d0932886361446335bc44aebe71da52172d670b333e486b0e41a0b683fff727"
+      },
+      "footContactAnchor": {
+        "x": 166.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 284,
+        "width": 128,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154.899,
+          "y": 72.234
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 60,
+        "y": 23,
+        "width": 213,
+        "height": 270
+      },
+      "anchor": {
+        "x": 162.371,
+        "y": 294.379
+      },
+      "validation": {
+        "opaquePixels": 38646,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 7,
+        "lowerBodyPixelFingerprint": "4368a3362ade0a692ec1b2c706e9576fcc8986acde9910c090dc97623eff7992"
+      },
+      "footContactAnchor": {
+        "x": 165.5,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 283,
+        "width": 128,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 150.77,
+          "y": 72.613
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 60,
+        "y": 23,
+        "width": 213,
+        "height": 276
+      },
+      "anchor": {
+        "x": 161.827,
+        "y": 294.44
+      },
+      "validation": {
+        "opaquePixels": 37489,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 7,
+        "lowerBodyPixelFingerprint": "82c76adb92c81d5ff3f26e0da92e6fa64b58a905c03dac6ffd32e18d19a8e8f8"
+      },
+      "footContactAnchor": {
+        "x": 159.5,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 289,
+        "width": 128,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 150.226,
+          "y": 72.674
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "hiker",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 56,
+        "y": 51,
+        "width": 220,
+        "height": 243
+      },
+      "anchor": {
+        "x": 158.5,
+        "y": 294
+      },
+      "hip": {
+        "x": 172,
+        "y": 258
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 38448,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 0,
+        "lowerBodyPixelFingerprint": "f924376a925d5dd981407973bd8b77a151152dfc57b80fb2f8293be5cd3f1984"
+      },
+      "footContactAnchor": {
+        "x": 158.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 284,
+        "width": 128,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 172,
+          "y": 258
+        },
+        "oldShoeContact": {
+          "x": 158.5,
+          "y": 293
+        },
+        "newShoeContact": {
+          "x": 158.5,
+          "y": 294
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": 1
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 48,
+        "y": 23,
+        "width": 214,
+        "height": 271
+      },
+      "anchor": {
+        "x": 154.5,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 39489,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 20,
+        "lowerBodyPixelFingerprint": "c228993974175d3d8d97bc151a7b8a48490d759fea934411ef979205cefea38b"
+      },
+      "footContactAnchor": {
+        "x": 154.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 284,
+        "width": 134,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 164.13,
+          "y": 72.454
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 49,
+        "y": 23,
+        "width": 212,
+        "height": 271
+      },
+      "anchor": {
+        "x": 154.476,
+        "y": 294.228
+      },
+      "validation": {
+        "opaquePixels": 38477,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 15,
+        "lowerBodyPixelFingerprint": "29397f47a026c42beb0c78216f4cb3ba0a3d8bc7b6c54b4c6e78fdada42e8b00"
+      },
+      "footContactAnchor": {
+        "x": 113.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 284,
+        "width": 134,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 164.106,
+          "y": 72.682
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hiker",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 49,
+        "y": 23,
+        "width": 214,
+        "height": 271
+      },
+      "anchor": {
+        "x": 153.687,
+        "y": 294.034
+      },
+      "validation": {
+        "opaquePixels": 37625,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 7,
+        "lowerBodyPixelFingerprint": "4b9eec3f0348698b0d5388bb552891e2c2881c2f73e05b81f6f0b43675e7003c"
+      },
+      "footContactAnchor": {
+        "x": 135.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 284,
+        "width": 134,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked black-boot regions; both trekking-pole shafts excluded, including the shaft crossing a boot.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.317,
+          "y": 72.488
+        },
+        "regionHeight": 87,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Edited source shoe contact measured with poles/hand props excluded; neutral shoe ground registered to upper head mass across the three retained shuffle poses."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "hiker",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 51,
+        "y": 50,
+        "width": 216,
+        "height": 243
+      },
+      "anchor": {
+        "x": 158.5,
+        "y": 293
+      },
+      "hip": {
+        "x": 138,
+        "y": 257
+      },
+      "hipMeasurement": "Retain original anatomically reviewed source-local posterior thigh support. Edited source has the same canvas/source partition and retained body placement; foot/leg mask translation and actual before/after four-chair contact visually verified.",
+      "validation": {
+        "opaquePixels": 38565,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 7,
+        "lowerBodyPixelFingerprint": "911f1deb8ac034ee57a14c62eb0918ecffcf443ab32175e26819c1cbb7df7fc0"
+      },
+      "footContactAnchor": {
+        "x": 158.5,
+        "y": 293
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 283,
+        "width": 134,
+        "height": 10
+      },
+      "hipEditMeasurement": {
+        "oldHip": {
+          "x": 138,
+          "y": 257
+        },
+        "oldShoeContact": {
+          "x": 158.5,
+          "y": 291
+        },
+        "newShoeContact": {
+          "x": 158.5,
+          "y": 293
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": 2
+        },
+        "hipAdjustmentApplied": false,
+        "reason": "Lowest-sole pixel extrema can change under outline repaint; pelvis geometry retained after direct body registration and chair review."
+      }
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "sourceSha256": "22f44cfcab1a4efeda977d1a27276b57e4121f6176d4ac97838c2e3870db6974",
+    "alphaThreshold": 80,
+    "transparentPixels": 825543,
+    "partialAlphaPixels": 746815,
+    "opaquePixels": 641129,
+    "footAnchorMethod": "Actual edited shoe regions measured with hiker poles and lateral hand props excluded; neutral walking shoe ground registered to upper head mass. Sitting hips retain prior anatomical points after body/boot mask and actual chair comparison.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "missingPoses": [],
+    "sourceGutters": {
+      "x": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ],
+      "y": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ]
+    },
+    "visualReview": "All sixteen views inspected. Same anatomical right lens (viewer-left in both SE/SW front rows) has broken glass remnants and a clearly visible white zombie eye with dark pupil in all eight front walking/sit drawings. Opposite lens remains intact. Rear rows retain actual back/temple silhouettes without invented visible eyes. Clothing, props, body scale and poses retained; source matte is clean.",
+    "ownerFootReview": {
+      "method": "Measure edited opaque shoe contact, excluding both trekking poles for hiker and lateral hand props for singer; register neutral shoe ground to upper head mass. PNG original pixels preserved.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 5.935,
+          "at83pxTileSoleProjectionRangePx": 1.934
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 3.761,
+          "at83pxTileSoleProjectionRangePx": 1.226
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 5.939,
+          "at83pxTileSoleProjectionRangePx": 1.936
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.228,
+          "at83pxTileSoleProjectionRangePx": 0.074
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatReview": "Original and edited four-direction production-chair composites directly reviewed by designer and root. All four source-local hip points retained; boot/body mask best translation is (0,0) in all four directions. Rear backrest occlusion and soles remain aligned.",
+    "measuredWalkingMedianHeight": 275,
+    "referenceHeightMethod": "Retain existing nominal standing scale for this identity; newly measured bounds and walking median are recorded. Source layout/size retained.",
+    "hipBodyRegistration": [
+      {
+        "dir": 0,
+        "method": "Neutral charcoal boot/leg mask with poles excluded",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.95866,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 133,
+          "y": 258
+        }
+      },
+      {
+        "dir": 1,
+        "method": "Neutral charcoal boot/leg mask with poles excluded",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.9615,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 177,
+          "y": 255
+        }
+      },
+      {
+        "dir": 2,
+        "method": "Neutral charcoal boot/leg mask with poles excluded",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.94187,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 172,
+          "y": 258
+        }
+      },
+      {
+        "dir": 3,
+        "method": "Neutral charcoal boot/leg mask with poles excluded",
+        "bestTranslation": {
+          "x": 0,
+          "y": 0
+        },
+        "jaccard": 0.94061,
+        "searchRangeSourcePx": 3,
+        "retainedHip": {
+          "x": 138,
+          "y": 257
+        }
+      }
+    ],
+    "seatContactSheet": "artifacts/broken-lens-review/hiker-chair-before-after.png",
+    "faceReviewEvidence": [
+      "artifacts/broken-lens-review/hiker-face-row0.png",
+      "artifacts/broken-lens-review/hiker-face-row1.png"
+    ],
+    "matteReviewEvidence": "artifacts/broken-lens-review/hiker-matte.png",
+    "sourcePNGUnchanged": true
+  },
+  "promptFile": "/assets/zombies/hiker-broken-lens-v1.prompt.txt",
+  "generation": {
+    "tool": "image_gen",
+    "originalFile": "exec-6f5eeb75-e2d3-45e8-be0d-bc7e02a4814e.png",
+    "selectedFile": "public/assets/zombies/hiker-broken-lens-v1.png",
+    "promptFile": "public/assets/zombies/hiker-broken-lens-v1.prompt.txt",
+    "sourceSha256": "22f44cfcab1a4efeda977d1a27276b57e4121f6176d4ac97838c2e3870db6974",
+    "inputOriginalFile": "public/assets/zombies/hiker-directional-outfit-v2.png",
+    "inputOriginalSha256": "233c011315e34e5a40fabfa6e30a3f2ab324a95e83fe4807dc8e3aa6265696c3"
+  },
+  "brokenLens": {
+    "anatomicalSide": "right",
+    "frontViewerSide": "left",
+    "frontDirections": [
+      "se",
+      "sw"
+    ],
+    "rearPolicy": "Keep original rear head/temple view; hidden eye remains hidden.",
+    "otherLens": "intact red-tinted"
+  }
+}

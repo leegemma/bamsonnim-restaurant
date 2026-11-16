@@ -1,0 +1,780 @@
+{
+  "actorId": "office",
+  "key": "zombieOffice",
+  "url": "/assets/zombies/office-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 278,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 74,
+        "y": 17,
+        "width": 167,
+        "height": 278
+      },
+      "anchor": {
+        "x": 158,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 35334,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b55e308e9a75cb26"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 74,
+        "y": 17,
+        "width": 167,
+        "height": 279
+      },
+      "anchor": {
+        "x": 158,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 34893,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ceaba64a49acef1b"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 2,
+      "x": 628,
+      "y": 0,
+      "width": 312,
+      "height": 313,
+      "source": {
+        "x": 628,
+        "y": 0,
+        "width": 312,
+        "height": 313
+      },
+      "bounds": {
+        "x": 74,
+        "y": 17,
+        "width": 166,
+        "height": 279
+      },
+      "anchor": {
+        "x": 158,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 34630,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fcc3566c35f72c2b"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "office",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 0,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 940,
+        "y": 0,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 74,
+        "y": 28,
+        "width": 180,
+        "height": 269
+      },
+      "anchor": {
+        "x": 166,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 35658,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6c32cbf31511e066"
+      },
+      "hip": {
+        "x": 128,
+        "y": 258
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 313,
+      "width": 317,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 313,
+        "width": 317,
+        "height": 315
+      },
+      "bounds": {
+        "x": 75,
+        "y": 17,
+        "width": 172,
+        "height": 280
+      },
+      "anchor": {
+        "x": 162,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 36476,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "65a1fa4d9b267d5f"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 1,
+      "x": 317,
+      "y": 313,
+      "width": 314,
+      "height": 315,
+      "source": {
+        "x": 317,
+        "y": 313,
+        "width": 314,
+        "height": 315
+      },
+      "bounds": {
+        "x": 72,
+        "y": 17,
+        "width": 172,
+        "height": 278
+      },
+      "anchor": {
+        "x": 162,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 35894,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "cb48dd310df7b44d"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 313,
+      "width": 315,
+      "height": 315,
+      "source": {
+        "x": 631,
+        "y": 313,
+        "width": 315,
+        "height": 315
+      },
+      "bounds": {
+        "x": 71,
+        "y": 17,
+        "width": 172,
+        "height": 281
+      },
+      "anchor": {
+        "x": 167,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 35352,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "635173b692ea043f"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "office",
+      "state": "sit",
+      "frame": 0,
+      "x": 946,
+      "y": 313,
+      "width": 308,
+      "height": 315,
+      "source": {
+        "x": 946,
+        "y": 313,
+        "width": 308,
+        "height": 315
+      },
+      "bounds": {
+        "x": 73,
+        "y": 33,
+        "width": 174,
+        "height": 267
+      },
+      "anchor": {
+        "x": 163,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 35230,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "10164c25f77687de"
+      },
+      "hip": {
+        "x": 188,
+        "y": 258
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 628,
+      "width": 313,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 628,
+        "width": 313,
+        "height": 312
+      },
+      "bounds": {
+        "x": 73,
+        "y": 16,
+        "width": 166,
+        "height": 277
+      },
+      "anchor": {
+        "x": 146,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 33912,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "10e05b154f9f140b"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 1,
+      "x": 313,
+      "y": 628,
+      "width": 311,
+      "height": 312,
+      "source": {
+        "x": 313,
+        "y": 628,
+        "width": 311,
+        "height": 312
+      },
+      "bounds": {
+        "x": 76,
+        "y": 16,
+        "width": 163,
+        "height": 278
+      },
+      "anchor": {
+        "x": 138,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 32731,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7fe5e7ed617b5d9d"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 2,
+      "x": 624,
+      "y": 628,
+      "width": 313,
+      "height": 312,
+      "source": {
+        "x": 624,
+        "y": 628,
+        "width": 313,
+        "height": 312
+      },
+      "bounds": {
+        "x": 74,
+        "y": 17,
+        "width": 168,
+        "height": 273
+      },
+      "anchor": {
+        "x": 146,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 33244,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "450590352754d7ee"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "office",
+      "state": "sit",
+      "frame": 0,
+      "x": 937,
+      "y": 628,
+      "width": 317,
+      "height": 312,
+      "source": {
+        "x": 937,
+        "y": 628,
+        "width": 317,
+        "height": 312
+      },
+      "bounds": {
+        "x": 72,
+        "y": 32,
+        "width": 170,
+        "height": 259
+      },
+      "anchor": {
+        "x": 154,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 32724,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fd1f0654cccb4c63"
+      },
+      "hip": {
+        "x": 180,
+        "y": 258
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 940,
+      "width": 316,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 940,
+        "width": 316,
+        "height": 314
+      },
+      "bounds": {
+        "x": 77,
+        "y": 19,
+        "width": 165,
+        "height": 278
+      },
+      "anchor": {
+        "x": 164,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 34178,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "43ce31bfaec48182"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 1,
+      "x": 316,
+      "y": 940,
+      "width": 315,
+      "height": 314,
+      "source": {
+        "x": 316,
+        "y": 940,
+        "width": 315,
+        "height": 314
+      },
+      "bounds": {
+        "x": 75,
+        "y": 20,
+        "width": 167,
+        "height": 276
+      },
+      "anchor": {
+        "x": 162,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 33345,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3f64b774dd9d9a54"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "office",
+      "state": "walk",
+      "frame": 2,
+      "x": 631,
+      "y": 940,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 631,
+        "y": 940,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 74,
+        "y": 20,
+        "width": 167,
+        "height": 278
+      },
+      "anchor": {
+        "x": 163,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 33023,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "044d1e093b5581fc"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "office",
+      "state": "sit",
+      "frame": 0,
+      "x": 944,
+      "y": 940,
+      "width": 310,
+      "height": 314,
+      "source": {
+        "x": 944,
+        "y": 940,
+        "width": 310,
+        "height": 314
+      },
+      "bounds": {
+        "x": 74,
+        "y": 33,
+        "width": 178,
+        "height": 263
+      },
+      "anchor": {
+        "x": 166,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 33887,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "03f65b26ca41356e"
+      },
+      "hip": {
+        "x": 151,
+        "y": 259
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 962972,
+    "sourceGutters": {
+      "y": [
+        0,
+        313,
+        628,
+        940,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          314,
+          628,
+          940,
+          1254
+        ],
+        [
+          0,
+          317,
+          631,
+          946,
+          1254
+        ],
+        [
+          0,
+          313,
+          624,
+          937,
+          1254
+        ],
+        [
+          0,
+          316,
+          631,
+          944,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "Viewed all16 poses: messy brown hair, white rolled sleeves, red tie, ID badge, brown briefcase; true back views and three low-foot shuffle phases. Head/body scale and four seated buttock contacts compared with base on same chair.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch2.png",
+    "seatReview": "Re-reviewed against actual quarterFurniture chair geometry and rear foreground masks in production renderer. Posterior thigh support points adjusted from source anatomy, with before/after four-direction composites and four-seat table scenes. Original source PNG and uniform aspect unchanged.",
+    "hipCorrectionReview": {
+      "reason": "Some prior hip anchors lay near shoe tops or outer clothing edge, placing the body too high or too far forward on the cushion.",
+      "poses": [
+        {
+          "dir": 0,
+          "before": {
+            "x": 113,
+            "y": 268
+          },
+          "after": {
+            "x": 128,
+            "y": 258
+          },
+          "sourceDelta": {
+            "x": 15,
+            "y": -10
+          }
+        },
+        {
+          "dir": 1,
+          "before": {
+            "x": 192,
+            "y": 269
+          },
+          "after": {
+            "x": 188,
+            "y": 258
+          },
+          "sourceDelta": {
+            "x": -4,
+            "y": -11
+          }
+        },
+        {
+          "dir": 2,
+          "before": {
+            "x": 175,
+            "y": 268
+          },
+          "after": {
+            "x": 180,
+            "y": 258
+          },
+          "sourceDelta": {
+            "x": 5,
+            "y": -10
+          }
+        },
+        {
+          "dir": 3,
+          "before": {
+            "x": 134,
+            "y": 270
+          },
+          "after": {
+            "x": 151,
+            "y": 259
+          },
+          "sourceDelta": {
+            "x": 17,
+            "y": -11
+          }
+        }
+      ],
+      "evidence": "artifacts/designer-live-seating-review/hip-corrections/office-before-after.png",
+      "sourcePNGUnchanged": true
+    }
+  },
+  "name": "야근 직장인 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "office",
+    "originalFile": "exec-8ab04e5b-7614-40a0-96c8-adc836ba18c4.png",
+    "promptFile": "/assets/zombies/office-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

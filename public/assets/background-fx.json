@@ -1,0 +1,181 @@
+{
+  "status": "verified",
+  "version": 1,
+  "generatedWith": "built-in image_gen",
+  "base": {
+    "url": "/assets/night-ruins-right-fx-base.png",
+    "width": 1670,
+    "height": 941,
+    "promptFile": "/assets/night-ruins-right-fx-base.prompt.txt",
+    "originalUrl": "/assets/night-ruins-quarterview.png",
+    "originalWidth": 1671,
+    "originalHeight": 941,
+    "unchangedGeneratedOutput": true
+  },
+  "coordinateSystem": {
+    "placement": "actual base-image pixels",
+    "source": "sheet pixels",
+    "poseAnchor": "pixels relative to the source rectangle; identical in both animation frames",
+    "normalized": "relative to actual 1670x941 base"
+  },
+  "assets": [
+    {
+      "key": "backgroundFire",
+      "name": "이글거리는 불씨",
+      "url": "/assets/background-fx-fire.png",
+      "width": 1774,
+      "height": 887,
+      "type": "background-fx-atlas",
+      "cols": 2,
+      "rows": 1,
+      "trim": false,
+      "promptFile": "/assets/background-fx-fire.prompt.txt",
+      "poses": [
+        {
+          "index": 0,
+          "state": "flicker",
+          "frame": 0,
+          "source": {
+            "x": 320,
+            "y": 336,
+            "width": 248,
+            "height": 352
+          },
+          "anchor": {
+            "x": 124,
+            "y": 343
+          },
+          "anchorNormalized": {
+            "x": 0.5,
+            "y": 0.9744318181818182
+          }
+        },
+        {
+          "index": 1,
+          "state": "flicker",
+          "frame": 1,
+          "source": {
+            "x": 1207,
+            "y": 336,
+            "width": 248,
+            "height": 352
+          },
+          "anchor": {
+            "x": 124,
+            "y": 343
+          },
+          "anchorNormalized": {
+            "x": 0.5,
+            "y": 0.9744318181818182
+          }
+        }
+      ],
+      "timingRecommendation": {
+        "frameDurationMs": 180,
+        "loop": true
+      }
+    },
+    {
+      "key": "backgroundCorpse",
+      "name": "바들바들 떠는 시체",
+      "url": "/assets/background-fx-corpse.png",
+      "width": 1774,
+      "height": 887,
+      "type": "background-fx-atlas",
+      "cols": 2,
+      "rows": 1,
+      "trim": false,
+      "promptFile": "/assets/background-fx-corpse.prompt.txt",
+      "poses": [
+        {
+          "index": 0,
+          "state": "twitch",
+          "frame": 0,
+          "source": {
+            "x": 136,
+            "y": 475,
+            "width": 608,
+            "height": 296
+          },
+          "anchor": {
+            "x": 304,
+            "y": 286
+          },
+          "anchorNormalized": {
+            "x": 0.5,
+            "y": 0.9662162162162162
+          }
+        },
+        {
+          "index": 1,
+          "state": "twitch",
+          "frame": 1,
+          "source": {
+            "x": 1023,
+            "y": 475,
+            "width": 608,
+            "height": 296
+          },
+          "anchor": {
+            "x": 304,
+            "y": 286
+          },
+          "anchorNormalized": {
+            "x": 0.5,
+            "y": 0.9662162162162162
+          }
+        }
+      ],
+      "timingRecommendation": {
+        "restMs": 3400,
+        "burstMs": 540,
+        "frameDurationMs": 90,
+        "restFrame": 0
+      }
+    }
+  ],
+  "placements": [
+    {
+      "key": "backgroundFire",
+      "kind": "fire",
+      "x": 1508,
+      "y": 495,
+      "width": 42,
+      "groundAnchor": {
+        "x": 1508,
+        "y": 495
+      },
+      "normalized": {
+        "x": 0.9029940119760479,
+        "y": 0.5260361317747078
+      },
+      "note": "Existing flame beside the fallen right-side lantern. Base contact remains fixed; tongues and sparks change."
+    },
+    {
+      "key": "backgroundCorpse",
+      "kind": "corpse",
+      "x": 1500,
+      "y": 378,
+      "width": 108,
+      "groundAnchor": {
+        "x": 1500,
+        "y": 378
+      },
+      "normalized": {
+        "x": 0.8982035928143712,
+        "y": 0.40170031880977686
+      },
+      "note": "Existing right-side prone body, moved about 20 original pixels left to expose the face on narrow landscape viewports. Head and torso remain fixed; hand and foot twitch."
+    }
+  ],
+  "reviewFile": "/artifacts/background-fx-review/review.json",
+  "runtimeTiming": {
+    "fireFps": 4,
+    "corpsePeriodSeconds": 7,
+    "corpseTwitchFrom": 5.9,
+    "corpseTwitchUntil": 6.6,
+    "corpseTwitchFps": 8,
+    "reducedMotion": "frame0",
+    "clock": "simulation time"
+  }
+}

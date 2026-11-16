@@ -1,0 +1,189 @@
+/* Use the available mobile viewport for content rather than oversized headings. */
+dialog.orientation-note:not([open]) { display: none; }
+dialog.orientation-note[open] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 24px;
+  border: 0;
+  box-shadow: none;
+  background: #112d2b;
+  color: #d5dfb5;
+  text-align: center;
+  gap: 16px;
+}
+.orientation-note h1 { margin: 0; font-size: 24px; line-height: 1.4; }
+.orientation-note p { margin: 0; font-size: 14px; line-height: 1.7; color: #c5d3ae; }
+@media (max-height: 500px), (max-width: 700px) {
+  #app { min-height: 0; }
+  .stage { min-height: 0; }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire)[open] {
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 16px);
+    max-width: calc(100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px) - 16px);
+    max-height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 16px);
+    overflow: hidden;
+  }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire) .dialog-heading {
+    flex-shrink: 0;
+    min-height: 0;
+    padding: 7px 48px 7px 12px;
+  }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire) .dialog-overline { display: none; }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire) .dialog-heading h1 {
+    font-size: 19px;
+    line-height: 1.25;
+    margin: 0;
+    letter-spacing: 0;
+  }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire) .dialog-heading p {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 3px;
+  }
+  dialog:is(.settings, .album, .quest, .events, .cookbook, .hire) .close-button {
+    top: 7px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  dialog:is(.settings, .album, .quest, .events) #dialog-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: auto;
+  }
+
+  .settings-content { padding: 0 12px 12px; }
+  .settings :is(.range-row, .settings-row) {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px 16px;
+    padding: 9px 0;
+    font-size: 12px;
+  }
+  .settings :is(.range-row, .settings-row) > span { min-width: 0; }
+  .settings :is(.range-row, .settings-row) small {
+    font-size: 11px;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .settings .range-row input { width: clamp(96px, 25vw, 210px); flex-shrink: 0; }
+  .settings .settings-row > :is(button, .button-row) { flex-shrink: 0; }
+  .settings .button { min-height: 34px; padding: 5px 8px; }
+  .settings .fine-print { margin-block: 8px; font-size: 11px; line-height: 1.45; }
+
+  dialog.album[open], dialog.cookbook[open] {
+    height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 16px);
+  }
+  dialog.album #dialog-content { display: flex; overflow: hidden; }
+  .album-layout {
+    flex: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(170px, 27%);
+    min-height: 0;
+    min-width: 0;
+    gap: 12px;
+    padding: 8px 12px 12px;
+  }
+  .album-layout > div { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .album .tabs { flex-shrink: 0; gap: 12px; margin-bottom: 6px; }
+  .album .tabs > button { min-height: 32px; padding: 4px 0; font-size: 12px; }
+  .album-grid {
+    flex: 1;
+    min-height: 0;
+    max-height: none;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-content: start;
+    gap: 6px;
+    overflow-y: auto;
+    touch-action: pan-y;
+    scrollbar-width: auto;
+  }
+  .album .guest-card { min-height: 78px; padding: 4px 2px; }
+  .album .guest-card .sprite { width: 48px; height: 48px; }
+  .album .guest-card > b { font-size: 11px; line-height: 1.35; white-space: normal; overflow-wrap: anywhere; }
+  .album .guest-number { font-size: 10px; }
+  .album .guest-detail {
+    min-height: 0;
+    min-width: 0;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0 0 0 12px;
+    border-top: 0;
+    border-left: 1px solid #cbbe99;
+    scrollbar-width: auto;
+  }
+  .album .guest-detail > * { flex-shrink: 0; }
+  .album .guest-detail > .sprite { width: 80px; height: 80px; flex-shrink: 0; margin-bottom: 4px; }
+  .album .guest-detail h2 { font-size: 18px; margin: 4px 0; }
+  .album .guest-detail > p { min-height: 0; margin: 4px 0 8px; font-size: 12px; line-height: 1.45; }
+  .album .guest-condition { padding: 8px; }
+  .album .favorite-food { margin-block: 8px; }
+  .album .guest-visits { margin-top: 8px; }
+
+  .quest-dialog { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 12px; text-align: start; }
+  .mayor-illustration .sprite { width: 96px; height: 96px; }
+  .quest-dialog h2 { font-size: 20px; line-height: 1.3; margin: 4px 0 6px; }
+  .quest-dialog p { margin: 6px 0; line-height: 1.45; }
+  .quest-dialog .reward { margin: 8px 0; }
+  .quest-dialog .reward b { justify-content: flex-start; }
+  .quest-dialog .button { min-height: 34px; padding: 5px 10px; }
+
+  .events .event-hero { margin: 12px; padding: 12px 16px; }
+  .events .event-hero h2 { font-size: 23px; line-height: 1.3; margin: 6px 0; }
+  .events .event-hero h2 br { display: none; }
+  .events .event-hero p { margin: 6px 0 0; font-size: 12px; line-height: 1.4; }
+  .events .event-snow svg { width: 80px; height: 80px; }
+  .events .event-items { gap: 24px; padding-inline: 12px; }
+  .events .event-items .sprite { width: 64px; height: 64px; }
+  .events .event-items b { font-size: 14px; }
+  .events .event-rules { margin: 12px; font-size: 12px; line-height: 1.5; }
+  .events #dialog-content > .button-row { margin: 12px; }
+
+  dialog.cookbook #dialog-content { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
+  .cookbook .book-toolbar { padding: 4px 12px; flex-shrink: 0; }
+  .cookbook .book-shelf-grid { flex: 1; min-height: 0; align-content: center; gap: 6px; padding: 8px 12px; }
+  .cookbook .book-cover-card { gap: 4px; padding: 4px 2px; }
+  .cookbook .book-cover-image { width: auto; height: clamp(54px, calc(100dvh - 210px), 132px); aspect-ratio: 3 / 4; max-width: 100%; }
+  .cookbook .book-spread { flex: 1; min-height: 0; overflow-y: auto; }
+  .cookbook .book-footer { flex-shrink: 0; min-height: 36px; padding: 3px 10px; gap: 6px; }
+  .cookbook .book-footer small { margin-inline-start: 4px; }
+}
+
+@media (orientation: landscape) and (max-width: 640px) and (max-height: 500px) {
+  .album-layout { grid-template-columns: minmax(0, 1fr) 160px; gap: 8px; }
+  .album-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .album .guest-detail { padding-left: 8px; }
+}
+
+@media (orientation: portrait) and (max-width: 700px) {
+  .album-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 8px; }
+  .album-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .album .guest-detail { max-height: 34dvh; border-left: 0; border-top: 1px solid #cbbe99; padding: 8px 0 0; }
+  .album .guest-detail > .sprite { width: 64px; height: 64px; }
+  .settings .settings-row { flex-wrap: wrap; }
+  .settings .settings-row > span { flex: 1 1 140px; }
+  .events .event-items { gap: 16px; flex-wrap: wrap; }
+  .cookbook .book-shelf-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; }
+  .cookbook .book-cover-image { width: 84px; height: 112px; }
+  .cookbook .book-spread { display: block; }
+  .cookbook .recipe-page { border-bottom: 2px solid #ad986a; }
+  .cookbook .book-footer small { display: none; }
+}
+
+/* The removed scene status line frees a little room above both HUD rails. */
+.left-rail, .right-rail { transform: translateY(-20px); }
