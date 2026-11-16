@@ -11,13 +11,15 @@ import {backgroundFrame,backgroundFxGeometry} from './background-fx.js';
 import {createCamera,cameraTransform,sceneToScreen,screenToScene,clientToScreen,clampCamera,zoomCameraAt,resizeCamera,visibleSceneRect,backgroundCopies} from './camera.js';
 import {bindCameraGestures} from './camera-gestures.js';
 import {furnitureArt,placedFurniture} from './furniture-placement.js';
+import {pickHit} from './hit-testing.js';
 import {ASSET_MANIFEST,characterFrame,directionalCharacter,eatingCharacter,foodFrame} from './assets.js';
 
 export class RestaurantView{
   constructor(canvas,{onSelect,onTile,onHover,onCameraChange}){
     this.canvas=canvas;this.ctx=canvas.getContext('2d');this.images={};this.sprites={};this.hits=[];this.onSelect=onSelect;this.onTile=onTile;this.onHover=onHover;this.hover=null;this.width=0;this.height=0;this.walkingStates=new WeakMap();this.paymentEffects=[];this.motionPreference=matchMedia('(prefers-reduced-motion: reduce)');
     this.camera=createCamera();this.onCameraChange=onCameraChange;
-    this.gestures=bindCameraGestures(canvas,{toScreen:e=>this.screenPoint(e),getCamera:()=>this.camera,getViewport:()=>this.viewport(),getBounds:()=>this.cameraBounds,setCamera:value=>this.commitCamera(value),onTap:p=>this.tapAt(this.screenToScene(p)),onHover:p=>{if(!this.origin)return;const point=this.screenToScene(p);this.hover=this.grid(point.x,point.y);this.onHover?.(this.hover);canvas.style.cursor=this.edit?'crosshair':this.hits.some(h=>point.x>=h.x&&point.x<=h.x+h.w&&point.y>=h.y&&point.y<=h.y+h.h)?'pointer':'default';},onLeave:()=>{this.hover=null;},onGestureChange:active=>{this.hover=null;canvas.style.cursor=active?'grabbing':this.edit?'crosshair':'default';}});
+    this.hitMasks=new WeakMap();
+    this.gestures=bindCameraGestures(canvas,{toScreen:e=>this.screenPoint(e),getCamera:()=>this.camera,getViewport:()=>this.viewport(),getBounds:()=>this.cameraBounds,setCamera:value=>this.commitCamera(value),onTap:p=>this.tapAt(this.screenToScene(p)),onHover:p=>{if(!this.origin)return;const point=this.screenToScene(p);this.hover=this.grid(point.x,point.y);this.onHover?.(this.hover);canvas.style.cursor=this.edit?'crosshair':pickHit(this.hits,point)?'pointer':'default';},onLeave:()=>{this.hover=null;},onGestureChange:active=>{this.hover=null;canvas.style.cursor=active?'grabbing':this.edit?'crosshair':'default';}});
     this.resize=new ResizeObserver(()=>this.measure());this.resize.observe(canvas);
   }
   async load(){
@@ -77,7 +79,13 @@ export class RestaurantView{
   commitCamera(value){const next=clampCamera(value,this.viewport(),this.cameraBounds),old=this.camera||createCamera(),changed=Object.keys(next).some(k=>Math.abs(next[k]-old[k])>1e-8);this.camera??=createCamera();Object.assign(this.camera,next);if(changed){this.hover=null;this.onCameraChange?.({...this.camera});}}
   resetCamera(){if(this.gestures?.input.active)this.gestures.cancel();this.commitCamera(createCamera());}
   zoomCamera(factor,anchor){this.commitCamera(zoomCameraAt(this.camera,factor,anchor,this.viewport(),this.cameraBounds));}
-  tapAt(p){if(!this.origin||this.gestures?.input.active)return;if(this.edit?.ghost){this.onTile?.(this.grid(p.x,p.y));return;}const hit=[...this.hits].reverse().find(h=>p.x>=h.x&&p.x<=h.x+h.w&&p.y>=h.y&&p.y<=h.y+h.h);if(hit)this.onSelect?.(hit);else if(this.edit)this.onTile?.(this.grid(p.x,p.y));}
+  tapAt(p){if(!this.origin||this.gestures?.input.active)return;if(this.edit?.ghost){this.onTile?.(this.grid(p.x,p.y));return;}const hit=pickHit(this.hits,p);if(hit)this.onSelect?.(hit);else if(this.edit)this.onTile?.(this.grid(p.x,p.y));}
+  hitMask(image){
+    if(!image?.getContext)return null;
+    let mask=this.hitMasks.get(image);
+    if(!mask){const {width,height}=image,pixels=image.getContext('2d',{willReadFrequently:true}).getImageData(0,0,width,height).data,alpha=new Uint8Array(width*height);for(let i=0;i<alpha.length;i++)alpha[i]=pixels[i*4+3];mask={width,height,alpha};this.hitMasks.set(image,mask);}
+    return mask;
+  }
   world(x,y){return{x:this.origin.x+(x-y)*this.tile/2,y:this.origin.y+(x+y)*this.tile/4};}
   grid(x,y){const a=(x-this.origin.x)/(this.tile/2),b=(y-this.origin.y)/(this.tile/4);return{x:Math.floor((a+b)/2+.5),y:Math.floor((b-a)/2+.5)};}
   polygon(points,fill,stroke=null,line=1){const c=this.ctx;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}}
@@ -159,8 +167,8 @@ export class RestaurantView{
     if(edit)for(let x=0;x<n;x++)for(let y=0;y<n;y++){const p=[this.world(x-.5,y-.5),this.world(x+.5,y-.5),this.world(x+.5,y+.5),this.world(x-.5,y+.5)];this.polygon(p,'#c3d58b08','#e3e2a33b');}
     const entities=s.objects.map(o=>({kind:'object',value:o,depth:o.x+o.y+.1}));
     for(const seat of seats(s))if(seat.chair.dirty)entities.push({kind:'empty-dish',value:seat,depth:seat.table.x+seat.table.y+.2});
-    for(const w of s.waiters)entities.push({kind:'waiter',value:w,depth:w.x+w.y+.3});
-    for(const z of s.customers){entities.push({kind:'customer',value:z,depth:z.x+z.y+.3});if(z.phase==='eating'){const seat=seats(s).find(item=>item.uid===z.seat);if(seat?.table)entities.push({kind:'meal',value:z,depth:seat.table.x+seat.table.y+.2});}}
+    for(const w of edit?[]:s.waiters)entities.push({kind:'waiter',value:w,depth:w.x+w.y+.3});
+    for(const z of edit?[]:s.customers){entities.push({kind:'customer',value:z,depth:z.x+z.y+.3});if(z.phase==='eating'){const seat=seats(s).find(item=>item.uid===z.seat);if(seat?.table)entities.push({kind:'meal',value:z,depth:seat.table.x+seat.table.y+.2});}}
     entities.sort((a,b)=>a.depth-b.depth);
     this.guestLabels=[];this.labelRects=[];
     for(const e of entities){if(e.kind==='object')this.drawObject(s,e.value,clock,edit);else if(e.kind==='meal')this.drawMeal(s,e.value);else if(e.kind==='empty-dish')this.drawEmptyDish(e.value);else this.drawPerson(s,e.value,e.kind==='waiter',clock);}
@@ -172,11 +180,11 @@ export class RestaurantView{
         const {o,status,text,x,y,width}=control,options=status==='cooking'?{background:'#6b4d33',border:'#d6ae66'}:status==='done'?{background:'#c2cf8b',color:'#273d2b',border:'#f5ecc0'}:status==='spoiled'?{background:'#704a4a',border:'#d58e75'}:{};
         this.label(text,x,y,{small:true,width,...options});
         if(status==='cooking'){const r=recipe(o.cook.foodId),progress=Math.max(0,Math.min(1,1-(o.cook.readyAt-s.time)/r.duration)),barWidth=width-10;c.fillStyle='#342b24';c.fillRect(x-barWidth/2,y+4,barWidth,3);c.fillStyle='#e4b76b';c.fillRect(x-barWidth/2,y+4,barWidth*progress,3);}
-        this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-24,w:width,h:32});
+        this.hits.push({kind:'stove',uid:o.uid,x:Math.round(x-width/2),y:Math.round(y-24),w:width+3,h:27});
       }
       for(const o of s.objects)if(furniture(o.type)?.category==='server'&&(o.stock>0||o.reservedFood)){const carrying=s.waiters.some(w=>w.task?.kind==='serve'&&w.task.server===o.uid&&w.task.picked),food=this.serverFoodLayout(o),labelY=o.stock>0?food.y-food.height-8:food.surface.y-this.tile*.14;this.label(o.stock>0?`${Math.ceil(o.stock)}개`:carrying?'서빙 중':'운반 예약',food.x,labelY,{small:true,background:'#eee0ba',color:'#50452e',border:'#9d8555'});}
     }
-    if(edit?.ghost){const g=edit.ghost,t={x:g.x??3,y:g.y??3},error=placementProblem(s,g.type,t.x,t.y,g.dir,g.existing),p=this.world(t.x,t.y);this.polygon([this.world(t.x-.5,t.y-.5),this.world(t.x+.5,t.y-.5),this.world(t.x+.5,t.y+.5),this.world(t.x-.5,t.y+.5)],error?'#d97e6c88':'#bacb8799',error?'#fa9789':'#deefba',2);this.drawObject(s,{type:g.type,x:t.x,y:t.y,dir:g.dir,uid:'ghost'},clock,{ghost:true});}
+    if(edit?.ghost){const g=edit.ghost,t={x:g.x??3,y:g.y??3},error=placementProblem(s,g.type,t.x,t.y,g.dir,g.existing,{ignoreStaff:true}),p=this.world(t.x,t.y);this.polygon([this.world(t.x-.5,t.y-.5),this.world(t.x+.5,t.y-.5),this.world(t.x+.5,t.y+.5),this.world(t.x-.5,t.y+.5)],error?'#d97e6c88':'#bacb8799',error?'#fa9789':'#deefba',2);this.drawObject(s,{type:g.type,x:t.x,y:t.y,dir:g.dir,uid:'ghost'},clock,{ghost:true});}
     const door=this.world(0,n-.5);if(!edit){c.fillStyle='#ded1a0';c.font='12px NeoDunggeunmo,monospace';c.textAlign='center';c.textBaseline='alphabetic';c.fillText('어서 오세요',door.x-4,door.y+34);}
     for(let i=0;i<16;i++){const x=(Math.sin(i*77.1)*.5+.5)*W,y=(Math.cos(i*31.4)*.5+.5)*H;const a=(Math.sin(clock*1.5+i*2)+1)/2;c.fillStyle=`rgba(226,220,143,${a*.6})`;c.fillRect(Math.round(x+Math.sin(clock*.4+i)*12),Math.round(y+Math.cos(clock*.3+i)*8),2,2);}
     if(s.feverUntil>s.time){c.save();c.setTransform(dpr,0,0,dpr,0,0);c.strokeStyle=`rgba(242,202,103,${.3+Math.sin(clock*7)*.2})`;c.lineWidth=5;c.strokeRect(3,3,W-6,H-6);c.restore();}
@@ -218,7 +226,8 @@ export class RestaurantView{
     if(o.type==='poster')return;
     if(f.category==='server'&&o.stock>0){const food=this.serverFoodLayout(o);this.sprite(food.key,food.index,food.x,food.y,food.width,food.height);}
     if(f.category==='stove'&&o.cook){const status=stoveStatus(s,o);if(status!=='cooking')this.drawFoodOnSurface(o.cook.foodId,placed?.surface?.x??p.x,placed?.surface?.y??p.y-t*.48,t*.44,{filter:status==='spoiled'?'hue-rotate(100deg) saturate(.45)':''});else{const c=this.ctx;c.fillStyle='#f3ebc488';for(let i=0;i<3;i++){const phase=(clock*.6+i*.3)%1;c.fillRect(p.x-13+i*12+Math.sin(clock*2+i)*3,p.y-t*.72-phase*20,4,6);}}}
-    this.hits.push({kind:'object',uid:o.uid,x:(placed?.x??p.x-w/2)+w*.04,y:placed?.y??p.y-h+t*.12,w:w*.92,h});
+    const hitKey=placed?.meta.key||(isometricImage?isometricKey:'furniture'),hitIndex=placed?.meta.index??(isometricImage?0:index),hitImage=this.sprites[hitKey]?.[hitIndex];
+    this.hits.push({kind:'object',uid:o.uid,x:placed?.x??p.x-w/2,y:placed?.y??p.y+t*.15-h,w,h,flip:placed?.flip??(!!isometricImage&&o.dir%2===1),mask:this.hitMask(hitImage)});
   }
   drawPerson(s,a,waiter,clock,active=this.animating!==false){
     const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(a.zombieId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
@@ -259,7 +268,7 @@ export class RestaurantView{
     if(a.red)this.label('!',p.x,p.y-h-1,{small:true,background:'#b65d4f',border:'#efbd82'});
     else if(waiter&&a.infectedUntil>s.time)this.label('치료',p.x,p.y-h,{small:true,background:'#8d5f66'});
     else if(!waiter){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={small:true,...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.label(line,p.x,p.y-h,options);}}
-    if(waiter)this.hits.push({kind:'waiter',uid:a.uid,x:p.x-w/2,y:p.y-h,w,h});
+    if(waiter)this.hits.push({kind:'waiter',uid:a.uid,x:p.x-w/2,y:y-h,w,h,flip,mask:this.hitMask(image)});
   }
   drawMeal(s,customer){const seat=seats(s).find(item=>item.uid===customer.seat);if(!seat?.table)return;const table=seat.table,dx=seat.chair.x-table.x,dy=seat.chair.y-table.y,p=this.world(table.x+dx*.4,table.y+dy*.4);const center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39};this.drawFoodOnSurface(customer.foodId,surface.x+p.x-center.x,surface.y+p.y-center.y,this.tile*.27);}
   drawEmptyDish(seat){const {table,chair}=seat,dx=chair.x-table.x,dy=chair.y-table.y,point=this.world(table.x+dx*.4,table.y+dy*.4),center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39},width=this.tile*.27,height=width*20/32;this.sprite('emptyDish',0,surface.x+point.x-center.x,surface.y+point.y-center.y+height*.14,width,height);}

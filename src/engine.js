@@ -145,7 +145,10 @@ function repairActorPositions(s,{relocateInvalid=false}={}){
   for(const c of s.customers)if(['waiting','eating'].includes(c.phase)){const chair=s.objects.find(o=>o.uid===c.seat);if(chair){c.x=chair.x;c.y=chair.y;}}
   // Shared floor coordinates are intentional. Only an explicit furniture edit
   // keeps the established repair for a worker covered by the newly placed art.
-  if(relocateInvalid)for(const w of s.waiters)if(atTile(w)&&!walkable(s,w.x,w.y)){const position=freePosition(s,w,{ignore:w,avoidEntry:true});if(position){Object.assign(w,position);w.path=[];}}
+  if(relocateInvalid)for(const w of s.waiters){
+    const stranded=atTile(w)?!walkable(s,w.x,w.y):!segmentEnds(w).some(([x,y])=>walkable(s,x,y));
+    if(stranded){const position=freePosition(s,w,{ignore:w,avoidEntry:true})||freePosition(s,{x:0,y:s.size-1},{ignore:w,avoidEntry:true});if(position){Object.assign(w,position);w.path=[];trafficState.delete(w);}}
+  }
 }
 function settleWorker(s,w,reset=false){
   let state=traffic(w);
@@ -374,17 +377,18 @@ export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 �
 export function fire(s,id){if(s.waiters.length<=1)return '직원은 최소 1명 필요해요.';const w=s.waiters.find(w=>w.uid===id);if(!w)return '직원을 찾을 수 없어요.';cancelTask(s,w);s.waiters=s.waiters.filter(w=>w.uid!==id);return null;}
 export function cure(s,id){const w=s.waiters.find(w=>w.uid===id);if(!w||w.infectedUntil<=s.time)return '치료가 필요하지 않아요.';if(s.coins<cureCost(s))return '치료 비용이 부족해요.';s.coins-=cureCost(s);w.infectedUntil=0;return null;}
 
-export function placementProblem(s,type,x,y,dir=0,ignore=null){
+export function placementProblem(s,type,x,y,dir=0,ignore=null,{ignoreStaff=false}={}){
   if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=s.size||y>=s.size)return '식당 안에 배치해주세요.';
   if(x===0&&y===s.size-1)return '출입구는 비워주세요.';
   if(type==='poster'&&x!==0&&y!==0)return '포스터는 뒤쪽 벽면에 붙여주세요.';
   if(s.objects.some(o=>o.uid!==ignore&&o.x===x&&o.y===y))return '다른 가구와 겹쳐요.';
   const candidate={uid:ignore||'preview',type,x,y,dir};
   const temp={...s,objects:[...s.objects.filter(o=>o.uid!==ignore),candidate]};
-  if(s.waiters.some(w=>!atTile(w)&&!segmentEnds(w).some(([x,y])=>walkable(temp,x,y))))return '직원이 걷는 칸 옆에 빈 공간을 남겨주세요.';
+  if(!ignoreStaff&&s.waiters.some(w=>!atTile(w)&&!segmentEnds(w).some(([x,y])=>walkable(temp,x,y))))return '직원이 걷는 칸 옆에 빈 공간을 남겨주세요.';
   // Preserve working approaches without making an already blocked old layout
   // impossible to repair. An unpaired decorative chair needs no service side.
   const door={x:0,y:s.size-1},before=reachableTiles(s,door),reachable=reachableTiles(temp,door);
+  if(ignoreStaff&&s.waiters.length&&![...reachable].some(key=>key!==tileKey(door.x,door.y)))return '직원이 설 빈 바닥을 남겨주세요.';
   for(const o of temp.objects){const category=furniture(o.type)?.category;if(!['stove','server'].includes(category))continue;const old=s.objects.find(old=>old.uid===o.uid);if((o.uid===candidate.uid||old&&accessPath(s,door,old)!==null)&&accessPath(temp,door,o)===null)return '직원이 지나다닐 통로가 필요해요.';}
   for(const chair of temp.objects.filter(o=>furniture(o.type)?.category==='chair')){
     const old=s.objects.find(o=>o.uid===chair.uid),active=!!tableInFront(temp,chair),newSeat=active&&(chair.uid===candidate.uid||!old||!tableInFront(s,old)),preserve=chair.uid!==candidate.uid&&old&&chairReachable(before,old);
@@ -393,14 +397,14 @@ export function placementProblem(s,type,x,y,dir=0,ignore=null){
   return null;
 }
 function furnitureAvailable(s,f){return s.level>=f.level&&(!f.event||s.events[f.event]==='active');}
-export function place(s,{type,x,y,dir=0,existing=null,fromStorage=false}){
+export function place(s,{type,x,y,dir=0,existing=null,fromStorage=false,editing=false}){
   const f=furniture(type);if(!f)return '알 수 없는 가구예요.';
   const o=existing?s.objects.find(o=>o.uid===existing):null;
   if(existing&&!o)return '가구를 찾을 수 없어요.';
   if(o?.cook)return '음식이 있는 가마솥은 이동할 수 없어요.';
   if(existing&&carriedServing(s,existing))return '직원이 음식을 서빙한 뒤 이동해주세요.';
   if(existing&&s.transfers.some(t=>t.server===existing||t.stove===existing))return '운반이 끝난 뒤 이동해주세요.';
-  const error=placementProblem(s,type,x,y,dir,existing);if(error)return error;
+  const error=placementProblem(s,type,x,y,dir,existing,{ignoreStaff:editing});if(error)return error;
   if(!existing){
     if(fromStorage){if(!s.storage.includes(type))return '창고에 가구가 없어요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
     else{if(!furnitureAvailable(s,f))return f.event?'이벤트 기간에만 구매할 수 있어요.':'식당 레벨이 부족해요.';if(s.coins<f.price)return '코인이 부족해요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
