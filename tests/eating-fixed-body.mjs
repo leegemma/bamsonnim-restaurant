@@ -2,9 +2,10 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium,webkit} from 'playwright';
 
+const adapterSource=await fs.readFile(new URL('./verify-arms-v3.mjs',import.meta.url),'utf8');
 const prepare=process.argv.includes('--prepare');
-const base=process.env.BASE_URL||'http://localhost:5181';
-const out=process.env.EATING_BODY_OUTPUT||'artifacts/eating-fixed-body-qa';
+const base=process.env.BASE_URL||'http://127.0.0.1:5202';
+const out=process.env.EATING_BODY_OUTPUT||'artifacts/eating-arms-v3-qa';
 const targetIds=['student','scholar','office','guard','rider','hostess','hiker','merchant','nurse','dancer'];
 const provisionalPath=process.env.EATING_PROVISIONAL_MASKS||'artifacts/eating-body-fixed-review/hand-only-masks.json';
 const provisional=prepare?JSON.parse(await fs.readFile(provisionalPath,'utf8')):null;
@@ -16,7 +17,8 @@ for(const type of [chromium,webkit]){
   const page=await browser.newPage({viewport:{width:1280,height:800}}),errors=[];
   page.on('pageerror',error=>errors.push(error.message));
   await page.goto(base);await page.waitForFunction(()=>window.__BAMSONNIM__?.view.ready);
-  const result=await page.evaluate(async({prepare,targetIds,provisional})=>{
+  const result=await page.evaluate(async({prepare,targetIds,provisional,adapterSource})=>{
+   const adapterURL=URL.createObjectURL(new Blob([adapterSource],{type:'text/javascript'})),{verifyArmOnly}=await import(adapterURL);URL.revokeObjectURL(adapterURL);
    const {ASSET_MANIFEST}=await import('/src/assets.js');
    const {EATING_ATLASES}=await import('/src/eating-atlases.generated.js');
    const {registerEatingFrames}=await import('/src/eating-registration.js');
@@ -108,7 +110,7 @@ for(const type of [chromium,webkit]){
     const directions=verify(meta,frames,bases,baseMeta,aligned);
     return{directions:directions.length,poses:frames.length,transparentHandKeepsPlate:true,neutralTransparentPixelErases:true,semiTransparentSingleComposition:true,overlappingAndDuplicateMasksAreUnion:true,fixedPropsPreserved:true,canonicalInputsUnchanged:true};
    })();
-   const integrated=targetIds.filter(id=>EATING_ATLASES.find(a=>a.actorId===id)?.poses.every(p=>p.registration?.handOnly));
+   const integrated=targetIds.filter(id=>EATING_ATLASES.find(a=>a.actorId===id)?.poses.every(p=>p.registration?.armOnly));
    const selected=prepare?['student']:targetIds,actors=[];
    for(const id of selected){
     const meta=structuredClone(EATING_ATLASES.find(a=>a.actorId===id));if(!meta)throw Error(`Missing actor ${id}`);
@@ -118,14 +120,14 @@ for(const type of [chromium,webkit]){
      cx.drawImage(sourceImage,pose.source.x,pose.source.y,pose.source.width,pose.source.height,0,0,pose.source.width,pose.source.height);
      const aligned=canvas(original.width,original.height),ctx=aligned.getContext('2d');ctx.imageSmoothingEnabled=false;
      const r=pose.registration,bp=baseMeta.poses[r.baseIndex];ctx.drawImage(crop,bp.hip.x-pose.hip.x*r.scale,bp.hip.y-pose.hip.y*r.scale,crop.width*r.scale,crop.height*r.scale);raw.push(aligned);
-     if(prepare){const d=provisional.actors[id].directions[pose.dir];pose.registration.handOnly={neutralHandMasks:d.neutralErase,movingHandMasks:d.poses[pose.frame].foreground,bodyPlateFrame:d.plateSource.frame,fixedPropMasks:d.fixedPropMasks||[]};}
+     if(prepare){delete pose.registration.armOnly;const d=provisional.actors[id].directions[pose.dir];pose.registration.handOnly={neutralHandMasks:d.neutralErase,movingHandMasks:d.poses[pose.frame].foreground,bodyPlateFrame:d.plateSource.frame,fixedPropMasks:d.fixedPropMasks||[]};}
     }
-    if(!meta.poses.every(p=>p.registration.handOnly))throw Error(`Actual production metadata not integrated: ${id}`);
+    if(!meta.poses.every(p=>prepare?p.registration.handOnly:p.registration.armOnly))throw Error(`Actual production metadata not integrated: ${id}`);
     const originalSprites=view.sprites[meta.key],originalRecords=view.eatingRegistrations[meta.key],frames=[];
     // The compositor receives unaligned source cells, exactly as runtime cutAtlas.
     for(const pose of meta.poses){const c=canvas(Math.ceil(pose.source.width),Math.ceil(pose.source.height));c.getContext('2d').drawImage(sourceImage,pose.source.x,pose.source.y,pose.source.width,pose.source.height,0,0,pose.source.width,pose.source.height);frames.push(c);}
     const canonicalBefore=new Map(meta.poses.map(p=>[p.registration.baseIndex,new Uint8ClampedArray(pixels(view.sprites[baseMeta.key][p.registration.baseIndex]))]));
-    const records=registerEatingFrames(frames,meta,view.sprites[baseMeta.key],baseMeta),directions=verify(meta,frames,view.sprites[baseMeta.key],baseMeta,raw);
+    const records=registerEatingFrames(frames,meta,view.sprites[baseMeta.key],baseMeta),directions=prepare?verify(meta,frames,view.sprites[baseMeta.key],baseMeta,raw):verifyArmOnly({meta,frames,baseFrames:view.sprites[baseMeta.key],baseMeta,raw,records});
     for(const [index,before]of canonicalBefore)if(compare(before,pixels(view.sprites[baseMeta.key][index])).channels)throw Error(`Canonical seated input mutated ${id}/${index}`);
     let liveSamples=0;view.sprites[meta.key]=frames;view.eatingRegistrations[meta.key]=records;
     const seat=game.engine.seats(game.state)[0],chair=game.state.objects.find(o=>o.uid===seat.uid),oldDir=chair.dir,sprite=view.sprite;
@@ -142,10 +144,10 @@ for(const type of [chromium,webkit]){
       }
      }
     }finally{view.sprite=sprite;chair.dir=oldDir;view.sprites[meta.key]=originalSprites;view.eatingRegistrations[meta.key]=originalRecords;}
-    actors.push({id,phase:prepare?'provisional-student-only':'production',directions,liveSamples,canonicalInputsUnchanged:true,visualReviewRequired:['resting-hand remnants','extra hands','finger clipping','tight minimal forearm masks']});
+    actors.push({id,phase:prepare?'provisional-student-only':'production',directions,liveSamples,canonicalInputsUnchanged:true,visualReviewRequired:['resting-hand remnants','extra hands','finger clipping','shoulder/upper arm/forearm/hand connection']});
    }
    return{phase:prepare?'harness-preparation':'production-verification',fixtures,productionIntegrated:integrated.length,productionTotal:targetIds.length,productionIds:integrated,actors,failedAssets:view.failedAssets,allTenProductionVerified:!prepare&&integrated.length===10&&actors.length===10};
-  },{prepare,targetIds,provisional});
+  },{prepare,targetIds,provisional,adapterSource});
   assert.deepEqual(errors,[]);assert.deepEqual(result.failedAssets,[]);
   if(!prepare){assert.equal(result.productionIntegrated,10);assert.equal(result.actors.length,10);assert.equal(result.allTenProductionVerified,true);}
   results.push({browser:type.name(),base,...result,passed:true});
