@@ -293,3 +293,5 @@ dialog.cookbook{max-width:calc(100vw - 20px)}
 #app{padding-top:env(safe-area-inset-top,0px);padding-right:env(safe-area-inset-right,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px)}
 
 dialog,dialog.cookbook,dialog.stove{max-width:calc(100vw - env(safe-area-inset-left,0px) - env(safe-area-inset-right,0px) - 24px)}
+
+.stove-dialog .cook-countdown{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;font-variant-numeric:tabular-nums;font-size:.9em}

@@ -13,7 +13,7 @@ import {bindCameraGestures} from './camera-gestures.js';
 import {furnitureArt,placedFurniture} from './furniture-placement.js';
 import {pickHit} from './hit-testing.js';
 import {zombieEntrance} from './entrances.js';
-import {cookingCountdown} from './cooking-countdown.js';
+import {cookingCountdown,COOKING_TIMER_FONT} from './cooking-countdown.js';
 import {ASSET_MANIFEST,characterFrame,directionalCharacter,eatingCharacter,foodFrame} from './assets.js';
 
 export class RestaurantView{
@@ -93,8 +93,8 @@ export class RestaurantView{
   grid(x,y){const a=(x-this.origin.x)/(this.tile/2),b=(y-this.origin.y)/(this.tile/4);return{x:Math.floor((a+b)/2+.5),y:Math.floor((b-a)/2+.5)};}
   polygon(points,fill,stroke=null,line=1){const c=this.ctx;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}}
   sprite(key,index,x,y,width,height,options={}){const im=this.sprites[key]?.[index],h=height||(im?width*im.height/im.width:width),w=width,c=this.ctx;c.save();if(options.alpha!==undefined)c.globalAlpha=options.alpha;if(options.filter)c.filter=options.filter;if(!im){c.fillStyle='#8b9c75';c.fillRect(x-w*.3,y-h*.7,w*.6,h*.7);c.fillStyle='#263b31';c.font='12px NeoDunggeunmo,monospace';c.textAlign='center';c.fillText((key==='food'||ASSET_MANIFEST[key]?.type==='food-atlas')?'요리':key==='furniture'?'가구':'손님',x,y-h*.2);}else if(options.flip){c.translate(x,y);c.scale(-1,1);c.drawImage(im,-w/2,-h,w,h);}else c.drawImage(im,x-w/2,y-h,w,h);c.restore();}
-  label(text,x,y,{color='#f5e7c5',background='#263b31',small=false,border='#a6ad75',width=null,fontSize=small?14:16,height=small?24:28}={}){
-    const c=this.ctx;c.font=`${fontSize}px NeoDunggeunmo,monospace`;const w=width||Math.ceil(c.measureText(text).width)+16,h=height,left=Math.round(x-w/2),top=Math.round(y-h);
+  label(text,x,y,{color='#f5e7c5',background='#263b31',small=false,border='#a6ad75',width=null,fontSize=small?14:16,height=small?24:28,font=null}={}){
+    const c=this.ctx;c.font=font||`${fontSize}px NeoDunggeunmo,monospace`;const w=width||Math.ceil(c.measureText(text).width)+16,h=height,left=Math.round(x-w/2),top=Math.round(y-h);
     this.labelRects?.push({x:left,y:top,w:w+3,h:h+3});
     c.fillStyle='#0c181a';c.fillRect(left+3,top+3,w,h);c.fillStyle=border;c.fillRect(left+2,top,w-4,h);c.fillRect(left,top+2,w,h-4);c.fillStyle=background;c.fillRect(left+3,top+2,w-6,h-4);c.fillRect(left+2,top+3,w-4,h-6);
     c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.fillText(text,Math.round(x),top+h/2+1);
@@ -120,11 +120,11 @@ export class RestaurantView{
   stoveControlLayout(s){
     const c=this.ctx;
     const items=s.objects.filter(o=>furniture(o.type)?.category==='stove').map(o=>{
-      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'+ COOK':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=status==='cooking'?10:14;
-      c.font=`${fontSize}px NeoDunggeunmo,monospace`;
-      const diameter=Math.min(28,Math.max(18,this.tile*.5)),height=status==='done'?diameter:status==='cooking'?18:24;
+      const status=stoveStatus(s,o),p=this.world(o.x,o.y),remain=Math.max(0,(o.cook?.readyAt||0)-s.time),text=status==='empty'?'+ COOK':status==='cooking'?cookingCountdown(remain):status==='done'?'DONE':status==='collecting'?'운반 중':'상했어요',fontSize=status==='cooking'?12:14,font=status==='cooking'?COOKING_TIMER_FONT:null;
+      c.font=font||`${fontSize}px NeoDunggeunmo,monospace`;
+      const diameter=Math.min(28,Math.max(18,this.tile*.5)),height=status==='done'?diameter:status==='cooking'?20:24;
       const geometry=this.furnitureGeometry(o),visibleTop=geometry?geometry.y+geometry.h*(geometry.meta.bounds?.y||0)/geometry.meta.height:p.y-this.tile*.86,baseY=Math.max(height+4,visibleTop-this.tile*.12);
-      return{o,status,text,fontSize,height,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:status==='done'?diameter:Math.ceil(c.measureText(text).width)+(status==='cooking'?12:16)};
+      return{o,status,text,fontSize,font,height,baseY,sourceX:p.x,sourceY:visibleTop+this.tile*.06,x:p.x,y:baseY,width:status==='done'?diameter:Math.ceil(c.measureText(text).width)+(status==='cooking'?12:16)};
     }).sort((a,b)=>(a.status==='done'?-1:0)-(b.status==='done'?-1:0)||b.y-a.y||a.x-b.x);
     // Keep every badge over its own pot. Only lift rear badges if their
     // actual circle or rectangle would touch an already placed badge.
@@ -187,12 +187,12 @@ export class RestaurantView{
     if(!edit){
       for(const control of this.stoveControls.values())if(control.baseY-control.y>2){c.strokeStyle='#bda77b';c.lineWidth=1;c.beginPath();c.moveTo(Math.round(control.x),control.y+4);c.lineTo(control.sourceX,control.sourceY);c.stroke();}
       for(const control of this.stoveControls.values()){
-        const {o,status,text,x,y,width,height,fontSize}=control,options=status==='cooking'?{background:'#6b4d33',border:'#d6ae66'}:status==='spoiled'?{background:'#704a4a',border:'#d58e75'}:{};
+        const {o,status,text,x,y,width,height,fontSize,font}=control,options=status==='cooking'?{background:'#6b4d33',border:'#d6ae66'}:status==='spoiled'?{background:'#704a4a',border:'#d58e75'}:{};
         if(status==='done'){
           const radius=width/2-1,cy=y-height/2;
           c.save();c.fillStyle='#3c9956';c.strokeStyle='#23663a';c.lineWidth=2;c.beginPath();c.arc(x,cy,radius,0,Math.PI*2);c.fill();c.stroke();
           c.strokeStyle='#ffffff';c.lineWidth=Math.max(2,radius*.24);c.lineCap='round';c.lineJoin='round';c.beginPath();c.moveTo(x-radius*.48,cy);c.lineTo(x-radius*.15,cy+radius*.32);c.lineTo(x+radius*.5,cy-radius*.38);c.stroke();c.restore();
-        }else this.label(text,x,y,{small:true,width,height,fontSize,...options});
+        }else this.label(text,x,y,{small:true,width,height,fontSize,font,...options});
         if(status==='cooking'){const r=recipe(o.cook.foodId),progress=Math.max(0,Math.min(1,1-(o.cook.readyAt-s.time)/r.duration)),barWidth=width-10;c.fillStyle='#342b24';c.fillRect(x-barWidth/2,y+4,barWidth,3);c.fillStyle='#e4b76b';c.fillRect(x-barWidth/2,y+4,barWidth*progress,3);}
         this.hits.push({kind:'stove',uid:o.uid,x:x-width/2,y:y-height,w:width+(status==='done'?0:3),h:height+(status==='done'?0:3),...(status==='done'?{circle:true}:{})});
       }
