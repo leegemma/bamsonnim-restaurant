@@ -231,20 +231,21 @@ export class RestaurantView{
     this.hits.push({kind:'object',uid:o.uid,x:placed?.x??p.x-w/2,y:placed?.y??p.y+t*.15-h,w,h,flip:placed?.flip??(!!isometricImage&&o.dir%2===1),mask:this.hitMask(hitImage)});
   }
   drawPerson(s,a,waiter,clock,active=this.animating!==false){
-    const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(a.zombieId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
+    const artId=!waiter&&(a.red||a.zombieId==='red')?'dokkaebi':a.zombieId;
+    const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(artId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
     c.fillStyle='#17282644';c.beginPath();c.ellipse(p.x,p.y+3,t*.18,t*.075,0,0,Math.PI*2);c.fill();
     const chair=isSeated?s.objects.find(o=>o.uid===a.seat):null;
-    const directionalMeta=!waiter?directionalCharacter(a.zombieId):null;
+    const directionalMeta=!waiter?directionalCharacter(artId):null;
     const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chair?.dir??null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
     if(pose)this.walkingStates.set(a,pose);
     let flip=pose?pose.flip:walking&&(a.path[0][0]-a.x)-(a.path[0][1]-a.y)<0;
     const mapped=waiter&&this.sprites.workers?.length?{key:'workers',index:a.appearance??Math.max(0,s.waiters.indexOf(a))}:characterFrame(waiter?15:def?.sprite||0);let atlas=mapped.key,index=mapped.index;
     const directional=!!pose&&!!this.sprites[directionalMeta.key]?.length;
-    const seatedRow=ASSET_MANIFEST.seatedNeighbors?.actorRows?.[a.zombieId],officeSeat=a.zombieId==='office'&&!!this.sprites.seatedOffice?.length,dedicatedSeat=!waiter&&isSeated&&!!chair&&(officeSeat||seatedRow!==undefined&&!!this.sprites.seatedNeighbors?.length);
+    const seatedRow=ASSET_MANIFEST.seatedNeighbors?.actorRows?.[artId],officeSeat=artId==='office'&&!!this.sprites.seatedOffice?.length,dedicatedSeat=!waiter&&isSeated&&!!chair&&(officeSeat||seatedRow!==undefined&&!!this.sprites.seatedNeighbors?.length);
     let h=t*(short?.8:waiter?1.02:1.07),w;
     if(directional){const frameCount=directionalMeta.walkFrames||directionalMeta.frames.walk.length;atlas=directionalMeta.key;index=pose.direction*(frameCount+1)+(isSeated?frameCount:pose.frame);flip=false;}
     else if(dedicatedSeat){atlas=officeSeat?'seatedOffice':'seatedNeighbors';index=(officeSeat?0:seatedRow*4)+(chair.dir||0);flip=false;}
-    if(directional&&chair&&a.phase==='eating'){const extra=eatingCharacter(a.zombieId);if(extra&&this.sprites[extra.key]?.length){const selected=eatingSpriteFrame(directionalMeta,extra,pose.direction,eatingAnimationFrame(a,s.time+(s.fraction||0),{reducedMotion:this.motionPreference.matches}));if(selected){atlas=selected.key;index=selected.index;}}}
+    if(directional&&chair&&a.phase==='eating'){const extra=eatingCharacter(artId);if(extra&&this.sprites[extra.key]?.length){const selected=eatingSpriteFrame(directionalMeta,extra,pose.direction,eatingAnimationFrame(a,s.time+(s.fraction||0),{reducedMotion:this.motionPreference.matches}));if(selected){atlas=selected.key;index=selected.index;}}}
     const image=this.sprites[atlas]?.[index];
     // Scale uniformly: preserve the actual character silhouette instead of
     // stretching every image into a fixed width/height rectangle.
@@ -257,11 +258,11 @@ export class RestaurantView{
       w=(image?.width||280)*scale;h=cellHeight*scale;
       const offsetX=((image?.width||280)/2-anchor.x)*scale;
       const attachment=hip?this.chairGeometry(chair).seat:{x:p.x,y};
-      this.sprite(atlas,index,attachment.x+offsetX,attachment.y+(cellHeight-anchor.y)*scale,w,h,{flip:false,filter:a.red?'hue-rotate(290deg) saturate(1.7)':''});
+      this.sprite(atlas,index,attachment.x+offsetX,attachment.y+(cellHeight-anchor.y)*scale,w,h,{flip:false});
     }else{
       if(isSeated)h*=.86;
       w=h*(image?image.width/image.height:.64);
-      this.sprite(atlas,index,p.x,y,w,h,{flip,filter:a.red?'hue-rotate(290deg) saturate(1.7)':waiter&&a.infectedUntil>s.time?'hue-rotate(65deg) saturate(.7)':''});
+      this.sprite(atlas,index,p.x,y,w,h,{flip,filter:waiter&&a.infectedUntil>s.time?'hue-rotate(65deg) saturate(.7)':''});
     }
     if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.3);}
     if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.27);}

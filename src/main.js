@@ -6,6 +6,7 @@ import './camera.css';
 import './hire.css';
 import './responsive-dialogs.css';
 import './editor-layout.css';
+import './hunger-hud.css';
 import {installLandscapeMode} from './orientation.js';
 import {RECIPES,BOOKS,ZOMBIES,FURNITURE,SKINS,EXPANSIONS,LIMITS,SAVE_KEY,WALK_ANIMATION,recipe,zombie,furniture,formatTime,xpNeeded} from './data.js';
 import * as E from './engine.js';
@@ -37,6 +38,7 @@ $('#app').innerHTML=`
 <header class="topbar">
  <a class="brand" href="#" data-act="home" aria-label="밤손님 식당"><span class="brand-mark">${icon('moon',29)}</span><span><strong>밤손님 식당</strong><small>달이 뜨면, 문을 엽니다.</small></span></a>
  <div class="level-block"><span class="eyebrow">식당 레벨</span><span class="level-line"><b id="level">1</b><span class="xp-track"><i id="xp-fill"></i></span><small id="xp">0 / 4</small></span></div>
+ <div class="hunger-card"><span class="hunger-label">도시의 허기 <b id="hunger-value">0%</b></span><div class="hunger-track" role="progressbar" aria-label="도시의 허기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hunger-fill"></i></div></div>
  <div class="currencies"><div class="currency">${coin()}<span><small>엽전</small><b id="coins">500</b></span><button data-act="daily" class="add" aria-label="오늘의 선물 받기">+</button></div><div class="currency heart">${heart()}<span><small>심장</small><b id="hearts">10</b></span><button data-act="hearts" class="add" aria-label="심장 안내">+</button></div></div>
  <div class="top-actions"><button class="icon-button" data-act="sound" id="sound-button" aria-label="음악 켜기" title="음악 켜기">${icon('sound')}</button><button class="icon-button" data-act="settings" aria-label="설정">${icon('settings')}</button></div>
 </header>
@@ -45,7 +47,6 @@ $('#app').innerHTML=`
  <div class="asset-status" id="asset-status" role="status"><span id="asset-message">식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.</span><button class="button quiet" data-act="retry-assets" hidden>그림 다시 불러오기</button></div>
  <aside class="left-rail">
   <button class="mayor-card" data-act="quest"><span class="mayor-portrait">${sprite('characters',2)}</span><span class="eyebrow">시장님의 부탁</span><strong id="quest-title"></strong><span class="quest-track"><i id="quest-fill"></i></span><span class="mayor-bottom"><small id="quest-count"></small><span id="quest-badge">의뢰 보기 ${icon('arrow',12)}</span></span></button>
-  <div class="hunger-card"><span class="hunger-label">도시의 허기 <b id="hunger-value">0%</b></span><div class="hunger-track"><i id="hunger-fill"></i></div><p id="hunger-caption">배부른 좀비는 물지 않아요.</p></div>
   <button class="season-card" data-act="events"><span class="season-flower">${icon('star',28)}</span><span><small>계절의 소식</small><strong id="event-label">다가오는 성탄절</strong></span>${icon('arrow',14)}</button>
  </aside>
  <div class="right-rail"><button class="round-action" data-act="album" aria-label="캐릭터북 열기">${icon('people',23)}<small>밤손님</small><b id="album-count">0/29</b></button><button class="round-action" data-act="cookbook" aria-label="요리책 열기">${icon('book',23)}<small>요리책</small><b id="food-count">0/12</b></button></div>
@@ -79,7 +80,7 @@ function updateHUD(){
  const cameraPercent=Math.round((view.camera?.zoom||1)*100);$('#camera-zoom').textContent=`${cameraPercent}%`;$('[data-act="camera-reset"]').setAttribute('aria-label',`화면 원위치 · 현재 ${cameraPercent}%`);
  $('#level').textContent=state.level;$('#xp').textContent=`${num(state.xp)} / ${num(xpNeeded(state.level))}`;$('#xp-fill').style.width=`${state.xp/xpNeeded(state.level)*100}%`;$('#coins').textContent=num(state.coins);$('#hearts').textContent=num(state.hearts);
  const q=E.questProgress(state);$('#quest-title').textContent=q?.name||'모든 의뢰를 마쳤어요';$('#quest-count').textContent=q?`${q.progress} / ${q.target}`:'고마워요, 주방장님';$('#quest-fill').style.width=`${q?q.progress/q.target*100:100}%`;$('#quest-badge').textContent=q&&q.progress>=q.target?'보상 받기 →':'의뢰 보기 →';$('.mayor-card').classList.toggle('complete',!!q&&q.progress>=q.target);
- $('#hunger-value').textContent=`${Math.floor(state.hunger)}%`;$('#hunger-fill').style.width=`${state.hunger}%`;$('.hunger-card').classList.toggle('danger',state.hunger>=70);$('#hunger-caption').textContent=state.hunger>=70?'경고! 붉은 좀비를 조심하세요.':state.hunger>=40?'손님들에게 음식을 준비해주세요.':'배부른 좀비는 물지 않아요.';
+ $('#hunger-value').textContent=`${Math.floor(state.hunger)}%`;$('#hunger-fill').style.width=`${state.hunger}%`;$('.hunger-track').setAttribute('aria-valuenow',Math.floor(state.hunger));$('.hunger-card').classList.toggle('danger',state.hunger>=70);
  const traffic=E.trafficStatus?.(state),notice=$('#traffic-notice');notice.hidden=!traffic?.congested;if(traffic?.congested){const message=traffic.exitBlocked?'출입문까지 이어지는 통로를 비워주세요. 손님이 나갈 길이 막혔어요.':traffic.admissionBlocked?'출입구가 막혀 새 손님이 기다려요. 입구와 통로를 비워주세요.':traffic.capacityReached?'지금은 식당이 가득 찼어요. 손님이 나가면 새 손님이 들어옵니다.':'손님과 직원이 통로를 양보하고 있어요.';if(notice.textContent!==message)notice.textContent=message;}
  const registered=Object.keys(state.album).filter(id=>!zombie(id)?.event).length;$('#album-count').textContent=`${registered}/${ZOMBIES.filter(z=>!z.event).length}`;$('#food-count').textContent=`${Object.keys(state.knownRecipes).filter(id=>!recipe(id)?.event).length}/12`;
  $('#event-label').textContent={upcoming:'다가오는 성탄절',active:'오싹한 성탄절 진행 중',ended:'성탄절의 추억'}[state.events.christmas];

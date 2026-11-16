@@ -183,7 +183,7 @@ if(BACKGROUND_SCENE){Object.assign(ASSET_MANIFEST.night,BACKGROUND_SCENE.base,{m
 if(QUARTER_FURNITURE){ASSET_MANIFEST[QUARTER_FURNITURE.key]=QUARTER_FURNITURE;for(const asset of QUARTER_FURNITURE.externalAssets||[])ASSET_MANIFEST[asset.key]=asset;}
 if(ZOMBIE_ATLASES.some(a=>a.actorId==='wanderer'))for(const key of ['wandererDirectional','walk1','walk2','walk3','walk4'])ASSET_MANIFEST[key].archived=true;
 export function directionalCharacter(actorId){
-  const id=({'santa-scholar':'scholar','snow-bride':'bride',red:'wanderer'})[actorId]||actorId;
+  const id=({'santa-scholar':'scholar','snow-bride':'bride',red:'dokkaebi'})[actorId]||actorId;
   const generated=ZOMBIE_ATLASES.find(asset=>asset.actorId===id);
   if(generated)return generated;
   return id==='wanderer'?ASSET_MANIFEST.wandererDirectional:null;

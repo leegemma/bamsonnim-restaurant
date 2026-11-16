@@ -1,0 +1,36 @@
+.topbar > .hunger-card {
+  flex: 0 1 170px;
+  min-width: 110px;
+  padding: 8px 10px;
+}
+.topbar .hunger-label {
+  gap: 12px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.topbar .hunger-label b { font-size: 12px; font-variant-numeric: tabular-nums; }
+.topbar .hunger-track { margin: 6px 0 0; }
+
+@media (max-width: 1100px) {
+  .topbar { gap: 14px; }
+  .topbar .brand { min-width: 0; }
+  .topbar .level-block { min-width: 70px; }
+  .topbar > .hunger-card { flex-basis: 130px; }
+  .topbar .currency { min-width: 100px; }
+  .topbar .currency.heart { min-width: 80px; }
+}
+@media (max-width: 760px), (orientation: landscape) and (max-height: 500px) {
+  .topbar { gap: 9px; }
+  .topbar .level-block { min-width: 56px; }
+  .topbar > .hunger-card { flex-basis: 116px; min-width: 100px; padding: 5px 7px; }
+  .topbar .hunger-label, .topbar .hunger-label b { font-size: 11px; }
+  .topbar .hunger-label { gap: 6px; }
+  .topbar .hunger-track { margin-top: 4px; }
+  .topbar .currency { min-width: 90px; }
+  .topbar .currency.heart { min-width: 72px; }
+}
+@media (max-width: 600px) {
+  .topbar { gap: 7px; }
+  .topbar .currency { min-width: 75px; }
+  .topbar .currency.heart { min-width: 65px; }
+}
