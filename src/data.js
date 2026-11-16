@@ -57,17 +57,17 @@ RECIPES.push(
   {"id":"hell-pizza-bun","name":"지옥 피자호빵","description":"둥근 호빵을 가르면 붉은 피자 소스와 치즈, 작은 거미가 빼꼼.","duration":420,"servings":154,"coins":0,"hearts":3,"sprite":44,"book":10,"required":120,"price":2,"portion":8,"milestones":[3,8,10]},
 );
 export const BOOKS = [
-  {name:'무덤 앞 분식집',subtitle:'작고 소중한 첫 끼',color:'#ba6a43',symbol:'一'},
-  {name:'수상한 한 상',subtitle:'단골을 부르는 손맛',color:'#76885c',symbol:'二'},
-  {name:'밤 깊은 잔칫상',subtitle:'오래 기다린 만큼',color:'#817196',symbol:'三'},
-  {name:'오싹한 성탄절',subtitle:'한겨울의 특별한 손님',color:'#648d81',symbol:'冬',event:'christmas'},
-  {"name":"저승 골목 포차","subtitle":"국물과 고기, 뜨거운 한 상","color":"#9b5947","symbol":"四"},
-  {"name":"살점 곁들임","subtitle":"쌈과 젓갈, 수상한 반찬","color":"#78854f","symbol":"五"},
-  {"name":"뼈 국물과 구이","subtitle":"오래 끓이고 노릇하게","color":"#817196","symbol":"六"},
-  {"name":"벌레와 사람살","subtitle":"속을 채우고 천천히 익혀요","color":"#a36b43","symbol":"七"},
-  {"name":"불판 위의 밤","subtitle":"얇게 굽고 길게 즐기는 고기","color":"#765c57","symbol":"八"},
-  {"name":"밤참 골목","subtitle":"붕어빵부터 바삭한 귀까지","color":"#527b72","symbol":"九"},
-  {"name":"달콤하고 납작한 간식","subtitle":"마지막 다섯 가지 야식","color":"#8c6b9b","symbol":"十"},
+  {name:'무덤 앞 분식집',subtitle:'작고 소중한 첫 끼',color:'#ba6a43',symbol:'一',cover:'/assets/cookbook-grave-bunsik.png'},
+  {name:'수상한 한 상',subtitle:'단골을 부르는 손맛',color:'#76885c',symbol:'二',cover:'/assets/cookbook-suspicious-table.png'},
+  {name:'밤 깊은 잔칫상',subtitle:'오래 기다린 만큼',color:'#817196',symbol:'三',cover:'/assets/cookbook-midnight-feast.png'},
+  {name:'오싹한 성탄절',subtitle:'한겨울의 특별한 손님',color:'#648d81',symbol:'冬',event:'christmas',cover:'/assets/cookbook-spooky-christmas.png'},
+  {"name":"저승 골목 포차","subtitle":"국물과 고기, 뜨거운 한 상","color":"#9b5947","symbol":"四",cover:'/assets/cookbook-underworld-pocha.png'},
+  {"name":"살점 곁들임","subtitle":"쌈과 젓갈, 수상한 반찬","color":"#78854f","symbol":"五",cover:'/assets/cookbook-fleshy-sides.png'},
+  {"name":"뼈 국물과 구이","subtitle":"오래 끓이고 노릇하게","color":"#817196","symbol":"六",cover:'/assets/cookbook-bone-broths.png'},
+  {"name":"벌레와 사람살","subtitle":"속을 채우고 천천히 익혀요","color":"#a36b43","symbol":"七",cover:'/assets/cookbook-worms-and-flesh.png'},
+  {"name":"불판 위의 밤","subtitle":"얇게 굽고 길게 즐기는 고기","color":"#765c57","symbol":"八",cover:'/assets/cookbook-night-fire.png'},
+  {"name":"밤참 골목","subtitle":"붕어빵부터 바삭한 귀까지","color":"#527b72","symbol":"九",cover:'/assets/cookbook-late-night-alley.png'},
+  {"name":"달콤하고 납작한 간식","subtitle":"마지막 다섯 가지 야식","color":"#8c6b9b","symbol":"十",cover:'/assets/cookbook-sweet-flat-snacks.png'},
 ];
 const roster=[
  ['wanderer','허기진 행인',null,'밤이 되면 어슬렁. 배가 고픈 것뿐이에요.'],

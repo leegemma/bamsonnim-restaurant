@@ -108,7 +108,7 @@ function firstSpawn(level,status,seed,album){const s=suppliedGame(level,status,s
 function findSpawn(id,level,status='upcoming',album={}){for(let seed=0;seed<1024;seed++){const s=firstSpawn(level,status,seed,album);if(s.customers.some(c=>c.zombieId===id))return{seed,s};}assert.fail(`${id} did not spawn at its unlocked level`);}
 
 test('the fourteen existing recipes, four book indexes and old guest identities stay compatible',()=>{
- assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES);assert.deepEqual(BOOKS.slice(0,4),BASELINE_BOOKS);
+ assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES);assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
  for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['새파란 두건','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old);}
 });
 
