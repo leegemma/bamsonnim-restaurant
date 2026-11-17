@@ -1,0 +1,4654 @@
+{
+  "version": 2,
+  "scope": "Normative semantic regression synchronized from the designer-frozen single contract; broad old regions are not erase masks.",
+  "baselineCommit": "80344f1",
+  "measurementSHA256": "a6eb44231400ebfeb6d9b72ea66412a5f9f3ed62907f25b9082ef438ae735c27",
+  "sourceCounts": {
+    "total": 101,
+    "uniqueCoordinates": 67,
+    "originalUnion": 41,
+    "newFarFist": 37,
+    "newRearFist": 15,
+    "baselineRejected": 101,
+    "baseline7089OldResidue": 60,
+    "baseline7089CleanMismatch": 60,
+    "newLowerSleeve": 8
+  },
+  "fixedHolding": [
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "canonicalAlphaMin": 1,
+      "polygons": [
+        [
+          [
+            243,
+            116
+          ],
+          [
+            257,
+            118
+          ],
+          [
+            267,
+            127
+          ],
+          [
+            271,
+            140
+          ],
+          [
+            266,
+            151
+          ],
+          [
+            252,
+            159
+          ],
+          [
+            243,
+            158
+          ],
+          [
+            232,
+            187
+          ],
+          [
+            240,
+            192
+          ],
+          [
+            242,
+            204
+          ],
+          [
+            236,
+            216
+          ],
+          [
+            226,
+            220
+          ],
+          [
+            223,
+            234
+          ],
+          [
+            212,
+            236
+          ],
+          [
+            207,
+            225
+          ],
+          [
+            211,
+            213
+          ],
+          [
+            205,
+            211
+          ],
+          [
+            204,
+            198
+          ],
+          [
+            207,
+            186
+          ],
+          [
+            219,
+            182
+          ],
+          [
+            229,
+            158
+          ],
+          [
+            218,
+            150
+          ],
+          [
+            216,
+            137
+          ],
+          [
+            219,
+            125
+          ],
+          [
+            230,
+            118
+          ]
+        ],
+        [
+          [
+            200,
+            191
+          ],
+          [
+            211,
+            189
+          ],
+          [
+            216,
+            194
+          ],
+          [
+            215,
+            205
+          ],
+          [
+            210,
+            220
+          ],
+          [
+            203,
+            228
+          ],
+          [
+            193,
+            226
+          ],
+          [
+            184,
+            221
+          ],
+          [
+            180,
+            216
+          ],
+          [
+            182,
+            206
+          ],
+          [
+            188,
+            197
+          ]
+        ]
+      ]
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "canonicalAlphaMin": 1,
+      "polygons": [
+        [
+          [
+            68,
+            117
+          ],
+          [
+            82,
+            118
+          ],
+          [
+            96,
+            128
+          ],
+          [
+            100,
+            140
+          ],
+          [
+            94,
+            153
+          ],
+          [
+            83,
+            160
+          ],
+          [
+            95,
+            182
+          ],
+          [
+            104,
+            185
+          ],
+          [
+            111,
+            192
+          ],
+          [
+            113,
+            207
+          ],
+          [
+            106,
+            219
+          ],
+          [
+            106,
+            227
+          ],
+          [
+            97,
+            233
+          ],
+          [
+            88,
+            228
+          ],
+          [
+            88,
+            216
+          ],
+          [
+            80,
+            216
+          ],
+          [
+            74,
+            208
+          ],
+          [
+            74,
+            195
+          ],
+          [
+            81,
+            184
+          ],
+          [
+            72,
+            162
+          ],
+          [
+            58,
+            160
+          ],
+          [
+            48,
+            151
+          ],
+          [
+            45,
+            139
+          ],
+          [
+            48,
+            127
+          ],
+          [
+            57,
+            120
+          ]
+        ],
+        [
+          [
+            118,
+            192
+          ],
+          [
+            126,
+            191
+          ],
+          [
+            130,
+            193
+          ],
+          [
+            136,
+            201
+          ],
+          [
+            136,
+            215
+          ],
+          [
+            133,
+            225
+          ],
+          [
+            122,
+            230
+          ],
+          [
+            111,
+            229
+          ],
+          [
+            104,
+            219
+          ],
+          [
+            103,
+            204
+          ],
+          [
+            108,
+            198
+          ]
+        ]
+      ]
+    },
+    {
+      "actor": "hostess",
+      "dir": 2,
+      "canonicalAlphaMin": 1,
+      "polygons": [
+        [
+          [
+            68,
+            115
+          ],
+          [
+            82,
+            116
+          ],
+          [
+            96,
+            125
+          ],
+          [
+            100,
+            139
+          ],
+          [
+            95,
+            151
+          ],
+          [
+            82,
+            159
+          ],
+          [
+            94,
+            181
+          ],
+          [
+            104,
+            184
+          ],
+          [
+            108,
+            197
+          ],
+          [
+            108,
+            210
+          ],
+          [
+            99,
+            216
+          ],
+          [
+            91,
+            214
+          ],
+          [
+            81,
+            218
+          ],
+          [
+            75,
+            211
+          ],
+          [
+            75,
+            197
+          ],
+          [
+            80,
+            185
+          ],
+          [
+            70,
+            162
+          ],
+          [
+            56,
+            160
+          ],
+          [
+            47,
+            149
+          ],
+          [
+            46,
+            136
+          ],
+          [
+            50,
+            124
+          ],
+          [
+            58,
+            117
+          ]
+        ],
+        [
+          [
+            130,
+            164
+          ],
+          [
+            143,
+            164
+          ],
+          [
+            155,
+            167
+          ],
+          [
+            160,
+            173
+          ],
+          [
+            158,
+            183
+          ],
+          [
+            156,
+            195
+          ],
+          [
+            159,
+            203
+          ],
+          [
+            156,
+            214
+          ],
+          [
+            149,
+            226
+          ],
+          [
+            140,
+            234
+          ],
+          [
+            128,
+            236
+          ],
+          [
+            117,
+            231
+          ],
+          [
+            108,
+            221
+          ],
+          [
+            103,
+            209
+          ],
+          [
+            103,
+            196
+          ],
+          [
+            110,
+            188
+          ],
+          [
+            116,
+            178
+          ],
+          [
+            124,
+            169
+          ]
+        ]
+      ]
+    },
+    {
+      "actor": "hostess",
+      "dir": 3,
+      "canonicalAlphaMin": 1,
+      "polygons": [
+        [
+          [
+            243,
+            126
+          ],
+          [
+            257,
+            126
+          ],
+          [
+            269,
+            136
+          ],
+          [
+            272,
+            148
+          ],
+          [
+            266,
+            161
+          ],
+          [
+            253,
+            169
+          ],
+          [
+            246,
+            167
+          ],
+          [
+            234,
+            193
+          ],
+          [
+            236,
+            199
+          ],
+          [
+            234,
+            212
+          ],
+          [
+            228,
+            218
+          ],
+          [
+            218,
+            224
+          ],
+          [
+            208,
+            220
+          ],
+          [
+            207,
+            208
+          ],
+          [
+            209,
+            197
+          ],
+          [
+            220,
+            190
+          ],
+          [
+            235,
+            168
+          ],
+          [
+            223,
+            163
+          ],
+          [
+            219,
+            151
+          ],
+          [
+            222,
+            138
+          ],
+          [
+            231,
+            129
+          ]
+        ],
+        [
+          [
+            157,
+            170
+          ],
+          [
+            170,
+            171
+          ],
+          [
+            181,
+            176
+          ],
+          [
+            188,
+            183
+          ],
+          [
+            196,
+            188
+          ],
+          [
+            204,
+            188
+          ],
+          [
+            211,
+            198
+          ],
+          [
+            214,
+            211
+          ],
+          [
+            210,
+            223
+          ],
+          [
+            201,
+            232
+          ],
+          [
+            191,
+            237
+          ],
+          [
+            178,
+            237
+          ],
+          [
+            168,
+            232
+          ],
+          [
+            160,
+            224
+          ],
+          [
+            155,
+            212
+          ],
+          [
+            151,
+            199
+          ],
+          [
+            152,
+            185
+          ]
+        ]
+      ]
+    }
+  ],
+  "oldArmWitnesses": [
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 1,
+      "pixel": [
+        259,
+        195
+      ],
+      "forbiddenOldRGBA": [
+        84,
+        70,
+        54,
+        171
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          259,
+          195
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        247,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        35,
+        23,
+        15,
+        247
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          247,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        248,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        36,
+        26,
+        17,
+        244
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          248,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        249,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        42,
+        30,
+        21,
+        239
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          249,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        250,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        54,
+        39,
+        28,
+        224
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          250,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        251,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        63,
+        49,
+        39,
+        165
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          251,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        254,
+        192
+      ],
+      "forbiddenOldRGBA": [
+        72,
+        58,
+        46,
+        106
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          254,
+          192
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        256,
+        193
+      ],
+      "forbiddenOldRGBA": [
+        84,
+        71,
+        58,
+        136
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          256,
+          193
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        257,
+        194
+      ],
+      "forbiddenOldRGBA": [
+        64,
+        50,
+        37,
+        234
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          257,
+          194
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        258,
+        194
+      ],
+      "forbiddenOldRGBA": [
+        79,
+        66,
+        52,
+        132
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          258,
+          194
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        259,
+        195
+      ],
+      "forbiddenOldRGBA": [
+        84,
+        70,
+        54,
+        171
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          259,
+          195
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        68,
+        184
+      ],
+      "forbiddenOldRGBA": [
+        92,
+        81,
+        65,
+        47
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          184
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        66,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        92,
+        76,
+        64,
+        64
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        67,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        76,
+        66,
+        54,
+        127
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        68,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        45,
+        33,
+        27,
+        198
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        64,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        68,
+        59,
+        45,
+        135
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          64,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        65,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        33,
+        26,
+        199
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          65,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        66,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        37,
+        28,
+        20,
+        212
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        67,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        35,
+        27,
+        239
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        68,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        35,
+        23,
+        18,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        62,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        66,
+        55,
+        44,
+        93
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          62,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        63,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        36,
+        27,
+        196
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          63,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        64,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        31,
+        23,
+        237
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          64,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        65,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        29,
+        20,
+        16,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          65,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        66,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        25,
+        17,
+        13,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        219,
+        225
+      ],
+      "forbiddenOldRGBA": [
+        139,
+        29,
+        37,
+        253
+      ],
+      "expectedCleanRGBA": [
+        62,
+        57,
+        63,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          219,
+          225
+        ],
+        "raw2RGBA": [
+          62,
+          57,
+          63,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        215,
+        233
+      ],
+      "forbiddenOldRGBA": [
+        124,
+        34,
+        44,
+        252
+      ],
+      "expectedCleanRGBA": [
+        50,
+        40,
+        36,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          215,
+          233
+        ],
+        "raw2RGBA": [
+          50,
+          40,
+          36,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        217,
+        235
+      ],
+      "forbiddenOldRGBA": [
+        13,
+        10,
+        8,
+        252
+      ],
+      "expectedCleanRGBA": [
+        66,
+        59,
+        60,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          217,
+          235
+        ],
+        "raw2RGBA": [
+          66,
+          59,
+          60,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        68,
+        184
+      ],
+      "forbiddenOldRGBA": [
+        92,
+        81,
+        65,
+        47
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          184
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        69,
+        184
+      ],
+      "forbiddenOldRGBA": [
+        78,
+        66,
+        53,
+        62
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          69,
+          184
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        70,
+        184
+      ],
+      "forbiddenOldRGBA": [
+        72,
+        62,
+        48,
+        74
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          70,
+          184
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        71,
+        184
+      ],
+      "forbiddenOldRGBA": [
+        70,
+        58,
+        46,
+        84
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          71,
+          184
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        66,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        92,
+        76,
+        64,
+        64
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        67,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        76,
+        66,
+        54,
+        127
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        68,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        45,
+        33,
+        27,
+        198
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        69,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        26,
+        21,
+        205
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          69,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        70,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        40,
+        32,
+        23,
+        218
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          70,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        71,
+        185
+      ],
+      "forbiddenOldRGBA": [
+        40,
+        28,
+        23,
+        224
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          71,
+          185
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        64,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        68,
+        59,
+        45,
+        135
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          64,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        65,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        33,
+        26,
+        199
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          65,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        66,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        37,
+        28,
+        20,
+        212
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        67,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        35,
+        27,
+        239
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        68,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        35,
+        23,
+        18,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          68,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        69,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        30,
+        19,
+        15,
+        252
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          69,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        70,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        32,
+        21,
+        16,
+        254
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          70,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        71,
+        186
+      ],
+      "forbiddenOldRGBA": [
+        31,
+        20,
+        16,
+        254
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          71,
+          186
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        62,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        66,
+        55,
+        44,
+        93
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          62,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        63,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        44,
+        36,
+        27,
+        196
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          63,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        64,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        31,
+        23,
+        237
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          64,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        65,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        29,
+        20,
+        16,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          65,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        66,
+        187
+      ],
+      "forbiddenOldRGBA": [
+        25,
+        17,
+        13,
+        255
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          66,
+          187
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        219,
+        225
+      ],
+      "forbiddenOldRGBA": [
+        139,
+        29,
+        37,
+        253
+      ],
+      "expectedCleanRGBA": [
+        62,
+        57,
+        63,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          219,
+          225
+        ],
+        "raw2RGBA": [
+          62,
+          57,
+          63,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        215,
+        233
+      ],
+      "forbiddenOldRGBA": [
+        124,
+        34,
+        44,
+        252
+      ],
+      "expectedCleanRGBA": [
+        50,
+        40,
+        36,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          215,
+          233
+        ],
+        "raw2RGBA": [
+          50,
+          40,
+          36,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        217,
+        235
+      ],
+      "forbiddenOldRGBA": [
+        13,
+        10,
+        8,
+        252
+      ],
+      "expectedCleanRGBA": [
+        66,
+        59,
+        60,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          217,
+          235
+        ],
+        "raw2RGBA": [
+          66,
+          59,
+          60,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        67,
+        219
+      ],
+      "forbiddenOldRGBA": [
+        21,
+        14,
+        9,
+        252
+      ],
+      "expectedCleanRGBA": [
+        32,
+        14,
+        11,
+        249
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          219
+        ],
+        "raw2RGBA": [
+          32,
+          14,
+          11,
+          249
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        72,
+        219
+      ],
+      "forbiddenOldRGBA": [
+        187,
+        179,
+        136,
+        252
+      ],
+      "expectedCleanRGBA": [
+        189,
+        167,
+        149,
+        251
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          72,
+          219
+        ],
+        "raw2RGBA": [
+          189,
+          167,
+          149,
+          251
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        79,
+        221
+      ],
+      "forbiddenOldRGBA": [
+        194,
+        184,
+        140,
+        253
+      ],
+      "expectedCleanRGBA": [
+        169,
+        142,
+        122,
+        251
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          79,
+          221
+        ],
+        "raw2RGBA": [
+          169,
+          142,
+          122,
+          251
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        100,
+        226
+      ],
+      "forbiddenOldRGBA": [
+        143,
+        31,
+        47,
+        252
+      ],
+      "expectedCleanRGBA": [
+        20,
+        16,
+        15,
+        243
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          100,
+          226
+        ],
+        "raw2RGBA": [
+          20,
+          16,
+          15,
+          243
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        105,
+        228
+      ],
+      "forbiddenOldRGBA": [
+        138,
+        30,
+        45,
+        252
+      ],
+      "expectedCleanRGBA": [
+        36,
+        32,
+        31,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          105,
+          228
+        ],
+        "raw2RGBA": [
+          36,
+          32,
+          31,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        112,
+        231
+      ],
+      "forbiddenOldRGBA": [
+        156,
+        35,
+        50,
+        253
+      ],
+      "expectedCleanRGBA": [
+        53,
+        48,
+        48,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          112,
+          231
+        ],
+        "raw2RGBA": [
+          53,
+          48,
+          48,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 1,
+      "pixel": [
+        120,
+        231
+      ],
+      "forbiddenOldRGBA": [
+        47,
+        18,
+        17,
+        253
+      ],
+      "expectedCleanRGBA": [
+        12,
+        7,
+        4,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          120,
+          231
+        ],
+        "raw2RGBA": [
+          12,
+          7,
+          4,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        67,
+        219
+      ],
+      "forbiddenOldRGBA": [
+        21,
+        14,
+        9,
+        252
+      ],
+      "expectedCleanRGBA": [
+        32,
+        14,
+        11,
+        249
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          67,
+          219
+        ],
+        "raw2RGBA": [
+          32,
+          14,
+          11,
+          249
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        72,
+        219
+      ],
+      "forbiddenOldRGBA": [
+        187,
+        179,
+        136,
+        252
+      ],
+      "expectedCleanRGBA": [
+        189,
+        167,
+        149,
+        251
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          72,
+          219
+        ],
+        "raw2RGBA": [
+          189,
+          167,
+          149,
+          251
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        79,
+        221
+      ],
+      "forbiddenOldRGBA": [
+        194,
+        184,
+        140,
+        253
+      ],
+      "expectedCleanRGBA": [
+        169,
+        142,
+        122,
+        251
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          79,
+          221
+        ],
+        "raw2RGBA": [
+          169,
+          142,
+          122,
+          251
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        100,
+        226
+      ],
+      "forbiddenOldRGBA": [
+        143,
+        31,
+        47,
+        252
+      ],
+      "expectedCleanRGBA": [
+        20,
+        16,
+        15,
+        243
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          100,
+          226
+        ],
+        "raw2RGBA": [
+          20,
+          16,
+          15,
+          243
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        105,
+        228
+      ],
+      "forbiddenOldRGBA": [
+        138,
+        30,
+        45,
+        252
+      ],
+      "expectedCleanRGBA": [
+        36,
+        32,
+        31,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          105,
+          228
+        ],
+        "raw2RGBA": [
+          36,
+          32,
+          31,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        112,
+        231
+      ],
+      "forbiddenOldRGBA": [
+        156,
+        35,
+        50,
+        253
+      ],
+      "expectedCleanRGBA": [
+        53,
+        48,
+        48,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          112,
+          231
+        ],
+        "raw2RGBA": [
+          53,
+          48,
+          48,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 2,
+      "state": 2,
+      "pixel": [
+        120,
+        231
+      ],
+      "forbiddenOldRGBA": [
+        47,
+        18,
+        17,
+        253
+      ],
+      "expectedCleanRGBA": [
+        12,
+        7,
+        4,
+        252
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          120,
+          231
+        ],
+        "raw2RGBA": [
+          12,
+          7,
+          4,
+          252
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 1,
+      "pixel": [
+        250,
+        197
+      ],
+      "forbiddenOldRGBA": [
+        215,
+        207,
+        173,
+        252
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          250,
+          197
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 1,
+      "pixel": [
+        253,
+        197
+      ],
+      "forbiddenOldRGBA": [
+        238,
+        231,
+        195,
+        251
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          253,
+          197
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 1,
+      "pixel": [
+        261,
+        198
+      ],
+      "forbiddenOldRGBA": [
+        31,
+        20,
+        14,
+        249
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          261,
+          198
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        247,
+        188
+      ],
+      "forbiddenOldRGBA": [
+        75,
+        59,
+        43,
+        65
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          247,
+          188
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        248,
+        188
+      ],
+      "forbiddenOldRGBA": [
+        74,
+        57,
+        46,
+        72
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          248,
+          188
+        ],
+        "raw2RGBA": [
+          73,
+          36,
+          0,
+          7
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        249,
+        188
+      ],
+      "forbiddenOldRGBA": [
+        68,
+        53,
+        42,
+        86
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          249,
+          188
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        250,
+        188
+      ],
+      "forbiddenOldRGBA": [
+        80,
+        61,
+        46,
+        83
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          250,
+          188
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        247,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        26,
+        20,
+        209
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          247,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        248,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        27,
+        21,
+        211
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          248,
+          189
+        ],
+        "raw2RGBA": [
+          85,
+          0,
+          0,
+          6
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        249,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        26,
+        20,
+        215
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          249,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        250,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        46,
+        32,
+        23,
+        207
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          250,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        251,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        69,
+        53,
+        42,
+        140
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          251,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        252,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        73,
+        58,
+        46,
+        105
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          252,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        253,
+        189
+      ],
+      "forbiddenOldRGBA": [
+        72,
+        56,
+        43,
+        95
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          253,
+          189
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        252,
+        190
+      ],
+      "forbiddenOldRGBA": [
+        49,
+        35,
+        27,
+        235
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          252,
+          190
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        253,
+        190
+      ],
+      "forbiddenOldRGBA": [
+        47,
+        31,
+        24,
+        221
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          253,
+          190
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        254,
+        190
+      ],
+      "forbiddenOldRGBA": [
+        57,
+        41,
+        32,
+        151
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          254,
+          190
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        255,
+        190
+      ],
+      "forbiddenOldRGBA": [
+        81,
+        65,
+        55,
+        79
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "semantic-exterior-transparent",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          255,
+          190
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": "Manually confirmed old fist exterior; fixed body, backpack and pole cap are outside. Plate must be transparent before the current moving arm foreground."
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        250,
+        197
+      ],
+      "forbiddenOldRGBA": [
+        215,
+        207,
+        173,
+        252
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          250,
+          197
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        253,
+        197
+      ],
+      "forbiddenOldRGBA": [
+        238,
+        231,
+        195,
+        251
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          253,
+          197
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "state": 2,
+      "pixel": [
+        261,
+        198
+      ],
+      "forbiddenOldRGBA": [
+        31,
+        20,
+        14,
+        249
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          261,
+          198
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 1,
+      "pixel": [
+        85,
+        198
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        12,
+        10,
+        248
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          85,
+          198
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 1,
+      "pixel": [
+        110,
+        237
+      ],
+      "forbiddenOldRGBA": [
+        55,
+        31,
+        27,
+        252
+      ],
+      "expectedCleanRGBA": [
+        156,
+        62,
+        58,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          110,
+          237
+        ],
+        "raw2RGBA": [
+          156,
+          62,
+          58,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 1,
+      "pixel": [
+        109,
+        238
+      ],
+      "forbiddenOldRGBA": [
+        53,
+        32,
+        27,
+        252
+      ],
+      "expectedCleanRGBA": [
+        145,
+        56,
+        52,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          109,
+          238
+        ],
+        "raw2RGBA": [
+          145,
+          56,
+          52,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        85,
+        198
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        12,
+        10,
+        248
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          85,
+          198
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        110,
+        237
+      ],
+      "forbiddenOldRGBA": [
+        55,
+        31,
+        27,
+        252
+      ],
+      "expectedCleanRGBA": [
+        156,
+        62,
+        58,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          110,
+          237
+        ],
+        "raw2RGBA": [
+          156,
+          62,
+          58,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 0,
+      "state": 2,
+      "pixel": [
+        109,
+        238
+      ],
+      "forbiddenOldRGBA": [
+        53,
+        32,
+        27,
+        252
+      ],
+      "expectedCleanRGBA": [
+        145,
+        56,
+        52,
+        253
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          109,
+          238
+        ],
+        "raw2RGBA": [
+          145,
+          56,
+          52,
+          253
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        218,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        34,
+        10,
+        7,
+        249
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          218,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        223,
+        196
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        16,
+        12,
+        245
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          223,
+          196
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 1,
+      "pixel": [
+        227,
+        202
+      ],
+      "forbiddenOldRGBA": [
+        46,
+        20,
+        16,
+        246
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          227,
+          202
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        218,
+        191
+      ],
+      "forbiddenOldRGBA": [
+        34,
+        10,
+        7,
+        249
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          218,
+          191
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        223,
+        196
+      ],
+      "forbiddenOldRGBA": [
+        39,
+        16,
+        12,
+        245
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          223,
+          196
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    },
+    {
+      "actor": "hostess",
+      "dir": 1,
+      "state": 2,
+      "pixel": [
+        227,
+        202
+      ],
+      "forbiddenOldRGBA": [
+        46,
+        20,
+        16,
+        246
+      ],
+      "expectedCleanRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cleanOracle": {
+        "type": "verified-raw2-same-coordinate",
+        "sourceFrame": 2,
+        "sourcePixel": [
+          227,
+          202
+        ],
+        "raw2RGBA": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "reason": ""
+      }
+    }
+  ],
+  "intentionalBodyPlateTransparentPixels": [
+    {
+      "actor": "hiker",
+      "dir": 0,
+      "coordinateSpace": "Canonical seated canvas",
+      "pixels": [
+        [
+          241,
+          189
+        ],
+        [
+          242,
+          189
+        ],
+        [
+          240,
+          190
+        ],
+        [
+          241,
+          190
+        ],
+        [
+          242,
+          190
+        ],
+        [
+          243,
+          190
+        ]
+      ],
+      "expectedBodyPlateRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "finalImageRule": "Foreground may cover these pixels in a state. Assert exact transparent body plate plus independently correct moving foreground; do not force final image transparent where the current arm legitimately covers it."
+    },
+    {
+      "actor": "hiker",
+      "dir": 3,
+      "coordinateSpace": "Canonical seated canvas",
+      "pixels": [
+        [
+          242,
+          186
+        ],
+        [
+          243,
+          186
+        ],
+        [
+          244,
+          186
+        ],
+        [
+          245,
+          186
+        ],
+        [
+          246,
+          186
+        ],
+        [
+          242,
+          188
+        ],
+        [
+          243,
+          188
+        ],
+        [
+          244,
+          188
+        ],
+        [
+          245,
+          188
+        ],
+        [
+          246,
+          188
+        ],
+        [
+          247,
+          188
+        ],
+        [
+          248,
+          188
+        ],
+        [
+          249,
+          188
+        ],
+        [
+          250,
+          188
+        ],
+        [
+          242,
+          189
+        ],
+        [
+          243,
+          189
+        ],
+        [
+          244,
+          189
+        ],
+        [
+          245,
+          189
+        ],
+        [
+          246,
+          189
+        ],
+        [
+          247,
+          189
+        ],
+        [
+          248,
+          189
+        ],
+        [
+          249,
+          189
+        ],
+        [
+          250,
+          189
+        ],
+        [
+          251,
+          189
+        ],
+        [
+          252,
+          189
+        ],
+        [
+          253,
+          189
+        ],
+        [
+          242,
+          190
+        ],
+        [
+          243,
+          190
+        ],
+        [
+          244,
+          190
+        ],
+        [
+          245,
+          190
+        ],
+        [
+          246,
+          190
+        ],
+        [
+          252,
+          190
+        ],
+        [
+          253,
+          190
+        ],
+        [
+          254,
+          190
+        ],
+        [
+          255,
+          190
+        ],
+        [
+          243,
+          191
+        ],
+        [
+          244,
+          191
+        ],
+        [
+          245,
+          191
+        ],
+        [
+          246,
+          191
+        ],
+        [
+          240,
+          192
+        ],
+        [
+          241,
+          192
+        ],
+        [
+          242,
+          192
+        ],
+        [
+          243,
+          192
+        ],
+        [
+          244,
+          192
+        ],
+        [
+          245,
+          192
+        ],
+        [
+          238,
+          193
+        ],
+        [
+          239,
+          193
+        ],
+        [
+          240,
+          193
+        ],
+        [
+          241,
+          193
+        ],
+        [
+          242,
+          193
+        ],
+        [
+          243,
+          193
+        ],
+        [
+          244,
+          193
+        ],
+        [
+          245,
+          193
+        ],
+        [
+          237,
+          194
+        ],
+        [
+          238,
+          194
+        ],
+        [
+          239,
+          194
+        ],
+        [
+          240,
+          194
+        ],
+        [
+          241,
+          194
+        ],
+        [
+          242,
+          194
+        ],
+        [
+          243,
+          194
+        ],
+        [
+          244,
+          194
+        ],
+        [
+          245,
+          194
+        ],
+        [
+          238,
+          195
+        ],
+        [
+          239,
+          195
+        ],
+        [
+          240,
+          195
+        ],
+        [
+          241,
+          195
+        ],
+        [
+          242,
+          195
+        ],
+        [
+          243,
+          195
+        ],
+        [
+          244,
+          195
+        ],
+        [
+          245,
+          195
+        ],
+        [
+          239,
+          196
+        ],
+        [
+          240,
+          196
+        ],
+        [
+          241,
+          196
+        ]
+      ],
+      "expectedBodyPlateRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "finalImageRule": "Foreground may cover these pixels in a state. Assert exact transparent body plate plus independently correct moving foreground; do not force final image transparent where the current arm legitimately covers it."
+    }
+  ],
+  "limitations": [
+    "This JSON is the sole normative state-specific old-arm witness contract. Do not maintain independent copied witness arrays.",
+    "A witness must reject old canonical RGBA and match expectedCleanRGBA; inequality by itself does not establish PASS.",
+    "State-specific foreground overlap is retained. Hiker d0 state1 has only the rightmost tick witness; hiker d1 far-fist pixels and hiker d3 top pixels are mandatory only in the listed states.",
+    "Broad oldArmRegion annotations are not erase instructions. Preserve fixed body, face, backpack and pole cap.",
+    "Whole-contour native GIF review of all 24 frames is required in addition to these finite witnesses."
+  ]
+}
