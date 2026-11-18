@@ -23,7 +23,7 @@ export const RECIPES = [
 }));
 RECIPES.push(
   {id:'xmas-rice',name:'해골 성탄 떡',description:'다시 찾아올 겨울을 위한 달콤한 기억.',duration:120,servings:40,coins:15,hearts:0,sprite:12,book:3,required:0,price:2,portion:2,milestones:[3,8,10],event:'christmas'},
-  {id:'xmas-soup',name:'유령 만둣국',description:'뜨끈한 국물에 메리 크리스마스.',duration:300,servings:60,coins:25,hearts:0,sprite:13,book:0,required:3,price:3,portion:3,milestones:[3,8,10],event:'christmas'},
+  {id:'xmas-soup',name:'유령 만둣국',description:'뜨끈한 국물에 둥둥 떠다니는 유령 만두.',duration:300,servings:60,coins:25,hearts:0,sprite:13,book:0,required:3,price:3,portion:3,milestones:[3,8,10]},
 );
 RECIPES.push(
   {"id":"gopchang-jeongol","name":"지옥 곱창전골","description":"피처럼 붉은 국물에 꼬인 곱창과 불씨 무늬 냄비를 담았어요.","duration":7200,"servings":200,"coins":75,"hearts":0,"sprite":16,"book":4,"required":36,"price":1,"portion":10,"milestones":[2,5,8]},
