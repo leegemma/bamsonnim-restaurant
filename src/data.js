@@ -142,17 +142,24 @@ export const WAITER_NAME_UPDATES={달래:'하온',보리:'하영',초롱:'은재
 export const LIMITS={waiters:[[1,2],[5,3],[10,4],[15,5],[20,6],[26,8]],stove:[[1,2],[4,3],[8,4],[12,5],[16,6],[20,8],[25,10]],server:[[1,2],[6,3],[12,4],[18,5],[25,6]]};
 export const EXPANSIONS=[{size:9,level:4,price:1000},{size:10,level:7,price:3000},{size:11,level:10,price:6000},{size:12,level:13,price:10000},{size:13,level:16,price:16000},{size:14,level:20,price:25000},{size:15,level:24,price:40000},{size:16,level:28,price:60000}];
 export const QUESTS=[
- {name:'가마솥에 불을 지펴요',description:'요리를 2번 완성해 서빙대로 옮기세요.',stat:'cooked',target:2,coins:100,xp:100},
- {name:'첫 손님을 부탁해요',description:'음식을 2번 서빙하세요.',stat:'served',target:2,coins:100,xp:100},
- {name:'어서 오세요, 두 자리 더',description:'테이블을 2개 구매하세요.',stat:'tablesBought',target:2,coins:150,xp:150},
- {name:'편히 앉으세요',description:'의자를 2개 구매하세요.',stat:'chairsBought',target:2,coins:150,xp:150},
- {name:'이 집의 대표 메뉴',description:'음식 1종의 숙련도를 3으로 만드세요.',stat:'mastered',target:1,coins:150,xp:150,absolute:true},
- {name:'부지런한 주방장',description:'요리를 20번 완성하세요.',stat:'cooked',target:20,coins:200,xp:200},
- {name:'배고픈 이웃들',description:'행인 좀비에게 50번 식사를 판매하세요.',stat:'fed:wanderer',target:50,coins:200,xp:200},
- {name:'조금 더 넓은 식당',description:'식당을 9×9로 확장하세요.',stat:'size',target:9,coins:300,xp:300,absolute:true},
- {name:'도움이 필요해요',description:'직원 1명을 추가 고용하세요.',stat:'hired',target:1,coins:300,xp:300},
- {name:'밤손님 수집가',description:'캐릭터북에 좀비 10종을 등록하세요.',stat:'album',target:10,coins:1500,xp:1500,absolute:true},
- {name:'달밤의 축제',description:'피버 모드를 1번 시작하세요.',stat:'fevers',target:1,coins:500,xp:500},
+ {id:'cook1',name:'가마솥에 불을 지펴요',description:'요리를 2번 완성해 서빙대로 옮기세요.',stat:'cooked',target:2,coins:100,xp:100,skip:10},
+ {id:'treat1',name:'첫 손님을 부탁해요',description:'음식을 2번 서빙하세요.',stat:'served',target:2,coins:100,xp:100,skip:10},
+ {id:'tables1',name:'어서 오세요, 두 자리 더',description:'테이블을 2개 구매하세요.',stat:'tablesBought',target:2,coins:150,xp:150,skip:20},
+ {id:'chairs1',name:'편히 앉으세요',description:'의자를 2개 구매하세요.',stat:'chairsBought',target:2,coins:150,xp:150},
+ {id:'master1',name:'이 집의 대표 메뉴',description:'음식 1종의 숙련도를 3으로 만드세요.',stat:'mastered',target:1,coins:150,xp:150,absolute:true},
+ {id:'cook2',name:'부지런한 주방장',description:'요리를 20번 완성하세요.',stat:'cooked',target:20,coins:200,xp:200},
+ {id:'brains',name:'배고픈 이웃들',description:'행인 좀비에게 50번 식사를 판매하세요.',stat:'fed:wanderer',target:50,coins:200,xp:200},
+ {id:'expand1',name:'조금 더 넓은 식당',description:'식당을 9×9로 확장하세요.',stat:'size',target:9,coins:300,xp:300,absolute:true,skip:30},
+ {id:'hire1',name:'도움이 필요해요',description:'직원 1명을 추가 고용하세요.',stat:'hired',target:1,coins:300,xp:300},
+ {id:'album1',name:'밤손님 수집가',description:'캐릭터북에 좀비 10종을 등록하세요.',stat:'album',target:10,coins:1500,xp:1500,absolute:true},
+ {id:'frenzy1',name:'달밤의 축제',description:'피버 모드를 1번 시작하세요.',stat:'fevers',target:1,coins:500,xp:500},
+ {id:'expand2',name:'식당 확장 10×10',description:'식당을 10×10로 확장하세요.',stat:'size',target:10,coins:600,xp:600,absolute:true,skip:40},
+ {id:'expand3',name:'식당 확장 11×11',description:'식당을 11×11로 확장하세요.',stat:'size',target:11,coins:1000,xp:1000,absolute:true,skip:50},
+ {id:'expand4',name:'식당 확장 12×12',description:'식당을 12×12로 확장하세요.',stat:'size',target:12,coins:2000,xp:2000,absolute:true,skip:60},
+ {id:'expand5',name:'식당 확장 13×13',description:'식당을 13×13로 확장하세요.',stat:'size',target:13,coins:4000,xp:4000,absolute:true,skip:70},
+ {id:'expand6',name:'식당 확장 14×14',description:'식당을 14×14로 확장하세요.',stat:'size',target:14,coins:6000,xp:6000,absolute:true,skip:80},
+ {id:'expand7',name:'식당 확장 15×15',description:'식당을 15×15로 확장하세요.',stat:'size',target:15,coins:9000,xp:9000,absolute:true,skip:90},
+ {id:'expand8',name:'식당 확장 16×16',description:'식당을 16×16로 확장하세요.',stat:'size',target:16,coins:15000,xp:15000,absolute:true,skip:100},
 ];
 export const recipe=id=>RECIPES.find(r=>r.id===id);
 export const zombie=id=>ZOMBIES.find(z=>z.id===id);

@@ -458,7 +458,19 @@ export function applySkin(s,id){const skin=SKINS.find(x=>x.id===id);if(!skin)ret
 export function expand(s){const next=EXPANSIONS.find(x=>x.size>s.size);if(!next)return '최대 크기예요.';if(s.level<next.level)return `식당 레벨 ${next.level}부터 확장할 수 있어요.`;if(s.coins<next.price)return '코인이 부족해요.';s.coins-=next.price;s.size=next.size;notify(s,`식당이 ${s.size}×${s.size}로 넓어졌어요!`,'level');return null;}
 export function statValue(s,key){if(key==='mastered')return RECIPES.filter(r=>stars(s,r.id)===3).length;if(key==='size')return s.size;if(key==='album')return Object.keys(s.album).length;if(key.startsWith('fed:'))return s.stats.fed[key.slice(4)]||0;return s.stats[key]||0;}
 export function questProgress(s){const q=QUESTS[s.questIndex];return q?{...q,progress:Math.max(0,Math.min(q.target,statValue(s,q.stat)-(q.absolute?0:s.questBase)))}:null;}
-export function claimQuest(s){const q=questProgress(s);if(!q||q.progress<q.target)return '아직 의뢰 조건을 달성하지 못했어요.';s.coins+=q.coins;addXp(s,q.xp);s.questIndex++;const next=QUESTS[s.questIndex];s.questBase=next&&!next.absolute?statValue(s,next.stat):0;notify(s,`시장님의 선물 · ${q.coins}코인 + ${q.xp} XP`,'quest');return null;}
+function finishQuest(s,q){s.coins+=q.coins;addXp(s,q.xp);s.questIndex++;const next=QUESTS[s.questIndex];s.questBase=next&&!next.absolute?statValue(s,next.stat):0;notify(s,`시장님의 선물 · ${q.coins}코인 + ${q.xp} XP`,'quest');return null;}
+export function claimQuest(s,expectedId=null,expectedIndex=s.questIndex){
+ const q=questProgress(s);if(expectedId!==null&&(!q||q.id!==expectedId||s.questIndex!==expectedIndex))return '부탁이 바뀌었어요. 현재 부탁을 다시 확인해주세요.';
+ if(!q||q.progress<q.target)return '아직 의뢰 조건을 달성하지 못했어요.';return finishQuest(s,q);
+}
+export function skipQuest(s,expectedId,expectedIndex=s.questIndex){
+ const q=questProgress(s);if(!q)return '모든 부탁을 마쳤어요.';
+ if(q.id!==expectedId||s.questIndex!==expectedIndex)return '부탁이 바뀌었어요. 현재 부탁을 다시 확인해주세요.';
+ if(!Number.isInteger(q.skip)||q.skip<=0)return '이 부탁은 심장으로 완료할 수 없어요.';
+ if(q.progress>=q.target)return '이미 조건을 달성했어요. 심장 없이 보상을 받아주세요.';
+ if(s.hearts<q.skip)return `심장 ${q.skip}개가 필요해요.`;
+ s.hearts-=q.skip;return finishQuest(s,q);
+}
 export function setEvent(s,status){if(!['upcoming','active','ended'].includes(status))return;s.events.christmas=status;notify(s,status==='active'?'오싹한 성탄절이 시작됐어요!':status==='ended'?'성탄절 영업이 끝났어요. 모은 추억은 남아있어요.':'다음 성탄절을 준비합니다.','event');}
 export function daily(s,now=new Date()) {const date=now.toISOString().slice(0,10);if(s.dailyClaim===date)return '오늘의 선물은 이미 받았어요.';s.dailyClaim=date;s.coins+=100;s.hearts+=2;notify(s,'오늘의 선물 · 100코인 + 심장 2개','quest');return null;}
 
