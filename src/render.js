@@ -264,10 +264,10 @@ export class RestaurantView{
     const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(artId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
     c.fillStyle='#17282644';c.beginPath();c.ellipse(p.x,p.y+3,t*.18,t*.075,0,0,Math.PI*2);c.fill();
     const chair=isSeated?s.objects.find(o=>o.uid===a.seat):null;
-    const directionalMeta=!waiter?directionalCharacter(artId):null;
-    const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chair?.dir??null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
+    const directionalMeta=!waiter?directionalCharacter(artId):null,entry=zombieEntrance(s),queuedAtDoor=!waiter&&a.phase==='queue'&&!a.path?.length&&Math.hypot(a.x-entry.x,a.y-entry.y)<1e-6;
+    const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chair?.dir??null,idleDirection:queuedAtDoor?1:null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
     if(pose)this.walkingStates.set(a,pose);
-    let flip=pose?pose.flip:walking&&(a.path[0][0]-a.x)-(a.path[0][1]-a.y)<0;
+    let flip=pose?pose.flip:queuedAtDoor?true:walking&&(a.path[0][0]-a.x)-(a.path[0][1]-a.y)<0;
     const appearance=a.appearance??Math.max(0,s.waiters.indexOf(a)),workerArt=waiter?workerFrame(appearance,{infected:a.infectedUntil>s.time}):null;
     const mapped=waiter&&this.sprites.workers?.length?(this.sprites[workerArt.key]?.length?workerArt:{key:'workers',index:appearance}):characterFrame(waiter?15:def?.sprite||0);let atlas=mapped.key,index=mapped.index;
     const directional=!!pose&&!!this.sprites[directionalMeta.key]?.length;
