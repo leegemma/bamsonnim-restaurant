@@ -1,0 +1,9 @@
+Use case: stylized-concept.
+Asset type: TWO-FRAME transparent pixel-art flame animation SPRITE SHEET, exactly 2 columns by 1 row.
+Input image 1 is a STYLE REFERENCE ONLY. Match its crisp, cute eerie 2D pixel art, outlined squared pixel clusters, warm golden fire, 2:1 orthographic quarter-view ground. Do not reproduce the courtyard or buildings.
+Create a single small lively smoldering orange-gold flame, shown twice as two successive animation frames in the left and right equal cells of a wide transparent canvas. Each frame has the SAME tiny low black-charcoal/ember base, SAME bottom-center ground-contact point and SAME scale. Short localized fire as if beside a collapsed lantern, with 3 tongues of fire and 2 tiny sparks, no enormous blaze.
+Frame 1: middle flame tongue curls slightly left and is short.
+Frame 2: same base, only flame tongues rise a little higher and curl right; sparks shift a few pixels.
+Use pale yellow-hot inner pixels, saturated amber/orange middle, dark orange/red outline accents. Keep flames compact; no smoke, no cast glow rectangle, no background shadow tile, no environment, no lantern, no log pile.
+Composition: equal square cells in a horizontal sheet, abundant clear transparent padding, individual flame at each cell's horizontal center, base contact aligned identically at 80 percent of cell height. Two objects only. No text or frame dividers.
+Actual fully transparent RGBA background required. Crisp pixel-art stepped edges, no vector smoothing, no blurry airbrush, no checkerboard baked into pixels. No UI, no watermark.

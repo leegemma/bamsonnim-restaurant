@@ -1,0 +1,6 @@
+Mode: built-in image_gen; transparent PNG; PREVIEW ONLY. User approval required before app integration or deployment.
+Use case: stylized-concept. Asset type: transparent PNG game combo title lettering.
+Reference image: use the supplied "32 Combo!" image as a lettering/style reference. Create ONLY the word "Combo!" without ANY numerals. Do not include 32, 1, or other numbers: the game renders changing numbers separately.
+Primary request: a much more prominent, energetic white brush-lettered "Combo!" title, thick bold hand-painted strokes with an excited forward slant and crisp readable silhouette, matching the casual brush script in the reference. Capital C, lowercase ombo, one exclamation mark. Exactly "Combo!".
+Large white/ivory lettering with a restrained dark teal-black outline and a warm muted gold offset accent underneath, a couple of short brush speed-strokes integrated around the exclamation mark. No frame, no rectangular background, no characters, no coins, no extra words, no huge starburst.
+Single horizontal title graphic centered and fully visible with clear margin. Preserve the reference's handwritten character rather than using a geometric UI font. Output clean high-resolution raster for a spooky-cute restaurant game's floating combo popup, genuinely transparent outside all strokes; no baked checkerboard or dark rectangle.
