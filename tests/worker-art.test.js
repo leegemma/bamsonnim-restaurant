@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {workerFrame} from '../src/worker-art.js';
 
-test('the white-eye pilot applies to exactly one infected appearance',()=>{
+test('the custom zombie look applies to exactly one infected appearance',()=>{
   for(let appearance=0;appearance<8;appearance++){
     assert.deepEqual(workerFrame(appearance),{key:'workers',index:appearance});
     assert.deepEqual(workerFrame(appearance,{infected:true}),appearance===0?{key:'infectedHaon',index:0}:{key:'workers',index:appearance});

@@ -107,9 +107,9 @@ export const ASSET_MANIFEST={
     ],
     note:'4열×2행, 행 우선 index 0~7. 건강한 인간 직원, 빈손 정지 자세. 외형별 능력 차이 없음.',
   }),
-  infectedHaon:asset('infectedHaon','감염된 하온 · 동공 없는 하얀 눈',{
-    url:'/assets/worker-haon-white-eyes-v1.png',width:1254,height:1254,rows:1,type:'worker-variant',
-    promptFile:'/assets/worker-haon-white-eyes-v1.prompt.txt',appearance:0,infectedOnly:true,
+  infectedHaon:asset('infectedHaon','감염된 하온 · 초록 피부·엇갈린 시선·혀와 침',{
+    url:'/assets/worker-haon-zombie-v2.png',width:1254,height:1254,rows:1,type:'worker-variant',
+    promptFile:'/assets/worker-haon-zombie-v2.prompt.txt',appearance:0,infectedOnly:true,precoloredInfected:true,
   }),
   waiterTray:asset('waiterTray','직원이 드는 빈 황동 쟁반',{
     url:'/assets/waiter-tray.png',width:1254,height:1254,type:'overlay',
