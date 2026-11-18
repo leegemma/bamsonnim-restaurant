@@ -1,0 +1,1161 @@
+{
+  "actorId": "clown",
+  "key": "zombieClown",
+  "name": "삐에로 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "url": "/assets/zombies/clown-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "4×4 layout; row gutters measured from alpha>80 projection, individual poses[].source is authoritative. No source pixels altered.",
+  "referenceHeight": 291.5,
+  "referenceHeightMethod": "Median measured alpha>80 bounds height of 12 walking frames.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 310
+      },
+      "bounds": {
+        "x": 65,
+        "y": 4,
+        "width": 185,
+        "height": 294
+      },
+      "anchor": {
+        "x": 165,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 37688,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 149,
+        "ownerFeetRoi": {
+          "x": 98,
+          "y": 232,
+          "width": 119,
+          "height": 66
+        },
+        "ownerFootSamples": 6602,
+        "lowerBodyPixelFingerprint": "c1c43b5357ebc3987c65742312d51034a4d17e0c34da2c12e7bd24ef668249a8"
+      },
+      "footContactAnchor": {
+        "x": 165,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 87,
+        "y": 288,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 154.455,
+          "y": 58.395
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 310,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 313,
+        "height": 310
+      },
+      "bounds": {
+        "x": 64,
+        "y": 4,
+        "width": 186,
+        "height": 294
+      },
+      "anchor": {
+        "x": 163.002,
+        "y": 297.654
+      },
+      "validation": {
+        "opaquePixels": 39085,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 204,
+        "ownerFeetRoi": {
+          "x": 97,
+          "y": 232,
+          "width": 120,
+          "height": 66
+        },
+        "ownerFootSamples": 6528,
+        "lowerBodyPixelFingerprint": "16fb639411867d3e4e147558d41d2edf463b88d5524e9321481c7f6a1d5561af"
+      },
+      "footContactAnchor": {
+        "x": 153.5,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 85,
+        "y": 288,
+        "width": 136,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 152.457,
+          "y": 58.049
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 314,
+      "height": 310,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 314,
+        "height": 310
+      },
+      "bounds": {
+        "x": 64,
+        "y": 4,
+        "width": 186,
+        "height": 299
+      },
+      "anchor": {
+        "x": 164.118,
+        "y": 297.636
+      },
+      "validation": {
+        "opaquePixels": 38141,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 195,
+        "ownerFeetRoi": {
+          "x": 97,
+          "y": 236,
+          "width": 120,
+          "height": 67
+        },
+        "ownerFootSamples": 6488,
+        "lowerBodyPixelFingerprint": "7306ad807104ce888d91a1689a2b6e19e324ecae135d5638986f73b1feba4f86"
+      },
+      "footContactAnchor": {
+        "x": 163.5,
+        "y": 303
+      },
+      "footContactRegion": {
+        "x": 87,
+        "y": 293,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.573,
+          "y": 58.031
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "clown",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 0,
+      "width": 313,
+      "height": 310,
+      "source": {
+        "x": 941,
+        "y": 0,
+        "width": 313,
+        "height": 310
+      },
+      "bounds": {
+        "x": 64,
+        "y": 25,
+        "width": 197,
+        "height": 279
+      },
+      "anchor": {
+        "x": 162,
+        "y": 304
+      },
+      "hip": {
+        "x": 121,
+        "y": 256
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 37945,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 0,
+        "ownerFeetRoi": {
+          "x": 99,
+          "y": 241,
+          "width": 127,
+          "height": 63
+        },
+        "ownerFootSamples": 6757,
+        "lowerBodyPixelFingerprint": "67055323c9467aee17e4dc5dd8de9a38217ed1ffc85ef7125efe06a157b07789"
+      }
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 310,
+      "width": 314,
+      "height": 309,
+      "source": {
+        "x": 0,
+        "y": 310,
+        "width": 314,
+        "height": 309
+      },
+      "bounds": {
+        "x": 28,
+        "y": 7,
+        "width": 231,
+        "height": 292
+      },
+      "anchor": {
+        "x": 147.5,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 39509,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 60,
+        "ownerFeetRoi": {
+          "x": 69,
+          "y": 233,
+          "width": 148,
+          "height": 66
+        },
+        "ownerFootSamples": 7136,
+        "lowerBodyPixelFingerprint": "799b35f9c9a9801264f4ae4a06597af25d517127912d54ed4b1bfc8f9751260a"
+      },
+      "footContactAnchor": {
+        "x": 147.5,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 289,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.413,
+          "y": 60.523
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 310,
+      "width": 313,
+      "height": 309,
+      "source": {
+        "x": 314,
+        "y": 310,
+        "width": 313,
+        "height": 309
+      },
+      "bounds": {
+        "x": 25,
+        "y": 7,
+        "width": 234,
+        "height": 291
+      },
+      "anchor": {
+        "x": 147.946,
+        "y": 299.624
+      },
+      "validation": {
+        "opaquePixels": 40208,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 100,
+        "ownerFeetRoi": {
+          "x": 67,
+          "y": 232,
+          "width": 150,
+          "height": 66
+        },
+        "ownerFootSamples": 7147,
+        "lowerBodyPixelFingerprint": "cfd57126d0b7b6c367c6f8a686a65c098d87a2789766aee6c3f538a29cce1844"
+      },
+      "footContactAnchor": {
+        "x": 154.5,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 97,
+        "y": 288,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.859,
+          "y": 61.147
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 310,
+      "width": 314,
+      "height": 309,
+      "source": {
+        "x": 627,
+        "y": 310,
+        "width": 314,
+        "height": 309
+      },
+      "bounds": {
+        "x": 32,
+        "y": 7,
+        "width": 229,
+        "height": 292
+      },
+      "anchor": {
+        "x": 150.717,
+        "y": 298.884
+      },
+      "validation": {
+        "opaquePixels": 38173,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 112,
+        "ownerFeetRoi": {
+          "x": 73,
+          "y": 233,
+          "width": 147,
+          "height": 66
+        },
+        "ownerFootSamples": 5875,
+        "lowerBodyPixelFingerprint": "db3f30ba507117b8dae429550a4fa1af3a9ad3b4fd4ccd370214fc438b5d9613"
+      },
+      "footContactAnchor": {
+        "x": 145.5,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 100,
+        "y": 289,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 166.63,
+          "y": 60.407
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "clown",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 310,
+      "width": 313,
+      "height": 309,
+      "source": {
+        "x": 941,
+        "y": 310,
+        "width": 313,
+        "height": 309
+      },
+      "bounds": {
+        "x": 36,
+        "y": 26,
+        "width": 229,
+        "height": 275
+      },
+      "anchor": {
+        "x": 150,
+        "y": 301
+      },
+      "hip": {
+        "x": 193,
+        "y": 256
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 38824,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 8,
+        "ownerFeetRoi": {
+          "x": 77,
+          "y": 239,
+          "width": 147,
+          "height": 62
+        },
+        "ownerFootSamples": 8128,
+        "lowerBodyPixelFingerprint": "59263e158663960dfe66f6f777dd006129d2f9c273541a61e367ccb3d64fb541"
+      }
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 619,
+      "width": 314,
+      "height": 317,
+      "source": {
+        "x": 0,
+        "y": 619,
+        "width": 314,
+        "height": 317
+      },
+      "bounds": {
+        "x": 33,
+        "y": 8,
+        "width": 218,
+        "height": 296
+      },
+      "anchor": {
+        "x": 148.5,
+        "y": 304
+      },
+      "validation": {
+        "opaquePixels": 37013,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 22,
+        "ownerFeetRoi": {
+          "x": 72,
+          "y": 237,
+          "width": 140,
+          "height": 67
+        },
+        "ownerFootSamples": 6789,
+        "lowerBodyPixelFingerprint": "b2b5fc18c02351b874fcc6ebe8300393b1878a5e74512eb8532d9113928dca71"
+      },
+      "footContactAnchor": {
+        "x": 148.5,
+        "y": 304
+      },
+      "footContactRegion": {
+        "x": 96,
+        "y": 294,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.393,
+          "y": 61.77
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 619,
+      "width": 313,
+      "height": 317,
+      "source": {
+        "x": 314,
+        "y": 619,
+        "width": 313,
+        "height": 317
+      },
+      "bounds": {
+        "x": 31,
+        "y": 11,
+        "width": 217,
+        "height": 291
+      },
+      "anchor": {
+        "x": 146.073,
+        "y": 306.848
+      },
+      "validation": {
+        "opaquePixels": 37173,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 46,
+        "ownerFeetRoi": {
+          "x": 70,
+          "y": 236,
+          "width": 139,
+          "height": 66
+        },
+        "ownerFootSamples": 6748,
+        "lowerBodyPixelFingerprint": "316a8a4e3f61beeaaa3495e8c865dd568459ead119e82877c6897e19dcbfccab"
+      },
+      "footContactAnchor": {
+        "x": 161,
+        "y": 302
+      },
+      "footContactRegion": {
+        "x": 94,
+        "y": 292,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 160.966,
+          "y": 64.618
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 619,
+      "width": 314,
+      "height": 317,
+      "source": {
+        "x": 627,
+        "y": 619,
+        "width": 314,
+        "height": 317
+      },
+      "bounds": {
+        "x": 31,
+        "y": 8,
+        "width": 218,
+        "height": 290
+      },
+      "anchor": {
+        "x": 147.275,
+        "y": 304.08
+      },
+      "validation": {
+        "opaquePixels": 36562,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 54,
+        "ownerFeetRoi": {
+          "x": 70,
+          "y": 233,
+          "width": 140,
+          "height": 65
+        },
+        "ownerFootSamples": 6675,
+        "lowerBodyPixelFingerprint": "627d2e1e2fd4ce0eb68f1d55f15665ab68aefab3b758dd2016c7ca4e023ef096"
+      },
+      "footContactAnchor": {
+        "x": 146,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 95,
+        "y": 288,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 162.168,
+          "y": 61.85
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "clown",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 619,
+      "width": 313,
+      "height": 317,
+      "source": {
+        "x": 941,
+        "y": 619,
+        "width": 313,
+        "height": 317
+      },
+      "bounds": {
+        "x": 31,
+        "y": 26,
+        "width": 217,
+        "height": 277
+      },
+      "anchor": {
+        "x": 143,
+        "y": 303
+      },
+      "hip": {
+        "x": 155,
+        "y": 265
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 37859,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 54,
+        "ownerFeetRoi": {
+          "x": 70,
+          "y": 241,
+          "width": 139,
+          "height": 62
+        },
+        "ownerFootSamples": 7437,
+        "lowerBodyPixelFingerprint": "9f1ad612da20f1ee669d5550dee42808872b41691c548ec0bbb48c5c7dd3a822"
+      }
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 936,
+      "width": 314,
+      "height": 318,
+      "source": {
+        "x": 0,
+        "y": 936,
+        "width": 314,
+        "height": 318
+      },
+      "bounds": {
+        "x": 65,
+        "y": 13,
+        "width": 205,
+        "height": 287
+      },
+      "anchor": {
+        "x": 169.5,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 35786,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 4,
+        "ownerFeetRoi": {
+          "x": 101,
+          "y": 235,
+          "width": 132,
+          "height": 65
+        },
+        "ownerFootSamples": 6451,
+        "lowerBodyPixelFingerprint": "040eb8fa5655238398ed792a025d929f5feb201d11ec0790c9433638a39cc54a"
+      },
+      "footContactAnchor": {
+        "x": 169.5,
+        "y": 300
+      },
+      "footContactRegion": {
+        "x": 87,
+        "y": 290,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 153.737,
+          "y": 65.784
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 936,
+      "width": 313,
+      "height": 318,
+      "source": {
+        "x": 314,
+        "y": 936,
+        "width": 313,
+        "height": 318
+      },
+      "bounds": {
+        "x": 54,
+        "y": 13,
+        "width": 204,
+        "height": 286
+      },
+      "anchor": {
+        "x": 158.705,
+        "y": 299.979
+      },
+      "validation": {
+        "opaquePixels": 35778,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 6,
+        "ownerFeetRoi": {
+          "x": 90,
+          "y": 235,
+          "width": 131,
+          "height": 64
+        },
+        "ownerFootSamples": 6133,
+        "lowerBodyPixelFingerprint": "329f0a5b6956c11ee9636e3ad9b537ff7eb6be778a041529c871b58419a26914"
+      },
+      "footContactAnchor": {
+        "x": 136,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 76,
+        "y": 289,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 142.942,
+          "y": 65.763
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "clown",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 936,
+      "width": 314,
+      "height": 318,
+      "source": {
+        "x": 627,
+        "y": 936,
+        "width": 314,
+        "height": 318
+      },
+      "bounds": {
+        "x": 56,
+        "y": 13,
+        "width": 207,
+        "height": 288
+      },
+      "anchor": {
+        "x": 164.065,
+        "y": 299.772
+      },
+      "validation": {
+        "opaquePixels": 35117,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 63,
+        "ownerFeetRoi": {
+          "x": 93,
+          "y": 236,
+          "width": 133,
+          "height": 65
+        },
+        "ownerFootSamples": 5520,
+        "lowerBodyPixelFingerprint": "162600add46f84e9383c865037a1670f7167a699f4f9fb34f639dc84a9e1a0d9"
+      },
+      "footContactAnchor": {
+        "x": 132.5,
+        "y": 301
+      },
+      "footContactRegion": {
+        "x": 81,
+        "y": 291,
+        "width": 135,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 148.302,
+          "y": 65.556
+        },
+        "regionHeight": 93,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "clown",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 936,
+      "width": 313,
+      "height": 318,
+      "source": {
+        "x": 941,
+        "y": 936,
+        "width": 313,
+        "height": 318
+      },
+      "bounds": {
+        "x": 78,
+        "y": 34,
+        "width": 201,
+        "height": 268
+      },
+      "anchor": {
+        "x": 178,
+        "y": 302
+      },
+      "hip": {
+        "x": 157,
+        "y": 264
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 36772,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 54,
+        "ownerFeetRoi": {
+          "x": 114,
+          "y": 242,
+          "width": 129,
+          "height": 60
+        },
+        "ownerFootSamples": 7236,
+        "lowerBodyPixelFingerprint": "8823e09bc0d68e2278b40a506caa2e8a3fbfd862a7a81288ffeb8326b42dcaa2"
+      }
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "sourceSha256": "12f06226756654d1a084397f6e136b1b7912f5757779c09d2aec6b46c239afbd",
+    "alphaThreshold": 80,
+    "transparentPixels": 842201,
+    "partialAlphaPixels": 730282,
+    "opaquePixels": 601633,
+    "footAnchorMethod": "Candidate only: midpoint and bottom of alpha>80 owner-lower-body ROI (central64%, lower22%). Lateral props excluded by ROI; designer must confirm shoe pixels versus skirt/pole.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "missingPoses": [],
+    "sourceGutters": {
+      "x": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ],
+      "y": [
+        0,
+        310,
+        619,
+        936,
+        1254
+      ]
+    },
+    "visualReview": "All sixteen real direction/pose drawings checked: neutral and two low shuffle phases plus seated pose. Props, costume and stable identity reviewed; shoes measured separately from poles/held props. No source artwork altered.",
+    "ownerFootReview": {
+      "method": "Shoe regions visually reviewed; lateral hand props and trekking poles excluded. Neutral shoe floor is registered to upper head mass without stretching the artwork.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 5.364,
+          "at83pxTileSoleProjectionRangePx": 1.634
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.74,
+          "at83pxTileSoleProjectionRangePx": 0.53
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 6.08,
+          "at83pxTileSoleProjectionRangePx": 1.852
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 2.207,
+          "at83pxTileSoleProjectionRangePx": 0.672
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatReview": "Designer reviewed source anatomy and before/after production chair renders in all four directions. Hip lies on posterior thigh/seat contact, above shoe soles and separate from hanging skirt hem. Rear chair foreground checked. Uniform source aspect preserved.",
+    "seatContactSheet": "artifacts/new-character-review/final/clown-seat-before-after.png",
+    "hipCorrections": [
+      {
+        "dir": 0,
+        "before": {
+          "x": 116,
+          "y": 270
+        },
+        "after": {
+          "x": 121,
+          "y": 256
+        },
+        "sourceDelta": {
+          "x": 5,
+          "y": -14
+        }
+      },
+      {
+        "dir": 1,
+        "before": {
+          "x": 197,
+          "y": 270
+        },
+        "after": {
+          "x": 193,
+          "y": 256
+        },
+        "sourceDelta": {
+          "x": -4,
+          "y": -14
+        }
+      },
+      {
+        "dir": 2,
+        "before": {
+          "x": 155,
+          "y": 278
+        },
+        "after": {
+          "x": 155,
+          "y": 265
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": -13
+        }
+      },
+      {
+        "dir": 3,
+        "before": {
+          "x": 157,
+          "y": 277
+        },
+        "after": {
+          "x": 157,
+          "y": 264
+        },
+        "sourceDelta": {
+          "x": 0,
+          "y": -13
+        }
+      }
+    ]
+  },
+  "promptFile": "public/assets/zombies/clown-directional-shuffle.prompt.txt",
+  "generation": {
+    "tool": "image_gen",
+    "generatedBy": "root",
+    "promptFile": "public/assets/zombies/clown-directional-shuffle.prompt.txt",
+    "selectedFile": "public/assets/zombies/clown-directional-shuffle.png",
+    "sourcePixelsUnchanged": true,
+    "sourceSha256": "12f06226756654d1a084397f6e136b1b7912f5757779c09d2aec6b46c239afbd"
+  }
+}

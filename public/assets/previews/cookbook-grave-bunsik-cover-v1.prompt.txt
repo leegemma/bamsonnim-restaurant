@@ -1,0 +1,17 @@
+Use case: stylized-concept.
+Asset type: ONE individual illustrated closed cookbook cover PNG for a cute-spooky Korean hanok zombie restaurant game. This is a PREVIEW of the FIRST book only, not a bookshelf, UI screenshot, contact sheet or advertising mockup.
+Reference image: the attached existing game food atlas is the EXACT cartoon pixel-art palette/outline/style reference. Specifically use its top-left pink-brain rice ball and the top-row second finger-shaped tteokbokki as food-design inspiration. Do not reproduce the whole atlas or other dishes.
+
+Composition: a clean 3:4 PORTRAIT book, almost perfectly flat FRONT VIEW, closed. All four cover edges vertical/horizontal, a very subtle narrow shaded book spine strip on the LEFT only, no strong 3D perspective or angled product render. Center the ONE complete book with small transparent padding outside its silhouette. The cover itself is opaque. Corners slightly worn/stepped like an old recipe book. True alpha-transparent outside background: no desk, shelf, hands, person, environment, cast shadow or glow.
+
+Cover color: warm muted reddish-brown / terracotta leather-paper, base near #ba6a43, deeper dark warm-brown pixel outline, restrained worn corners and simple cream pixel border. Match the game's aged hanok wood and warm cream UI palette. Cute, cozy and slightly eerie, not photorealistic horror. Crisp chunky 8-bit-like pixel art, flat 2–3 shade clusters and square stepped edges, no painterly texture, smooth gradient or glossy realistic material.
+
+MOST IMPORTANT: the Korean title must be EXACTLY correct and easy to read. Print ONLY these two large centered lines in cream-colored bold block/pixel Hangul at the UPPER part of the cover:
+무덤 앞
+분식집
+Keep the single space between 무덤 and 앞. Do not change, misspell, distort, add or omit any Korean syllable. Use straightforward clean readable block Hangul with ample spacing and thick clear strokes. The first line is exactly “무덤 앞”; the second is exactly “분식집”. No other text anywhere: no subtitle, author, Latin letters, numbers, tiny Korean print or watermark.
+
+Typography/layout: title occupies roughly the top 40% of the cover with three large syllable blocks per line and generous line separation; it must remain readable when the entire cover is displayed only 78 pixels tall. Keep the title visually dominant and separate from the food illustration. Avoid overly decorative lettering and narrow thin strokes.
+
+Central/lower illustration: TWO simple large cheerful-spooky Korean snack silhouettes grouped neatly: a triangular rice/seaweed ball topped with a small cute PINK BRAIN, beside a shallow cream plate of bright red-orange FINGER-SHAPED TTEOKBOKKI with rounded finger tips, tiny cream nails and a few knuckle grooves, plus just a few green onion slices. Both foods should immediately read as 분식 and match the reference's big rounded dark outlines and flat pixel colors. Keep the scene simple, no complicated miniature meal spread, no utensils, no severed hand or realistic gore. Add ONE small friendly cream skull emblem and a few obvious rice-grain pixels as small accents, not an extra character. Use big shapes that still read at 78px cover height, with minimal fine detail. No background scene behind the foods beyond the solid russet cover.
+Deliver exactly ONE complete 3:4 portrait book cover on genuine alpha transparency, with the two-line Korean title above and large food art below.

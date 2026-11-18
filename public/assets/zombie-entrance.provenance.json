@@ -1,0 +1,8 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "Zombie guest entry and exit doorway",
+  "prompt": "Use case: stylized-concept. Asset type: one transparent game sprite, zombie guest doorway for a Korean hanok restaurant. Input image is STYLE REFERENCE ONLY for the existing chunky pixel-painted wooden doorway texture, not an edit target. Create a new isolated narrow rectangular demonic doorway frame: weathered deep plum-purple carved wood, three small stylized ivory skulls along the lintel, bony side posts, short dark burgundy curtain parted at top, an opaque near-black open doorway inside. Slightly mischievous spooky cartoon mood, bold clean silhouette readable at 70 pixels high. Flat FRONT ELEVATION, straight horizontal lintel, straight vertical posts, both side posts visible symmetrically, no isometric skew because renderer applies wall perspective. Hand-painted pixel clusters and restrained hard outlines matching the reference sprite. A single doorway, centered, fully inside frame with 6% padding, proportions about 1:2 width:height. Transparent canvas OUTSIDE the doorway, opaque darkness INSIDE the door. No floor, no scene, no characters, no writing, no glow halo, no UI. Keep skulls small relative to frame, believable narrow passage opening.",
+  "reference": "public/assets/wooden-entrance.png",
+  "generatedSource": "/Users/leesb/.codex/generated_images/01a1cac9-be5b-7992-a8f9-24934c2af90e/exec-e053b1f1-f92e-4eb4-9c05-ec98b905aee6.png",
+  "transparent_background": true
+}
