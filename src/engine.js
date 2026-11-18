@@ -272,7 +272,7 @@ function assign(s,w){
   const waiting=s.customers.filter(c=>c.phase==='waiting'&&!c.worker).sort((a,b)=>b.wait-a.wait);
   for(const c of waiting){
     const favorite=zombie(c.zombieId)?.favorite,counters=s.objects.filter(o=>furniture(o.type)?.category==='server'),start=(s.serveCursor||0)%Math.max(1,counters.length),servers=[...counters.slice(start),...counters.slice(0,start)].sort((a,b)=>(b.foodId===favorite)-(a.foodId===favorite));
-    for(const o of servers){const reserved=s.waiters.reduce((n,other)=>n+(other.task?.kind==='serve'&&other.task.phase==='pickup'&&other.task.server===o.uid?(other.task.portion||recipe(o.foodId)?.portion||1):0),0),available=(o.stock||0)-reserved;if(available<=0||!setRoute(s,w,o))continue;w.task={kind:'serve',customer:c.uid,server:o.uid,foodId:o.foodId,portion:Math.min(recipe(o.foodId).portion,available),phase:'pickup',work:0};c.worker=w.uid;s.serveCursor=(counters.indexOf(o)+1)%counters.length;return;}
+    for(const o of servers){const reserved=s.waiters.reduce((n,other)=>n+(other.task?.kind==='serve'&&other.task.phase==='pickup'&&other.task.server===o.uid?1:0),0),available=(o.stock||0)-reserved;if(available<1||!setRoute(s,w,o))continue;w.task={kind:'serve',customer:c.uid,server:o.uid,foodId:o.foodId,portion:1,phase:'pickup',work:0};c.worker=w.uid;s.serveCursor=(counters.indexOf(o)+1)%counters.length;return;}
   }
   // A legacy meal may finish on a now-inactive chair; its dish still gets cleaned.
   for(const chair of s.objects.filter(o=>furniture(o.type)?.category==='chair'))if(chair.dirty&&!chair.cleaner&&setRoute(s,w,chair)){chair.cleaner=w.uid;w.task={kind:'clean',chair:chair.uid,work:0};return;}
@@ -333,7 +333,7 @@ function updateWorker(s,w,dt,offline){
   }else if(t.kind==='serve'){
     const c=s.customers.find(c=>c.uid===t.customer),seat=seats(s).find(x=>x.uid===c?.seat),o=s.objects.find(o=>o.uid===t.server);
     if(!c||c.phase!=='waiting'||!seat){cancelTask(s,w);return;}
-    if(t.phase==='pickup'){if(!(o?.stock>0)||t.foodId&&t.foodId!==o.foodId||!setRoute(s,w,seat.chair)){cancelTask(s,w);return;}t.foodId=o.foodId;t.portion=Math.min(t.portion||recipe(o.foodId).portion,o.stock);t.picked=true;t.phase='deliver';if(s.feverUntil<=s.time)o.stock-=t.portion;else t.free=true;refreshServerReservation(s,o.uid);}
+    if(t.phase==='pickup'){if(!(o?.stock>=1)||t.foodId&&t.foodId!==o.foodId||!setRoute(s,w,seat.chair)){cancelTask(s,w);return;}t.foodId=o.foodId;t.portion=1;t.picked=true;t.phase='deliver';if(s.feverUntil<=s.time)o.stock-=t.portion;else t.free=true;refreshServerReservation(s,o.uid);}
     else{
       // Older v1 saves may still be walking to the former table service point.
       if(!beside(w,seat.chair)){if(!setRoute(s,w,seat.chair))cancelTask(s,w);return;}
@@ -498,6 +498,8 @@ export function validateSave(raw){
   for(const w of s.waiters){
     if(typeof w.uid!=='string'||typeof w.name!=='string'||w.name.length>40||!Number.isFinite(w.x)||!Number.isFinite(w.y)||!Number.isFinite(w.infectedUntil)||!validPath(w.path))throw new Error('직원 정보가 손상되었습니다.');
     if(w.task&&(!['serve','transfer','clean'].includes(w.task.kind)||!Number.isFinite(w.task.work)||w.task.work<0||w.task.portion!==undefined&&(!Number.isFinite(w.task.portion)||w.task.portion<0)))throw new Error('직원 작업이 손상되었습니다.');
+    // Only unconsumed reservations migrate; carried meals retain their debit/refund and payment quantity.
+    if(w.task?.kind==='serve'&&w.task.phase==='pickup'&&!w.task.picked)w.task.portion=1;
     if(w.appearance!==undefined){if(!Number.isInteger(w.appearance)||w.appearance<0||w.appearance>7||appearances.has(w.appearance))throw new Error('직원 외모 정보가 손상되었습니다.');appearances.add(w.appearance);}
   }
   for(const w of s.waiters)for(const key of ['speedLevel','kindnessLevel']){if(w[key]===undefined)w[key]=0;if(!Number.isInteger(w[key])||w[key]<0||w[key]>STAFF_UPGRADE_MAX)throw new Error('직원 강화 정보가 올바르지 않습니다.');}
