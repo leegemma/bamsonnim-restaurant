@@ -1,7 +1,8 @@
 /* Let the room fill the screen beneath the floating controls. */
+:root { --floating-actions-lift: 40px; }
 #app > .bottom-bar {
   position: fixed;
-  inset: auto 0 0;
+  inset: auto 0 var(--floating-actions-lift);
   height: calc(60px + env(safe-area-inset-bottom));
   min-height: 0;
   padding: 8px max(12px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
@@ -16,7 +17,7 @@
 .bottom-bar .bottom-actions > .button { min-height: 44px; box-shadow: 2px 3px #071d18; }
 .bottom-bar .bottom-actions > .button.quiet { background: #17352e; }
 .bottom-bar > .toast-stack { pointer-events: auto; }
-#stage.editing > #shop-dock { bottom: calc(64px + env(safe-area-inset-bottom)); max-height: calc(100% - 76px - env(safe-area-inset-bottom)); }
+#stage.editing > #shop-dock { bottom: calc(64px + var(--floating-actions-lift) + env(safe-area-inset-bottom)); max-height: calc(100% - 76px - var(--floating-actions-lift) - env(safe-area-inset-bottom)); }
 @media (orientation: landscape) and (max-height: 500px) {
-  #stage.editing > #edit-tools { bottom: calc(64px + env(safe-area-inset-bottom)); }
+  #stage.editing > #edit-tools { bottom: calc(64px + var(--floating-actions-lift) + env(safe-area-inset-bottom)); }
 }
