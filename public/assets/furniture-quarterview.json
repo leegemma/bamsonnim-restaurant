@@ -1,0 +1,460 @@
+{
+  "key": "quarterFurniture",
+  "name": "같은 시점의 한옥 가구·네 방향 의자",
+  "url": "/assets/furniture-quarterview-v2.png",
+  "width": 1254,
+  "height": 1254,
+  "cols": 3,
+  "rows": 3,
+  "type": "furniture-atlas",
+  "trim": false,
+  "status": "verified",
+  "poses": [
+    {
+      "index": 0,
+      "category": "table",
+      "dir": 0,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 60,
+        "y": 110,
+        "width": 306,
+        "height": 274
+      },
+      "groundCenter": {
+        "x": 212,
+        "y": 322.5
+      },
+      "groundWidth": 266,
+      "footprint": 0.65,
+      "surfaceAnchor": {
+        "x": 212,
+        "y": 192
+      },
+      "surfacePolygon": [
+        [
+          211,
+          114
+        ],
+        [
+          362,
+          193
+        ],
+        [
+          212,
+          268
+        ],
+        [
+          64,
+          193
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "category": "chair",
+      "dir": 0,
+      "source": {
+        "x": 418,
+        "y": 0,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 101,
+        "y": 57,
+        "width": 234,
+        "height": 327
+      },
+      "groundCenter": {
+        "x": 217.5,
+        "y": 334.5
+      },
+      "groundWidth": 221,
+      "footprint": 0.5,
+      "seatAnchor": {
+        "x": 230,
+        "y": 238
+      }
+    },
+    {
+      "index": 2,
+      "category": "chair",
+      "dir": 1,
+      "source": {
+        "x": 836,
+        "y": 0,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 65,
+        "y": 57,
+        "width": 237,
+        "height": 327
+      },
+      "groundCenter": {
+        "x": 184,
+        "y": 334.5
+      },
+      "groundWidth": 222,
+      "footprint": 0.5,
+      "seatAnchor": {
+        "x": 171,
+        "y": 238
+      }
+    },
+    {
+      "index": 3,
+      "category": "chair",
+      "dir": 3,
+      "source": {
+        "x": 0,
+        "y": 418,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 111,
+        "y": 44,
+        "width": 226,
+        "height": 315
+      },
+      "groundCenter": {
+        "x": 222.5,
+        "y": 302.5
+      },
+      "groundWidth": 215,
+      "footprint": 0.5,
+      "seatAnchor": {
+        "x": 234,
+        "y": 197
+      },
+      "frontPolygon": [
+        [
+          110,
+          60
+        ],
+        [
+          138,
+          43
+        ],
+        [
+          167,
+          58
+        ],
+        [
+          167,
+          78
+        ],
+        [
+          223,
+          107
+        ],
+        [
+          245,
+          105
+        ],
+        [
+          272,
+          118
+        ],
+        [
+          272,
+          144
+        ],
+        [
+          264,
+          149
+        ],
+        [
+          264,
+          346
+        ],
+        [
+          245,
+          360
+        ],
+        [
+          221,
+          347
+        ],
+        [
+          221,
+          278
+        ],
+        [
+          163,
+          249
+        ],
+        [
+          163,
+          304
+        ],
+        [
+          139,
+          317
+        ],
+        [
+          114,
+          304
+        ],
+        [
+          114,
+          85
+        ],
+        [
+          110,
+          83
+        ]
+      ]
+    },
+    {
+      "index": 4,
+      "category": "chair",
+      "dir": 2,
+      "source": {
+        "x": 418,
+        "y": 418,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 60,
+        "y": 43,
+        "width": 227,
+        "height": 316
+      },
+      "groundCenter": {
+        "x": 173,
+        "y": 302
+      },
+      "groundWidth": 214,
+      "footprint": 0.5,
+      "seatAnchor": {
+        "x": 163,
+        "y": 197
+      },
+      "frontPolygon": [
+        [
+          286,
+          59
+        ],
+        [
+          258,
+          42
+        ],
+        [
+          229,
+          57
+        ],
+        [
+          229,
+          77
+        ],
+        [
+          173,
+          106
+        ],
+        [
+          153,
+          104
+        ],
+        [
+          126,
+          117
+        ],
+        [
+          126,
+          143
+        ],
+        [
+          133,
+          148
+        ],
+        [
+          133,
+          346
+        ],
+        [
+          154,
+          360
+        ],
+        [
+          177,
+          347
+        ],
+        [
+          177,
+          277
+        ],
+        [
+          232,
+          249
+        ],
+        [
+          232,
+          303
+        ],
+        [
+          257,
+          316
+        ],
+        [
+          281,
+          303
+        ],
+        [
+          281,
+          84
+        ],
+        [
+          286,
+          82
+        ]
+      ]
+    },
+    {
+      "index": 5,
+      "category": "stove",
+      "dir": 0,
+      "source": {
+        "x": 836,
+        "y": 418,
+        "width": 418,
+        "height": 418
+      },
+      "bounds": {
+        "x": 31,
+        "y": 43,
+        "width": 327,
+        "height": 343
+      },
+      "groundCenter": {
+        "x": 194,
+        "y": 304
+      },
+      "groundWidth": 320,
+      "footprint": 0.9,
+      "surfaceAnchor": {
+        "x": 194,
+        "y": 91
+      },
+      "surfacePolygon": [
+        [
+          194,
+          59
+        ],
+        [
+          232,
+          64
+        ],
+        [
+          260,
+          76
+        ],
+        [
+          274,
+          91
+        ],
+        [
+          262,
+          106
+        ],
+        [
+          233,
+          117
+        ],
+        [
+          194,
+          121
+        ],
+        [
+          154,
+          117
+        ],
+        [
+          125,
+          105
+        ],
+        [
+          113,
+          91
+        ],
+        [
+          126,
+          76
+        ],
+        [
+          155,
+          64
+        ]
+      ]
+    }
+  ],
+  "externalAssets": [
+    {
+      "key": "quarterServer",
+      "name": "격자에 맞춘 대칭 한옥 서빙대",
+      "url": "/assets/server-quarterview-v3.png",
+      "type": "furniture-atlas",
+      "trim": false,
+      "width": 1774,
+      "height": 887,
+      "cols": 1,
+      "rows": 1,
+      "poses": [
+        {
+          "index": 0,
+          "category": "server",
+          "dir": 0,
+          "source": {
+            "x": 527,
+            "y": 93,
+            "width": 720,
+            "height": 717
+          },
+          "bounds": {
+            "x": 0,
+            "y": 0,
+            "width": 720,
+            "height": 717
+          },
+          "groundCenter": {
+            "x": 360,
+            "y": 558
+          },
+          "groundWidth": 672,
+          "footprint": 0.9,
+          "surfaceAnchor": {
+            "x": 361,
+            "y": 188
+          },
+          "surfacePolygon": [
+            [
+              359,
+              5
+            ],
+            [
+              716,
+              187
+            ],
+            [
+              362,
+              371
+            ],
+            [
+              4,
+              188
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
