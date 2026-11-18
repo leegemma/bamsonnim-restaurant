@@ -1,5 +1,6 @@
 // Eight by eight UI glyphs; integer rectangles retain their pixel edges.
 const glyphs={
+ cloche:['0000000000000000','0000000110000000','0000001111000000','0000000110000000','0000011111100000','0001111111111000','0011111111111100','0111111111111110','0111111111111110','1111111111111111','1111111111111111','0000000000000000','1111111111111111','0111111111111110','0001111111111000','0000000000000000'],
  moon:['00111100','01110000','11100000','11000000','11000001','11100011','01111110','00111100'],
  book:['11101110','10011001','10011001','10011001','10011001','10011001','11111111','00011000'],
  people:['01100110','01100110','00000000','11111111','10111101','10111101','00111100','00100100'],
@@ -21,4 +22,4 @@ const glyphs={
  clock:['00111100','01100110','11011011','10011001','10011101','11000011','01100110','00111100'],
  star:['00011000','00011000','11111111','01111110','00111100','01111110','01100110','11000011'],
 };
-export function pixelIcon(name,size=20){const glyph=glyphs[name]||glyphs.star;return `<svg width="${size}" height="${size}" viewBox="0 0 8 8" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true">${glyph.flatMap((row,y)=>[...row].flatMap((cell,x)=>cell==='1'?[`<rect x="${x}" y="${y}" width="1" height="1"/>`]:[])).join('')}</svg>`;}
+export function pixelIcon(name,size=20){const glyph=glyphs[name]||glyphs.star;return `<svg width="${size}" height="${size}" viewBox="0 0 ${glyph[0].length} ${glyph.length}" fill="currentColor" shape-rendering="crispEdges" aria-hidden="true">${glyph.flatMap((row,y)=>[...row].flatMap((cell,x)=>cell==='1'?[`<rect x="${x}" y="${y}" width="1" height="1"/>`]:[])).join('')}</svg>`;}
