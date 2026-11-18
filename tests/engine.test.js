@@ -54,19 +54,19 @@ test('repeated soup batches merge into existing soup stock even when an empty co
   assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);assert.equal(E.collect(s,o.uid),null);assert.equal(soup.foodId,'soup');assert.deepEqual(s.transfers,[]);
   advanceUntil(s,()=>s.stats.cooked===batch,'soup is carried to its existing counter');assert.equal(soup.stock,7+batch*recipe('soup').servings);assert.ok(!(empty.stock>0));
  }
- assert.equal(soup.stock,67);assert.equal(s.mastery.soup,2);assert.equal(s.objects.filter(o=>o.type==='server'&&o.foodId==='soup'&&o.stock>0).length,1);
+ assert.equal(soup.stock,55);assert.equal(s.mastery.soup,2);assert.equal(s.objects.filter(o=>o.type==='server'&&o.foodId==='soup'&&o.stock>0).length,1);
 });
 test('simultaneous soup collections merge into the existing soup counter ahead of an empty counter',()=>{
  const s=twoCounterGame(),[first,target]=s.objects.filter(o=>o.type==='server'),stoves=s.objects.filter(o=>o.type==='stove');Object.assign(first,{foodId:'rice',stock:1});
  for(const o of stoves)assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);
- assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(target.foodId,'soup');assert.equal(target.stock,30);first.stock=0;
- assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers,[]);assert.equal(target.stock,60);
- advanceUntil(s,()=>s.stats.cooked===2,'both soup batches reach the shared counter');assert.equal(target.stock,60);assert.equal(target.reservedFood,undefined);assert.equal(first.stock,0);
+ assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(target.foodId,'soup');assert.equal(target.stock,24);first.stock=0;
+ assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers,[]);assert.equal(target.stock,48);
+ advanceUntil(s,()=>s.stats.cooked===2,'both soup batches reach the shared counter');assert.equal(target.stock,48);assert.equal(target.reservedFood,undefined);assert.equal(first.stock,0);
 });
 test('two immediate soup collections total both batches and a sold-out counter accepts another dish',()=>{
  const s=twoCounterGame(),counter=server(s),stoves=s.objects.filter(o=>o.type==='stove');s.objects=s.objects.filter(o=>o.uid!=='extra-counter');
  for(const o of stoves)assert.equal(E.cook(s,o.uid,'soup'),null);E.advance(s,recipe('soup').duration);for(const o of stoves)assert.equal(E.collect(s,o.uid),null);
- assert.equal(s.stats.cooked,2);assert.equal(counter.stock,60);assert.equal(counter.reservedFood,undefined);assert.deepEqual(s.transfers,[]);
+ assert.equal(s.stats.cooked,2);assert.equal(counter.stock,48);assert.equal(counter.reservedFood,undefined);assert.deepEqual(s.transfers,[]);
  counter.stock=0;assert.equal(E.cook(s,stoves[0].uid,'rice'),null);assert.equal(E.instant(s,stoves[0].uid),null);assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(counter.foodId,'rice');assert.equal(counter.stock,6);assert.equal(s.stats.cooked,3);
 });
 
@@ -74,13 +74,13 @@ test('different dishes reserve separate counters, preserve DONE when full and re
  const s=twoCounterGame(),[rice,soup]=s.objects.filter(o=>o.type==='server'),stoves=s.objects.filter(o=>o.type==='stove');
  assert.equal(E.cook(s,stoves[0].uid,'rice'),null);assert.equal(E.cook(s,stoves[1].uid,'soup'),null);E.advance(s,recipe('soup').duration);
  assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(E.collect(s,stoves[1].uid),null);assert.deepEqual(s.transfers,[]);assert.equal(rice.foodId,'rice');assert.equal(soup.foodId,'soup');
- advanceUntil(s,()=>s.stats.cooked===2,'different dishes reach separate counters');assert.equal(rice.foodId,'rice');assert.equal(rice.stock,6);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,30);
+ advanceUntil(s,()=>s.stats.cooked===2,'different dishes reach separate counters');assert.equal(rice.foodId,'rice');assert.equal(rice.stock,6);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,24);
  assert.equal(E.cook(s,stoves[0].uid,'skewer'),null);E.advance(s,recipe('skewer').duration);assert.equal(E.collect(s,stoves[0].uid),'서빙대가 모두 차 있어요. 빈 서빙대를 마련해주세요.');assert.equal(E.stoveStatus(s,stoves[0]),'done');assert.equal(s.transfers.length,0);
  rice.stock=0;assert.equal(rice.reservedFood,undefined);assert.equal(E.collect(s,stoves[0].uid),null);assert.equal(rice.foodId,'skewer');assert.equal(rice.stock,10);assert.deepEqual(s.transfers,[]);
- advanceUntil(s,()=>s.stats.cooked===3,'sold-out counter is reused for another dish');assert.equal(rice.foodId,'skewer');assert.equal(rice.stock,10);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,30);
+ advanceUntil(s,()=>s.stats.cooked===3,'sold-out counter is reused for another dish');assert.equal(rice.foodId,'skewer');assert.equal(rice.stock,10);assert.equal(soup.foodId,'soup');assert.equal(soup.stock,24);
 });
 test('cooking spends only once and rejects locked or unaffordable recipes',()=>{
- const s=E.newGame(),o=stove(s);assert.ok(E.cook(s,o.uid,'skewer'));assert.equal(s.coins,500);s.mastery.rice=10;s.coins=0;assert.ok(E.cook(s,o.uid,'skewer'));s.coins=3;assert.equal(E.cook(s,o.uid,'skewer'),null);assert.equal(s.coins,2);assert.ok(E.cook(s,o.uid,'skewer'));assert.equal(s.coins,2);
+ const s=E.newGame(),o=stove(s);assert.ok(E.cook(s,o.uid,'skewer'));assert.equal(s.coins,500);s.mastery.rice=10;s.coins=0;assert.ok(E.cook(s,o.uid,'skewer'));s.coins=3;assert.equal(E.cook(s,o.uid,'skewer'),null);assert.equal(s.coins,1);assert.ok(E.cook(s,o.uid,'skewer'));assert.equal(s.coins,1);
 });
 test('stove food spoils at boundary; serving inventory does not spoil',()=>{
  const s=E.newGame(),o=stove(s);E.cook(s,o.uid,'rice');E.advance(s,191.75);assert.equal(E.stoveStatus(s,o),'done');E.advance(s,.25);assert.equal(E.stoveStatus(s,o),'spoiled');assert.ok(E.collect(s,o.uid));assert.equal(E.recover(s,o.uid),null);assert.equal(s.hearts,9);assert.equal(E.stoveStatus(s,o),'done');supply(s,17);s.time+=200000;assert.equal(server(s).stock,17);

@@ -1,0 +1,125 @@
+{
+  "sourceProposalSha256": "4c245a4c256051cac7b1d0e4702d3ea0934af57a5f34d8d1fb937869fcb740c6",
+  "baselineCommit": "4e4c3f942af43ef507e38880faead694a9b21711",
+  "fields": [
+    "duration",
+    "servings",
+    "coins",
+    "hearts",
+    "price"
+  ],
+  "rows": [
+    {
+      "id": "rice",
+      "duration": 12,
+      "servings": 6,
+      "coins": 0,
+      "hearts": 0,
+      "price": 1
+    },
+    {
+      "id": "skewer",
+      "duration": 30,
+      "servings": 10,
+      "coins": 2,
+      "hearts": 0,
+      "price": 2
+    },
+    {
+      "id": "soup",
+      "duration": 120,
+      "servings": 24,
+      "coins": 10,
+      "hearts": 0,
+      "price": 3
+    },
+    {
+      "id": "tteok",
+      "duration": 300,
+      "servings": 40,
+      "coins": 25,
+      "hearts": 0,
+      "price": 4
+    },
+    {
+      "id": "sausage",
+      "duration": 300,
+      "servings": 36,
+      "coins": 30,
+      "hearts": 0,
+      "price": 5
+    },
+    {
+      "id": "gimbap",
+      "duration": 900,
+      "servings": 90,
+      "coins": 90,
+      "hearts": 0,
+      "price": 6
+    },
+    {
+      "id": "bibimbap",
+      "duration": 1800,
+      "servings": 120,
+      "coins": 180,
+      "hearts": 0,
+      "price": 9
+    },
+    {
+      "id": "xmas-soup",
+      "duration": 300,
+      "servings": 50,
+      "coins": 25,
+      "hearts": 0,
+      "price": 4
+    },
+    {
+      "id": "spider-mandu",
+      "duration": 600,
+      "servings": 60,
+      "coins": 60,
+      "hearts": 0,
+      "price": 6
+    },
+    {
+      "id": "hair-seaweed-soup",
+      "duration": 900,
+      "servings": 75,
+      "coins": 75,
+      "hearts": 0,
+      "price": 7
+    },
+    {
+      "id": "nurungji-chicken-baeksuk",
+      "duration": 3600,
+      "servings": 150,
+      "coins": 240,
+      "hearts": 0,
+      "price": 14
+    },
+    {
+      "id": "tongue-sotteok",
+      "duration": 600,
+      "servings": 50,
+      "coins": 50,
+      "hearts": 0,
+      "price": 7
+    },
+    {
+      "id": "worm-tteokgalbi",
+      "duration": 900,
+      "servings": 60,
+      "coins": 90,
+      "hearts": 0,
+      "price": 9
+    },
+    {
+      "id": "fried-ears",
+      "duration": 1800,
+      "servings": 90,
+      "coins": 120,
+      "hearts": 0,
+      "price": 12
+    }
+  ]
+}

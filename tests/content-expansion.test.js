@@ -4,6 +4,9 @@ import {readFile} from 'node:fs/promises';
 import * as E from '../src/engine.js';
 import {RECIPES,BOOKS,ZOMBIES,SAVE_VERSION,SAVE_KEY,recipe,zombie} from '../src/data.js';
 
+const SNACK_APPROVAL=JSON.parse(await readFile(new URL('./fixtures/snack-balance-approved.json',import.meta.url),'utf8'));
+const APPROVED_BALANCE=new Map(SNACK_APPROVAL.rows.map(({id,...fields})=>[id,fields]));
+// Apply only the five explicitly approved numeric fields to historical expectations.
 // Only these user-requested classifications differ from the historical records.
 const RELOCATED_TO_FIRST_BOOK=new Set(['sausage','bibimbap','gimbap','spider-mandu','tongue-sotteok','worm-tteokgalbi','nurungji-chicken-baeksuk','fried-ears','hair-seaweed-soup','xmas-soup']);
 // Frozen records from the release before content expansion.
@@ -110,7 +113,7 @@ function firstSpawn(level,status,seed,album){const s=suppliedGame(level,status,s
 function findSpawn(id,level,status='upcoming',album={}){for(let seed=0;seed<1024;seed++){const s=firstSpawn(level,status,seed,album);if(s.customers.some(c=>c.zombieId===id))return{seed,s};}assert.fail(`${id} did not spawn at its unlocked level`);}
 
 test('legacy recipe fields and book identities stay compatible except the explicit first-book relocations',()=>{
- assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>{const relocated=RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r;if(r.id!=='xmas-soup')return relocated;const {event,...ordinary}=relocated;return {...ordinary,description:'뜨끈한 국물에 둥둥 떠다니는 유령 만두.'};}));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
+ assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>{const relocated=RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r;if(r.id!=='xmas-soup')return relocated;const {event,...ordinary}=relocated;return {...ordinary,description:'뜨끈한 국물에 둥둥 떠다니는 유령 만두.'};}).map(r=>({...r,...APPROVED_BALANCE.get(r.id)})));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
  for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['검정 짧은 머리','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old);}
 });
 
@@ -121,9 +124,9 @@ test('the expanded recipe registry has forty-two normal and one event recipe wit
  assert.equal(RECIPES.some(r=>r.sprite===14||r.sprite===15),false,'reserved resource cells 14/15 stay unassigned');
 });
 
-test('all twenty-nine additions retain their planned numeric values and sprite slots sixteen through forty-four',()=>{
- assert.equal(ADDITIONS.length,29);assert.deepEqual(RECIPES.slice(14).map(r=>[r.id,r.sprite,r.book,r.required,r.duration,r.servings,r.coins,r.hearts]),ADDITIONS.map(row=>RELOCATED_TO_FIRST_BOOK.has(row[0])?row.map((value,index)=>index===2?0:value):row));assert.deepEqual(RECIPES.slice(14).map(r=>r.sprite),Array.from({length:29},(_,i)=>16+i));
- for(const r of RECIPES.slice(14)){assert.equal(r.event,undefined);assert.equal(r.price,r.hearts?Math.max(1,Math.ceil(r.hearts*100/r.servings)):Math.max(1,Math.ceil(r.coins*1.3/r.servings)));assert.equal(r.portion,Math.max(1,Math.round(r.servings/20)));assert.deepEqual(r.milestones,r.duration<=600?[3,8,10]:r.duration<=7200?[2,5,8]:r.duration<=43200?[1,3,5]:[1,2,3]);}
+test('additions retain legacy derived fields and sprite slots, with only approved balance values overridden',()=>{
+ assert.equal(ADDITIONS.length,29);assert.deepEqual(RECIPES.slice(14).map(r=>[r.id,r.sprite,r.book,r.required,r.duration,r.servings,r.coins,r.hearts]),ADDITIONS.map(([id,sprite,book,required,duration,servings,coins,hearts])=>{const values=APPROVED_BALANCE.get(id);return[id,sprite,RELOCATED_TO_FIRST_BOOK.has(id)?0:book,required,values?.duration??duration,values?.servings??servings,values?.coins??coins,values?.hearts??hearts];}));assert.deepEqual(RECIPES.slice(14).map(r=>r.sprite),Array.from({length:29},(_,i)=>16+i));
+ for(const r of RECIPES.slice(14)){const old=ADDITIONS.find(row=>row[0]===r.id),[, , , ,duration,servings,coins,hearts]=old;assert.equal(r.event,undefined);assert.equal(r.price,APPROVED_BALANCE.get(r.id)?.price??(hearts?Math.max(1,Math.ceil(hearts*100/servings)):Math.max(1,Math.ceil(coins*1.3/servings))));assert.equal(r.portion,Math.max(1,Math.round(servings/20)));assert.deepEqual(r.milestones,duration<=600?[3,8,10]:duration<=7200?[2,5,8]:duration<=43200?[1,3,5]:[1,2,3]);}
 });
 
 test('unpublished menu names and IDs describe the selected art without changing its recipe slots',()=>{
