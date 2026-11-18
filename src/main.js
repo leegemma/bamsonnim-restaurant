@@ -149,8 +149,21 @@ function renderModal(){
  }).join('')}</div><div class="book-footer"><button class="icon-button" data-act="book-page" data-n="-1" aria-label="이전 페이지" ${page===0?'disabled':''}><span class="reverse">${icon('arrow',18)}</span></button><span>${page+1} / ${pages} <small>· ${stove?'빈 가마솥에서 조리해요':'빈 가마솥이 없어요. 완성 요리를 먼저 회수하세요.'}</small></span><button class="icon-button" data-act="book-page" data-n="1" aria-label="다음 페이지" ${page>=pages-1?'disabled':''}>${icon('arrow',18)}</button></div>`;
  }else if(modal.type==='stove'){
  const o=state.objects.find(o=>o.uid===modal.stove);if(!o?.cook){close();return;}const r=recipe(o.cook.foodId),status=E.stoveStatus(state,o);
+ const remaining=o.cook.readyAt-state.time,progress=Math.max(0,r.duration-remaining);
+ // Keep the pressed button attached while the countdown refreshes.
+ if(modal.renderedCook===o.cook&&modal.renderedStatus===status){
+  if(status==='cooking'){
+   const countdown=$('.cook-countdown',body),time=cookingCountdown(remaining);
+   if(countdown.textContent!==time)countdown.textContent=time;
+   const bar=$('.cook-progress',body);
+   if(bar.value!==progress)bar.value=progress;
+  }
+  return;
+ }
+ modal.renderedCook=o.cook;
+ modal.renderedStatus=status;
  heading('IN THE KITCHEN',r.name,status==='cooking'?'가마솥에서 맛있게 끓고 있어요.':status==='spoiled'?'너무 오래 기다린 음식이 상했어요.':'완성된 음식을 서빙대로 옮겨주세요.');
- body.innerHTML=`<div class="stove-dialog">${sprite('food',r.sprite,'large-food')}<h2>${status==='cooking'?`<span class="cook-countdown">${cookingCountdown(o.cook.readyAt-state.time)}</span> 후 완성`:status==='done'?'완성됐어요!':status==='spoiled'?'상한 음식':'서빙대로 운반 중'}</h2><p>${status==='cooking'?`완성 후 ${formatTime(o.cook.spoilAt-o.cook.readyAt)} 안에 회수해주세요.`:'서빙대로 옮긴 음식은 상하지 않아요.'}</p>${status==='cooking'?`<progress class="cook-progress" max="${r.duration}" value="${Math.max(0,r.duration-(o.cook.readyAt-state.time))}" aria-label="조리 진행률"></progress>`:''}<div class="button-row">${status==='cooking'?`<button class="button primary" data-act="instant" data-id="${o.uid}">${heart()} 심장으로 즉시 완성</button>`:status==='done'?`<button class="button primary" data-act="collect" data-id="${o.uid}">서빙대로 옮기기</button>`:status==='spoiled'?`<button class="button primary" data-act="recover" data-id="${o.uid}">${heart()} 1 · 음식 되살리기</button>`:''}${status!=='collecting'?`<button class="button quiet" data-act="discard" data-id="${o.uid}">음식 버리기</button>`:''}</div></div>`;
+ body.innerHTML=`<div class="stove-dialog">${sprite('food',r.sprite,'large-food')}<h2>${status==='cooking'?`<span class="cook-countdown">${cookingCountdown(remaining)}</span> 후 완성`:status==='done'?'완성됐어요!':status==='spoiled'?'상한 음식':'서빙대로 운반 중'}</h2><p>${status==='cooking'?`완성 후 ${formatTime(o.cook.spoilAt-o.cook.readyAt)} 안에 회수해주세요.`:'서빙대로 옮긴 음식은 상하지 않아요.'}</p>${status==='cooking'?`<progress class="cook-progress" max="${r.duration}" value="${progress}" aria-label="조리 진행률"></progress>`:''}<div class="button-row">${status==='cooking'?`<button class="button primary" data-act="instant" data-id="${o.uid}">${heart()} 심장으로 즉시 완성</button>`:status==='done'?`<button class="button primary" data-act="collect" data-id="${o.uid}">서빙대로 옮기기</button>`:status==='spoiled'?`<button class="button primary" data-act="recover" data-id="${o.uid}">${heart()} 1 · 음식 되살리기</button>`:''}${status!=='collecting'?`<button class="button quiet" data-act="discard" data-id="${o.uid}">음식 버리기</button>`:''}</div></div>`;
  }else if(modal.type==='album'){
  heading('THE GUEST BOOK','밤손님 캐릭터북','한 끼를 대접하고, 식사와 결제까지 마치면 기록됩니다.');
  const list=ZOMBIES.filter(z=>albumTab==='event'?!!z.event:!z.event),z=zombie(selectedZombie)||list[0],known=!!state.album[z.id];
@@ -228,8 +241,31 @@ function renderEdit(){if(!edit)return;const focus=document.activeElement,act=foc
 
 document.addEventListener('change',e=>{if(e.target.id!=='furniture-select'||!edit)return;const o=state.objects.find(o=>o.uid===e.target.value);if(!o)return;if(o.cook){toast('음식이 있는 가마솥은 회수한 뒤 옮겨주세요.','danger');return;}edit.selected=o.uid;edit.ghost={type:o.type,existing:o.uid,x:o.x,y:o.y,dir:o.dir,locked:true};renderEdit();$('#world').focus({preventScroll:true});});
 
+const stovePresses=new Map();
+let releasedPointerType;
+document.addEventListener('pointerdown',e=>{
+ if(!e.isPrimary)return;
+ const button=e.target.closest('#dialog.stove #dialog-content button[data-act]');
+ if(button)stovePresses.set(e.pointerType,{button,id:e.pointerId});
+ else stovePresses.delete(e.pointerType);
+},true);
+document.addEventListener('pointerup',e=>{
+ if(e.isPrimary)releasedPointerType=e.pointerType;
+},true);
+document.addEventListener('pointercancel',e=>{
+ if(stovePresses.get(e.pointerType)?.id===e.pointerId)stovePresses.delete(e.pointerType);
+},true);
+
 document.addEventListener('click',async e=>{
  const b=e.target.closest('[data-act]');if(!b||b.disabled)return;const act=b.dataset.act,id=b.dataset.id,n=Number(b.dataset.n);if(b.tagName==='A')e.preventDefault();
+ if(e.detail>0){
+  const pointerType=e.pointerType||releasedPointerType,press=stovePresses.get(pointerType);
+  if(press&&(!e.pointerType||e.pointerId===press.id)){
+   stovePresses.delete(pointerType);
+   // A touch release can target the replacement button after a status change.
+   if(modal?.type==='stove'&&dialog.contains(b)&&b!==press.button)return;
+  }
+ }
  if(act==='fullscreen'){if(dialog.open)close();const entered=await requestFullscreen();if(!entered)open('install-guide');return;}
  if(act!=='sound'&&!sound.context)try{await sound.start();}catch{}
  if(act==='retry-assets'){if(!assetsLoading)loadAssets();return;}
