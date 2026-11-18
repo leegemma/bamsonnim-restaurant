@@ -11,6 +11,7 @@ import './mayor-icon.css';
 import './celebrations.css';
 import './rail-icons.css';
 import './staff-upgrades.css';
+import './floating-actions.css';
 import {installLandscapeMode} from './orientation.js';
 import {RECIPES,BOOKS,ZOMBIES,FURNITURE,SKINS,EXPANSIONS,LIMITS,SAVE_KEY,WALK_ANIMATION,recipe,zombie,furniture,formatTime,xpNeeded} from './data.js';
 import * as E from './engine.js';
@@ -55,8 +56,8 @@ $('#app').innerHTML=`
  <canvas id="world" tabindex="0" aria-label="한옥 식당. 드래그로 이동하고 두 손가락 또는 마우스 휠로 확대하세요. 키보드 +, -, 0으로 확대, 축소, 원위치. COOK 또는 초록색 체크 표시를 눌러 조리하고 회수하세요."></canvas>
  <div class="asset-status" id="asset-status" role="status"><span id="asset-message">식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.</span><button class="button quiet" data-act="retry-assets" hidden>그림 다시 불러오기</button></div>
  <aside class="left-rail">
-  <button class="mayor-card mayor-icon" data-act="quest" aria-label="시장님의 부탁 보기"><svg class="mayor-portrait" viewBox="650 0 250 174" aria-hidden="true"><image href="/assets/characters.png" width="1254" height="1254"/></svg><span class="rail-open-indicator" aria-hidden="true">${icon('arrow',10)}</span></button>
-  <button class="season-card scroll-news" data-act="events" aria-label="계절의 소식 · 다가오는 성탄절" title="계절의 소식"><img src="/assets/season-scroll-icon.png" width="96" height="96" alt=""><span id="event-label" hidden>다가오는 성탄절</span><span class="rail-open-indicator" aria-hidden="true">${icon('arrow',10)}</span></button>
+  <button class="mayor-card mayor-icon" data-act="quest" aria-label="시장님의 부탁 보기"><svg class="mayor-portrait" viewBox="650 0 250 174" aria-hidden="true"><image href="/assets/characters.png" width="1254" height="1254"/></svg></button>
+  <button class="season-card scroll-news" data-act="events" aria-label="계절의 소식 · 다가오는 성탄절" title="계절의 소식"><img src="/assets/season-scroll-icon.png" width="96" height="96" alt=""><span id="event-label" hidden>다가오는 성탄절</span></button>
  </aside>
  <div class="right-rail"><button class="round-action" data-act="album" aria-label="캐릭터북 열기">${icon('people',23)}<small>밤손님</small><b id="album-count">0/29</b></button><button class="round-action" data-act="cookbook" aria-label="요리책 열기">${icon('book',23)}<small>요리책</small><b id="food-count">0/12</b></button></div>
  <div class="fever-banner" id="fever-banner" hidden><img class="festival-heading" src="/assets/moon-festival-banner.png" width="2172" height="724" alt="달밤의 축제"><div class="festival-status"><strong id="fever-title"></strong><span class="festival-effects">판매 코인 ×2 · 손님 ×3 · 재고 소모 없음</span></div><progress id="fever-progress" max="30" value="30" aria-label="축제 남은 시간"></progress></div>
@@ -117,7 +118,7 @@ function staffUpgradeCard(w,kind){
 function renderBookShelf(body){
  heading('THE COOK BOOK','밤의 요리책',`레시피 레벨 ${E.recipeLevel(state)} · 책을 골라 요리를 펼쳐보세요.`);
  const perPage=5,pages=Math.ceil(BOOKS.length/perPage);bookShelfPage=Math.max(0,Math.min(bookShelfPage,pages-1));
- body.innerHTML=`<div class="book-shelf-grid">${BOOKS.slice(bookShelfPage*perPage,(bookShelfPage+1)*perPage).map((b,slot)=>{const index=bookShelfPage*perPage+slot,info=bookInfo(index),locked=E.recipeLevel(state)<info.required;return `<button class="book-cover-card ${locked?'locked':''}" data-act="book-open" data-n="${index}" aria-label="${esc(b.name)}${locked?` · 잠김 · 레시피 레벨 ${info.required} 필요`:''}"><span class="book-cover-art"><img class="book-cover-image" src="${esc(b.cover||'/assets/cookbook-cover-blank.png')}" alt="" width="96" height="128"/>${locked?`<span class="book-lock" aria-hidden="true">${icon('lock',26)}</span>`:''}</span><strong>${esc(b.name)}</strong><small>${locked?`레시피 Lv.${info.required}`:`${info.recipes.length}가지 요리`}</small>${b.event?'<span class="book-season">성탄 한정</span>':''}</button>`;}).join('')}</div><div class="book-footer"><button class="icon-button" data-act="book-shelf-page" data-n="-1" aria-label="이전 표지 목록" ${bookShelfPage===0?'disabled':''}><span class="reverse">${icon('arrow',18)}</span></button><span>${bookShelfPage+1} / ${pages} <small>· 요리책 ${BOOKS.length}권</small></span><button class="icon-button" data-act="book-shelf-page" data-n="1" aria-label="다음 표지 목록" ${bookShelfPage===pages-1?'disabled':''}>${icon('arrow',18)}</button></div>`;
+ body.innerHTML=`<div class="book-shelf-grid">${BOOKS.slice(bookShelfPage*perPage,(bookShelfPage+1)*perPage).map((b,slot)=>{const index=bookShelfPage*perPage+slot,info=bookInfo(index),locked=E.recipeLevel(state)<info.required;return `<button class="book-cover-card ${locked?'locked':''}" data-act="book-open" data-n="${index}" aria-label="${esc(b.name)}${locked?` · 잠김 · 레시피 레벨 ${info.required} 필요`:''}"><span class="book-cover-art"><img class="book-cover-image" src="${esc(b.cover||'/assets/cookbook-cover-blank.png')}" alt="" width="96" height="128"/>${locked?`<span class="book-lock" aria-hidden="true">${icon('lock',26)}</span>`:''}</span><strong>${esc(b.name)}</strong><small>${locked?`레시피 Lv.${info.required}`:`${info.recipes.length}가지 요리`}</small>${b.event?'<span class="book-season">성탄 한정</span>':''}</button>`;}).join('')}</div><div class="book-footer"><button class="icon-button" data-act="book-shelf-page" data-n="-1" aria-label="이전 표지 목록" ${bookShelfPage===0?'disabled':''}><span class="reverse">${icon('arrow',18)}</span></button><span>${bookShelfPage+1} / ${pages} <small class="book-total">${BOOKS.length}요리책 ${RECIPES.length} 레시피</small></span><button class="icon-button" data-act="book-shelf-page" data-n="1" aria-label="다음 표지 목록" ${bookShelfPage===pages-1?'disabled':''}>${icon('arrow',18)}</button></div>`;
 }
 function renderModal(){
  if(!modal)return;const body=$('#dialog-content');
@@ -211,7 +212,7 @@ document.addEventListener('change',e=>{if(e.target.id==='walk-actor'){walkPrevie
 function questModalKey(){const q=E.questProgress(state);return `${state.questIndex}:${q?.progress??''}:${state.hearts}`;}
 function confirmAction(title,description,callback,label='확인'){open('confirm',{title,description,callback,label});}
 
-function startEdit(){close();edit={selected:null,ghost:null};state.customers=[];$('#stage').classList.add('editing');$('#shop-dock').hidden=false;$('#edit-tools').hidden=false;renderShop();renderEdit();}
+function startEdit(){close();edit={selected:null,ghost:null};$('#stage').classList.add('editing');$('#shop-dock').hidden=false;$('#edit-tools').hidden=false;renderShop();renderEdit();}
 function finishEdit(){edit=null;$('#stage').classList.remove('editing');$('#shop-dock').hidden=true;$('#edit-tools').hidden=true;save();updateHUD();$('#decorate-button').focus({preventScroll:true});}
 function renderShop(){const categories=[['table','테이블'],['chair','의자'],['stove','가마솥'],['server','서빙대'],['decor','장식'],['floor','바닥'],['wall','벽'],['storage','창고'],['expand','확장']];let items='';
  if(shopTab==='expand'){const next=EXPANSIONS.find(x=>x.size>state.size);items=next?`<button class="shop-item expansion-item" data-act="expand"><span>${icon('home',33)}</span><b>${next.size}×${next.size}로 확장</b><small>식당 Lv.${next.level} · ${num(next.price)}코인</small></button>`:'<p class="shop-empty">가장 넓은 식당이에요.</p>';}

@@ -3,6 +3,7 @@ import {stoveStatus,placementProblem,seats} from './engine.js';
 import {walkingPose} from './walking.js';
 import {lockDirectionalHeads} from './sprite-heads.js';
 import {guestDialogue} from './guest-dialogue.js';
+import {needsHungerBubble,visibleHeadBounds,hungerBubbleGeometry} from './hunger-bubble.js';
 import {splitGroundCompanions} from './sprite-companions.js';
 import {eatingAnimationFrame,eatingSpriteFrame} from './eating.js';
 import {registerEatingFrames} from './eating-registration.js';
@@ -184,7 +185,7 @@ export class RestaurantView{
     for(const w of edit?[]:s.waiters)entities.push({kind:'waiter',value:w,depth:w.x+w.y+.3});
     for(const z of edit?[]:s.customers){entities.push({kind:'customer',value:z,depth:z.x+z.y+.3});if(z.phase==='eating'){const seat=seats(s).find(item=>item.uid===z.seat);if(seat?.table)entities.push({kind:'meal',value:z,depth:seat.table.x+seat.table.y+.2});}}
     entities.sort((a,b)=>a.depth-b.depth);
-    this.guestLabels=[];this.labelRects=[];
+    this.guestLabels=[];this.labelRects=[];this.hungerLayout=[];
     for(const e of entities){if(e.kind==='object')this.drawObject(s,e.value,clock,edit);else if(e.kind==='meal')this.drawMeal(s,e.value);else if(e.kind==='empty-dish')this.drawEmptyDish(e.value);else this.drawPerson(s,e.value,e.kind==='waiter',clock);}
     // Controls share one layout pass, with each displaced badge tied to its pot.
     this.stoveControls=this.stoveControlLayout(s);
@@ -213,7 +214,7 @@ export class RestaurantView{
     if(edit?.ghost){const g=edit.ghost,t={x:g.x??3,y:g.y??3},error=placementProblem(s,g.type,t.x,t.y,g.dir,g.existing,{ignoreStaff:true}),p=this.world(t.x,t.y);this.polygon([this.world(t.x-.5,t.y-.5),this.world(t.x+.5,t.y-.5),this.world(t.x+.5,t.y+.5),this.world(t.x-.5,t.y+.5)],error?'#d97e6c88':'#bacb8799',error?'#fa9789':'#deefba',2);this.drawObject(s,{type:g.type,x:t.x,y:t.y,dir:g.dir,uid:'ghost'},clock,{ghost:true});}
     for(let i=0;i<16;i++){const x=(Math.sin(i*77.1)*.5+.5)*W,y=(Math.cos(i*31.4)*.5+.5)*H;const a=(Math.sin(clock*1.5+i*2)+1)/2;c.fillStyle=`rgba(226,220,143,${a*.6})`;c.fillRect(Math.round(x+Math.sin(clock*.4+i)*12),Math.round(y+Math.cos(clock*.3+i)*8),2,2);}
     if(s.feverUntil>s.time){c.save();c.setTransform(dpr,0,0,dpr,0,0);c.strokeStyle=`rgba(242,202,103,${.3+Math.sin(clock*7)*.2})`;c.lineWidth=5;c.strokeRect(3,3,W-6,H-6);c.restore();}
-    if(!edit){this.drawPaymentEffects(effectClock);this.drawGuestLabels();}
+    if(!edit){this.drawPaymentEffects(effectClock);this.drawHungerBubbles();this.drawGuestLabels();}
     this.guestLabels=null;this.labelRects=null;c.restore();
   }
   drawGuestLabels(){
@@ -227,6 +228,10 @@ export class RestaurantView{
         this.label(item.text,x,y,item.options);this.dialogueLayout.push({...box,text:item.text});break;
       }
     }
+  }
+  drawHungerBubbles(){
+    const image=this.sprites.hungerThought?.[0];if(!image)return;
+    for(const box of this.hungerLayout){this.ctx.drawImage(image,box.x,box.y,box.w,box.h);this.labelRects.push(box);}
   }
   addPaymentEffect(event){if(![event.amount,event.xp,event.x,event.y].every(Number.isFinite))return;this.paymentEffects.push({amount:event.amount,xp:event.xp,x:event.x,y:event.y,favorite:!!event.favorite,tip:Number.isFinite(event.tip)?event.tip:0,startedAt:performance.now()/1000});this.paymentEffects=this.paymentEffects.slice(-20);}
   drawPaymentEffects(clock){const c=this.ctx,reduced=this.motionPreference.matches;this.paymentEffects=this.paymentEffects.filter(effect=>clock-effect.startedAt<1.9);for(const effect of this.paymentEffects){const age=Math.max(0,clock-effect.startedAt),p=this.world(effect.x,effect.y),rise=reduced?0:Math.floor(age*14)*2,y=p.y-this.tile*1.15-rise;c.save();c.globalAlpha=reduced?1:Math.max(.25,Math.min(1,Math.ceil((1.9-age)/.4)/4));if(age<1.6){this.sprite('food',15,p.x-34,y,22,22);this.label(`+${effect.amount} 코인${effect.tip?` · 팁 ${effect.tip}`:''}`,p.x+18,y,{small:true,color:'#ffe39b',background:'#423520',border:'#d7b36c'});}if(age>=.35)this.label(`+${effect.xp} XP`,p.x+8,y+28,{small:true,color:'#cbecdf',background:'#213e35',border:'#9cbf9b'});if(effect.favorite){const heart=['0110110','1111111','1111111','0111110','0011100','0001000'];c.fillStyle='#e59aab';heart.forEach((row,yy)=>[...row].forEach((bit,xx)=>{if(bit==='1')c.fillRect(Math.round(p.x+53+xx*2),Math.round(y-18+yy*2),2,2);}));}c.restore();}}
@@ -274,7 +279,7 @@ export class RestaurantView{
     const image=this.sprites[atlas]?.[index];
     // Scale uniformly: preserve the actual character silhouette instead of
     // stretching every image into a fixed width/height rectangle.
-    let y=p.y+5+(isSeated||pose||this.motionPreference.matches?0:bob);
+    let y=p.y+5+(isSeated||pose||this.motionPreference.matches?0:bob),placement;
     if(directional||dedicatedSeat){
       const meta=ASSET_MANIFEST[atlas],cellHeight=image?.height||meta.cell?.height||280;
       const hip=isSeated&&chair?(this.eatingRegistrations?.[atlas]?.[index]?.hip||meta.poses?.[index]?.hip):null,anchor=hip||meta.poses?.[index]?.anchor||meta.anchor||{x:140,y:270};
@@ -283,18 +288,26 @@ export class RestaurantView{
       w=(image?.width||280)*scale;h=cellHeight*scale;
       const offsetX=((image?.width||280)/2-anchor.x)*scale;
       const attachment=hip?this.chairGeometry(chair).seat:{x:p.x,y};
+      placement={x:attachment.x+offsetX-w/2,y:attachment.y-anchor.y*scale,width:w,height:h};
       this.sprite(atlas,index,attachment.x+offsetX,attachment.y+(cellHeight-anchor.y)*scale,w,h,{flip:false});
     }else{
       if(isSeated)h*=.86;
       w=h*(image?image.width/image.height:.64);
+      placement={x:p.x-w/2,y:y-h,width:w,height:h,flip};
       this.sprite(atlas,index,p.x,y,w,h,{flip,filter:waiter&&a.infectedUntil>s.time?'hue-rotate(65deg) saturate(.7)':''});
     }
     if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.4);}
     if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.38);}
     if(chair)this.drawChairFront(chair);
-    if(a.red)this.label('!',p.x,p.y-h-1,{small:true,background:'#b65d4f',border:'#efbd82'});
+    let bubble=null;
+    if(!waiter&&needsHungerBubble(a)&&image&&this.sprites.hungerThought?.[0]){
+      this.hungerHeads??=new WeakMap();let head=this.hungerHeads.get(image);
+      if(head===undefined){head=visibleHeadBounds(this.hitMask(image),ASSET_MANIFEST[atlas]?.poses?.[index]?.headPolygon);this.hungerHeads.set(image,head);}
+      if(head){const thought=this.sprites.hungerThought[0];bubble={uid:a.uid,atlas,index,...hungerBubbleGeometry(head,{...placement,sourceWidth:image.width,sourceHeight:image.height},thought.height/thought.width)};this.hungerLayout?.push(bubble);}
+    }
+    if(a.red)this.label('!',bubble?bubble.head.x+bubble.head.width*.65:p.x,bubble?bubble.head.y:p.y-h-1,{small:true,background:'#b65d4f',border:'#efbd82'});
     else if(waiter&&a.infectedUntil>s.time)this.label('치료',p.x,p.y-h,{small:true,background:'#8d5f66'});
-    else if(!waiter){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={small:true,...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.label(line,p.x,p.y-h,options);}}
+    else if(!waiter&&!needsHungerBubble(a)){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={small:true,...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.label(line,p.x,p.y-h,options);}}
     if(waiter)this.hits.push({kind:'waiter',uid:a.uid,x:p.x-w/2,y:y-h,w,h,flip,mask:this.hitMask(image)});
   }
   drawMeal(s,customer){const seat=seats(s).find(item=>item.uid===customer.seat);if(!seat?.table)return;const table=seat.table,dx=seat.chair.x-table.x,dy=seat.chair.y-table.y,p=this.world(table.x+dx*.4,table.y+dy*.4);const center=this.world(table.x,table.y),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39};this.drawFoodOnSurface(customer.foodId,surface.x+p.x-center.x,surface.y+p.y-center.y,this.tile*.38);}

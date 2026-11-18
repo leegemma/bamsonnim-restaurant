@@ -31,3 +31,5 @@
  .book-cover-card small,.book-season{display:none}
  .book-toolbar{padding-block:2px}
 }
+
+.cookbook .book-footer .book-total{display:block;margin-top:3px;font-size:12px;line-height:1.3;white-space:nowrap}

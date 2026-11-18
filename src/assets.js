@@ -72,6 +72,7 @@ const officePoses=[
 });
 
 export const ASSET_MANIFEST={
+  hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
   food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'atlas'}),
   emptyDish:asset('emptyDish','식사 후 빈 그릇',{url:'/assets/empty-dish.svg',width:32,height:20,rows:1,trim:false}),
   characters:asset('characters','첫 손님 15종·직원',{width:1254,height:1254,cols:4,type:'atlas'}),
