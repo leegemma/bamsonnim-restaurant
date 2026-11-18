@@ -61,7 +61,7 @@ $('#app').innerHTML=`
   <button class="season-card scroll-news" data-act="events" aria-label="계절의 소식 · 다가오는 성탄절" title="계절의 소식"><img src="/assets/season-scroll-icon.png" width="96" height="96" alt=""><span id="event-label" hidden>다가오는 성탄절</span></button>
  </aside>
  <div class="right-rail"><button class="round-action" data-act="album" aria-label="캐릭터북 열기">${icon('people',23)}<small>밤손님</small><b id="album-count">0/29</b></button><button class="round-action" data-act="cookbook" aria-label="요리책 열기">${icon('book',23)}<small>요리책</small><b id="food-count">0/12</b></button></div>
- <div class="fever-banner" id="fever-banner" hidden><img class="festival-heading" src="/assets/moon-festival-banner.png" width="2172" height="724" alt="달밤의 축제"><div class="festival-status"><strong id="fever-title"></strong><span class="festival-effects">판매 코인 ×2 · 손님 ×3 · 재고 소모 없음</span></div><progress id="fever-progress" max="30" value="30" aria-label="축제 남은 시간"></progress></div>
+ <div class="fever-banner" id="fever-banner" hidden><img class="festival-heading" src="/assets/moon-festival-banner.png" width="2172" height="724" alt="달밤의 축제"><div class="festival-status"><strong id="fever-title"></strong><span class="festival-effects">판매 코인 ×2 · 손님 ×3 · 서빙당 재고 1개 소모</span></div><progress id="fever-progress" max="30" value="30" aria-label="축제 남은 시간"></progress></div>
  <div class="welcome-note" id="welcome-note"><span class="note-number">첫 번째 밤</span><strong>허기진 손님을 맞을 준비가 됐나요?</strong><p>가마솥의 <b>COOK</b>을 눌러 첫 요리를 골라보세요.</p><button data-act="cookbook">첫 요리 만들기 ${icon('arrow',15)}</button></div>
  <div class="edit-tools" id="edit-tools" hidden></div>
  <section class="shop-dock" id="shop-dock" aria-label="인테리어 상점" hidden></section>
