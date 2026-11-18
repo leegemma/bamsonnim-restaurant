@@ -56,6 +56,25 @@ RECIPES.push(
   {"id":"fried-ears","name":"바삭 귀튀김","description":"사람 귀를 얇게 튀겨 바삭한 한입 안주로 냈어요.","duration":28800,"servings":500,"coins":0,"hearts":2,"sprite":43,"book":0,"required":117,"price":1,"portion":25,"milestones":[1,3,5]},
   {"id":"hell-pizza-bun","name":"지옥 피자호빵","description":"둥근 호빵을 가르면 붉은 피자 소스와 치즈, 작은 거미가 빼꼼.","duration":420,"servings":154,"coins":0,"hearts":3,"sprite":44,"book":10,"required":120,"price":2,"portion":8,"milestones":[3,8,10]},
 );
+// Approved first-book balance. Apply after legacy derived fields to preserve mastery and portion.
+const SNACK_BALANCE = {
+  "rice":{"duration":12,"servings":6,"coins":0,"hearts":0,"price":1},
+  "skewer":{"duration":30,"servings":10,"coins":2,"hearts":0,"price":2},
+  "soup":{"duration":120,"servings":24,"coins":10,"hearts":0,"price":3},
+  "tteok":{"duration":300,"servings":40,"coins":25,"hearts":0,"price":4},
+  "sausage":{"duration":300,"servings":36,"coins":30,"hearts":0,"price":5},
+  "gimbap":{"duration":900,"servings":90,"coins":90,"hearts":0,"price":6},
+  "bibimbap":{"duration":1800,"servings":120,"coins":180,"hearts":0,"price":9},
+  "xmas-soup":{"duration":300,"servings":50,"coins":25,"hearts":0,"price":4},
+  "spider-mandu":{"duration":600,"servings":60,"coins":60,"hearts":0,"price":6},
+  "hair-seaweed-soup":{"duration":900,"servings":75,"coins":75,"hearts":0,"price":7},
+  "nurungji-chicken-baeksuk":{"duration":3600,"servings":150,"coins":240,"hearts":0,"price":14},
+  "tongue-sotteok":{"duration":600,"servings":50,"coins":50,"hearts":0,"price":7},
+  "worm-tteokgalbi":{"duration":900,"servings":60,"coins":90,"hearts":0,"price":9},
+  "fried-ears":{"duration":1800,"servings":90,"coins":120,"hearts":0,"price":12},
+};
+for(const r of RECIPES)if(Object.hasOwn(SNACK_BALANCE,r.id))Object.assign(r,SNACK_BALANCE[r.id]);
+
 export const BOOKS = [
   {name:'무덤 앞 분식집',subtitle:'작고 소중한 첫 끼',color:'#ba6a43',symbol:'一',cover:'/assets/cookbook-grave-bunsik.png'},
   {name:'수상한 한 상',subtitle:'단골을 부르는 손맛',color:'#76885c',symbol:'二',cover:'/assets/cookbook-suspicious-table.png'},
