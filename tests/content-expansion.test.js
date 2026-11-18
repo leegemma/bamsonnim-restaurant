@@ -110,12 +110,12 @@ function firstSpawn(level,status,seed,album){const s=suppliedGame(level,status,s
 function findSpawn(id,level,status='upcoming',album={}){for(let seed=0;seed<1024;seed++){const s=firstSpawn(level,status,seed,album);if(s.customers.some(c=>c.zombieId===id))return{seed,s};}assert.fail(`${id} did not spawn at its unlocked level`);}
 
 test('legacy recipe fields and book identities stay compatible except the explicit first-book relocations',()=>{
- assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
+ assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>{const relocated=RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r;if(r.id!=='xmas-soup')return relocated;const {event,...ordinary}=relocated;return {...ordinary,description:'뜨끈한 국물에 둥둥 떠다니는 유령 만두.'};}));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
  for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['검정 짧은 머리','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old);}
 });
 
-test('the expanded recipe registry has forty-one normal and two event recipes with valid runtime fields',()=>{
- assert.equal(RECIPES.length,43);assert.equal(RECIPES.filter(r=>!r.event).length,41);assert.equal(RECIPES.filter(r=>r.event==='christmas').length,2);assert.equal(new Set(RECIPES.map(r=>r.id)).size,43);assert.equal(new Set(RECIPES.map(r=>r.sprite)).size,43);
+test('the expanded recipe registry has forty-two normal and one event recipe with valid runtime fields',()=>{
+ assert.equal(RECIPES.length,43);assert.equal(RECIPES.filter(r=>!r.event).length,42);assert.equal(RECIPES.filter(r=>r.event==='christmas').length,1);assert.equal(new Set(RECIPES.map(r=>r.id)).size,43);assert.equal(new Set(RECIPES.map(r=>r.sprite)).size,43);
  const allowed=new Set(['id','name','description','duration','servings','coins','hearts','sprite','book','required','price','portion','milestones','event']);
  for(const r of RECIPES){assert.match(r.id,/^[a-z][a-z0-9-]*$/);for(const key of ['name','description'])assert.ok(typeof r[key]==='string'&&r[key].trim());for(const key of ['duration','servings','coins','hearts','sprite','book','required','price','portion'])assert.ok(Number.isSafeInteger(r[key])&&r[key]>=(['duration','servings','price','portion'].includes(key)?1:0),`${r.id}.${key}`);assert.ok(r.book<BOOKS.length);assert.ok(r.portion<=r.servings);assert.equal(r.milestones.length,3);assert.ok(r.milestones.every((n,i)=>Number.isSafeInteger(n)&&n>0&&(!i||n>r.milestones[i-1])));for(const key of Object.keys(r))assert.ok(allowed.has(key),`${r.id} includes non-runtime ${key}`);}
  assert.equal(RECIPES.some(r=>r.sprite===14||r.sprite===15),false,'reserved resource cells 14/15 stay unassigned');
@@ -149,7 +149,7 @@ test('appended books retain unrelocated recipes and the seasonal book retains it
 test('normal mastery unlocks the complete chain through required level 120 without a seasonal recipe',()=>{
  const s=E.newGame();s.events.christmas='ended';const normal=RECIPES.filter(r=>!r.event).toSorted((a,b)=>a.required-b.required);assert.equal(E.recipeLevel(s),0);
  for(const r of normal){assert.equal(E.canCook(s,r),true,`${r.id} is reachable at mastery level ${E.recipeLevel(s)}`);s.mastery[r.id]=r.milestones.at(-1);}
- assert.equal(Math.max(...normal.map(r=>r.required)),120);assert.equal(E.recipeLevel(s),123);assert.ok(normal.every(r=>E.canCook(s,r)));assert.ok(RECIPES.filter(r=>r.event).every(r=>!E.canCook(s,r)));assert.equal(s.mastery['xmas-rice'],undefined);assert.equal(s.mastery['xmas-soup'],undefined);
+ assert.equal(Math.max(...normal.map(r=>r.required)),120);assert.equal(E.recipeLevel(s),126);assert.ok(normal.every(r=>E.canCook(s,r)));assert.ok(RECIPES.filter(r=>r.event).every(r=>!E.canCook(s,r)));assert.equal(s.mastery['xmas-rice'],undefined);assert.equal(s.mastery['xmas-soup'],recipe('xmas-soup').milestones.at(-1));
 });
 
 test('existing v1 saves keep old mastery, inventory, albums, event progress and money',()=>{

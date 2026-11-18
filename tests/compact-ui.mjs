@@ -19,8 +19,8 @@ try{
   }
   await page.locator('[data-act="cookbook"]').first().tap();await page.locator('.recipe-page').first().waitFor({state:'visible'});
   assert.equal(await page.locator('.recipe-page').count(),2);
-  const cookbook=await snapshot('cookbook',['.recipe-page','.recipe-prices','.recipe-stock','.cook-button','.book-footer','.book-tabs']);
-  assert.ok(cookbook.elements.filter(e=>e.selector==='.recipe-stock').every(e=>e.text.includes('서빙대 재고')));
+  const cookbook=await snapshot('cookbook',['.recipe-page','.recipe-prices','.recipe-facts','.cook-button','.book-footer','.book-tabs']);
+  assert.equal(await page.locator('.recipe-stock,[data-food-stock]').count(),0);assert.ok(cookbook.elements.filter(e=>e.selector==='.recipe-facts').every(e=>e.text.includes('생산')));
   const first=await page.locator('.recipe-page h2').allTextContents();await page.getByRole('button',{name:'다음 페이지',exact:true}).tap();await page.waitForFunction(first=>JSON.stringify([...document.querySelectorAll('.recipe-page h2')].map(e=>e.textContent))!==JSON.stringify(first),first);assert.notDeepEqual(await page.locator('.recipe-page h2').allTextContents(),first);await page.getByRole('button',{name:'이전 페이지',exact:true}).tap();await page.waitForFunction(first=>JSON.stringify([...document.querySelectorAll('.recipe-page h2')].map(e=>e.textContent))===JSON.stringify(first),first);assert.deepEqual(await page.locator('.recipe-page h2').allTextContents(),first);
   await page.locator('[data-act="book-tab"][data-n="1"]').tap();await page.locator('[data-act="book-tab"][data-n="0"]').tap();
   await page.locator('[data-act="cook"][data-id="rice"]').tap();await page.waitForFunction(()=>!document.querySelector('dialog').open);assert.equal(await page.locator('dialog').evaluate(d=>d.open),false);

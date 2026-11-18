@@ -541,14 +541,14 @@ export async function runExtendedChecks(browser,baseURL,output,results){
   return{screens};
  });
 
- await check('cookbook-live-stock-fixed-price',async page=>{
+ await check('cookbook-hidden-stock-fixed-price',async page=>{
   await ready(page);
   await page.evaluate(()=>{const g=window.__BAMSONNIM__,s=g.state;g.pause();s.coins=10000;const problem=g.engine.place(s,{type:'server',x:6,y:1});if(problem)throw new Error(problem);const servers=s.objects.filter(o=>o.type==='server');Object.assign(servers[0],{foodId:'rice',stock:6});Object.assign(servers[1],{foodId:'rice',stock:0});window.__stockFixture={stockedUid:servers[0].uid,emptyUid:servers[1].uid};s.objects=[servers[1],...s.objects.filter(o=>o.uid!==servers[1].uid)];s.spawnIn=0;});
   await page.locator('[data-act="cookbook"]').first().click();
   await page.locator('[data-act="book-open"][data-n="0"]').click();
-  const card=page.locator('.recipe-page').filter({has:page.locator('[data-act="cook"][data-id="rice"]')}),stock=card.locator('[data-food-stock="rice"]'),sale=card.locator('.recipe-prices > div').nth(1).locator('dd');
+  const card=page.locator('.recipe-page').filter({has:page.locator('[data-act="cook"][data-id="rice"]')}),sale=card.locator('.recipe-prices > div').nth(1).locator('dd');
   const snapshots=[];
-  async function record(stage,expected){await page.waitForFunction(expected=>document.querySelector('[data-food-stock="rice"]').textContent===`${expected}개`,expected);const unitPrice=(await sale.textContent()).trim();assert.equal(unitPrice,'1코인');snapshots.push({stage,stock:await stock.textContent(),unitPrice});}
+  async function record(stage,expected){assert.equal(await page.locator('.recipe-stock,[data-food-stock]').count(),0);const stateStock=await page.evaluate(()=>window.__BAMSONNIM__.state.objects.reduce((n,o)=>n+(o.foodId==='rice'?(o.stock||0):0),0));assert.equal(stateStock,expected);const unitPrice=(await sale.textContent()).trim();assert.equal(unitPrice,'1코인');assert.match(await card.locator('.recipe-facts').textContent(),/1회 6개 생산/);snapshots.push({stage,stateStock,stockRowPresent:false,unitPrice});}
   await record('initial',6);
   const afterSale=await page.evaluate(()=>{
    const g=window.__BAMSONNIM__,s=g.state;
@@ -565,11 +565,11 @@ export async function runExtendedChecks(browser,baseURL,output,results){
   assert.equal(afterBatch,afterSale+6);await record('after-new-batch',afterBatch);
   const batchStocks=await page.evaluate(()=>{const s=window.__BAMSONNIM__.state,f=window.__stockFixture;return{stocked:s.objects.find(o=>o.uid===f.stockedUid).stock,empty:s.objects.find(o=>o.uid===f.emptyUid).stock};});
   assert.deepEqual(batchStocks,{stocked:11,empty:0},'A new batch stacks on the matching stock even when an empty counter appears first');
-  // Preserve and display a second same-food stock from an existing save; this
+  // Preserve a second same-food stock from an existing save without displaying it; this
   // fixture checks aggregation without asking the engine to split a new batch.
   await page.evaluate(()=>{window.__BAMSONNIM__.state.objects.find(o=>o.uid===window.__stockFixture.emptyUid).stock=7;});
   await record('including-existing-second-counter',afterBatch+7);
-  return{snapshots,batchStocks,modalStayedOpen:await page.locator('dialog').evaluate(dialog=>dialog.open)};
+  return{snapshots,batchStocks,modalStayedOpen:await page.locator('#dialog').evaluate(dialog=>dialog.open)};
  });
 
  await check('muted-music-payment-effect',async page=>{
