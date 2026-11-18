@@ -253,7 +253,7 @@ function addCombo(s,offline){
   s.hunger=Math.max(0,s.hunger-2);s.stats.served++;
   if(offline)return;
   s.combo=s.time-s.lastServe<=9?s.combo+1:1;s.lastServe=s.time;
-  if(s.combo===21){s.feverUntil=s.time+30;s.stats.fevers++;notify(s,'달밤의 축제! 30초 동안 코인 2배 · 재고 소모 없음', 'fever');}
+  if(s.combo===21){s.feverUntil=s.time+30;s.stats.fevers++;notify(s,'달밤의 축제! 30초 동안 코인 2배 · 서빙당 재고 1개 소모', 'fever');}
 }
 function cancelTask(s,w){
   const t=w.task;if(!t){settleWorker(s,w,true);return;}
@@ -333,7 +333,7 @@ function updateWorker(s,w,dt,offline){
   }else if(t.kind==='serve'){
     const c=s.customers.find(c=>c.uid===t.customer),seat=seats(s).find(x=>x.uid===c?.seat),o=s.objects.find(o=>o.uid===t.server);
     if(!c||c.phase!=='waiting'||!seat){cancelTask(s,w);return;}
-    if(t.phase==='pickup'){if(!(o?.stock>=1)||t.foodId&&t.foodId!==o.foodId||!setRoute(s,w,seat.chair)){cancelTask(s,w);return;}t.foodId=o.foodId;t.portion=1;t.picked=true;t.phase='deliver';if(s.feverUntil<=s.time)o.stock-=t.portion;else t.free=true;refreshServerReservation(s,o.uid);}
+    if(t.phase==='pickup'){if(!(o?.stock>=1)||t.foodId&&t.foodId!==o.foodId||!setRoute(s,w,seat.chair)){cancelTask(s,w);return;}t.foodId=o.foodId;t.portion=1;t.picked=true;t.phase='deliver';delete t.free;o.stock-=t.portion;refreshServerReservation(s,o.uid);}
     else{
       // Older v1 saves may still be walking to the former table service point.
       if(!beside(w,seat.chair)){if(!setRoute(s,w,seat.chair))cancelTask(s,w);return;}
