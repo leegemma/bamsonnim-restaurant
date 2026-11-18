@@ -15,6 +15,7 @@ import {pickHit} from './hit-testing.js';
 import {zombieEntrance} from './entrances.js';
 import {cookingCountdown,COOKING_TIMER_FONT} from './cooking-countdown.js';
 import {ASSET_MANIFEST,characterFrame,directionalCharacter,eatingCharacter,foodFrame} from './assets.js';
+import {workerFrame} from './worker-art.js';
 const PREPARED_FOOD_SCALE=.44;
 const INITIAL_CAMERA_ZOOM=1.4;
 
@@ -262,7 +263,8 @@ export class RestaurantView{
     const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chair?.dir??null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
     if(pose)this.walkingStates.set(a,pose);
     let flip=pose?pose.flip:walking&&(a.path[0][0]-a.x)-(a.path[0][1]-a.y)<0;
-    const mapped=waiter&&this.sprites.workers?.length?{key:'workers',index:a.appearance??Math.max(0,s.waiters.indexOf(a))}:characterFrame(waiter?15:def?.sprite||0);let atlas=mapped.key,index=mapped.index;
+    const appearance=a.appearance??Math.max(0,s.waiters.indexOf(a)),workerArt=waiter?workerFrame(appearance,{infected:a.infectedUntil>s.time}):null;
+    const mapped=waiter&&this.sprites.workers?.length?(this.sprites[workerArt.key]?.length?workerArt:{key:'workers',index:appearance}):characterFrame(waiter?15:def?.sprite||0);let atlas=mapped.key,index=mapped.index;
     const directional=!!pose&&!!this.sprites[directionalMeta.key]?.length;
     const seatedRow=ASSET_MANIFEST.seatedNeighbors?.actorRows?.[artId],officeSeat=artId==='office'&&!!this.sprites.seatedOffice?.length,dedicatedSeat=!waiter&&isSeated&&!!chair&&(officeSeat||seatedRow!==undefined&&!!this.sprites.seatedNeighbors?.length);
     let h=t*(short?.8:waiter?1.02:1.07),w;
