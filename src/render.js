@@ -294,7 +294,7 @@ export class RestaurantView{
       if(isSeated)h*=.86;
       w=h*(image?image.width/image.height:.64);
       placement={x:p.x-w/2,y:y-h,width:w,height:h,flip};
-      this.sprite(atlas,index,p.x,y,w,h,{flip,filter:waiter&&a.infectedUntil>s.time?'hue-rotate(65deg) saturate(.7)':''});
+      this.sprite(atlas,index,p.x,y,w,h,{flip,filter:waiter&&a.infectedUntil>s.time&&!ASSET_MANIFEST[atlas]?.precoloredInfected?'hue-rotate(65deg) saturate(.7)':''});
     }
     if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.4);}
     if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.38);}
