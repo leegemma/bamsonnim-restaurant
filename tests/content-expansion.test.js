@@ -4,6 +4,8 @@ import {readFile} from 'node:fs/promises';
 import * as E from '../src/engine.js';
 import {RECIPES,BOOKS,ZOMBIES,SAVE_VERSION,SAVE_KEY,recipe,zombie} from '../src/data.js';
 
+// Only these user-requested classifications differ from the historical records.
+const RELOCATED_TO_FIRST_BOOK=new Set(['sausage','bibimbap','gimbap','spider-mandu','tongue-sotteok','worm-tteokgalbi','nurungji-chicken-baeksuk','fried-ears','hair-seaweed-soup','xmas-soup']);
 // Frozen records from the release before content expansion.
 const BASELINE_RECIPES=[
  {"id":"rice","name":"뇌 주먹밥","description":"한 입 먹으면 머리가 맑아지는… 기분입니다.","duration":12,"servings":6,"coins":0,"hearts":0,"sprite":0,"book":0,"required":0,"price":1,"portion":1,"milestones":[3,8,10]},
@@ -107,8 +109,8 @@ function suppliedGame(level=1,status='upcoming',seed=67291,album={}){
 function firstSpawn(level,status,seed,album){const s=suppliedGame(level,status,seed,album);E.advance(s,.25);s.spawnIn=1e9;return s;}
 function findSpawn(id,level,status='upcoming',album={}){for(let seed=0;seed<1024;seed++){const s=firstSpawn(level,status,seed,album);if(s.customers.some(c=>c.zombieId===id))return{seed,s};}assert.fail(`${id} did not spawn at its unlocked level`);}
 
-test('the fourteen existing recipes, four book indexes and old guest identities stay compatible',()=>{
- assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES);assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
+test('legacy recipe fields and book identities stay compatible except the explicit first-book relocations',()=>{
+ assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
  for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['검정 짧은 머리','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old);}
 });
 
@@ -120,7 +122,7 @@ test('the expanded recipe registry has forty-one normal and two event recipes wi
 });
 
 test('all twenty-nine additions retain their planned numeric values and sprite slots sixteen through forty-four',()=>{
- assert.equal(ADDITIONS.length,29);assert.deepEqual(RECIPES.slice(14).map(r=>[r.id,r.sprite,r.book,r.required,r.duration,r.servings,r.coins,r.hearts]),ADDITIONS);assert.deepEqual(RECIPES.slice(14).map(r=>r.sprite),Array.from({length:29},(_,i)=>16+i));
+ assert.equal(ADDITIONS.length,29);assert.deepEqual(RECIPES.slice(14).map(r=>[r.id,r.sprite,r.book,r.required,r.duration,r.servings,r.coins,r.hearts]),ADDITIONS.map(row=>RELOCATED_TO_FIRST_BOOK.has(row[0])?row.map((value,index)=>index===2?0:value):row));assert.deepEqual(RECIPES.slice(14).map(r=>r.sprite),Array.from({length:29},(_,i)=>16+i));
  for(const r of RECIPES.slice(14)){assert.equal(r.event,undefined);assert.equal(r.price,r.hearts?Math.max(1,Math.ceil(r.hearts*100/r.servings)):Math.max(1,Math.ceil(r.coins*1.3/r.servings)));assert.equal(r.portion,Math.max(1,Math.round(r.servings/20)));assert.deepEqual(r.milestones,r.duration<=600?[3,8,10]:r.duration<=7200?[2,5,8]:r.duration<=43200?[1,3,5]:[1,2,3]);}
 });
 
@@ -139,9 +141,9 @@ test('unpublished menu names and IDs describe the selected art without changing 
  for(const token of ['노란 알배추','쌈장'])assert.ok(recipe('human-suyuk').description.includes(token));assert.ok(recipe('blood-haejangguk').description.includes('사람 피 선지'));assert.ok(recipe('spine-gamjatang').description.includes('사람 갈비뼈'));assert.ok(recipe('grilled-tongue').description.includes('소의 혀'));assert.equal(recipe('grilled-tongue').description.includes('사람'),false);assert.ok(recipe('human-leg-kalguksu').description.includes('사람다리'));
 });
 
-test('seven appended books contain every new recipe once without changing the seasonal book',()=>{
+test('appended books retain unrelocated recipes and the seasonal book retains its remaining Christmas recipe',()=>{
  assert.equal(BOOKS.length,11);for(const b of BOOKS){for(const key of ['name','subtitle','symbol'])assert.ok(typeof b[key]==='string'&&b[key].trim());assert.match(b.color,/^#[0-9a-f]{6}$/i);}
- assert.deepEqual(Array.from({length:7},(_,i)=>RECIPES.filter(r=>r.book===i+4).map(r=>r.id)),BOOK_CONTENTS);assert.deepEqual(RECIPES.filter(r=>r.book===3).map(r=>r.id),['xmas-rice','xmas-soup']);assert.equal(BOOKS[3].event,'christmas');
+ assert.deepEqual(Array.from({length:7},(_,i)=>RECIPES.filter(r=>r.book===i+4).map(r=>r.id)),BOOK_CONTENTS.map(ids=>ids.filter(id=>!RELOCATED_TO_FIRST_BOOK.has(id))));assert.deepEqual(RECIPES.filter(r=>r.book===3).map(r=>r.id),['xmas-rice']);assert.equal(BOOKS[3].event,'christmas');
 });
 
 test('normal mastery unlocks the complete chain through required level 120 without a seasonal recipe',()=>{
