@@ -1,0 +1,1162 @@
+{
+  "actorId": "santa",
+  "key": "zombieSanta",
+  "name": "산타 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "url": "/assets/zombies/santa-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Fixed 4×4 integer partitions; poses[].source is authoritative. No source pixels altered.",
+  "referenceHeight": 279,
+  "referenceHeightMethod": "Median measured alpha>80 bounds height of 12 walking frames.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 60,
+        "y": 17,
+        "width": 228,
+        "height": 281
+      },
+      "anchor": {
+        "x": 168.5,
+        "y": 298
+      },
+      "validation": {
+        "opaquePixels": 41052,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 126,
+        "ownerFeetRoi": {
+          "x": 101,
+          "y": 235,
+          "width": 146,
+          "height": 63
+        },
+        "ownerFootSamples": 6362,
+        "lowerBodyPixelFingerprint": "7ed25d71ed185914e31f857e5d3e86a91cbc5ac4fb8312b375343c768b187c78"
+      },
+      "footContactAnchor": {
+        "x": 168.5,
+        "y": 298
+      },
+      "footContactRegion": {
+        "x": 100,
+        "y": 288,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 164.225,
+          "y": 68.084
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 67,
+        "y": 17,
+        "width": 221,
+        "height": 282
+      },
+      "anchor": {
+        "x": 172.768,
+        "y": 297.539
+      },
+      "validation": {
+        "opaquePixels": 41134,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 50,
+        "ownerFeetRoi": {
+          "x": 106,
+          "y": 235,
+          "width": 142,
+          "height": 64
+        },
+        "ownerFootSamples": 6175,
+        "lowerBodyPixelFingerprint": "16579a328218d0766f072f191eb29aabaec42c4f4445cbebd604c34f10324e5c"
+      },
+      "footContactAnchor": {
+        "x": 156.5,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 104,
+        "y": 289,
+        "width": 130,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 168.493,
+          "y": 67.623
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 55,
+        "y": 18,
+        "width": 230,
+        "height": 281
+      },
+      "anchor": {
+        "x": 161.736,
+        "y": 298.727
+      },
+      "validation": {
+        "opaquePixels": 40908,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 70,
+        "ownerFeetRoi": {
+          "x": 96,
+          "y": 236,
+          "width": 148,
+          "height": 63
+        },
+        "ownerFootSamples": 5418,
+        "lowerBodyPixelFingerprint": "e7c7f750b306ad3caeee511830ba4559808582ea4cd217fc43a12d5cbf4016ad"
+      },
+      "footContactAnchor": {
+        "x": 177.5,
+        "y": 299
+      },
+      "footContactRegion": {
+        "x": 93,
+        "y": 289,
+        "width": 130,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 157.461,
+          "y": 68.811
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "santa",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 59,
+        "y": 49,
+        "width": 220,
+        "height": 251
+      },
+      "anchor": {
+        "x": 168,
+        "y": 300
+      },
+      "hip": {
+        "x": 137,
+        "y": 257
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 39397,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 93,
+        "ownerFeetRoi": {
+          "x": 98,
+          "y": 243,
+          "width": 141,
+          "height": 57
+        },
+        "ownerFootSamples": 7520,
+        "lowerBodyPixelFingerprint": "d19d597a9cbc25fbe602d1e5007e8972888ac95ba244ce785437891eba3c9cd0"
+      }
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 49,
+        "y": 14,
+        "width": 200,
+        "height": 281
+      },
+      "anchor": {
+        "x": 150.5,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 39590,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 280,
+        "ownerFeetRoi": {
+          "x": 85,
+          "y": 232,
+          "width": 128,
+          "height": 63
+        },
+        "ownerFootSamples": 6231,
+        "lowerBodyPixelFingerprint": "6237b3a6dffe0985d2df88b6f73924633f8997e0a67a2a251ecfcbea93bc0208"
+      },
+      "footContactAnchor": {
+        "x": 150.5,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 80,
+        "y": 285,
+        "width": 130,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 144.603,
+          "y": 64.463
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 48,
+        "y": 17,
+        "width": 207,
+        "height": 278
+      },
+      "anchor": {
+        "x": 154.417,
+        "y": 297.41
+      },
+      "validation": {
+        "opaquePixels": 39592,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 261,
+        "ownerFeetRoi": {
+          "x": 85,
+          "y": 232,
+          "width": 133,
+          "height": 63
+        },
+        "ownerFootSamples": 6165,
+        "lowerBodyPixelFingerprint": "d1b24c435808eb528ea356d073586f93bf0979bc58fd4df170f4e2cbbdd1d71e"
+      },
+      "footContactAnchor": {
+        "x": 141.5,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 84,
+        "y": 285,
+        "width": 130,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 148.52,
+          "y": 66.873
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 49,
+        "y": 18,
+        "width": 204,
+        "height": 277
+      },
+      "anchor": {
+        "x": 149.8,
+        "y": 298.816
+      },
+      "validation": {
+        "opaquePixels": 39657,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 122,
+        "ownerFeetRoi": {
+          "x": 85,
+          "y": 233,
+          "width": 131,
+          "height": 62
+        },
+        "ownerFootSamples": 6007,
+        "lowerBodyPixelFingerprint": "5f74f3bae6978d7e21c083d8cf6a945e736649cca0c282c7fc564f44cc25691e"
+      },
+      "footContactAnchor": {
+        "x": 144,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 80,
+        "y": 285,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 143.903,
+          "y": 68.279
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "santa",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 54,
+        "y": 44,
+        "width": 204,
+        "height": 249
+      },
+      "anchor": {
+        "x": 155,
+        "y": 293
+      },
+      "hip": {
+        "x": 177,
+        "y": 252
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 38838,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 96,
+        "ownerFeetRoi": {
+          "x": 90,
+          "y": 237,
+          "width": 131,
+          "height": 56
+        },
+        "ownerFootSamples": 6859,
+        "lowerBodyPixelFingerprint": "11eed97439a276518ac7cb917c4dd658dbce35abbc5a4f94dee8b2b50fea79ae"
+      }
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 48,
+        "y": 16,
+        "width": 196,
+        "height": 279
+      },
+      "anchor": {
+        "x": 167.5,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 39340,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 297,
+        "ownerFeetRoi": {
+          "x": 83,
+          "y": 232,
+          "width": 126,
+          "height": 63
+        },
+        "ownerFootSamples": 5660,
+        "lowerBodyPixelFingerprint": "0fab1fcf81eee84939b78e47635e2572b573a8f2329f9ac0d9887cc598f2f8c0"
+      },
+      "footContactAnchor": {
+        "x": 167.5,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 100,
+        "y": 285,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 163.752,
+          "y": 65.889
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 314,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 44,
+        "y": 16,
+        "width": 198,
+        "height": 279
+      },
+      "anchor": {
+        "x": 164.908,
+        "y": 294.761
+      },
+      "validation": {
+        "opaquePixels": 39335,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 200,
+        "ownerFeetRoi": {
+          "x": 79,
+          "y": 232,
+          "width": 127,
+          "height": 63
+        },
+        "ownerFootSamples": 5453,
+        "lowerBodyPixelFingerprint": "3a2f6e69d896146b3ae6db1534bff53f02f191030edc2e916f2b999e15743926"
+      },
+      "footContactAnchor": {
+        "x": 156,
+        "y": 295
+      },
+      "footContactRegion": {
+        "x": 97,
+        "y": 285,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 161.16,
+          "y": 65.65
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 627,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 627,
+        "y": 627,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 40,
+        "y": 17,
+        "width": 201,
+        "height": 279
+      },
+      "anchor": {
+        "x": 159.734,
+        "y": 295.759
+      },
+      "validation": {
+        "opaquePixels": 37611,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 96,
+        "ownerFeetRoi": {
+          "x": 76,
+          "y": 233,
+          "width": 129,
+          "height": 63
+        },
+        "ownerFootSamples": 3912,
+        "lowerBodyPixelFingerprint": "94c82ed75bc6d734af9dbc94b678713492353cfe056e1e23ce815f89da08d308"
+      },
+      "footContactAnchor": {
+        "x": 155,
+        "y": 296
+      },
+      "footContactRegion": {
+        "x": 92,
+        "y": 286,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 155.986,
+          "y": 66.648
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "santa",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 627,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 941,
+        "y": 627,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 45,
+        "y": 37,
+        "width": 219,
+        "height": 255
+      },
+      "anchor": {
+        "x": 154,
+        "y": 292
+      },
+      "hip": {
+        "x": 166,
+        "y": 260
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 41332,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 105,
+        "ownerFeetRoi": {
+          "x": 84,
+          "y": 234,
+          "width": 141,
+          "height": 58
+        },
+        "ownerFootSamples": 7780,
+        "lowerBodyPixelFingerprint": "dca41deaf4ff7844b7ac1c1c4ccc69f1d7a61b38a5e8ac962a3ce3db13012e7b"
+      }
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 57,
+        "y": 16,
+        "width": 211,
+        "height": 278
+      },
+      "anchor": {
+        "x": 153.5,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 40086,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 293,
+        "ownerFeetRoi": {
+          "x": 94,
+          "y": 231,
+          "width": 136,
+          "height": 63
+        },
+        "ownerFootSamples": 6225,
+        "lowerBodyPixelFingerprint": "2f71ff6a046d42b75a6eb650abe56460c6eb0e5353d3e9b270415d7299796ac0"
+      },
+      "footContactAnchor": {
+        "x": 153.5,
+        "y": 294
+      },
+      "footContactRegion": {
+        "x": 89,
+        "y": 284,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 152.738,
+          "y": 65.016
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 314,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 56,
+        "y": 16,
+        "width": 207,
+        "height": 276
+      },
+      "anchor": {
+        "x": 151.005,
+        "y": 294.28
+      },
+      "validation": {
+        "opaquePixels": 39172,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 229,
+        "ownerFeetRoi": {
+          "x": 93,
+          "y": 230,
+          "width": 133,
+          "height": 62
+        },
+        "ownerFootSamples": 5877,
+        "lowerBodyPixelFingerprint": "4af4d769636b2d31e054b1078741679c67cefe00f9afd7f28aaa1cdc90ea018e"
+      },
+      "footContactAnchor": {
+        "x": 144,
+        "y": 292
+      },
+      "footContactRegion": {
+        "x": 86,
+        "y": 282,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 150.243,
+          "y": 65.296
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "santa",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 941,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 627,
+        "y": 941,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 47,
+        "y": 17,
+        "width": 214,
+        "height": 279
+      },
+      "anchor": {
+        "x": 143.9,
+        "y": 294.637
+      },
+      "validation": {
+        "opaquePixels": 38722,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 167,
+        "ownerFeetRoi": {
+          "x": 85,
+          "y": 233,
+          "width": 137,
+          "height": 63
+        },
+        "ownerFootSamples": 3958,
+        "lowerBodyPixelFingerprint": "862c4a524235b873ce73a9de880b818f45eb1b9c709eb5907ce724344595103a"
+      },
+      "footContactAnchor": {
+        "x": 131.5,
+        "y": 296
+      },
+      "footContactRegion": {
+        "x": 79,
+        "y": 286,
+        "width": 129,
+        "height": 10
+      },
+      "footMeasurement": "Visually checked lower shoe region, excluding lateral hand props; shaman cream soles below skirt hem included.",
+      "bodyRegistration": {
+        "headMassCenter": {
+          "x": 143.138,
+          "y": 65.653
+        },
+        "regionHeight": 89,
+        "alphaThreshold": 80
+      },
+      "anchorMeasurement": "Neutral owner shoe ground center, registered to upper head mass across three shuffle poses; source art and isometric fore/aft foot projection preserved."
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "santa",
+      "state": "sit",
+      "frame": 0,
+      "x": 941,
+      "y": 941,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 941,
+        "y": 941,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 57,
+        "y": 43,
+        "width": 215,
+        "height": 249
+      },
+      "anchor": {
+        "x": 164,
+        "y": 292
+      },
+      "hip": {
+        "x": 139,
+        "y": 258
+      },
+      "hipMeasurement": "Designer source review: posterior lower thigh/seat contact, distinct from shoe soles and hanging skirt hem.",
+      "validation": {
+        "opaquePixels": 40098,
+        "edgePixels": 0,
+        "nonzeroAlphaEdgePixels": 203,
+        "ownerFeetRoi": {
+          "x": 95,
+          "y": 236,
+          "width": 138,
+          "height": 56
+        },
+        "ownerFootSamples": 7419,
+        "lowerBodyPixelFingerprint": "f4f4a77917390073e73502d8e10d7bdd39519ac044afeadac41200c4fd7226bc"
+      }
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "sourceSha256": "a1132b5fa55d1ace6e6c7fb84759cc761304a6f8855b795e9500e6c181ad4fba",
+    "alphaThreshold": 80,
+    "transparentPixels": 794878,
+    "partialAlphaPixels": 776742,
+    "opaquePixels": 635864,
+    "footAnchorMethod": "Candidate only: midpoint and bottom of alpha>80 owner-lower-body ROI (central64%, lower22%). Lateral props excluded by ROI; designer must confirm shoe pixels versus skirt/pole.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "missingPoses": [],
+    "sourceGutters": {
+      "x": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ],
+      "y": [
+        0,
+        314,
+        627,
+        941,
+        1254
+      ]
+    },
+    "visualReview": "All sixteen real direction/pose drawings checked: neutral and two low shuffle phases plus seated pose. Props, costume and stable identity reviewed; shoes measured separately from poles/held props. No source artwork altered.",
+    "ownerFootReview": {
+      "method": "Shoe regions visually reviewed; lateral hand props and trekking poles excluded. Neutral shoe floor is registered to upper head mass without stretching the artwork.",
+      "rows": [
+        {
+          "dir": 0,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 1.461,
+          "at83pxTileSoleProjectionRangePx": 0.465
+        },
+        {
+          "dir": 1,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 3.816,
+          "at83pxTileSoleProjectionRangePx": 1.215
+        },
+        {
+          "dir": 2,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 0.241,
+          "at83pxTileSoleProjectionRangePx": 0.077
+        },
+        {
+          "dir": 3,
+          "headHorizontalDriftAfterAnchor": 0,
+          "headVerticalDriftAfterAnchor": 0,
+          "ownerSoleProjectionRangeSourcePx": 3.643,
+          "at83pxTileSoleProjectionRangePx": 1.16
+        }
+      ],
+      "sourcePNGUnchanged": true
+    },
+    "seatReview": "Designer reviewed source anatomy and before/after production chair renders in all four directions. Hip lies on posterior thigh/seat contact, above shoe soles and separate from hanging skirt hem. Rear chair foreground checked. Uniform source aspect preserved.",
+    "seatContactSheet": "artifacts/new-character-review/final/santa-seat-before-after.png",
+    "hipCorrections": [
+      {
+        "dir": 0,
+        "before": {
+          "x": 144,
+          "y": 269
+        },
+        "after": {
+          "x": 137,
+          "y": 257
+        },
+        "sourceDelta": {
+          "x": -7,
+          "y": -12
+        }
+      },
+      {
+        "dir": 1,
+        "before": {
+          "x": 168,
+          "y": 263
+        },
+        "after": {
+          "x": 177,
+          "y": 252
+        },
+        "sourceDelta": {
+          "x": 9,
+          "y": -11
+        }
+      },
+      {
+        "dir": 2,
+        "before": {
+          "x": 157,
+          "y": 269
+        },
+        "after": {
+          "x": 166,
+          "y": 260
+        },
+        "sourceDelta": {
+          "x": 9,
+          "y": -9
+        }
+      },
+      {
+        "dir": 3,
+        "before": {
+          "x": 146,
+          "y": 268
+        },
+        "after": {
+          "x": 139,
+          "y": 258
+        },
+        "sourceDelta": {
+          "x": -7,
+          "y": -10
+        }
+      }
+    ]
+  },
+  "promptFile": "public/assets/zombies/santa-directional-shuffle.prompt.txt",
+  "event": "christmas",
+  "generation": {
+    "tool": "image_gen",
+    "generatedBy": "root",
+    "promptFile": "public/assets/zombies/santa-directional-shuffle.prompt.txt",
+    "selectedFile": "public/assets/zombies/santa-directional-shuffle.png",
+    "sourcePixelsUnchanged": true,
+    "sourceSha256": "a1132b5fa55d1ace6e6c7fb84759cc761304a6f8855b795e9500e6c181ad4fba"
+  }
+}

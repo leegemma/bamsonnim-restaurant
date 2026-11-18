@@ -1,0 +1,47 @@
+dialog.hire[open]{width:min(720px,calc(100vw - 24px))}
+.hire .dialog-heading{padding:16px 20px}
+.hire .dialog-overline{display:none}
+.hire .dialog-heading h1{font-size:23px;margin:0;line-height:1.4}
+.hire .dialog-heading p{margin:5px 0 0;font-size:12px}
+.hire .staff-list{padding:14px 18px;gap:10px}
+.hire .staff-card{display:grid;grid-template-columns:64px minmax(0,1fr) 248px;align-items:center;gap:12px;padding:10px 12px}
+.hire .staff-card>.sprite{width:64px;height:64px}
+.hire .staff-card>.staff-info{min-width:0}
+.hire .staff-card h2{font-size:18px;margin:0 0 3px}
+.hire .staff-info>p{margin:4px 0 0}
+.hire .staff-actions{display:flex;align-items:center;flex-wrap:wrap;gap:5px 8px;margin-top:5px}
+.hire .staff-actions:empty{display:none}
+.hire .staff-actions .button{min-height:30px;padding:3px 6px;font-size:11px}
+.hire .staff-actions .text-button{font-size:11px}
+.hire .staff-card>.staff-upgrades{grid-column:3;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;justify-items:stretch;gap:8px;width:100%;border:0;padding:0}
+.staff-upgrade{min-width:0;padding:7px;background:#e6dab7;border:1px solid #ac9663}
+.staff-upgrade h3{display:flex;align-items:center;justify-content:space-between;gap:5px;white-space:nowrap;font-size:12px;line-height:1.4;margin:0 0 6px;color:#3a4934}
+.staff-upgrade h3 span{color:#706346;font-variant-numeric:tabular-nums}
+.staff-upgrade .button{width:100%;display:flex;align-items:center;justify-content:center;gap:5px;min-height:36px;padding:4px 7px}
+.staff-upgrade .mini{width:22px;height:22px;flex-shrink:0}
+.hire .hire-footer{padding:12px 18px;gap:12px}
+.hire .hire-footer p{font-size:11px;line-height:1.5;margin:0;max-width:240px}
+@media(max-width:650px){
+ .hire .staff-card{grid-template-columns:48px minmax(0,1fr) 218px;gap:8px;padding:8px}
+ .hire .staff-card>.sprite{width:48px;height:48px}
+ .hire .staff-card h2{font-size:16px}
+ .hire .staff-card>.staff-upgrades{gap:6px}
+ .staff-upgrade{padding:6px}.staff-upgrade h3{font-size:11px;gap:3px}
+}
+@media(max-height:500px){
+ .hire .dialog-heading{padding:8px 16px}.hire .dialog-heading h1{font-size:20px}
+ .hire .staff-list{padding:10px 14px}.hire .hire-footer{padding:8px 16px}
+ .hire .staff-card{grid-template-columns:48px minmax(0,1fr) 218px;gap:8px}
+ .hire .staff-card>.sprite{width:48px;height:48px}
+}
+
+/* Keep the title and roster count on one compact line. */
+.hire[open] .dialog-heading{padding:8px 56px 8px 18px}
+.hire[open] #dialog-title{display:flex;align-items:baseline;gap:12px;white-space:nowrap;font-size:22px;line-height:1.3;margin:0}
+.hire .staff-count{font-size:12px;font-weight:400;letter-spacing:0;color:#71654a}
+.hire[open] .dialog-heading p{display:none}
+.hire[open] .close-button{top:6px;right:12px}
+.hire[open] .staff-list{padding-block:8px}
+.hire[open] .hire-footer{justify-content:flex-end;padding:8px 18px}
+.hire[open] .hire-footer>.button{min-height:36px;padding:5px 12px}
+@media(max-height:500px){.hire[open] #dialog-title{font-size:20px}.hire[open] .dialog-heading{padding-block:7px}.hire[open] .close-button{top:4px}}

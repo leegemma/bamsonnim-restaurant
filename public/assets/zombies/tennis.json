@@ -1,0 +1,713 @@
+{
+  "actorId": "tennis",
+  "key": "zombieTennis",
+  "url": "/assets/zombies/tennis-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 278,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 344,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 344,
+        "height": 311
+      },
+      "bounds": {
+        "x": 84,
+        "y": 14,
+        "width": 207,
+        "height": 280
+      },
+      "anchor": {
+        "x": 162,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 36898,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "042a61cd3c4f9655"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 1,
+      "x": 344,
+      "y": 0,
+      "width": 314,
+      "height": 311,
+      "source": {
+        "x": 344,
+        "y": 0,
+        "width": 314,
+        "height": 311
+      },
+      "bounds": {
+        "x": 54,
+        "y": 14,
+        "width": 208,
+        "height": 282
+      },
+      "anchor": {
+        "x": 130,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 36664,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b2f5d158333d8fef"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 2,
+      "x": 658,
+      "y": 0,
+      "width": 309,
+      "height": 311,
+      "source": {
+        "x": 658,
+        "y": 0,
+        "width": 309,
+        "height": 311
+      },
+      "bounds": {
+        "x": 53,
+        "y": 13,
+        "width": 208,
+        "height": 281
+      },
+      "anchor": {
+        "x": 125,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 36242,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "3f088e7a5bb36e30"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "tennis",
+      "state": "sit",
+      "frame": 0,
+      "x": 967,
+      "y": 0,
+      "width": 287,
+      "height": 311,
+      "source": {
+        "x": 967,
+        "y": 0,
+        "width": 287,
+        "height": 311
+      },
+      "bounds": {
+        "x": 49,
+        "y": 43,
+        "width": 213,
+        "height": 250
+      },
+      "anchor": {
+        "x": 137,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 35293,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "e6d935cbc5038c1e"
+      },
+      "hip": {
+        "x": 108,
+        "y": 263
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 311,
+      "width": 296,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 311,
+        "width": 296,
+        "height": 312
+      },
+      "bounds": {
+        "x": 34,
+        "y": 17,
+        "width": 212,
+        "height": 279
+      },
+      "anchor": {
+        "x": 164,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 37046,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "34f1554fca22c25c"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 1,
+      "x": 296,
+      "y": 311,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 296,
+        "y": 311,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 52,
+        "y": 17,
+        "width": 212,
+        "height": 279
+      },
+      "anchor": {
+        "x": 176,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 36266,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d80f084aa38bee3a"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 2,
+      "x": 610,
+      "y": 311,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 610,
+        "y": 311,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 52,
+        "y": 16,
+        "width": 211,
+        "height": 279
+      },
+      "anchor": {
+        "x": 185,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 35628,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "27381097670b6dc3"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "tennis",
+      "state": "sit",
+      "frame": 0,
+      "x": 924,
+      "y": 311,
+      "width": 330,
+      "height": 312,
+      "source": {
+        "x": 924,
+        "y": 311,
+        "width": 330,
+        "height": 312
+      },
+      "bounds": {
+        "x": 52,
+        "y": 45,
+        "width": 216,
+        "height": 250
+      },
+      "anchor": {
+        "x": 182,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 35055,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "aecbfd5642177414"
+      },
+      "hip": {
+        "x": 210,
+        "y": 264
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 623,
+      "width": 312,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 623,
+        "width": 312,
+        "height": 314
+      },
+      "bounds": {
+        "x": 54,
+        "y": 18,
+        "width": 203,
+        "height": 278
+      },
+      "anchor": {
+        "x": 172,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 34708,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "33017e93e9fe476c"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 1,
+      "x": 312,
+      "y": 623,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 312,
+        "y": 623,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 57,
+        "y": 18,
+        "width": 201,
+        "height": 275
+      },
+      "anchor": {
+        "x": 172,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 33603,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1ffe0e24f8d9175c"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 2,
+      "x": 625,
+      "y": 623,
+      "width": 312,
+      "height": 314,
+      "source": {
+        "x": 625,
+        "y": 623,
+        "width": 312,
+        "height": 314
+      },
+      "bounds": {
+        "x": 57,
+        "y": 18,
+        "width": 201,
+        "height": 274
+      },
+      "anchor": {
+        "x": 165,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 34112,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ce3320103b8ce48f"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "tennis",
+      "state": "sit",
+      "frame": 0,
+      "x": 937,
+      "y": 623,
+      "width": 317,
+      "height": 314,
+      "source": {
+        "x": 937,
+        "y": 623,
+        "width": 317,
+        "height": 314
+      },
+      "bounds": {
+        "x": 56,
+        "y": 47,
+        "width": 203,
+        "height": 247
+      },
+      "anchor": {
+        "x": 177,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 33443,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "12981017e62565fb"
+      },
+      "hip": {
+        "x": 181,
+        "y": 267
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 937,
+      "width": 332,
+      "height": 317,
+      "source": {
+        "x": 0,
+        "y": 937,
+        "width": 332,
+        "height": 317
+      },
+      "bounds": {
+        "x": 76,
+        "y": 19,
+        "width": 200,
+        "height": 276
+      },
+      "anchor": {
+        "x": 162,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 34020,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "eec303c8956901a2"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 1,
+      "x": 332,
+      "y": 937,
+      "width": 315,
+      "height": 317,
+      "source": {
+        "x": 332,
+        "y": 937,
+        "width": 315,
+        "height": 317
+      },
+      "bounds": {
+        "x": 57,
+        "y": 19,
+        "width": 202,
+        "height": 276
+      },
+      "anchor": {
+        "x": 138,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 33666,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b7d59c29f2ddde78"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tennis",
+      "state": "walk",
+      "frame": 2,
+      "x": 647,
+      "y": 937,
+      "width": 311,
+      "height": 317,
+      "source": {
+        "x": 647,
+        "y": 937,
+        "width": 311,
+        "height": 317
+      },
+      "bounds": {
+        "x": 58,
+        "y": 19,
+        "width": 199,
+        "height": 278
+      },
+      "anchor": {
+        "x": 133,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 33938,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "5499c72c7fde7ba5"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "tennis",
+      "state": "sit",
+      "frame": 0,
+      "x": 958,
+      "y": 937,
+      "width": 296,
+      "height": 317,
+      "source": {
+        "x": 958,
+        "y": 937,
+        "width": 296,
+        "height": 317
+      },
+      "bounds": {
+        "x": 56,
+        "y": 49,
+        "width": 204,
+        "height": 244
+      },
+      "anchor": {
+        "x": 137,
+        "y": 293
+      },
+      "validation": {
+        "opaquePixels": 32442,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ef333f50eb233ff5"
+      },
+      "hip": {
+        "x": 137,
+        "y": 267
+      },
+      "hipMeasurement": "Manually located lower pelvis/upper thigh seat line in original source, excluding sport equipment, cup, blanket bulk or net."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 934575,
+    "sourceGutters": {
+      "y": [
+        0,
+        311,
+        623,
+        937,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          344,
+          658,
+          967,
+          1254
+        ],
+        [
+          0,
+          296,
+          610,
+          924,
+          1254
+        ],
+        [
+          0,
+          312,
+          625,
+          937,
+          1254
+        ],
+        [
+          0,
+          332,
+          647,
+          958,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "All16 poses reviewed: cream tennis polo/shorts with sweat stains, one racket and one yellow ball retained; actual rear views, low alternate foot shuffle and four seated contacts. Same-chair proportion/contact comparison passed.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch6.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "테니스 좀비 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "tennis",
+    "originalFile": "exec-3daf73b8-75ea-4bf5-963f-cc4e58705b72.png",
+    "promptFile": "/assets/zombies/tennis-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

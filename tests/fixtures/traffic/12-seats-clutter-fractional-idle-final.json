@@ -1,0 +1,979 @@
+{
+  "version": 1,
+  "savedAt": 1794718980327,
+  "time": 7200,
+  "seed": 4238956490,
+  "coins": 999977902,
+  "hearts": 1000000,
+  "xp": 644,
+  "level": 30,
+  "size": 8,
+  "hunger": 59.58541666664543,
+  "floor": "wood",
+  "wall": "paper",
+  "ownedSkins": [
+    "wood",
+    "paper"
+  ],
+  "storage": [],
+  "objects": [
+    {
+      "uid": "o1",
+      "type": "stove",
+      "x": 1,
+      "y": 1,
+      "dir": 0
+    },
+    {
+      "uid": "o2",
+      "type": "stove",
+      "x": 2,
+      "y": 1,
+      "dir": 1
+    },
+    {
+      "uid": "o3",
+      "type": "server",
+      "x": 4,
+      "y": 1,
+      "dir": 0,
+      "foodId": "rice",
+      "stock": 99962
+    },
+    {
+      "uid": "o4",
+      "type": "table",
+      "x": 2,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o5",
+      "type": "chair",
+      "x": 2,
+      "y": 5,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o6",
+      "type": "chair",
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o7",
+      "type": "table",
+      "x": 5,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o8",
+      "type": "chair",
+      "x": 5,
+      "y": 5,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o9",
+      "type": "chair",
+      "x": 6,
+      "y": 4,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o10",
+      "type": "jars",
+      "x": 0,
+      "y": 1,
+      "dir": 0
+    },
+    {
+      "uid": "o11",
+      "type": "lantern",
+      "x": 7,
+      "y": 0,
+      "dir": 0
+    },
+    {
+      "uid": "o12",
+      "type": "poster",
+      "x": 3,
+      "y": 0,
+      "dir": 0
+    },
+    {
+      "uid": "o14",
+      "type": "server",
+      "x": 6,
+      "y": 1,
+      "dir": 0,
+      "foodId": "soup",
+      "stock": 99936
+    },
+    {
+      "uid": "o15",
+      "type": "server",
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "foodId": "skewer",
+      "stock": 99987
+    },
+    {
+      "uid": "o16",
+      "type": "table",
+      "x": 2,
+      "y": 2,
+      "dir": 0
+    },
+    {
+      "uid": "o17",
+      "type": "chair",
+      "x": 3,
+      "y": 2,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o18",
+      "type": "chair",
+      "x": 2,
+      "y": 3,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o19",
+      "type": "table",
+      "x": 5,
+      "y": 2,
+      "dir": 0
+    },
+    {
+      "uid": "o20",
+      "type": "chair",
+      "x": 5,
+      "y": 3,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o21",
+      "type": "chair",
+      "x": 6,
+      "y": 2,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o22",
+      "type": "table",
+      "x": 2,
+      "y": 6,
+      "dir": 0
+    },
+    {
+      "uid": "o23",
+      "type": "chair",
+      "x": 1,
+      "y": 6,
+      "dir": 0,
+      "dirty": true,
+      "cleaner": "o13"
+    },
+    {
+      "uid": "o24",
+      "type": "chair",
+      "x": 2,
+      "y": 7,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o25",
+      "type": "table",
+      "x": 5,
+      "y": 6,
+      "dir": 0
+    },
+    {
+      "uid": "o26",
+      "type": "chair",
+      "x": 5,
+      "y": 7,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o27",
+      "type": "chair",
+      "x": 6,
+      "y": 6,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o28",
+      "type": "jars",
+      "x": 0,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o29",
+      "type": "bonsai",
+      "x": 3,
+      "y": 6,
+      "dir": 0
+    }
+  ],
+  "waiters": [
+    {
+      "uid": "o13",
+      "name": "달래",
+      "appearance": 0,
+      "x": 1,
+      "y": 4,
+      "infectedUntil": 0,
+      "task": {
+        "kind": "clean",
+        "chair": "o23",
+        "work": 0
+      },
+      "path": [
+        [
+          1,
+          5
+        ]
+      ]
+    },
+    {
+      "uid": "o30",
+      "name": "보리",
+      "appearance": 1,
+      "x": 7,
+      "y": 7,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o32",
+      "name": "두리",
+      "appearance": 2,
+      "x": 0,
+      "y": 6,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o34",
+      "name": "초롱",
+      "appearance": 3,
+      "x": 3,
+      "y": 3,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o36",
+      "name": "나리",
+      "appearance": 4,
+      "x": 6,
+      "y": 3,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o38",
+      "name": "소담",
+      "appearance": 5,
+      "x": 3,
+      "y": 1,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o40",
+      "name": "다솜",
+      "appearance": 6,
+      "x": 1,
+      "y": 5.300000000000001,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o42",
+      "name": "아리",
+      "appearance": 7,
+      "x": 3,
+      "y": 7,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    }
+  ],
+  "customers": [
+    {
+      "uid": "o400",
+      "zombieId": "student",
+      "x": 7,
+      "y": 5,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o6",
+      "red": false,
+      "enteredAt": 4205.25,
+      "seatingAt": 4205.25
+    },
+    {
+      "uid": "o406",
+      "zombieId": "diver",
+      "x": 0,
+      "y": 5,
+      "phase": "leaving",
+      "wait": 29.75,
+      "path": [
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "seat": null,
+      "red": false,
+      "enteredAt": 4245,
+      "seatingAt": 4245,
+      "worker": null,
+      "foodId": "soup",
+      "portion": 2,
+      "eatUntil": 4335.5,
+      "leavingAt": 4335.5
+    },
+    {
+      "uid": "o409",
+      "zombieId": "office",
+      "x": 6,
+      "y": 7,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o18",
+      "red": false,
+      "enteredAt": 4265.75,
+      "seatingAt": 4265.75
+    },
+    {
+      "uid": "o410",
+      "zombieId": "bride",
+      "x": 4,
+      "y": 7,
+      "phase": "leaving",
+      "wait": 60,
+      "path": [
+        [
+          3,
+          7
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "seat": null,
+      "red": false,
+      "enteredAt": 4268.75,
+      "seatingAt": 4268.75,
+      "worker": null,
+      "leavingAt": 4342.75
+    },
+    {
+      "uid": "o414",
+      "zombieId": "delinquent",
+      "x": 4,
+      "y": 2,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o26",
+      "red": false,
+      "enteredAt": 4286,
+      "seatingAt": 4286
+    },
+    {
+      "uid": "o415",
+      "zombieId": "kongjwi",
+      "x": 7,
+      "y": 6,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o27",
+      "red": false,
+      "enteredAt": 4289.75,
+      "seatingAt": 4289.75
+    },
+    {
+      "uid": "o416",
+      "zombieId": "guard",
+      "x": 2,
+      "y": 5,
+      "phase": "leaving",
+      "wait": 45,
+      "path": [
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          1,
+          7
+        ],
+        [
+          0,
+          7
+        ]
+      ],
+      "seat": null,
+      "red": false,
+      "enteredAt": 4295,
+      "seatingAt": 4295,
+      "worker": null,
+      "leavingAt": 4346
+    },
+    {
+      "uid": "o417",
+      "zombieId": "kongjwi",
+      "x": 3,
+      "y": 4,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o8",
+      "red": false,
+      "enteredAt": 4299,
+      "seatingAt": 4299
+    }
+  ],
+  "transfers": [],
+  "mastery": {
+    "rice": 10,
+    "skewer": 10,
+    "soup": 10,
+    "tteok": 10,
+    "sausage": 10,
+    "noodle": 8,
+    "gimbap": 8,
+    "cookie": 8,
+    "bibimbap": 8,
+    "liver": 5,
+    "pancake": 5,
+    "kimchi": 5,
+    "xmas-rice": 10,
+    "xmas-soup": 10
+  },
+  "knownRecipes": {
+    "rice": true,
+    "skewer": true,
+    "soup": true,
+    "tteok": true,
+    "sausage": true,
+    "noodle": true,
+    "gimbap": true,
+    "cookie": true,
+    "bibimbap": true,
+    "liver": true,
+    "pancake": true,
+    "kimchi": true,
+    "xmas-rice": true,
+    "xmas-soup": true
+  },
+  "album": {
+    "tiger": 8,
+    "runner": 7,
+    "prince": 1,
+    "bride": 2,
+    "rider": 4,
+    "sauna": 3,
+    "delinquent": 1,
+    "diver": 4,
+    "female-idol": 3,
+    "student": 7,
+    "kongjwi": 5,
+    "returning": 3,
+    "office": 2,
+    "guard": 2,
+    "hairdresser": 5,
+    "tennis": 3,
+    "wanderer": 4,
+    "grandmother": 4,
+    "scholar": 2,
+    "idol": 1,
+    "dancer": 3,
+    "nurse": 1,
+    "hostess": 1,
+    "merchant": 1
+  },
+  "events": {
+    "christmas": "upcoming"
+  },
+  "eventBooks": {},
+  "stats": {
+    "cooked": 0,
+    "served": 83,
+    "sold": 83,
+    "earned": 152,
+    "tablesBought": 4,
+    "chairsBought": 8,
+    "hired": 7,
+    "fevers": 0,
+    "fed": {
+      "tiger": 8,
+      "runner": 7,
+      "prince": 1,
+      "bride": 2,
+      "rider": 4,
+      "red": 6,
+      "sauna": 3,
+      "delinquent": 1,
+      "diver": 4,
+      "female-idol": 3,
+      "student": 7,
+      "kongjwi": 5,
+      "returning": 3,
+      "office": 2,
+      "guard": 2,
+      "hairdresser": 5,
+      "tennis": 3,
+      "wanderer": 4,
+      "grandmother": 4,
+      "scholar": 2,
+      "idol": 1,
+      "dancer": 3,
+      "nurse": 1,
+      "hostess": 1,
+      "merchant": 1
+    }
+  },
+  "questIndex": 0,
+  "questBase": 0,
+  "combo": 0,
+  "lastServe": 4329.5,
+  "feverUntil": 0,
+  "spawnIn": 0.25,
+  "nextId": 421,
+  "serveCursor": 2,
+  "seatCursor": 3,
+  "settings": {
+    "music": 0.22,
+    "sfx": 0.45
+  },
+  "tutorial": 3,
+  "notifications": [
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 2,
+      "favorite": true,
+      "id": "o347",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 3962.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 2,
+      "y": 7,
+      "favorite": false,
+      "id": "o348",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 3963.25
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 5,
+      "y": 7,
+      "favorite": false,
+      "id": "o353",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 3985.5
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 6,
+      "y": 6,
+      "favorite": false,
+      "id": "o355",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 3990
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 1,
+      "y": 4,
+      "favorite": true,
+      "id": "o356",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 3993.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 2,
+      "y": 5,
+      "favorite": false,
+      "id": "o357",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 3996.5
+    },
+    {
+      "id": "o359",
+      "message": "새 밤손님 · 춤추는 탈꾼",
+      "type": "album",
+      "time": 4004.25
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 5,
+      "favorite": false,
+      "id": "o360",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4004.25
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 4,
+      "favorite": true,
+      "id": "o363",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4016.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 3,
+      "y": 2,
+      "favorite": false,
+      "id": "o364",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4020.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 3,
+      "favorite": true,
+      "id": "o367",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4030
+    },
+    {
+      "amount": 3,
+      "xp": 3,
+      "x": 2,
+      "y": 3,
+      "favorite": true,
+      "id": "o368",
+      "message": "손님이 3코인을 냈어요.",
+      "type": "payment",
+      "time": 4033
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 2,
+      "favorite": true,
+      "id": "o369",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4043.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 1,
+      "y": 6,
+      "favorite": false,
+      "id": "o370",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4049
+    },
+    {
+      "amount": 3,
+      "xp": 3,
+      "x": 2,
+      "y": 7,
+      "favorite": true,
+      "id": "o375",
+      "message": "손님이 3코인을 냈어요.",
+      "type": "payment",
+      "time": 4069.25
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 7,
+      "favorite": true,
+      "id": "o377",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4075.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 6,
+      "favorite": false,
+      "id": "o378",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4079
+    },
+    {
+      "id": "o379",
+      "message": "새 밤손님 · 퇴근한 간호사",
+      "type": "album",
+      "time": 4082.25
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 2,
+      "y": 5,
+      "favorite": false,
+      "id": "o380",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 4082.25
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 1,
+      "y": 4,
+      "favorite": false,
+      "id": "o381",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 4085
+    },
+    {
+      "id": "o387",
+      "message": "새 밤손님 · 수다쟁이 주모",
+      "type": "album",
+      "time": 4106.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 5,
+      "favorite": false,
+      "id": "o388",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4106.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 4,
+      "favorite": true,
+      "id": "o389",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4109.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 3,
+      "y": 2,
+      "favorite": true,
+      "id": "o391",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4117.75
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 2,
+      "y": 3,
+      "favorite": false,
+      "id": "o394",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 4127.5
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 6,
+      "y": 2,
+      "favorite": false,
+      "id": "o395",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 4134.25
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 3,
+      "favorite": false,
+      "id": "o396",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4135.75
+    },
+    {
+      "id": "o402",
+      "message": "새 밤손님 · 장터 보부상",
+      "type": "album",
+      "time": 4209.5
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 5,
+      "y": 7,
+      "favorite": false,
+      "id": "o403",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 4209.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 2,
+      "y": 5,
+      "favorite": true,
+      "id": "o404",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4213.25
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 5,
+      "favorite": false,
+      "id": "o407",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4256
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 4,
+      "favorite": true,
+      "id": "o408",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4258.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 2,
+      "favorite": true,
+      "id": "o418",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4300.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 1,
+      "y": 6,
+      "favorite": true,
+      "id": "o419",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 4333
+    },
+    {
+      "amount": 3,
+      "xp": 3,
+      "x": 3,
+      "y": 2,
+      "favorite": true,
+      "id": "o420",
+      "message": "손님이 3코인을 냈어요.",
+      "type": "payment",
+      "time": 4335.5
+    }
+  ],
+  "dailyClaim": "",
+  "fraction": 0
+}

@@ -1,0 +1,780 @@
+{
+  "actorId": "student",
+  "key": "zombieStudent",
+  "url": "/assets/zombies/student-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 268,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 328,
+      "height": 314,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 328,
+        "height": 314
+      },
+      "bounds": {
+        "x": 56,
+        "y": 19,
+        "width": 231,
+        "height": 272
+      },
+      "anchor": {
+        "x": 166,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 39601,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "af3cb7a30f44c296"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 1,
+      "x": 328,
+      "y": 0,
+      "width": 313,
+      "height": 314,
+      "source": {
+        "x": 328,
+        "y": 0,
+        "width": 313,
+        "height": 314
+      },
+      "bounds": {
+        "x": 42,
+        "y": 19,
+        "width": 230,
+        "height": 272
+      },
+      "anchor": {
+        "x": 150,
+        "y": 291
+      },
+      "validation": {
+        "opaquePixels": 39399,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "61b2091c09f405fc"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 2,
+      "x": 641,
+      "y": 0,
+      "width": 314,
+      "height": 314,
+      "source": {
+        "x": 641,
+        "y": 0,
+        "width": 314,
+        "height": 314
+      },
+      "bounds": {
+        "x": 42,
+        "y": 19,
+        "width": 231,
+        "height": 271
+      },
+      "anchor": {
+        "x": 147,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 40006,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c5aa5833580b2597"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "student",
+      "state": "sit",
+      "frame": 0,
+      "x": 955,
+      "y": 0,
+      "width": 299,
+      "height": 314,
+      "source": {
+        "x": 955,
+        "y": 0,
+        "width": 299,
+        "height": 314
+      },
+      "bounds": {
+        "x": 43,
+        "y": 40,
+        "width": 232,
+        "height": 257
+      },
+      "anchor": {
+        "x": 154,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 39271,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d175aee24f55a86f"
+      },
+      "hip": {
+        "x": 132,
+        "y": 259
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 0,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 42,
+        "y": 18,
+        "width": 229,
+        "height": 270
+      },
+      "anchor": {
+        "x": 164,
+        "y": 288
+      },
+      "validation": {
+        "opaquePixels": 38517,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "da3bd8cbfaceb2e7"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 1,
+      "x": 313,
+      "y": 314,
+      "width": 313,
+      "height": 313,
+      "source": {
+        "x": 313,
+        "y": 314,
+        "width": 313,
+        "height": 313
+      },
+      "bounds": {
+        "x": 43,
+        "y": 18,
+        "width": 228,
+        "height": 270
+      },
+      "anchor": {
+        "x": 163,
+        "y": 288
+      },
+      "validation": {
+        "opaquePixels": 38573,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7c1c70833eb37277"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 2,
+      "x": 626,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 626,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 43,
+        "y": 18,
+        "width": 229,
+        "height": 272
+      },
+      "anchor": {
+        "x": 170,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 38095,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "b68677ab37ebf498"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "student",
+      "state": "sit",
+      "frame": 0,
+      "x": 940,
+      "y": 314,
+      "width": 314,
+      "height": 313,
+      "source": {
+        "x": 940,
+        "y": 314,
+        "width": 314,
+        "height": 313
+      },
+      "bounds": {
+        "x": 43,
+        "y": 43,
+        "width": 230,
+        "height": 253
+      },
+      "anchor": {
+        "x": 161,
+        "y": 296
+      },
+      "validation": {
+        "opaquePixels": 38067,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "281fe3aa722c00a4"
+      },
+      "hip": {
+        "x": 192,
+        "y": 256
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 627,
+      "width": 319,
+      "height": 310,
+      "source": {
+        "x": 0,
+        "y": 627,
+        "width": 319,
+        "height": 310
+      },
+      "bounds": {
+        "x": 47,
+        "y": 20,
+        "width": 232,
+        "height": 264
+      },
+      "anchor": {
+        "x": 172,
+        "y": 284
+      },
+      "validation": {
+        "opaquePixels": 38028,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1854ef2ab50e372e"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 1,
+      "x": 319,
+      "y": 627,
+      "width": 314,
+      "height": 310,
+      "source": {
+        "x": 319,
+        "y": 627,
+        "width": 314,
+        "height": 310
+      },
+      "bounds": {
+        "x": 42,
+        "y": 20,
+        "width": 232,
+        "height": 264
+      },
+      "anchor": {
+        "x": 163,
+        "y": 284
+      },
+      "validation": {
+        "opaquePixels": 37955,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "db3bd5b4933c8877"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 2,
+      "x": 633,
+      "y": 627,
+      "width": 313,
+      "height": 310,
+      "source": {
+        "x": 633,
+        "y": 627,
+        "width": 313,
+        "height": 310
+      },
+      "bounds": {
+        "x": 41,
+        "y": 19,
+        "width": 232,
+        "height": 266
+      },
+      "anchor": {
+        "x": 170,
+        "y": 285
+      },
+      "validation": {
+        "opaquePixels": 37812,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ab4def0bad6e0ee6"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "student",
+      "state": "sit",
+      "frame": 0,
+      "x": 946,
+      "y": 627,
+      "width": 308,
+      "height": 310,
+      "source": {
+        "x": 946,
+        "y": 627,
+        "width": 308,
+        "height": 310
+      },
+      "bounds": {
+        "x": 42,
+        "y": 45,
+        "width": 232,
+        "height": 245
+      },
+      "anchor": {
+        "x": 168,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 37555,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "d6afc89cc9ef872e"
+      },
+      "hip": {
+        "x": 178,
+        "y": 258
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 937,
+      "width": 329,
+      "height": 317,
+      "source": {
+        "x": 0,
+        "y": 937,
+        "width": 329,
+        "height": 317
+      },
+      "bounds": {
+        "x": 59,
+        "y": 22,
+        "width": 228,
+        "height": 265
+      },
+      "anchor": {
+        "x": 156,
+        "y": 287
+      },
+      "validation": {
+        "opaquePixels": 37748,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "dc56a1eef1aba281"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 1,
+      "x": 329,
+      "y": 937,
+      "width": 313,
+      "height": 317,
+      "source": {
+        "x": 329,
+        "y": 937,
+        "width": 313,
+        "height": 317
+      },
+      "bounds": {
+        "x": 44,
+        "y": 22,
+        "width": 227,
+        "height": 263
+      },
+      "anchor": {
+        "x": 139,
+        "y": 285
+      },
+      "validation": {
+        "opaquePixels": 36938,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "45dbc98b412702ff"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "student",
+      "state": "walk",
+      "frame": 2,
+      "x": 642,
+      "y": 937,
+      "width": 314,
+      "height": 317,
+      "source": {
+        "x": 642,
+        "y": 937,
+        "width": 314,
+        "height": 317
+      },
+      "bounds": {
+        "x": 44,
+        "y": 22,
+        "width": 228,
+        "height": 265
+      },
+      "anchor": {
+        "x": 136,
+        "y": 287
+      },
+      "validation": {
+        "opaquePixels": 36716,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "caca73126fabb043"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "student",
+      "state": "sit",
+      "frame": 0,
+      "x": 956,
+      "y": 937,
+      "width": 298,
+      "height": 317,
+      "source": {
+        "x": 956,
+        "y": 937,
+        "width": 298,
+        "height": 317
+      },
+      "bounds": {
+        "x": 44,
+        "y": 51,
+        "width": 228,
+        "height": 236
+      },
+      "anchor": {
+        "x": 138,
+        "y": 287
+      },
+      "validation": {
+        "opaquePixels": 36278,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7c004bceda968f4e"
+      },
+      "hip": {
+        "x": 151,
+        "y": 260
+      },
+      "hipMeasurement": "Reviewed center of posterior thigh support on cushion, excluding shoe soles and detached hand props."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 832579,
+    "sourceGutters": {
+      "y": [
+        0,
+        314,
+        627,
+        937,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          328,
+          641,
+          955,
+          1254
+        ],
+        [
+          0,
+          313,
+          626,
+          940,
+          1254
+        ],
+        [
+          0,
+          319,
+          633,
+          946,
+          1254
+        ],
+        [
+          0,
+          329,
+          642,
+          956,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "Viewed all16 poses: neutral/left/right low-foot shuffle (no high knee), true SE/SW/NW/NE anatomy and original costume identity. Head/body ratios inspected against base on same chair.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch1.png",
+    "seatReview": "Re-reviewed against actual quarterFurniture chair geometry and rear foreground masks in production renderer. Posterior thigh support points adjusted from source anatomy, with before/after four-direction composites and four-seat table scenes. Original source PNG and uniform aspect unchanged.",
+    "hipCorrectionReview": {
+      "reason": "Some prior hip anchors lay near shoe tops or outer clothing edge, placing the body too high or too far forward on the cushion.",
+      "poses": [
+        {
+          "dir": 0,
+          "before": {
+            "x": 118,
+            "y": 269
+          },
+          "after": {
+            "x": 132,
+            "y": 259
+          },
+          "sourceDelta": {
+            "x": 14,
+            "y": -10
+          }
+        },
+        {
+          "dir": 1,
+          "before": {
+            "x": 199,
+            "y": 264
+          },
+          "after": {
+            "x": 192,
+            "y": 256
+          },
+          "sourceDelta": {
+            "x": -7,
+            "y": -8
+          }
+        },
+        {
+          "dir": 2,
+          "before": {
+            "x": 174,
+            "y": 268
+          },
+          "after": {
+            "x": 178,
+            "y": 258
+          },
+          "sourceDelta": {
+            "x": 4,
+            "y": -10
+          }
+        },
+        {
+          "dir": 3,
+          "before": {
+            "x": 138,
+            "y": 273
+          },
+          "after": {
+            "x": 151,
+            "y": 260
+          },
+          "sourceDelta": {
+            "x": 13,
+            "y": -13
+          }
+        }
+      ],
+      "evidence": "artifacts/designer-live-seating-review/hip-corrections/student-before-after.png",
+      "sourcePNGUnchanged": true
+    }
+  },
+  "name": "야자 학생 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "student",
+    "originalFile": "exec-353e85d4-2901-4dad-a175-d18dc74029cd.png",
+    "promptFile": "/assets/zombies/student-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

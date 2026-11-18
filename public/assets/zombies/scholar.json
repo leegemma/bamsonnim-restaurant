@@ -1,0 +1,713 @@
+{
+  "actorId": "scholar",
+  "key": "zombieScholar",
+  "url": "/assets/zombies/scholar-directional-shuffle.png",
+  "type": "directional-atlas",
+  "width": 1254,
+  "height": 1254,
+  "cols": 4,
+  "rows": 4,
+  "trim": false,
+  "grid": {
+    "x": 0,
+    "y": 0,
+    "cols": 4,
+    "rows": 4,
+    "cellWidth": 313.5,
+    "cellHeight": 313.5
+  },
+  "sourcePolicy": "Use poses[].source; gutters measured per row. The nominal grid is descriptive, not the crop source.",
+  "referenceHeight": 282,
+  "referenceHeightMethod": "Median alpha>80 bounding-box height of all walking poses; no per-pose stretching.",
+  "walkFrames": 3,
+  "fps": 7,
+  "sequence": [
+    0,
+    1,
+    0,
+    2
+  ],
+  "mirror": false,
+  "directions": [
+    {
+      "id": "se",
+      "row": 0,
+      "vector": [
+        1,
+        0
+      ]
+    },
+    {
+      "id": "sw",
+      "row": 1,
+      "vector": [
+        0,
+        1
+      ]
+    },
+    {
+      "id": "nw",
+      "row": 2,
+      "vector": [
+        -1,
+        0
+      ]
+    },
+    {
+      "id": "ne",
+      "row": 3,
+      "vector": [
+        0,
+        -1
+      ]
+    }
+  ],
+  "frames": {
+    "walk": [
+      0,
+      1,
+      2
+    ],
+    "sit": 3,
+    "idle": 0
+  },
+  "poses": [
+    {
+      "index": 0,
+      "row": 0,
+      "column": 0,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 0,
+      "width": 324,
+      "height": 316,
+      "source": {
+        "x": 0,
+        "y": 0,
+        "width": 324,
+        "height": 316
+      },
+      "bounds": {
+        "x": 67,
+        "y": 15,
+        "width": 218,
+        "height": 284
+      },
+      "anchor": {
+        "x": 167,
+        "y": 299
+      },
+      "validation": {
+        "opaquePixels": 37249,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "c96b9dbbc7b6ec5e"
+      }
+    },
+    {
+      "index": 1,
+      "row": 0,
+      "column": 1,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 1,
+      "x": 324,
+      "y": 0,
+      "width": 303,
+      "height": 316,
+      "source": {
+        "x": 324,
+        "y": 0,
+        "width": 303,
+        "height": 316
+      },
+      "bounds": {
+        "x": 40,
+        "y": 15,
+        "width": 221,
+        "height": 286
+      },
+      "anchor": {
+        "x": 146,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 37438,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "ae17e39c78e31ea4"
+      }
+    },
+    {
+      "index": 2,
+      "row": 0,
+      "column": 2,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 2,
+      "x": 627,
+      "y": 0,
+      "width": 308,
+      "height": 316,
+      "source": {
+        "x": 627,
+        "y": 0,
+        "width": 308,
+        "height": 316
+      },
+      "bounds": {
+        "x": 44,
+        "y": 15,
+        "width": 220,
+        "height": 285
+      },
+      "anchor": {
+        "x": 149,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 37038,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "9ba130c2e9ecb5ae"
+      }
+    },
+    {
+      "index": 3,
+      "row": 0,
+      "column": 3,
+      "dir": 0,
+      "direction": "se",
+      "actorId": "scholar",
+      "state": "sit",
+      "frame": 0,
+      "x": 935,
+      "y": 0,
+      "width": 319,
+      "height": 316,
+      "source": {
+        "x": 935,
+        "y": 0,
+        "width": 319,
+        "height": 316
+      },
+      "bounds": {
+        "x": 46,
+        "y": 42,
+        "width": 223,
+        "height": 268
+      },
+      "anchor": {
+        "x": 153,
+        "y": 310
+      },
+      "validation": {
+        "opaquePixels": 36311,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "6c32fce8f8b7f009"
+      },
+      "hip": {
+        "x": 118,
+        "y": 279
+      },
+      "hipMeasurement": "Source-local contact point manually located on lower pelvis/upper-thigh seat line in original PNG."
+    },
+    {
+      "index": 4,
+      "row": 1,
+      "column": 0,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 316,
+      "width": 314,
+      "height": 312,
+      "source": {
+        "x": 0,
+        "y": 316,
+        "width": 314,
+        "height": 312
+      },
+      "bounds": {
+        "x": 59,
+        "y": 7,
+        "width": 219,
+        "height": 290
+      },
+      "anchor": {
+        "x": 174,
+        "y": 297
+      },
+      "validation": {
+        "opaquePixels": 38599,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "71234da3e2f45ec3"
+      }
+    },
+    {
+      "index": 5,
+      "row": 1,
+      "column": 1,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 1,
+      "x": 314,
+      "y": 316,
+      "width": 302,
+      "height": 312,
+      "source": {
+        "x": 314,
+        "y": 316,
+        "width": 302,
+        "height": 312
+      },
+      "bounds": {
+        "x": 37,
+        "y": 8,
+        "width": 222,
+        "height": 287
+      },
+      "anchor": {
+        "x": 156,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 37764,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "7fc16ac0c54c840f"
+      }
+    },
+    {
+      "index": 6,
+      "row": 1,
+      "column": 2,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 2,
+      "x": 616,
+      "y": 316,
+      "width": 312,
+      "height": 312,
+      "source": {
+        "x": 616,
+        "y": 316,
+        "width": 312,
+        "height": 312
+      },
+      "bounds": {
+        "x": 44,
+        "y": 7,
+        "width": 221,
+        "height": 288
+      },
+      "anchor": {
+        "x": 156,
+        "y": 295
+      },
+      "validation": {
+        "opaquePixels": 38127,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "0a6e5a487853c678"
+      }
+    },
+    {
+      "index": 7,
+      "row": 1,
+      "column": 3,
+      "dir": 1,
+      "direction": "sw",
+      "actorId": "scholar",
+      "state": "sit",
+      "frame": 0,
+      "x": 928,
+      "y": 316,
+      "width": 326,
+      "height": 312,
+      "source": {
+        "x": 928,
+        "y": 316,
+        "width": 326,
+        "height": 312
+      },
+      "bounds": {
+        "x": 48,
+        "y": 36,
+        "width": 217,
+        "height": 266
+      },
+      "anchor": {
+        "x": 162,
+        "y": 302
+      },
+      "validation": {
+        "opaquePixels": 35644,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1b3385b25dd789f5"
+      },
+      "hip": {
+        "x": 194,
+        "y": 276
+      },
+      "hipMeasurement": "Source-local contact point manually located on lower pelvis/upper-thigh seat line in original PNG."
+    },
+    {
+      "index": 8,
+      "row": 2,
+      "column": 0,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 628,
+      "width": 321,
+      "height": 311,
+      "source": {
+        "x": 0,
+        "y": 628,
+        "width": 321,
+        "height": 311
+      },
+      "bounds": {
+        "x": 67,
+        "y": 12,
+        "width": 207,
+        "height": 280
+      },
+      "anchor": {
+        "x": 178,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 35396,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "1586374972eae374"
+      }
+    },
+    {
+      "index": 9,
+      "row": 2,
+      "column": 1,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 1,
+      "x": 321,
+      "y": 628,
+      "width": 304,
+      "height": 311,
+      "source": {
+        "x": 321,
+        "y": 628,
+        "width": 304,
+        "height": 311
+      },
+      "bounds": {
+        "x": 48,
+        "y": 14,
+        "width": 210,
+        "height": 276
+      },
+      "anchor": {
+        "x": 155,
+        "y": 290
+      },
+      "validation": {
+        "opaquePixels": 35678,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "256f84c59493a85b"
+      }
+    },
+    {
+      "index": 10,
+      "row": 2,
+      "column": 2,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 2,
+      "x": 625,
+      "y": 628,
+      "width": 310,
+      "height": 311,
+      "source": {
+        "x": 625,
+        "y": 628,
+        "width": 310,
+        "height": 311
+      },
+      "bounds": {
+        "x": 47,
+        "y": 14,
+        "width": 211,
+        "height": 278
+      },
+      "anchor": {
+        "x": 149,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 35556,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "2e437599221902b6"
+      }
+    },
+    {
+      "index": 11,
+      "row": 2,
+      "column": 3,
+      "dir": 2,
+      "direction": "nw",
+      "actorId": "scholar",
+      "state": "sit",
+      "frame": 0,
+      "x": 935,
+      "y": 628,
+      "width": 319,
+      "height": 311,
+      "source": {
+        "x": 935,
+        "y": 628,
+        "width": 319,
+        "height": 311
+      },
+      "bounds": {
+        "x": 54,
+        "y": 40,
+        "width": 216,
+        "height": 260
+      },
+      "anchor": {
+        "x": 151,
+        "y": 300
+      },
+      "validation": {
+        "opaquePixels": 36264,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "f1b4c2ab631e7af8"
+      },
+      "hip": {
+        "x": 171,
+        "y": 275
+      },
+      "hipMeasurement": "Source-local contact point manually located on lower pelvis/upper-thigh seat line in original PNG."
+    },
+    {
+      "index": 12,
+      "row": 3,
+      "column": 0,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 0,
+      "x": 0,
+      "y": 939,
+      "width": 319,
+      "height": 315,
+      "source": {
+        "x": 0,
+        "y": 939,
+        "width": 319,
+        "height": 315
+      },
+      "bounds": {
+        "x": 63,
+        "y": 13,
+        "width": 215,
+        "height": 279
+      },
+      "anchor": {
+        "x": 164,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 36135,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "4b8c12e762d9614c"
+      }
+    },
+    {
+      "index": 13,
+      "row": 3,
+      "column": 1,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 1,
+      "x": 319,
+      "y": 939,
+      "width": 304,
+      "height": 315,
+      "source": {
+        "x": 319,
+        "y": 939,
+        "width": 304,
+        "height": 315
+      },
+      "bounds": {
+        "x": 43,
+        "y": 15,
+        "width": 214,
+        "height": 277
+      },
+      "anchor": {
+        "x": 144,
+        "y": 292
+      },
+      "validation": {
+        "opaquePixels": 35091,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "06df42d06a5f30a2"
+      }
+    },
+    {
+      "index": 14,
+      "row": 3,
+      "column": 2,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "scholar",
+      "state": "walk",
+      "frame": 2,
+      "x": 623,
+      "y": 939,
+      "width": 310,
+      "height": 315,
+      "source": {
+        "x": 623,
+        "y": 939,
+        "width": 310,
+        "height": 315
+      },
+      "bounds": {
+        "x": 49,
+        "y": 15,
+        "width": 213,
+        "height": 279
+      },
+      "anchor": {
+        "x": 159,
+        "y": 294
+      },
+      "validation": {
+        "opaquePixels": 34770,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "0c11d3e5e04e97d9"
+      }
+    },
+    {
+      "index": 15,
+      "row": 3,
+      "column": 3,
+      "dir": 3,
+      "direction": "ne",
+      "actorId": "scholar",
+      "state": "sit",
+      "frame": 0,
+      "x": 933,
+      "y": 939,
+      "width": 321,
+      "height": 315,
+      "source": {
+        "x": 933,
+        "y": 939,
+        "width": 321,
+        "height": 315
+      },
+      "bounds": {
+        "x": 50,
+        "y": 40,
+        "width": 218,
+        "height": 261
+      },
+      "anchor": {
+        "x": 161,
+        "y": 301
+      },
+      "validation": {
+        "opaquePixels": 36155,
+        "edgePixels": 0,
+        "lowerBodyPixelFingerprint": "fdbdde9583239256"
+      },
+      "hip": {
+        "x": 137,
+        "y": 276
+      },
+      "hipMeasurement": "Source-local contact point manually located on lower pelvis/upper-thigh seat line in original PNG."
+    }
+  ],
+  "status": "verified",
+  "validation": {
+    "alphaThreshold": 80,
+    "transparentPixels": 724658,
+    "sourceGutters": {
+      "y": [
+        0,
+        316,
+        628,
+        939,
+        1254
+      ],
+      "xByRow": [
+        [
+          0,
+          324,
+          627,
+          935,
+          1254
+        ],
+        [
+          0,
+          314,
+          616,
+          928,
+          1254
+        ],
+        [
+          0,
+          321,
+          625,
+          935,
+          1254
+        ],
+        [
+          0,
+          319,
+          623,
+          933,
+          1254
+        ]
+      ]
+    },
+    "footAnchorMethod": "Measured lower 22% opaque shoe span midpoint and lowest opaque foot pixel +1; anchors remain source-relative.",
+    "visualReview": "Viewed all16 poses: broad gat/chin strings, cream hanbok, sleepy green face and genuine rear hat/hair preserved; three low alternating foot poses per direction follow original shuffle. Same-chair seat/body review passed.",
+    "allSitHipsReviewed": true,
+    "allSourceBoundariesClear": true,
+    "seatContactSheet": "zombie-seat-shuffle-batch2.png",
+    "seatReview": "Manually compared all four seated views beside the selected wanderer on identical existing chair geometry, same uniform standing scale and rear foreground masks; head/body mass and pelvis contact reviewed."
+  },
+  "name": "졸린 선비 · 네 방향 세 포즈 걷기·앉기",
+  "generation": {
+    "actorId": "scholar",
+    "originalFile": "exec-5bf23d5e-04d2-4d45-9daa-3efff4445896.png",
+    "promptFile": "/assets/zombies/scholar-shuffle.prompt.txt",
+    "tool": "built-in image_gen"
+  }
+}

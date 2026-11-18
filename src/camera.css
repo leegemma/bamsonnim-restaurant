@@ -1,0 +1,5 @@
+.bottom-actions .button.camera-reset{min-width:66px;gap:5px;padding-inline:7px;font-variant-numeric:tabular-nums}
+.bottom-actions .button.camera-reset>span{display:inline}
+@media(orientation:landscape) and (max-height:500px){
+ .bottom-actions .button.camera-reset{min-width:60px;padding-inline:5px;font-size:11px}
+}

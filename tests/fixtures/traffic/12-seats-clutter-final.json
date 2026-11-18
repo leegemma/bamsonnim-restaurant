@@ -1,0 +1,761 @@
+{
+  "version": 1,
+  "savedAt": 1794718980327,
+  "time": 3600,
+  "seed": 2054551856,
+  "coins": 999977761,
+  "hearts": 1000000,
+  "xp": 503,
+  "level": 30,
+  "size": 8,
+  "hunger": 100,
+  "floor": "wood",
+  "wall": "paper",
+  "ownedSkins": [
+    "wood",
+    "paper"
+  ],
+  "storage": [],
+  "objects": [
+    {
+      "uid": "o1",
+      "type": "stove",
+      "x": 1,
+      "y": 1,
+      "dir": 0
+    },
+    {
+      "uid": "o2",
+      "type": "stove",
+      "x": 2,
+      "y": 1,
+      "dir": 1
+    },
+    {
+      "uid": "o3",
+      "type": "server",
+      "x": 4,
+      "y": 1,
+      "dir": 0,
+      "foodId": "rice",
+      "stock": 99996
+    },
+    {
+      "uid": "o4",
+      "type": "table",
+      "x": 2,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o5",
+      "type": "chair",
+      "x": 2,
+      "y": 5,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o6",
+      "type": "chair",
+      "x": 1,
+      "y": 4,
+      "dir": 0,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o7",
+      "type": "table",
+      "x": 5,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o8",
+      "type": "chair",
+      "x": 5,
+      "y": 5,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o9",
+      "type": "chair",
+      "x": 6,
+      "y": 4,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o10",
+      "type": "jars",
+      "x": 0,
+      "y": 1,
+      "dir": 0
+    },
+    {
+      "uid": "o11",
+      "type": "lantern",
+      "x": 7,
+      "y": 0,
+      "dir": 0
+    },
+    {
+      "uid": "o12",
+      "type": "poster",
+      "x": 3,
+      "y": 0,
+      "dir": 0
+    },
+    {
+      "uid": "o14",
+      "type": "server",
+      "x": 6,
+      "y": 1,
+      "dir": 0,
+      "foodId": "soup",
+      "stock": 99996
+    },
+    {
+      "uid": "o15",
+      "type": "server",
+      "x": 0,
+      "y": 3,
+      "dir": 0,
+      "foodId": "skewer",
+      "stock": 99999
+    },
+    {
+      "uid": "o16",
+      "type": "table",
+      "x": 2,
+      "y": 2,
+      "dir": 0
+    },
+    {
+      "uid": "o17",
+      "type": "chair",
+      "x": 3,
+      "y": 2,
+      "dir": 2
+    },
+    {
+      "uid": "o18",
+      "type": "chair",
+      "x": 2,
+      "y": 3,
+      "dir": 3,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o19",
+      "type": "table",
+      "x": 5,
+      "y": 2,
+      "dir": 0
+    },
+    {
+      "uid": "o20",
+      "type": "chair",
+      "x": 5,
+      "y": 3,
+      "dir": 3
+    },
+    {
+      "uid": "o21",
+      "type": "chair",
+      "x": 6,
+      "y": 2,
+      "dir": 2,
+      "dirty": false,
+      "cleaner": null
+    },
+    {
+      "uid": "o22",
+      "type": "table",
+      "x": 2,
+      "y": 6,
+      "dir": 0
+    },
+    {
+      "uid": "o23",
+      "type": "chair",
+      "x": 1,
+      "y": 6,
+      "dir": 0
+    },
+    {
+      "uid": "o24",
+      "type": "chair",
+      "x": 2,
+      "y": 7,
+      "dir": 3
+    },
+    {
+      "uid": "o25",
+      "type": "table",
+      "x": 5,
+      "y": 6,
+      "dir": 0
+    },
+    {
+      "uid": "o26",
+      "type": "chair",
+      "x": 5,
+      "y": 7,
+      "dir": 3
+    },
+    {
+      "uid": "o27",
+      "type": "chair",
+      "x": 6,
+      "y": 6,
+      "dir": 2
+    },
+    {
+      "uid": "o28",
+      "type": "jars",
+      "x": 0,
+      "y": 4,
+      "dir": 0
+    },
+    {
+      "uid": "o29",
+      "type": "bonsai",
+      "x": 3,
+      "y": 6,
+      "dir": 0
+    }
+  ],
+  "waiters": [
+    {
+      "uid": "o13",
+      "name": "달래",
+      "appearance": 0,
+      "x": 6,
+      "y": 3,
+      "infectedUntil": 0,
+      "task": null,
+      "path": []
+    },
+    {
+      "uid": "o30",
+      "name": "보리",
+      "appearance": 1,
+      "x": 3,
+      "y": 5,
+      "path": [],
+      "task": {
+        "kind": "serve",
+        "customer": "o59",
+        "server": "o14",
+        "foodId": "soup",
+        "portion": 2,
+        "phase": "deliver",
+        "work": 0,
+        "picked": true
+      },
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o32",
+      "name": "두리",
+      "appearance": 2,
+      "x": 3,
+      "y": 4,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o34",
+      "name": "초롱",
+      "appearance": 3,
+      "x": 0,
+      "y": 2,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o36",
+      "name": "나리",
+      "appearance": 4,
+      "x": 7,
+      "y": 3,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o38",
+      "name": "소담",
+      "appearance": 5,
+      "x": 7,
+      "y": 1,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o40",
+      "name": "다솜",
+      "appearance": 6,
+      "x": 7,
+      "y": 6,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    },
+    {
+      "uid": "o42",
+      "name": "아리",
+      "appearance": 7,
+      "x": 7,
+      "y": 7,
+      "path": [],
+      "task": null,
+      "infectedUntil": 0
+    }
+  ],
+  "customers": [
+    {
+      "uid": "o49",
+      "zombieId": "prince",
+      "x": 1.0000000000000004,
+      "y": 7,
+      "phase": "leaving",
+      "wait": 3.5,
+      "path": [
+        [
+          2,
+          7
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          7
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          7,
+          5
+        ]
+      ],
+      "seat": null,
+      "red": false,
+      "worker": null,
+      "foodId": "soup",
+      "portion": 2,
+      "eatUntil": 37
+    },
+    {
+      "uid": "o50",
+      "zombieId": "hiker",
+      "x": 3,
+      "y": 1,
+      "phase": "leaving",
+      "wait": 45,
+      "path": [],
+      "seat": null,
+      "red": false,
+      "worker": null
+    },
+    {
+      "uid": "o53",
+      "zombieId": "bride",
+      "x": 3,
+      "y": 7,
+      "phase": "leaving",
+      "wait": 5.5,
+      "path": [],
+      "seat": null,
+      "red": false,
+      "worker": null,
+      "foodId": "skewer",
+      "portion": 1,
+      "eatUntil": 45.75
+    },
+    {
+      "uid": "o55",
+      "zombieId": "returning",
+      "x": 7,
+      "y": 4,
+      "phase": "leaving",
+      "wait": 45,
+      "path": [],
+      "seat": null,
+      "red": false,
+      "worker": null
+    },
+    {
+      "uid": "o58",
+      "zombieId": "runner",
+      "x": 6,
+      "y": 2,
+      "phase": "leaving",
+      "wait": 49.5,
+      "path": [],
+      "seat": null,
+      "red": false,
+      "worker": null,
+      "foodId": "rice",
+      "portion": 1,
+      "eatUntil": 119
+    },
+    {
+      "uid": "o59",
+      "zombieId": "wanderer",
+      "x": 1,
+      "y": 6,
+      "phase": "waiting",
+      "wait": 3555,
+      "path": [],
+      "seat": "o23",
+      "red": false,
+      "worker": "o30"
+    },
+    {
+      "uid": "o62",
+      "zombieId": "tiger",
+      "x": 4,
+      "y": 6,
+      "phase": "seating",
+      "wait": 0,
+      "path": [],
+      "seat": "o24",
+      "red": false
+    },
+    {
+      "uid": "o63",
+      "zombieId": "rider",
+      "x": 5,
+      "y": 7,
+      "phase": "leaving",
+      "wait": 45,
+      "path": [],
+      "seat": null,
+      "red": false,
+      "worker": null
+    },
+    {
+      "uid": "o64",
+      "zombieId": "rider",
+      "x": 1,
+      "y": 5,
+      "phase": "seating",
+      "wait": 0,
+      "path": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "seat": "o27",
+      "red": false
+    },
+    {
+      "uid": "o65",
+      "zombieId": "tiger",
+      "x": 0,
+      "y": 5,
+      "phase": "seating",
+      "wait": 0,
+      "path": [
+        [
+          0,
+          6
+        ]
+      ],
+      "seat": "o5",
+      "red": false
+    },
+    {
+      "uid": "o66",
+      "zombieId": "sauna",
+      "x": 0,
+      "y": 6,
+      "phase": "seating",
+      "wait": 0,
+      "path": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      "seat": "o6",
+      "red": false
+    },
+    {
+      "uid": "o240",
+      "zombieId": "rider",
+      "x": 0,
+      "y": 7,
+      "phase": "queue",
+      "wait": 7,
+      "path": [],
+      "seat": null,
+      "red": false
+    }
+  ],
+  "transfers": [],
+  "mastery": {
+    "rice": 10,
+    "skewer": 10,
+    "soup": 10,
+    "tteok": 10,
+    "sausage": 10,
+    "noodle": 8,
+    "gimbap": 8,
+    "cookie": 8,
+    "bibimbap": 8,
+    "liver": 5,
+    "pancake": 5,
+    "kimchi": 5,
+    "xmas-rice": 10,
+    "xmas-soup": 10
+  },
+  "knownRecipes": {
+    "rice": true,
+    "skewer": true,
+    "soup": true,
+    "tteok": true,
+    "sausage": true,
+    "noodle": true,
+    "gimbap": true,
+    "cookie": true,
+    "bibimbap": true,
+    "liver": true,
+    "pancake": true,
+    "kimchi": true,
+    "xmas-rice": true,
+    "xmas-soup": true
+  },
+  "album": {
+    "tiger": 2,
+    "runner": 2,
+    "prince": 1,
+    "bride": 1
+  },
+  "events": {
+    "christmas": "upcoming"
+  },
+  "eventBooks": {},
+  "stats": {
+    "cooked": 0,
+    "served": 6,
+    "sold": 6,
+    "earned": 11,
+    "tablesBought": 4,
+    "chairsBought": 8,
+    "hired": 7,
+    "fevers": 0,
+    "fed": {
+      "tiger": 2,
+      "runner": 2,
+      "prince": 1,
+      "bride": 1
+    }
+  },
+  "questIndex": 0,
+  "questBase": 0,
+  "combo": 0,
+  "lastServe": 113,
+  "feverUntil": 0,
+  "spawnIn": 0.25,
+  "nextId": 241,
+  "serveCursor": 2,
+  "seatCursor": 2,
+  "settings": {
+    "music": 0.22,
+    "sfx": 0.45
+  },
+  "tutorial": 3,
+  "notifications": [
+    {
+      "id": "o31",
+      "message": "보리가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o33",
+      "message": "두리가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o35",
+      "message": "초롱가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o37",
+      "message": "나리가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o39",
+      "message": "소담가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o41",
+      "message": "다솜가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o43",
+      "message": "아리가 식당에 합류했어요!",
+      "type": "hire",
+      "time": 0
+    },
+    {
+      "id": "o47",
+      "message": "새 밤손님 · 멍한 호랑이",
+      "type": "album",
+      "time": 19.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 2,
+      "y": 5,
+      "favorite": true,
+      "id": "o48",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 19.75
+    },
+    {
+      "id": "o51",
+      "message": "새 밤손님 · 러닝 좀비",
+      "type": "album",
+      "time": 25.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 1,
+      "y": 4,
+      "favorite": true,
+      "id": "o52",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 25.5
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 5,
+      "y": 5,
+      "favorite": true,
+      "id": "o54",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 31.5
+    },
+    {
+      "id": "o56",
+      "message": "새 밤손님 · 세자",
+      "type": "album",
+      "time": 37
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 4,
+      "favorite": false,
+      "id": "o57",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 37
+    },
+    {
+      "id": "o60",
+      "message": "새 밤손님 · 전통혼례복 신부",
+      "type": "album",
+      "time": 45.75
+    },
+    {
+      "amount": 1,
+      "xp": 1,
+      "x": 2,
+      "y": 3,
+      "favorite": false,
+      "id": "o61",
+      "message": "손님이 1코인을 냈어요.",
+      "type": "payment",
+      "time": 45.75
+    },
+    {
+      "amount": 2,
+      "xp": 2,
+      "x": 6,
+      "y": 2,
+      "favorite": true,
+      "id": "o70",
+      "message": "손님이 2코인을 냈어요.",
+      "type": "payment",
+      "time": 119
+    }
+  ],
+  "dailyClaim": "",
+  "fraction": 0
+}

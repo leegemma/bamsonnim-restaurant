@@ -1,0 +1,25 @@
+.left-rail .mayor-card.mayor-icon {
+  display: block;
+  width: 96px;
+  height: 76px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.left-rail .mayor-card.mayor-icon::before { display: none; }
+.left-rail .mayor-card.mayor-icon .mayor-portrait {
+  position: static;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  filter: drop-shadow(1px 0 #f1e6c8) drop-shadow(-1px 0 #f1e6c8) drop-shadow(0 1px #f1e6c8) drop-shadow(0 -1px #f1e6c8) drop-shadow(2px 3px #071d18);
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .left-rail .mayor-card.mayor-icon { width: 68px; height: 52px; }
+}
+@media (orientation: landscape) and (max-height: 280px) {
+  .left-rail .mayor-card.mayor-icon { width: 58px; height: 44px; }
+}
