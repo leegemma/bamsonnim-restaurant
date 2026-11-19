@@ -1,0 +1,57 @@
+{
+  "actorId": "nz-baduk-player",
+  "originConceptId": "extra-zombie-050",
+  "approvalScope": "These three characters only: user requested game integration after reviewing their completed motions. Other production actors remain unregistered.",
+  "approvedPackageVersion": "v1",
+  "packageManifestSHA256": "6ff7cb592b3021ac06629ab7cdca025c87ac703a3917f7e3e76847c08f373467",
+  "finalReviewSHA256": "163302a06bd51eb5ef3723c4814dff6fb226edaaff18edfaf013819e9956511a",
+  "sourceSHA256": "eb6143a4fc7d27c46fcf856ee1e9189d9adb9858b5a76dae8be4572c3d3d8b3d",
+  "cellWidth": 280,
+  "cellHeight": 300,
+  "referenceHeight": 235,
+  "footAnchor": {
+    "x": 140,
+    "y": 280
+  },
+  "seatedHip": {
+    "x": 140,
+    "y": 220
+  },
+  "animation": {
+    "walking": {
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    "eating": {
+      "fps": 5,
+      "sequence": [
+        "sit0",
+        "eat1",
+        "eat2"
+      ]
+    }
+  },
+  "runtimeRegistrationMode": "preRegistered",
+  "files": [
+    {
+      "name": "walk-sit.png",
+      "sourceFile": "walk-sit.png",
+      "sha256": "790eb432902ab94918696f651160a349b8e5edbd8d2e98069078075ec8aab495"
+    },
+    {
+      "name": "eating.png",
+      "sourceFile": "eating.png",
+      "sha256": "02dea1a056a4d8753e5d9d934fdc275c465ca3e8c97e157f0a3f01101b12f899"
+    },
+    {
+      "name": "portrait.png",
+      "sourceFile": "source.png",
+      "sha256": "eb6143a4fc7d27c46fcf856ee1e9189d9adb9858b5a76dae8be4572c3d3d8b3d"
+    }
+  ]
+}

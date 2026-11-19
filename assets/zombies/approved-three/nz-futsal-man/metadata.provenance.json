@@ -1,0 +1,57 @@
+{
+  "actorId": "nz-futsal-man",
+  "originConceptId": "zombie-concept-002",
+  "approvalScope": "These three characters only: user requested game integration after reviewing their completed motions. Other production actors remain unregistered.",
+  "approvedPackageVersion": "v1",
+  "packageManifestSHA256": "9db4018e19b45d6b34c925bbbd8d2724eb86c8ccd6e8764dd7b5d26eaf1aba2f",
+  "finalReviewSHA256": "eb3e10e3aff8d740fb5885effd5ebc48544e35ccd3fd1f6a2229305511c56f26",
+  "sourceSHA256": "8f8741b57993427390838508d692cfabf8165627552e31c0306f592952bbd92f",
+  "cellWidth": 280,
+  "cellHeight": 300,
+  "referenceHeight": 216,
+  "footAnchor": {
+    "x": 140,
+    "y": 280
+  },
+  "seatedHip": {
+    "x": 140,
+    "y": 220
+  },
+  "animation": {
+    "walking": {
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    "eating": {
+      "fps": 5,
+      "sequence": [
+        "sit0",
+        "eat1",
+        "eat2"
+      ]
+    }
+  },
+  "runtimeRegistrationMode": "preRegistered",
+  "files": [
+    {
+      "name": "walk-sit.png",
+      "sourceFile": "walk-sit.png",
+      "sha256": "c97bf34e1ec01ce48000b5e1271ac348c957185a453fd3767c17eb6846d96742"
+    },
+    {
+      "name": "eating.png",
+      "sourceFile": "eating.png",
+      "sha256": "650ae7ce2957acb8e2c689bc3493394244e0ccd70e15d303f8da44e6e5fad558"
+    },
+    {
+      "name": "portrait.png",
+      "sourceFile": "source.png",
+      "sha256": "8f8741b57993427390838508d692cfabf8165627552e31c0306f592952bbd92f"
+    }
+  ]
+}
