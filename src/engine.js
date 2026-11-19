@@ -253,7 +253,7 @@ function addCombo(s,offline){
   s.hunger=Math.max(0,s.hunger-2);s.stats.served++;
   if(offline)return;
   s.combo=s.time-s.lastServe<=9?s.combo+1:1;s.lastServe=s.time;
-  if(s.combo===21){s.feverUntil=s.time+30;s.stats.fevers++;notify(s,'달밤의 축제! 30초 동안 코인 2배 · 서빙당 재고 1개 소모', 'fever');}
+  if(s.combo===21){s.feverUntil=s.time+30;s.stats.fevers++;notify(s,'달밤의 축제! 30초 동안 코인 2배', 'fever');}
 }
 function cancelTask(s,w){
   const t=w.task;if(!t){settleWorker(s,w,true);return;}
