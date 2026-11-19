@@ -231,6 +231,7 @@ test('infection and furniture edits cancel mid-segment jobs without stranding wo
 });
 test('a fractional active worker centres before retrying an unreachable job',()=>{
  const s=singleChairGame(),w=s.waiters[0],chair=s.objects.find(o=>o.type==='chair');for(const [i,[x,y]]of [[2,5],[4,5],[3,4],[3,6]].entries())if(!s.objects.some(o=>o.x===x&&o.y===y))s.objects.push({uid:`centre-wall-${i}`,type:'jars',x,y,dir:0});
+ chair.dirty=true;chair.cleaner=w.uid;
  Object.assign(w,{x:1,y:5.3,path:[],task:{kind:'clean',chair:chair.uid,work:0}});const loaded=E.validateSave(JSON.parse(JSON.stringify(s))),worker=loaded.waiters[0];assert.equal(worker.y,5.3);E.advance(loaded,.25);assert.equal(worker.y,5);assert.equal(worker.task.kind,'clean');assertActorRules(loaded);
 });
 test('workers pass in a one-tile corridor without using a passing bay',()=>{
