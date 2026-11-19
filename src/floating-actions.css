@@ -1,8 +1,7 @@
 /* Let the room fill the screen beneath the floating controls. */
-:root { --floating-actions-lift: 22px; }
 #app > .bottom-bar {
   position: fixed;
-  inset: auto 0 var(--floating-actions-lift);
+  inset: auto 0 0;
   height: calc(60px + env(safe-area-inset-bottom));
   min-height: 0;
   padding: 8px max(12px, env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
@@ -17,10 +16,9 @@
 .bottom-bar .bottom-actions > .button { min-height: 44px; box-shadow: 2px 3px #071d18; }
 .bottom-bar .bottom-actions > .button.quiet { background: #17352e; }
 .bottom-bar > .toast-stack { pointer-events: auto; }
-#stage > .welcome-note { bottom: 30px; }
-#stage.editing > #shop-dock { bottom: calc(64px + var(--floating-actions-lift) + env(safe-area-inset-bottom)); max-height: calc(100% - 76px - var(--floating-actions-lift) - env(safe-area-inset-bottom)); }
+#stage.editing > #shop-dock { bottom: calc(64px + env(safe-area-inset-bottom)); max-height: calc(100% - 76px - env(safe-area-inset-bottom)); }
 @media (orientation: landscape) and (max-height: 500px) {
-  #stage.editing > #edit-tools { bottom: calc(64px + var(--floating-actions-lift) + env(safe-area-inset-bottom)); }
+  #stage.editing > #edit-tools { bottom: calc(64px + env(safe-area-inset-bottom)); }
 }
 /* Keep traffic status clear of the actions clustered on the opposite side. */
 #traffic-notice{left:max(12px,env(safe-area-inset-left));right:auto;bottom:max(8px,env(safe-area-inset-bottom));max-width:min(440px,calc(100% - max(12px,env(safe-area-inset-left)) - max(12px,env(safe-area-inset-right))));transform:none;text-align:start}
