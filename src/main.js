@@ -1,3 +1,6 @@
+import './mayor-tutorial.css';
+import {createMayorTutorial} from './mayor-tutorial-ui.js';
+import {tutorialActive,tutorialStove,chooseTutorialStove,restartTutorial} from './mayor-tutorial.js';
 import './style.css';
 import './short-screen.css';
 import './toasts.css';
@@ -86,6 +89,7 @@ const view=new RestaurantView($('#world'),{
 });
 const celebrations=createCelebrations($('#stage'));celebrations.sync(state);
 const occupationWarning=createOccupationWarning($('#stage'));occupationWarning.sync(state);
+const tutorialGuide=createMayorTutorial({stage:$('#stage'),dialog,view,getContext:()=>({state,modal,edit,reconciling,orientationBlocked:$('#orientation-dialog').open}),onStove:openStove,onRecipe(){const o=tutorialStove(state);if(!o)return;chooseTutorialStove(state,o.uid);book=0;page=0;open('cookbook',{stove:o.uid,view:'book'});save();},onChange:save});
 let assetsLoading=false;
 async function loadAssets(){assetsLoading=true;$('#asset-status').hidden=false;$('#asset-message').textContent='식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.';$('[data-act="retry-assets"]').hidden=true;await view.load();assetsLoading=false;if(modal?.type==='cookbook'&&modal.view==='book')renderModal();const failed=view.failedAssets||[];$('#asset-status').hidden=!failed.length;if(failed.length){$('#asset-message').textContent=`그림 ${failed.length}개를 불러오지 못했어요. 기본 표시로 계속 플레이하거나 다시 불러오세요.`;$('[data-act="retry-assets"]').hidden=false;}}
 
@@ -128,7 +132,7 @@ function updateHUD(){
  $('#event-label').textContent={upcoming:'다가오는 성탄절',active:'오싹한 성탄절 진행 중',ended:'성탄절의 추억'}[state.events.christmas];$('.scroll-news').setAttribute('aria-label',`계절의 소식 · ${$('#event-label').textContent}`);$('.scroll-news').title=`계절의 소식 · ${$('#event-label').textContent}`;
  $('#status-detail').textContent=`${state.size}×${state.size} · 직원 ${state.waiters.length}명 · ${E.seats(state).length}석`;
  const stock=state.objects.reduce((n,o)=>n+(o.stock||0),0);$('#bottom-center').innerHTML=`<span class="open-dot"></span>${stock?`준비된 음식 <b>${num(stock)}개</b>`:'따뜻한 요리를 준비해주세요'}${speed!==1?`<span class="speed-badge">${speed}×</span>`:''}`;
- $('#welcome-note').hidden=state.tutorial>=1||!!edit;const feverRemaining=Math.max(0,state.feverUntil-state.time);$('#fever-banner').hidden=feverRemaining<=0||!!edit;$('#fever-title').textContent=`남은 시간 ${cookingCountdown(feverRemaining)}`;$('#fever-progress').value=feverRemaining;
+ $('#welcome-note').hidden=!!state.guidedTutorial||state.tutorial>=1||!!edit;const feverRemaining=Math.max(0,state.feverUntil-state.time);$('#fever-banner').hidden=feverRemaining<=0||!!edit;$('#fever-title').textContent=`남은 시간 ${cookingCountdown(feverRemaining)}`;$('#fever-progress').value=feverRemaining;
  celebrations.update(state,!!edit);
  occupationWarning.update(state,{editing:!!edit,reconciling});
  sound.music=state.settings.music;sound.effects=state.settings.sfx;sound.mode=state.feverUntil>state.time?'fever':state.hunger>75?'danger':'normal';
@@ -138,7 +142,7 @@ function updateHUD(){
  for(const o of objects){let button=[...stoveRoot.querySelectorAll('button')].find(b=>b.dataset.id===o.uid);if(!button){button=document.createElement('button');button.dataset.act='stove';button.dataset.id=o.uid;stoveRoot.append(button);}if(button.textContent!==o.label)button.textContent=o.label;}
 }
 function openStove(id){const o=state.objects.find(o=>o.uid===id);if(!o)return;if(E.stoveStatus(state,o)==='empty'){open('cookbook',{stove:id});return;}if(E.stoveStatus(state,o)==='done'){action(E.collect(state,id),'요리를 서빙대로 옮겼어요.');return;}open('stove',{stove:id});}
-function open(type,data={}){const changed=modal?.type!==type;previousFocus=dialog.open?previousFocus:document.activeElement;modal={type,...data};if(type==='gallery')walkPreviewPaused=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!dialog.open)dialog.showModal();renderModal();if(changed){dialog.scrollTop=0;$('#dialog-content').scrollTop=0;}syncOrientationGate();}
+function open(type,data={}){if(type==='cookbook'&&tutorialActive(state)&&['stove','recipe'].includes(state.guidedTutorial.step)){const stove=state.objects.find(o=>o.uid===data.stove)||tutorialStove(state);if(stove&&!stove.cook){chooseTutorialStove(state,stove.uid);data={...data,stove:stove.uid,view:'book'};book=0;page=0;save();}}const changed=modal?.type!==type;previousFocus=dialog.open?previousFocus:document.activeElement;modal={type,...data};if(type==='gallery')walkPreviewPaused=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!dialog.open)dialog.showModal();renderModal();if(changed){dialog.scrollTop=0;$('#dialog-content').scrollTop=0;}syncOrientationGate();}
 function close(){dialog.close();modal=null;previousFocus?.focus?.();}
 dialog.addEventListener('cancel',()=>{modal=null;});
 function heading(overline,title,description=''){ $('#dialog-overline').textContent=overline;$('#dialog-title').textContent=title;$('#dialog-description').textContent=description;dialog.className=modal?.type||'';}
@@ -245,7 +249,7 @@ function renderModal(){
  }else if(modal.type==='poster'){
  heading('오늘의 수상한 건강 상식','뇌 주먹밥의 효능','이 식당의 이야기입니다. 진지하게 믿지는 마세요.');body.innerHTML=`<div class="poster-detail"><img src="${ASSETS.poster}" alt="오래된 식당 효능 포스터"/><div><h2>머리가 든든해집니다</h2><p>생각이 많을 땐 한 입 크게.</p><h2>허기가 쏙 사라집니다</h2><p>좀비도 배가 부르면 평화로워져요.</p><h2>단골이 방긋 웃습니다</h2><p>오늘의 따뜻한 한 끼가 내일의 방문으로.</p></div></div>`;
  }else if(modal.type==='help'){
- heading('YOUR FIRST NIGHT','밤손님 영업 안내','처음엔 가마솥 하나부터, 천천히 시작하세요.');body.innerHTML=`<ol class="help-list"><li><b>COOK → 요리 선택</b><p>시간이 지나 초록 체크가 뜨면 눌러주세요. 음식이 서빙대로 바로 옮겨집니다.</p></li><li><b>직원이 서빙과 판매를 도와줘요</b><p>식탁 바로 옆에서 식탁을 향한 의자마다 한 명이 앉아요. 한 칸 식탁은 최대 4명이며, 앉을 자리까지 통로가 필요해요. 식탁 없는 의자는 장식이에요. 음식이 모자라면 도시의 허기가 올라갑니다.</p></li><li><b>반복 조리로 다음 메뉴를 만나요</b><p>음식 숙련도 합계가 레시피 레벨입니다. 식당 레벨은 판매·의뢰 등으로 따로 올라요.</p></li><li><b>식사와 결제까지, 새로운 단골</b><p>접속 중 처음 거래를 마친 좀비가 캐릭터북에 등록됩니다.</p></li><li><b>음식과 직원을 돌봐주세요</b><p>가마솥 음식은 오래 두면 상해요. 붉은 좀비에게 물린 직원은 코인으로 치료하거나 5분 뒤 회복됩니다.</p></li><li><b>가로 화면, 터치 또는 마우스</b><p>꾸미기에서 가구를 고르고 격자 위치를 선택한 뒤 배치하세요. 키보드·좌표 배치를 펼치면 가구를 고를 수 있어요. 바닥의 방향키는 이동, R은 회전, Enter는 확정, Esc는 취소입니다.</p></li></ol>`;
+ heading('YOUR FIRST NIGHT','밤손님 영업 안내','처음엔 가마솥 하나부터, 천천히 시작하세요.');body.innerHTML=`<ol class="help-list"><li><b>COOK → 요리 선택</b><p>시간이 지나 초록 체크가 뜨면 눌러주세요. 음식이 서빙대로 바로 옮겨집니다.</p></li><li><b>직원이 서빙과 판매를 도와줘요</b><p>식탁 바로 옆에서 식탁을 향한 의자마다 한 명이 앉아요. 한 칸 식탁은 최대 4명이며, 앉을 자리까지 통로가 필요해요. 식탁 없는 의자는 장식이에요. 음식이 모자라면 도시의 허기가 올라갑니다.</p></li><li><b>반복 조리로 다음 메뉴를 만나요</b><p>음식 숙련도 합계가 레시피 레벨입니다. 식당 레벨은 판매·의뢰 등으로 따로 올라요.</p></li><li><b>식사와 결제까지, 새로운 단골</b><p>접속 중 처음 거래를 마친 좀비가 캐릭터북에 등록됩니다.</p></li><li><b>음식과 직원을 돌봐주세요</b><p>가마솥 음식은 오래 두면 상해요. 붉은 좀비에게 물린 직원은 코인으로 치료하거나 5분 뒤 회복됩니다.</p></li><li><b>가로 화면, 터치 또는 마우스</b><p>꾸미기에서 가구를 고르고 격자 위치를 선택한 뒤 배치하세요. 키보드·좌표 배치를 펼치면 가구를 고를 수 있어요. 바닥의 방향키는 이동, R은 회전, Enter는 확정, Esc는 취소입니다.</p></li></ol><div class="tutorial-replay-row"><button class="button primary" data-act="tutorial-replay">시장님 안내 다시 보기</button><p>식당의 진행과 재화는 그대로 유지됩니다.</p></div>`;
  }else if(modal.type==='confirm'){
  heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML=`<div class="button-row confirm-buttons"><button class="button quiet" data-act="close">${modal.cancelLabel||'취소'}</button><button class="button primary" data-act="confirm">${modal.label||'확인'}</button></div>`;
  }
@@ -324,6 +328,7 @@ document.addEventListener('click',async e=>{
  }
  if(act==='fullscreen'){if(dialog.open)close();const entered=await requestFullscreen();if(!entered)open('install-guide');return;}
  if(act!=='sound'&&!sound.context)try{await sound.start();}catch{}
+ if(act==='tutorial-replay'){restartTutorial(state);save();close();tutorialGuide.update();return;}
  if(act==='retry-assets'){if(!assetsLoading)loadAssets();return;}
  if(act==='camera-reset'){view.resetCamera?.();updateHUD();return;}
  if(act==='focus-floor'){$('#world').focus({preventScroll:true});return;}
@@ -399,7 +404,7 @@ async function recoverAfterReturn(){
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden){hiddenAt=Date.now();save();sound.context?.suspend();}else{lastFrame=performance.now();if(sound.timer&&sound.context)sound.start().catch(()=>{});if(hiddenAt&&!reconciling)recoverAfterReturn();}});
 window.addEventListener('pagehide',save);setInterval(()=>{if(!document.hidden)save();},5000);
-function frame(now){const elapsed=Math.min(.25,(now-lastFrame)/1000);lastFrame=now;const audible=!document.hidden&&!paused&&!edit&&!reconciling,before=doneCue.scan(state,{audible});if(audible)E.advance(state,elapsed*speed);const after=doneCue.scan(state,{audible});if(before.play||after.play)sound.effect('done');if(!reconciling)view.draw(state,edit,now/1000,!paused&&!document.hidden);if(modal?.type==='gallery'&&!walkPreviewPaused){const meta=atlasForActor(walkPreviewActor);if(meta)paintWalkPreview(walkPreviewState==='eat'?Math.floor(now/1000*EATING_FPS)%3:previewFrame(meta,now/1000));paintActorThumbnails(now/1000);}if(now-lastUI>350){updateHUD();if(!reconciling)pumpNotifications();if(modal&&(['stove','hire'].includes(modal.type)||modal.type==='quest'&&questModalKey()!==renderedQuestKey)){const focus=document.activeElement,act=focus?.dataset.act,id=focus?.dataset.id,kind=focus?.dataset.kind;renderModal();if(act)[...dialog.querySelectorAll('[data-act]')].find(el=>el.dataset.act===act&&el.dataset.id===id&&el.dataset.kind===kind)?.focus({preventScroll:true});}lastUI=now;}requestAnimationFrame(frame);}
+function frame(now){const elapsed=Math.min(.25,(now-lastFrame)/1000);lastFrame=now;const audible=!document.hidden&&!paused&&!edit&&!reconciling,before=doneCue.scan(state,{audible});if(audible)E.advance(state,elapsed*speed);const after=doneCue.scan(state,{audible});if(before.play||after.play)sound.effect('done');if(!reconciling)view.draw(state,edit,now/1000,!paused&&!document.hidden);tutorialGuide.update();if(modal?.type==='gallery'&&!walkPreviewPaused){const meta=atlasForActor(walkPreviewActor);if(meta)paintWalkPreview(walkPreviewState==='eat'?Math.floor(now/1000*EATING_FPS)%3:previewFrame(meta,now/1000));paintActorThumbnails(now/1000);}if(now-lastUI>350){updateHUD();if(!reconciling)pumpNotifications();if(modal&&(['stove','hire'].includes(modal.type)||modal.type==='quest'&&questModalKey()!==renderedQuestKey)){const focus=document.activeElement,act=focus?.dataset.act,id=focus?.dataset.id,kind=focus?.dataset.kind;renderModal();if(act)[...dialog.querySelectorAll('[data-act]')].find(el=>el.dataset.act===act&&el.dataset.id===id&&el.dataset.kind===kind)?.focus({preventScroll:true});}lastUI=now;}requestAnimationFrame(frame);}
 loadAssets();updateHUD();requestAnimationFrame(frame);if(loadIssue)toast(loadIssue,'danger');if(offline)open('offline',{report:offline});save();
 // Test hook deliberately exposes only this browser-local test game.
 window.__BAMSONNIM__={get state(){return state;},engine:E,view,sound,save,open,pause(value=true){paused=value;lastFrame=performance.now();updateHUD();},advance(seconds,offline=false){E.advance(state,seconds,{offline});if(offline){doneCue.sync(state);occupationWarning.sync(state);}save();updateHUD();},get edit(){return edit;}};

@@ -163,6 +163,7 @@ export const ASSET_MANIFEST={
   }),
   bookCoverBlank:asset('bookCoverBlank','요리책 빈 표지 자리',{url:'/assets/cookbook-cover-blank.png',width:1,height:1,type:'ui-placeholder',trim:false}),
   night:asset('night','쿼터뷰 폐허 한옥 마당',{url:'/assets/night-ruins-quarterview.png',width:1671,height:941,type:'background',trim:false,projection:{type:'orthographic-isometric',axisSlope:.5,horizon:false}}),
+  nightWinter:asset('nightWinter','눈 쌓인 겨울 폐허 한옥 마당',{url:'/assets/night-ruins-winter-v1.png',width:1670,height:942,type:'background',trim:false,lazy:true}),
   poster:asset('poster','뇌 주먹밥의 효능 포스터',{width:1024,height:1536,type:'poster',trim:false}),
   delinquent:asset('delinquent','일진 고딩',{width:1254,height:1254}),
   neighbors:asset('neighbors','러닝·테니스·찜질방·복학생',{width:1254,height:1254,cols:2,type:'atlas'}),

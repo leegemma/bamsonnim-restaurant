@@ -1,0 +1,16 @@
+.mayor-tutorial[hidden],.tutorial-target[hidden]{display:none!important}
+.mayor-tutorial{position:absolute;z-index:12;left:12px;bottom:72px;display:flex;align-items:flex-start;gap:8px;width:min(470px,calc(100% - 24px));max-height:calc(100% - 84px);overflow:auto;overscroll-behavior:contain;pointer-events:auto;color:#332b20}
+.tutorial-mayor{width:84px;height:84px;flex:0 0 84px;align-self:flex-end;image-rendering:pixelated;filter:drop-shadow(0 3px 0 #172b2277)}
+.tutorial-bubble{min-width:0;max-height:none;overflow:visible;border:2px solid #967844;background:#fff1d0;box-shadow:3px 3px 0 #172b2266;padding:12px;line-height:1.55}
+.tutorial-copy small{font-size:12px;color:#665236}.tutorial-copy h2{font-size:17px;line-height:1.4;margin:4px 0 6px}.tutorial-copy p{font-size:14px;margin:0;overflow-wrap:anywhere}
+.tutorial-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.tutorial-actions .button{min-height:44px;min-width:44px;padding:8px 10px;font-size:13px}.tutorial-actions .quiet{color:#59492e;background:#f0dfb7}
+.tutorial-target{position:absolute;z-index:11;width:48px;height:48px;transform:translate(-50%,-50%);border:3px solid #fff1a4;border-radius:50%;box-shadow:0 0 0 3px #264a37,0 0 0 6px #fff1a455;pointer-events:none}
+.tutorial-recipe-target{outline:3px solid #375c38!important;outline-offset:3px}
+.mayor-tutorial.tutorial-in-book{position:relative;inset:auto;flex:0 0 auto;width:auto;max-height:140px;margin:8px 12px 0;align-items:center;gap:8px}.tutorial-in-book .tutorial-mayor{width:48px;height:48px;flex-basis:48px}.tutorial-in-book .tutorial-bubble{padding:8px;flex:1;box-shadow:none}.tutorial-in-book .tutorial-copy small{display:none}.tutorial-in-book .tutorial-copy h2{font-size:14px;margin:0 0 2px}.tutorial-in-book .tutorial-copy p{font-size:13px}.tutorial-in-book .tutorial-actions{margin-top:4px}.tutorial-in-book .tutorial-actions .button{padding:4px 8px}
+@media(orientation:landscape) and (max-height:500px){.mayor-tutorial{width:min(350px,54%);left:8px;bottom:68px;gap:4px;max-height:calc(100% - 80px)}.tutorial-mayor{width:52px;height:60px;flex-basis:52px}.tutorial-bubble{padding:8px}.tutorial-copy h2{font-size:15px;margin:2px 0 4px}.tutorial-copy p{font-size:13px}.tutorial-actions{margin-top:6px}.tutorial-actions .button{font-size:12px;padding:6px 8px}.mayor-tutorial.tutorial-in-book{width:auto;max-height:110px;margin:4px 8px 0}.tutorial-in-book .tutorial-mayor{display:none}.tutorial-in-book .tutorial-bubble{display:flex;align-items:center;gap:8px}.tutorial-in-book .tutorial-copy{min-width:0;flex:1}.tutorial-in-book .tutorial-actions{margin:0;flex:0 0 auto}.tutorial-in-book .tutorial-skip{max-width:90px}}
+@media(prefers-reduced-motion:reduce){.mayor-tutorial,.tutorial-target{animation:none;transition:none}}
+
+.tutorial-replay-row{padding:0 20px 20px;color:#59492e}.tutorial-replay-row .button{min-height:44px}.tutorial-replay-row p{font-size:13px;line-height:1.5}
+
+.tutorial-copy .tutorial-scroll-note{display:none}
+@media(orientation:landscape) and (max-height:500px){.mayor-tutorial[data-step="finish"] .tutorial-scroll-note{display:block;margin-bottom:6px;font-size:12px;color:#665236}}

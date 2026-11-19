@@ -34,7 +34,8 @@
 .topbar .currency b { font-size: 20px; line-height: 1; white-space: nowrap; }
 .topbar .currency small { display: none; }
 .topbar .currency .mini { width: 28px; height: 28px; }
-.topbar .currency .add { display: grid; flex: 0 0 44px; width: 44px; min-width: 44px; height: 44px; min-height: 44px; margin: 0; padding: 0; }
+.topbar .currency .add { display: grid; flex: 0 0 44px; width: 44px; min-width: 44px; height: 44px; min-height: 44px; margin: 0; padding: 0; position: relative; border: 0; background: transparent; font-size: 12px; isolation: isolate; }
+.topbar .currency .add::before { content: ""; position: absolute; width: 22px; height: 22px; inset: 0; margin: auto; background: #2c4233; border: 1px solid #91a275; z-index: -1; pointer-events: none; }
 .topbar .top-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 6px; }
 .topbar .top-actions > .icon-button { display: inline-flex; flex: 0 0 var(--hud-height); width: var(--hud-height); min-width: var(--hud-height); padding: 0; }
 .topbar .top-actions > .icon-button > svg { width: 24px; height: 24px; }
@@ -60,7 +61,7 @@
 @media (max-width: 640px) {
   .topbar { padding-inline: 6px; }
   .topbar .brand { min-width: 0; gap: 0; }
-  .topbar .brand > span:last-child, .topbar .level-block, .topbar .currency .add { display: none; }
+  .topbar .brand > span:last-child, .topbar .level-block { display: none; }
   .topbar .hunger-card { flex-basis: 116px; min-width: 104px; }
   .topbar .hunger-track { flex-basis: 40px; width: 40px; max-width: 40px; min-width: 24px; }
   .topbar .currency b { font-size: 14px; }

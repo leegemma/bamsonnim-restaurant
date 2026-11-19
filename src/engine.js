@@ -1,3 +1,4 @@
+import {newTutorial,validateTutorial,tutorialCooked,tutorialStocked,tutorialServed} from './mayor-tutorial.js';
 import {SAVE_VERSION,OFFLINE_CAP,RECIPES,ZOMBIES,FURNITURE,SKINS,WAITER_NAMES,WAITER_NAME_UPDATES,LIMITS,EXPANSIONS,QUESTS,DIRECTIONS,recipe,zombie,furniture,xpNeeded} from './data.js';
 import {furnitureCells,furnitureOccupies,wallAttachment,wallSlotKey,wallOccupiedSlots} from './furniture-footprint.js';
 import {staffEntrance,zombieEntrance,zombieExit,customerExit,atEntrance} from './entrances.js';
@@ -16,7 +17,7 @@ export function newGame(now=Date.now()){
     mastery:{},knownRecipes:{},album:{},seenVisitors:[],events:{christmas:'upcoming'},eventBooks:{},
     stats:{cooked:0,served:0,sold:0,earned:0,tablesBought:0,chairsBought:0,hired:0,fevers:0,fed:{}},
     questIndex:0,questBase:0,combo:0,lastServe:-100,feverUntil:0,spawnIn:7,nextId:1,serveCursor:0,seatCursor:0,
-    settings:{music:.22,sfx:.45},tutorial:0,notifications:[],dailyClaim:'',fraction:0,
+    settings:{music:.22,sfx:.45},tutorial:0,guidedTutorial:newTutorial(),notifications:[],dailyClaim:'',fraction:0,
   };
   for(const [type,x,y,dir] of [['stove',1,1,0],['stove',2,1,1],['server',4,1,0],['table',2,4,0],['chair',2,5,3],['chair',1,4,0],['table',5,4,0],['chair',5,5,3],['chair',6,4,2],['jars',0,1,0],['lantern',7,0,0],['poster',3,0,0]])state.objects.push({uid:uid(state),type,x,y,dir});
   state.waiters.push({uid:uid(state),name:WAITER_NAMES[0],appearance:0,x:3,y:3,infectedUntil:0,task:null,path:[],speedLevel:0,kindnessLevel:0,cleaningLevel:0});
@@ -58,7 +59,7 @@ export function cook(s,stoveId,foodId){
   const grace=Math.min(21600,Math.max(180,r.duration*2));
   o.cook={foodId:r.id,started:s.time,readyAt:s.time+r.duration,spoilAt:s.time+r.duration+grace};
   if(r.event)s.eventBooks[r.event]=true;
-  s.tutorial=Math.max(s.tutorial,1);notify(s,`${r.name} 조리를 시작했어요.`, 'cook-start');return null;
+  tutorialCooked(s,stoveId,foodId);s.tutorial=Math.max(s.tutorial,1);notify(s,`${r.name} 조리를 시작했어요.`, 'cook-start');return null;
 }
 export function instant(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||stoveStatus(s,o)!=='cooking')return '조리 중인 음식이 없어요.';const r=recipe(o.cook.foodId),cost=Math.max(1,Math.ceil((r.duration<=600?1:Math.ceil(r.duration/3600))*Math.max(0,o.cook.readyAt-s.time)/r.duration));if(s.hearts<cost)return '심장이 부족해요.';s.hearts-=cost;const grace=o.cook.spoilAt-o.cook.readyAt;o.cook.readyAt=s.time;o.cook.spoilAt=s.time+grace;notify(s,'심장으로 요리를 즉시 완성했어요.','cook');return null;}
 export function discard(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||o.cook.collecting)return '이미 운반 중이에요.';delete o.cook;return null;}
@@ -211,7 +212,7 @@ function settleLegacyTransfers(s){
   }
 }
 function completeCooking(s,foodId){
-  const before=recipeLevel(s),old=stars(s,foodId),r=recipe(foodId);s.mastery[foodId]=(s.mastery[foodId]||0)+1;s.stats.cooked++;s.knownRecipes[foodId]=true;s.tutorial=Math.max(s.tutorial,2);
+  tutorialStocked(s,foodId);const before=recipeLevel(s),old=stars(s,foodId),r=recipe(foodId);s.mastery[foodId]=(s.mastery[foodId]||0)+1;s.stats.cooked++;s.knownRecipes[foodId]=true;s.tutorial=Math.max(s.tutorial,2);
   const n=stars(s,foodId);if(n>old){const base=Math.min(1000,10*Math.max(1,Math.round(r.servings*r.price/15))),reward=base*[1,5,10][n-1];s.coins+=reward;addXp(s,reward);notify(s,`${r.name} 숙련도 ${n}! 레시피 레벨 ${recipeLevel(s)}`, 'mastery');for(const r of RECIPES)if(r.required>before&&r.required<=recipeLevel(s))notify(s,`새 레시피 · ${r.name}`, 'unlock');}
 }
 
@@ -364,7 +365,7 @@ function updateWorker(s,w,dt,offline){
     else{
       // Older v1 saves may still be walking to the former table service point.
       if(!beside(w,seat.chair)){if(!setRoute(s,w,seat.chair))cancelTask(s,w);return;}
-      c.phase='eating';c.foodId=t.foodId;c.portion=t.portion;c.eatUntil=s.time+6;c.worker=null;if(staffTipChance(w)>0){c.tipChance=staffTipChance(w);c.tipStaffName=w.name;}w.task=null;refreshServerReservation(s,t.server);addCombo(s,offline);
+      c.phase='eating';c.foodId=t.foodId;c.portion=t.portion;c.eatUntil=s.time+6;c.worker=null;if(staffTipChance(w)>0){c.tipChance=staffTipChance(w);c.tipStaffName=w.name;}w.task=null;refreshServerReservation(s,t.server);addCombo(s,offline);tutorialServed(s,t.foodId);
     }
   }else{
     const chair=s.objects.find(o=>o.uid===t.chair);
@@ -523,7 +524,7 @@ export function daily(s,now=new Date()) {const date=now.toISOString().slice(0,10
 // Strict import boundary: malformed files never replace an existing game.
 export function validateSave(raw){
   if(!raw||raw.version!==SAVE_VERSION||!Number.isFinite(raw.savedAt)||raw.savedAt<0||!Number.isFinite(raw.time)||raw.time<0)throw new Error('지원하지 않거나 손상된 저장 파일입니다.');
-  const s=structuredClone(raw);
+  const s=structuredClone(raw);validateTutorial(s);
   for(const key of ['serveCursor','seatCursor']){if(s[key]===undefined)s[key]=0;if(!Number.isInteger(s[key])||s[key]<0||s[key]>256)throw new Error('서빙·좌석 순서 정보가 손상되었습니다.');}
   for(const key of ['coins','hearts','xp','level','hunger','size','seed','nextId','questIndex','questBase','spawnIn','combo','lastServe','feverUntil'])if(!Number.isFinite(s[key]))throw new Error('저장 수치가 손상되었습니다.');
   if(s.coins<0||s.hearts<0||s.xp<0||s.level<1||s.level>1000||!Number.isInteger(s.size)||s.size<8||s.size>16||s.hunger<0||s.hunger>100||s.questIndex<0||s.questIndex>QUESTS.length)throw new Error('저장 범위가 올바르지 않습니다.');
