@@ -72,6 +72,8 @@ const officePoses=[
 });
 
 export const ASSET_MANIFEST={
+  ghostDumplingFood:asset('ghostDumplingFood','유령 얼굴 만둣국',{url:'/assets/food-ghost-dumpling-faces-v1.png',width:1299,height:1211,cols:1,rows:1,type:'food-atlas'}),
+  spiderDumplingFood:asset('spiderDumplingFood','거미 두 마리와 거미줄을 더한 찐만두',{url:'/assets/food-spider-dumpling-plus-two-v1.png',width:1246,height:1262,cols:1,rows:1,type:'food-atlas'}),
   hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
   food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'atlas'}),
   emptyDish:asset('emptyDish','식사 후 빈 그릇',{url:'/assets/empty-dish.svg',width:32,height:20,rows:1,trim:false}),
@@ -202,6 +204,8 @@ export const ASSETS=Object.fromEntries(Object.entries(ASSET_MANIFEST).map(([key,
 
 export function foodFrame(spriteIndex=0){
   const index=Number.isInteger(spriteIndex)?spriteIndex:0;
+  if(index===13)return{key:'ghostDumplingFood',index:0};
+  if(index===18)return{key:'spiderDumplingFood',index:0};
   const atlas=FOOD_ATLASES.find(a=>index>=a.startSprite&&index<a.startSprite+a.count);
   return atlas?{key:atlas.key,index:index-atlas.startSprite}:{key:'food',index};
 }
