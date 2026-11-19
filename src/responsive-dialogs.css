@@ -156,9 +156,8 @@ dialog.orientation-note[open] {
 
   dialog.cookbook #dialog-content { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; }
   .cookbook .book-toolbar { padding: 4px 12px; flex-shrink: 0; }
-  .cookbook .book-shelf-grid { flex: 1; min-height: 0; align-content: center; gap: 6px; padding: 8px 12px; }
+  .cookbook .book-shelf-grid { flex: 1; min-height: 0; align-content: start; gap: 8px; padding: 8px 12px; }
   .cookbook .book-cover-card { gap: 4px; padding: 4px 2px; }
-  .cookbook .book-cover-image { width: auto; height: clamp(54px, calc(100dvh - 210px), 132px); aspect-ratio: 3 / 4; max-width: 100%; }
   .cookbook .book-spread { flex: 1; min-height: 0; overflow-y: auto; }
   .cookbook .book-footer { flex-shrink: 0; min-height: 36px; padding: 3px 10px; gap: 6px; }
   .cookbook .book-footer small { margin-inline-start: 4px; }
@@ -178,11 +177,8 @@ dialog.orientation-note[open] {
   .settings .settings-row { flex-wrap: wrap; }
   .settings .settings-row > span { flex: 1 1 140px; }
   .events .event-items { gap: 16px; flex-wrap: wrap; }
-  .cookbook .book-shelf-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; }
-  .cookbook .book-cover-image { width: 84px; height: 112px; }
   .cookbook .book-spread { display: block; }
   .cookbook .recipe-page { border-bottom: 2px solid #ad986a; }
-  .cookbook .book-footer small { display: none; }
 }
 
 /* The removed scene status line frees a little room above both HUD rails. */

@@ -1,36 +1,93 @@
-.topbar > .hunger-card {
-  flex: 0 1 170px;
-  min-width: 110px;
-  padding: 8px 10px;
-}
-.topbar .hunger-label {
+/* One shared outer height keeps the resource and action groups aligned. */
+.topbar {
+  --hud-height: 48px;
+  min-height: 62px;
+  padding-block: 6px;
+  padding-left: max(10px, env(safe-area-inset-left));
+  padding-right: max(10px, env(safe-area-inset-right));
   gap: 12px;
-  white-space: nowrap;
-  font-size: 12px;
+  align-items: center;
 }
-.topbar .hunger-label b { font-size: 12px; font-variant-numeric: tabular-nums; }
-.topbar .hunger-track { margin: 6px 0 0; }
-
+.topbar > .hunger-card,
+.topbar .currency,
+.topbar .top-actions > .icon-button {
+  height: var(--hud-height);
+  min-height: var(--hud-height);
+  box-sizing: border-box;
+  border: 2px solid #687b57;
+}
+.topbar > .hunger-card {
+  display: flex;
+  align-items: center;
+  flex: 0 1 160px;
+  min-width: 128px;
+  padding: 0 8px;
+  gap: 6px;
+}
+.topbar > .hunger-card.danger { border-color: #c58366; }
+.topbar .hunger-face { flex: 0 0 28px; width: 28px; height: 28px; overflow: hidden; image-rendering: pixelated; }
+.topbar .hunger-track { flex: 1 1 72px; width: 72px; min-width: 28px; max-width: 72px; height: 8px; margin: 0; border: 1px solid #687b57; }
+.topbar #hunger-value { flex: 0 0 4ch; min-width: 4ch; font-size: 14px; text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.topbar .currencies { align-items: center; gap: 6px; min-width: 0; }
+.topbar .currency { min-width: 0; padding: 0 5px; gap: 5px; }
+.topbar .currency.heart { min-width: 0; }
+.topbar .currency b { font-size: 20px; line-height: 1; white-space: nowrap; }
+.topbar .currency small { display: none; }
+.topbar .currency .mini { width: 28px; height: 28px; }
+.topbar .currency .add { display: grid; flex: 0 0 44px; width: 44px; min-width: 44px; height: 44px; min-height: 44px; margin: 0; padding: 0; }
+.topbar .top-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 6px; }
+.topbar .top-actions > .icon-button { display: inline-flex; flex: 0 0 var(--hud-height); width: var(--hud-height); min-width: var(--hud-height); padding: 0; }
+.topbar .top-actions > .icon-button > svg { width: 24px; height: 24px; }
 @media (max-width: 1100px) {
-  .topbar { gap: 14px; }
+  .topbar { gap: 8px; }
   .topbar .brand { min-width: 0; }
-  .topbar .level-block { min-width: 70px; }
-  .topbar > .hunger-card { flex-basis: 130px; }
-  .topbar .currency { min-width: 100px; }
-  .topbar .currency.heart { min-width: 80px; }
+  .topbar .brand strong { font-size: 18px; white-space: nowrap; }
+  .topbar .brand small, .topbar .xp-track { display: none; }
+  .topbar .level-block { flex: 0 0 auto; min-width: 0; }
+  .topbar .level-block > .eyebrow, .topbar .level-line > small { display: none; }
+  .topbar .level-line { margin: 0; }
+  .topbar .currency b { font-size: 18px; }
 }
-@media (max-width: 760px), (orientation: landscape) and (max-height: 500px) {
-  .topbar { gap: 9px; }
-  .topbar .level-block { min-width: 56px; }
-  .topbar > .hunger-card { flex-basis: 116px; min-width: 100px; padding: 5px 7px; }
-  .topbar .hunger-label, .topbar .hunger-label b { font-size: 11px; }
-  .topbar .hunger-label { gap: 6px; }
-  .topbar .hunger-track { margin-top: 4px; }
-  .topbar .currency { min-width: 90px; }
-  .topbar .currency.heart { min-width: 72px; }
+@media (max-width: 760px) {
+  .topbar { gap: 6px; }
+  .topbar .hunger-card { flex-basis: 132px; min-width: 116px; padding-inline: 5px; gap: 4px; }
+  .topbar .hunger-face { flex-basis: 24px; width: 24px; height: 24px; }
+  .topbar .hunger-track { flex-basis: 52px; width: 52px; max-width: 52px; }
+  .topbar .currency { padding-inline: 4px; gap: 4px; }
+  .topbar .currency .mini { width: 24px; height: 24px; }
+  .topbar .currency b { font-size: 16px; }
 }
-@media (max-width: 600px) {
-  .topbar { gap: 7px; }
-  .topbar .currency { min-width: 75px; }
-  .topbar .currency.heart { min-width: 65px; }
+@media (max-width: 640px) {
+  .topbar { padding-inline: 6px; }
+  .topbar .brand { min-width: 0; gap: 0; }
+  .topbar .brand > span:last-child, .topbar .level-block, .topbar .currency .add { display: none; }
+  .topbar .hunger-card { flex-basis: 116px; min-width: 104px; }
+  .topbar .hunger-track { flex-basis: 40px; width: 40px; max-width: 40px; min-width: 24px; }
+  .topbar .currency b { font-size: 14px; }
+}
+@media (max-width: 480px) {
+  .topbar { height: auto; min-height: 112px; flex-wrap: wrap; justify-content: space-between; }
+  .topbar > .brand { display: none; }
+  .topbar > .hunger-card { flex: 0 0 100%; }
+  .topbar .hunger-track { flex-basis: 72px; width: 72px; max-width: 72px; }
+  .topbar .currencies { flex: 1; }
+  .topbar .currency { flex: 1; }
+}
+.topbar > .hunger-card { margin-inline-start: auto; }
+@media (max-width: 640px) {
+  .topbar .brand-mark { display: grid; width: 28px; height: 28px; }
+}
+@media (max-width: 640px) {
+  .topbar { gap: 4px; }
+}
+@media (max-width: 480px) {
+  .topbar .currency { flex: 1 1 auto; }
+  .topbar .currency b { font-size: 12px; }
+}
+
+@media (max-width: 640px) {
+  .topbar .currencies { gap: 4px; }
+}
+@media (max-width: 480px) {
+  .topbar #hunger-value { margin-inline-start: auto; }
 }

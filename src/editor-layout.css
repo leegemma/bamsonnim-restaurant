@@ -1,75 +1,73 @@
-/* Keep editor actions beside the shop throughout mobile landscape sizes. */
+/* Editing keeps the shop on the screen edge and the selected actions above it. */
+#stage.editing { --edit-shop-height: 176px; z-index: 5; }
+#stage.editing > #shop-dock {
+  position: fixed;
+  inset: auto 0 0;
+  width: auto;
+  height: calc(var(--edit-shop-height) + env(safe-area-inset-bottom));
+  max-height: calc(100dvh - 100px);
+  padding-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
+  background: #182f28;
+  border: 2px solid #8f9d6c;
+  box-shadow: 0 -2px 0 #0b231c;
+  z-index: 40;
+}
+#shop-dock .shop-tabs {
+  display: flex;
+  flex: 0 0 44px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+#shop-dock .shop-tabs > button { flex-shrink: 0; min-height: 44px; padding: 5px 8px; font-size: 12px; }
+#shop-dock .shop-done {
+  position: sticky;
+  inset-inline-end: 0;
+  z-index: 1;
+  margin-inline-start: auto;
+  background: #20382c;
+  border-inline-start: 2px solid #879970;
+}
+#shop-dock .shop-items { flex: 1; min-height: 0; height: auto; padding: 4px 6px; gap: 6px; overflow: auto; }
+#shop-dock .shop-item { width: 136px; min-height: 76px; padding: 4px; box-shadow: none; }
+#shop-dock .shop-item :is(.sprite, .furniture-thumb) { width: 32px; height: 32px; }
+#shop-dock .shop-item b { margin-block: 1px 2px; font-size: 12px; line-height: 1.2; }
+#shop-dock .shop-item small { font-size: 11px; line-height: 1.2; }
+#stage.editing > #edit-tools {
+  position: fixed;
+  inset: auto auto calc(var(--edit-shop-height) + env(safe-area-inset-bottom) + 8px) 50%;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  max-height: calc(100dvh - var(--edit-shop-height) - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 0;
+  overflow: auto;
+  z-index: 41;
+  pointer-events: none;
+}
+#edit-tools > #edit-info { max-width: 360px; padding: 4px 8px; white-space: normal; line-height: 16px; font-size: 12px; box-shadow: none; pointer-events: auto; }
+#edit-tools > .button-row {
+  flex-wrap: nowrap;
+  max-width: none;
+  gap: 6px;
+  padding: 4px;
+  background: #17372e;
+  border: 2px solid #879970;
+  pointer-events: auto;
+}
+#edit-tools :is(.button, .icon-button) { min-height: 44px; padding: 6px 8px; font-size: 12px; }
+#edit-tools .icon-button { min-width: 44px; width: 44px; }
 @media (orientation: landscape) and (max-height: 500px) {
-  /* Separate the editor and shop instead of stacking both over a 152px room. */
-  #edit-tools {
-    inset-block: 6px;
-    inset-inline-start: 6px;
-    width: 216px;
-    max-width: 40%;
-    max-height: none;
-    padding: 4px;
-    display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transform: none;
-    background: #17372ef5;
-    border: 2px solid #879970;
-    scrollbar-width: thin;
-    scroll-padding-block: 40px 6px;
-  }
-  #edit-tools > span {
-    display: block;
-    max-width: none;
-    padding: 3px 4px;
-    font-size: 11px;
-    line-height: 1.3;
-    white-space: normal;
-    box-shadow: none;
-  }
-  #edit-tools > .button-row {
-    position: sticky;
-    inset-block-start: 0;
-    z-index: 2;
-    max-width: none;
-    justify-content: flex-start;
-    gap: 4px;
-    padding-block: 4px;
-    background: #17372e;
-  }
-  #edit-tools :is(.button, .icon-button) { min-height: 32px; padding: 4px 5px; font-size: 12px; }
+  #stage.editing { --edit-shop-height: 132px; }
   #edit-tools .button > svg { display: none; }
-  #edit-tools .icon-button { min-width: 32px; width: 32px; }
-  #edit-tools details { max-width: none; padding: 2px 4px 6px; box-shadow: none; }
-  #edit-tools summary { min-height: 32px; line-height: 32px; font-size: 12px; }
-  #edit-tools label { margin-block: 4px; font-size: 12px; }
-  #edit-tools :is(select, input) { min-height: 32px; padding-block: 4px; }
-  #edit-tools .coordinate-fields { gap: 6px; }
-  #edit-tools details p { margin-block: 6px 0; font-size: 11px; line-height: 1.4; }
-
-  #shop-dock {
-    inset-inline: 228px 6px;
-    inset-block-end: 6px;
-    height: 132px;
-    max-height: calc(100% - 12px);
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #8f9d6c;
-    box-shadow: 0 -2px 0 #0b231c;
-  }
-  #shop-dock .shop-tabs { height: 36px; min-height: 36px; padding: 0; overflow-x: auto; }
-  #shop-dock .shop-tabs > button { flex-shrink: 0; min-height: 34px; padding: 5px 8px; font-size: 12px; }
-  #shop-dock .shop-done {
-    position: sticky;
-    inset-inline-end: 0;
-    z-index: 1;
-    margin-inline-start: auto;
-    background: #20382c;
-    border-inline-start: 2px solid #879970;
-  }
-  #shop-dock .shop-items { flex: 1; min-height: 0; height: auto; padding: 4px 6px; gap: 6px; overflow: auto; }
-  #shop-dock .shop-item { width: 136px; min-height: 76px; padding: 4px; box-shadow: none; }
-  #shop-dock .shop-item :is(.sprite, .furniture-thumb) { width: 32px; height: 32px; }
-  #shop-dock .shop-item b { margin-block: 1px 2px; font-size: 12px; line-height: 1.2; }
-  #shop-dock .shop-item small { font-size: 11px; line-height: 1.2; }
-
 }

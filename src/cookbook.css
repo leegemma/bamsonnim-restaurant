@@ -1,46 +1,52 @@
-.book-shelf-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:16px 22px;overflow:auto;overscroll-behavior:contain;min-height:0}
-.book-cover-card{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;padding:10px 6px;background:transparent;color:#4c4937;border:2px solid transparent}
-.book-cover-card:focus-visible{outline-offset:-3px}
-.book-cover-image{display:block;width:96px;height:128px;max-width:100%;background:#e2d5b5;border:1px solid #c6b895;image-rendering:pixelated;object-fit:contain}
-.book-cover-card strong{font-size:13px;line-height:1.35;overflow-wrap:anywhere}
-.book-cover-card small,.book-season{font-size:11px;color:#756951;line-height:1.25}
-.book-cover-card.locked .book-cover-image{background:#d2c8b1;border-style:dashed}
-.book-cover-art{position:relative;display:block;width:96px;height:128px;max-width:100%;flex-shrink:0}
-.book-cover-art .book-cover-image{width:100%;height:100%}
-.book-cover-card.locked .book-cover-image{filter:brightness(.65)}
-.book-lock{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:#f7e8b4;filter:drop-shadow(2px 2px #172b22) drop-shadow(-1px -1px #172b22)}
-@media(orientation:landscape) and (max-height:500px){.book-cover-art{width:64px;height:78px}.book-lock svg{width:22px;height:22px}}
-@media(orientation:landscape) and (max-height:280px){.book-cover-art{width:40px;height:46px}.book-lock svg{width:18px;height:18px}}
-.book-toolbar{display:flex;align-items:center;gap:16px;padding:8px 20px;border-bottom:1px solid #c9b997;flex-shrink:0}
-.book-toolbar .button{display:flex;align-items:center;gap:6px;min-height:36px;padding:6px 10px}
-.book-toolbar strong{font-size:15px;color:#5b5038}
+/* The cover wrapper is the only source of artwork geometry. */
+dialog.cookbook[open]{display:flex;flex-direction:column;max-height:calc(100dvh - 24px);overflow:hidden}
+dialog.cookbook #dialog-content{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.cookbook .book-shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,7.5rem),1fr));grid-auto-rows:max-content;align-content:start;align-items:start;gap:12px;padding:16px 20px;overflow-x:hidden;overflow-y:scroll;overscroll-behavior:contain;scroll-padding:12px;scrollbar-gutter:stable;scrollbar-width:auto;scrollbar-color:#88795b #e2d5b5;min-height:0;flex:1}
+.cookbook .book-shelf-grid::-webkit-scrollbar{width:10px}
+.cookbook .book-shelf-grid::-webkit-scrollbar-track{background:#e2d5b5}
+.cookbook .book-shelf-grid::-webkit-scrollbar-thumb{background:#88795b;border:2px solid #e2d5b5}
+.cookbook .book-cover-card{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;min-height:44px;padding:10px 6px;background:transparent;color:#4c4937;border:2px solid transparent;scroll-margin-block:12px}
+.cookbook .book-cover-card:focus-visible{outline-offset:-3px}
+.cookbook .book-cover-art{position:relative;display:block;inline-size:var(--book-cover-width,96px);block-size:var(--book-cover-height,128px);max-inline-size:100%;flex-shrink:0}
+.cookbook .book-cover-art>.book-cover-image{display:block;width:100%;height:100%;max-width:100%;min-height:0;background:transparent;border:0;image-rendering:pixelated;object-fit:contain}
+.cookbook .book-cover-card strong{font-size:13px;font-weight:600;line-height:1.4;overflow-wrap:anywhere;text-wrap:balance}
+.cookbook .book-cover-card small,.cookbook .book-season{font-size:12px;color:var(--paper-muted,#655b45);line-height:1.4}
+.cookbook .book-cover-card.locked .book-cover-image{filter:brightness(.65)}
+.cookbook .book-lock{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;color:#f7e8b4;filter:drop-shadow(2px 2px #172b22) drop-shadow(-1px -1px #172b22)}
+.cookbook .book-toolbar{display:flex;align-items:center;gap:16px;padding:8px 20px;border-bottom:1px solid #c9b997;flex-shrink:0}
+.cookbook .book-toolbar .button{display:flex;align-items:center;gap:6px;min-height:44px;padding:6px 10px;flex-shrink:0}
+.cookbook .book-toolbar strong{font-size:15px;color:#5b5038}
+.cookbook .book-footer{display:flex;align-items:center;justify-content:center;flex-shrink:0;gap:12px;padding:6px 14px}
+.cookbook .book-footer>span{min-width:0;text-align:center;font-variant-numeric:tabular-nums}
+.cookbook .book-footer .icon-button{width:44px;height:44px;min-width:44px;min-height:44px;flex-shrink:0}
+.cookbook .book-footer .book-total{display:block;margin:3px 0 0;font-size:12px;line-height:1.4;white-space:normal}
+dialog.cookbook[open] .dialog-heading{padding-inline-end:64px}
+dialog.cookbook[open] .close-button{min-width:44px;min-height:44px}
 @media(orientation:landscape) and (max-height:500px){
- .book-shelf-grid{gap:5px;padding:8px 12px}
- .book-cover-card{padding:5px 3px;gap:5px}
- .book-cover-image{width:64px;height:78px}
- .book-cover-card strong{font-size:12px;line-height:15px}
- .book-cover-card small,.book-season{font-size:10px}
- .book-toolbar{padding:4px 12px;gap:12px}
- .book-toolbar strong{font-size:13px}
- .book-toolbar .button{min-height:30px;padding:4px 8px;font-size:12px}
+ .cookbook{--book-cover-width:66px;--book-cover-height:88px}
+ .cookbook .book-shelf-grid{gap:8px;padding:10px 12px}
+ .cookbook .book-cover-card{padding:4px;gap:6px}
+ .cookbook .book-cover-card strong{font-size:12px;line-height:1.4}
+ .cookbook .book-lock svg{width:22px;height:22px}
+ .cookbook .book-toolbar{padding:4px 12px;gap:12px}
+ .cookbook .book-toolbar strong{font-size:13px}
+ .cookbook .book-toolbar .button{padding:4px 8px;font-size:12px}
 }
 @media(orientation:landscape) and (max-height:280px){
- .book-shelf-grid{gap:4px;padding:4px 8px}
- .book-cover-image{width:40px;height:46px}
- .book-cover-card{gap:3px;padding:3px}
- .book-cover-card small,.book-season{display:none}
- .book-toolbar{padding-block:2px}
+ .cookbook{--book-cover-width:42px;--book-cover-height:56px}
+ .cookbook .book-shelf-grid{gap:8px;padding:8px}
+ .cookbook .book-cover-card{gap:4px;padding:4px}
+ .cookbook .book-lock svg{width:18px;height:18px}
+ .cookbook .book-toolbar{padding-block:2px}
 }
 
-.cookbook .book-footer .book-total{display:block;margin-top:3px;font-size:12px;line-height:1.3;white-space:nowrap}
-
 /* Keep recipe art and facts on one shared top edge and remove the old footer. */
-.cookbook .book-page-status{margin-inline-start:auto;white-space:nowrap;font-size:12px;color:#756951}
+.cookbook .book-page-status{margin-inline-start:auto;white-space:nowrap;font-size:12px;color:var(--paper-muted,#655b45)}
 /* The open recipe uses its toolbar as the single compact heading. */
 dialog.cookbook:has(.book-reader) .dialog-heading{display:contents}
 dialog.cookbook:has(.book-reader) .dialog-heading>:is(.dialog-overline,h1,p){display:none}
 dialog.cookbook:has(.book-reader) .book-toolbar{min-height:44px;padding-block:4px;padding-inline-end:56px}
-dialog.cookbook:has(.book-reader) .book-toolbar strong{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+dialog.cookbook:has(.book-reader) .book-toolbar strong{min-width:0;overflow-wrap:anywhere;white-space:normal;line-height:1.4}
 dialog.cookbook:has(.book-reader) .close-button{top:6px;right:10px}
 .cookbook .book-reader{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;min-height:0;flex:1}
 .cookbook .book-page-arrow{align-self:center;justify-self:center;width:36px;min-height:44px;background:#e5d8b5;border:1px solid #ad986a;color:#5b5038}
@@ -78,4 +84,15 @@ dialog.cookbook:has(.book-reader) .close-button{top:6px;right:10px}
  .cookbook .book-reader .book-spread{display:block}
  .cookbook .book-reader .recipe-page{display:grid;grid-template-rows:auto auto auto auto auto;--recipe-food-size:78px;padding:10px 8px;gap:6px}
  .cookbook .recipe-details .recipe-prices :is(dt,dd){font-size:11px}
+}
+
+/* Keep the existing reader usable when zoom or long titles narrow the page. */
+.cookbook .book-reader .recipe-description:focus{white-space:normal;overflow:visible;text-overflow:clip}
+@media(max-width:480px){
+ .cookbook .book-reader .recipe-page{display:flex;flex-direction:column;align-items:stretch;gap:8px}
+ .cookbook .book-reader .food-portrait{align-self:center}
+ .cookbook .book-reader .recipe-description{white-space:normal;overflow:visible;text-overflow:clip}
+ .cookbook .book-page-status{margin-inline-start:0}
+ .cookbook .book-toolbar{flex-wrap:wrap;gap:6px}
+ .cookbook .book-toolbar strong{flex:1 1 100px}
 }

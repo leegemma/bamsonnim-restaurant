@@ -1,3 +1,4 @@
+import {FURNITURE_ADDITIONS,SKIN_ADDITIONS} from './catalogue-expansion.js';
 // Keep content IDs stable: save files reference these IDs, never translated names.
 export const SAVE_VERSION = 1;
 export const SAVE_KEY = 'bamsonnim.restaurant.v1';
@@ -149,10 +150,11 @@ export const FURNITURE=[
  {id:'bonsai',name:'작은 소나무',category:'decor',price:350,level:3,sprite:9},
  {id:'bamboo',name:'사각사각 대나무',category:'decor',price:450,level:4,sprite:10},
  {id:'cat',name:'수호 고양이',category:'decor',price:650,level:5,sprite:11},
- {id:'poster',name:'뇌 주먹밥의 효능',category:'decor',price:180,level:1,sprite:12,description:'머리가 든든 · 허기가 쏙 · 단골이 방긋! 벽면 전용 포스터.'},
+ {id:'poster',name:'뇌 주먹밥의 효능',category:'decor',wallMounted:true,price:180,level:1,sprite:12,description:'머리가 든든 · 허기가 쏙 · 단골이 방긋! 벽면 전용 포스터.'},
  {id:'tree',name:'오싹 성탄 나무',category:'decor',price:400,level:1,sprite:14,event:'christmas'},
  {id:'xmas-lantern',name:'눈꽃 초롱',category:'decor',price:250,level:1,sprite:15,event:'christmas'},
  {id:'xmas-stool',name:'선물 방석',category:'decor',price:150,level:1,sprite:13,event:'christmas'},
+ ...FURNITURE_ADDITIONS,
 ];
 export const SKINS=[
  {id:'wood',name:'오래된 마루',type:'floor',price:0,level:1,color:'#aa774b'},
@@ -161,6 +163,7 @@ export const SKINS=[
  {id:'paper',name:'달빛 창호',type:'wall',price:0,level:1,color:'#d9c39b'},
  {id:'jade',name:'옥빛 창호',type:'wall',price:1200,level:5,color:'#96b3a0'},
  {id:'rose',name:'분홍빛 창호',type:'wall',price:2500,level:9,color:'#d6a49d'},
+ ...SKIN_ADDITIONS,
 ];
 export const WAITER_NAMES=['하온','하영','은재','리아','나리','소담','다솜','아리'];
 export const WAITER_NAME_UPDATES={달래:'하온',보리:'하영',초롱:'은재',두리:'리아'};

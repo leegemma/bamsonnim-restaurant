@@ -1,3 +1,4 @@
+import {CATALOGUE_ASSETS} from './catalogue-art.js';
 import {APPROVED_ZOMBIE_ACTORS,APPROVED_ZOMBIE_ATLASES,APPROVED_EATING_ATLASES,APPROVED_ZOMBIE_PORTRAITS} from './approved-zombie-atlases.js';
 import {ZOMBIE_ATLASES} from './zombie-atlases.generated.js';
 import {QUARTER_FURNITURE} from './quarter-furniture.generated.js';
@@ -113,6 +114,12 @@ export const ASSET_MANIFEST={
     ],
     note:'4열×2행, 행 우선 index 0~7. 건강한 인간 직원, 빈손 정지 자세. 외형별 능력 차이 없음.',
   }),
+  workersInfected:asset('workersInfected','감염된 직원 8명 · 눈썹 없는 좀비 외형',{
+    url:'/assets/workers-infected-browless-v1.png',width:1774,height:887,cols:4,rows:2,type:'worker-atlas',
+    grid:{x:0,y:0,cols:4,rows:2,cellWidth:443,cellHeight:443},
+    infectedOnly:true,precoloredInfected:true,
+    note:'4열×2행, 건강한 직원과 같은 행 우선 index 0~7. 감염 상태에서만 사용하며 중복 색상 필터를 적용하지 않음.',
+  }),
   infectedHaon:asset('infectedHaon','감염된 하온 · 초록 피부·엇갈린 시선·혀와 침',{
     url:'/assets/worker-haon-zombie-v2.png',width:1254,height:1254,rows:1,type:'worker-variant',
     promptFile:'/assets/worker-haon-zombie-v2.prompt.txt',appearance:0,infectedOnly:true,precoloredInfected:true,
@@ -199,6 +206,7 @@ for(const atlas of EATING_ATLASES)ASSET_MANIFEST[atlas.key]=atlas;
 if(BACKGROUND_SCENE){Object.assign(ASSET_MANIFEST.night,BACKGROUND_SCENE.base,{metadataUrl:'/assets/background-fx.json'});for(const atlas of BACKGROUND_SCENE.assets)ASSET_MANIFEST[atlas.key]=atlas;}
 if(QUARTER_FURNITURE){ASSET_MANIFEST[QUARTER_FURNITURE.key]=QUARTER_FURNITURE;for(const asset of QUARTER_FURNITURE.externalAssets||[])ASSET_MANIFEST[asset.key]=asset;}
 if(ZOMBIE_ATLASES.some(a=>a.actorId==='wanderer'))for(const key of ['wandererDirectional','walk1','walk2','walk3','walk4'])ASSET_MANIFEST[key].archived=true;
+for(const asset of CATALOGUE_ASSETS)ASSET_MANIFEST[asset.key]=asset;
 export function directionalCharacter(actorId){
   const id=({'santa-scholar':'scholar','snow-bride':'bride',red:'dokkaebi'})[actorId]||actorId;
   const generated=[...ZOMBIE_ATLASES,...APPROVED_ZOMBIE_ATLASES].find(asset=>asset.actorId===id);

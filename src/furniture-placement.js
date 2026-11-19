@@ -7,8 +7,11 @@ const legacy={
  stove:{key:'stoveIsometric',index:0,width:847,height:888,groundCenter:{x:424,y:659.85},groundWidth:822,footprint:.9,surface:{x:424,y:170}},
  table:{key:'furniture',index:0,width:271,height:233,groundCenter:{x:135,y:185},groundWidth:190,footprint:.65,surface:{x:135,y:70}},
 };
-export function furnitureArt(category,dir=0){
- const unified=Object.values(ASSET_MANIFEST).filter(asset=>asset.type==='furniture-atlas').find(asset=>asset.poses?.some(p=>p.category===category&&(category!=='chair'||p.dir===dir))),pose=unified?.poses.find(p=>p.category===category&&(category!=='chair'||p.dir===dir));
+const artAssets=Object.values(ASSET_MANIFEST).filter(asset=>asset.type==='furniture-atlas'),customAssets=new Map(artAssets.flatMap(asset=>(asset.poses||[]).filter(p=>p.itemId).map(p=>[p.itemId,asset])));
+export function furnitureArt(category,dir=0,type=null){
+ const custom=type&&customAssets.get(type),customPose=custom?.poses.find(p=>p.dir===dir)||custom?.poses[0];
+ if(customPose)return{...customPose,key:custom.key,index:customPose.index,width:customPose.source.width,height:customPose.source.height,seat:customPose.seatAnchor,front:customPose.frontPolygon,surface:customPose.surfaceAnchor};
+ const unified=artAssets.find(asset=>asset.poses?.some(p=>!p.itemId&&p.category===category&&(category!=='chair'||p.dir===dir))),pose=unified?.poses.find(p=>!p.itemId&&p.category===category&&(category!=='chair'||p.dir===dir));
  if(pose)return{...pose,key:unified.key,index:pose.index,width:pose.source.width,height:pose.source.height,seat:pose.seatAnchor,front:pose.frontPolygon,surface:pose.surfaceAnchor};
  if(category==='chair'){
   const chair=ASSET_MANIFEST.furniture.chairs[dir];if(!chair)return null;

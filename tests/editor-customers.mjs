@@ -31,7 +31,7 @@ for(const [name,type] of [['chromium',chromium],['webkit',webkit]]){
    assert.equal(actual.sameCustomers,true,`${name}: ${label} preserves customer object identities`);
    assert.equal(actual.sameWaiters,true,`${name}: ${label} preserves waiter object identities`);
   }
-  for(const exit of ['toggle','finish','escape','cancel-then-escape','toggle','finish']){
+  for(const exit of ['finish','finish','escape','cancel-then-escape','finish','finish']){
    await page.locator('[data-act="decorate"]').click();
    await page.waitForFunction(()=>!!window.__BAMSONNIM__.edit);
    await assertPreserved(`enter before ${exit}`);

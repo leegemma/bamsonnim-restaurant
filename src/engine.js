@@ -1,4 +1,5 @@
 import {SAVE_VERSION,OFFLINE_CAP,RECIPES,ZOMBIES,FURNITURE,SKINS,WAITER_NAMES,WAITER_NAME_UPDATES,LIMITS,EXPANSIONS,QUESTS,DIRECTIONS,recipe,zombie,furniture,xpNeeded} from './data.js';
+import {furnitureCells,furnitureOccupies,wallAttachment,wallSlotKey,wallOccupiedSlots} from './furniture-footprint.js';
 import {staffEntrance,zombieEntrance,zombieExit,customerExit,atEntrance} from './entrances.js';
 export {staffEntrance,zombieEntrance} from './entrances.js';
 
@@ -63,7 +64,7 @@ export function instant(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook|
 export function discard(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||o.cook.collecting)return '이미 운반 중이에요.';delete o.cook;return null;}
 export function recover(s,id){const o=s.objects.find(o=>o.uid===id);if(stoveStatus(s,o)!=='spoiled')return '상한 음식이 없어요.';if(s.hearts<1)return '심장 1개가 필요해요.';s.hearts--;o.cook.readyAt=s.time;o.cook.spoilAt=s.time+180;return null;}
 
-function tableInFront(s,chair){const direction=DIRECTIONS[chair.dir||0];return direction?s.objects.find(o=>furniture(o.type)?.category==='table'&&o.x===chair.x+direction[0]&&o.y===chair.y+direction[1]):null;}
+function tableInFront(s,chair){const direction=DIRECTIONS[chair.dir||0];return direction?s.objects.find(o=>furniture(o.type)?.category==='table'&&furnitureOccupies(o,chair.x+direction[0],chair.y+direction[1])):null;}
 export function chairSeatProblem(s,chair){
   if(typeof chair==='string')chair=s.objects.find(o=>o.uid===chair);
   if(!chair||furniture(chair.type)?.category!=='chair')return '의자를 선택해주세요.';
@@ -79,7 +80,12 @@ export function seats(s){
     const t=tableInFront(s,c);if(!t)continue;
     // One tile has four adjacent sides; saved seat IDs remain chair UIDs.
     out.push({uid:c.uid,chair:c,table:t});
-  }return out;
+  }
+  // Preserve a guest's reserved chair before choosing a spare side of a new
+  // single-seat table. Legacy tables still expose every reachable chair.
+  const reserved=new Set(s.customers.filter(seated).map(c=>c.seat)),selected=new Set();
+  for(const table of new Set(out.map(seat=>seat.table))){const capacity=furniture(table.type)?.seatCapacity??Infinity,candidates=out.filter(seat=>seat.table===table).sort((a,b)=>Number(reserved.has(b.uid))-Number(reserved.has(a.uid)));for(const seat of candidates.slice(0,capacity))selected.add(seat.uid);}
+  return out.filter(seat=>selected.has(seat.uid));
 }
 function actorTiles(a){
   const result=new Set([tileKey(Math.round(a.x),Math.round(a.y))]);
@@ -90,8 +96,8 @@ function segmentEnds(actor){
   const points=[];for(const x of new Set([Math.floor(actor.x),Math.ceil(actor.x)]))for(const y of new Set([Math.floor(actor.y),Math.ceil(actor.y)]))points.push([x,y]);
   const next=actor.path?.[0];return points.sort((a,b)=>{const preferred=p=>next&&p[0]===next[0]&&p[1]===next[1];return Number(preferred(b))-Number(preferred(a))||Math.hypot(a[0]-actor.x,a[1]-actor.y)-Math.hypot(b[0]-actor.x,b[1]-actor.y);});
 }
-function blockedTiles(s){return new Set(s.objects.map(o=>tileKey(o.x,o.y)));}
-function walkable(s,x,y,blocked=null){if(x<0||y<0||x>=s.size||y>=s.size)return false;if(blocked)return !blocked.has(`${x},${y}`);return !s.objects.some(o=>o.x===x&&o.y===y);}
+function blockedTiles(s){return new Set(s.objects.flatMap(o=>furnitureCells(o).map(cell=>tileKey(...cell))));}
+function walkable(s,x,y,blocked=null){if(x<0||y<0||x>=s.size||y>=s.size)return false;if(blocked)return !blocked.has(`${x},${y}`);return !s.objects.some(o=>furnitureOccupies(o,x,y));}
 function reachableTiles(s,from){
   const blocked=blockedTiles(s),q=[[Math.round(from.x),Math.round(from.y)]],seen=new Set();
   if(!walkable(s,...q[0],blocked))return seen;
@@ -152,7 +158,7 @@ function move(s,actor,dt,speed){
 function freePosition(s,from,{ignore=null,avoidEntry=false,spread=false}={}){
   const blocked=blockedTiles(s),q=[[Math.max(0,Math.min(s.size-1,Math.round(from.x))),Math.max(0,Math.min(s.size-1,Math.round(from.y)))]],seen=new Set([q[0].join(',')]);
   const candidates=[];
-  for(let i=0;i<q.length;i++){const [x,y]=q[i];if(walkable(s,x,y,blocked)&&(!avoidEntry||!atEntrance(s,x,y))&&!s.objects.some(o=>o.x===x&&o.y===y)){if(!spread)return{x,y};candidates.push({x,y});}for(const [dx,dy] of DIRECTIONS){const a=x+dx,b=y+dy,k=tileKey(a,b);if(walkable(s,a,b)&&!seen.has(k)){seen.add(k);q.push([a,b]);}}}
+  for(let i=0;i<q.length;i++){const [x,y]=q[i];if(walkable(s,x,y,blocked)&&(!avoidEntry||!atEntrance(s,x,y))&&!s.objects.some(o=>furnitureOccupies(o,x,y))){if(!spread)return{x,y};candidates.push({x,y});}for(const [dx,dy] of DIRECTIONS){const a=x+dx,b=y+dy,k=tileKey(a,b);if(walkable(s,a,b)&&!seen.has(k)){seen.add(k);q.push([a,b]);}}}
   const existing=actors(s).filter(a=>a!==ignore),score=p=>Math.min(...existing.map(a=>Math.abs(p.x-a.x)+Math.abs(p.y-a.y)),Math.abs(p.x)+Math.abs(p.y-(s.size-1)));
   return candidates.sort((a,b)=>score(b)-score(a))[0]||null;
 }
@@ -217,7 +223,7 @@ function chooseCustomer(s){
 }
 function entryBlocked(s){
   const {x,y}=zombieEntrance(s);
-  return s.objects.some(o=>o.x===x&&o.y===y);
+  return s.objects.some(o=>furnitureOccupies(o,x,y));
 }
 function exitTrafficBlocked(s){return s.customers.some(c=>c.phase==='leaving'&&path(s,c,customerExit(s,c),{allowBlockedTarget:false})===null);}
 function announceGuest(s,c){
@@ -306,7 +312,7 @@ function parkingComponent(s,from,blocked){
 function safeParkingTile(s,point,claims){
   // Resting staff must not turn an open floor component into a bottleneck,
   // even when every chair becomes occupied. Keep a service side available too.
-  const before=new Set([...s.objects.map(o=>tileKey(o.x,o.y)),...claims]),component=parkingComponent(s,point,before);if(component.size<3)return false;
+  const before=new Set([...blockedTiles(s),...claims]),component=parkingComponent(s,point,before);if(component.size<3)return false;
   const after=new Set(before);after.add(point.join(','));const neighbor=DIRECTIONS.map(([dx,dy])=>[point[0]+dx,point[1]+dy]).find(p=>walkable(s,...p,after));
   if(!neighbor||parkingComponent(s,neighbor,after).size!==component.size-1)return false;
   for(const o of s.objects.filter(o=>['server','stove'].includes(furniture(o.type)?.category))){const sides=DIRECTIONS.map(([dx,dy])=>[o.x+dx,o.y+dy]);if(sides.some(p=>walkable(s,...p,before))&&!sides.some(p=>walkable(s,...p,after)))return false;}
@@ -316,7 +322,7 @@ function parkIdle(s,w){
   const state=traffic(w);if(state.idleSince===undefined)state.idleSince=s.time;
   if(state.parking||s.time-state.idleSince<1.5||s.time<(state.nextParkAt||0))return;state.nextParkAt=s.time+2;
   const counters=s.objects.filter(o=>furniture(o.type)?.category==='server');if(!counters.length)return;
-  const claims=new Set(s.waiters.filter(other=>other!==w).map(other=>trafficState.get(other)?.parking).filter(Boolean).map(p=>tileKey(p.x,p.y))),blocked=blockedTiles(s),occupied=new Set([...s.objects.map(o=>tileKey(o.x,o.y)),...actors(s).filter(a=>a!==w).flatMap(a=>[...actorTiles(a)])]),chairs=s.objects.filter(o=>furniture(o.type)?.category==='chair');
+  const claims=new Set(s.waiters.filter(other=>other!==w).map(other=>trafficState.get(other)?.parking).filter(Boolean).map(p=>tileKey(p.x,p.y))),blocked=blockedTiles(s),occupied=new Set([...blockedTiles(s),...actors(s).filter(a=>a!==w).flatMap(a=>[...actorTiles(a)])]),chairs=s.objects.filter(o=>furniture(o.type)?.category==='chair');
   const routes=new Set(actors(s).filter(a=>a!==w).flatMap(a=>(a.path||[]).map(p=>p.join(',')))),layout={...s,customers:[],waiters:[]},door={x:0,y:s.size-1};
   for(const o of s.objects){const category=furniture(o.type)?.category,route=category==='chair'?path(layout,door,[o.x,o.y]):['server','stove'].includes(category)?accessPath(layout,door,o):null;for(const p of route||[])routes.add(p.join(','));}
   const choices=[];
@@ -407,7 +413,7 @@ function step(s,dt,offline){
     else if(c.phase==='chasing'){
       c.chaseTime+=dt;const target=s.waiters.find(w=>w.uid===c.target&&w.infectedUntil<=s.time);
       if(!target||c.chaseTime>15){leave(s,c);continue;}
-      if(Math.hypot(c.x-target.x,c.y-target.y)<1.1){target.infectedUntil=s.time+300;cancelTask(s,target);notify(s,`${target.name}(이)가 물렸어요! 치료하거나 5분 기다려주세요.`,'danger');leave(s,c);}
+      if(Math.hypot(c.x-target.x,c.y-target.y)<1.1){target.infectedUntil=s.time+300;cancelTask(s,target);notify(s,`${target.name}(이)가 물렸어요! 치료하거나 5분 기다려주세요.`,'danger',{staffUid:target.uid});leave(s,c);}
       else{if(!c.path?.length||atTile(c)){const route=accessPath(s,c,{x:Math.round(target.x),y:Math.round(target.y)});if(route===null){leave(s,c);continue;}c.path=route;}move(s,c,dt,1.5);}
     }
     else if(c.phase==='eating'){if(s.time>=c.eatUntil)pay(s,c,offline);}
@@ -433,14 +439,23 @@ export function reconcileOffline(s,now=Date.now()){
 }
 export function hire(s){if(s.waiters.length>=limit(s,'waiters'))return '현재 레벨의 고용 한도에 도달했어요.';const cost=hireCost(s);if(s.coins<cost)return '코인이 부족해요.';const position=freePosition(s,{x:0,y:s.size-1},{avoidEntry:true,spread:true});if(!position)return '직원이 설 빈 공간과 통로가 필요해요.';s.coins-=cost;const name=WAITER_NAMES.find(n=>!s.waiters.some(w=>w.name===n))||`직원 ${s.nextId}`,appearance=Array.from({length:8},(_,i)=>i).find(i=>!s.waiters.some(w=>w.appearance===i));const entry=staffEntrance(s),start=walkable(s,entry.x,entry.y)?entry:position;s.waiters.push({uid:uid(s),name,appearance,speedLevel:0,kindnessLevel:0,cleaningLevel:0,...start,path:path(s,start,[position.x,position.y])||[],task:null,infectedUntil:0});s.staffDoorOpenedAt=s.time;s.stats.hired++;notify(s,`${name}가 식당에 합류했어요!`, 'hire');return null;}
 export function fire(s,id){if(s.waiters.length<=1)return '직원은 최소 1명 필요해요.';const w=s.waiters.find(w=>w.uid===id);if(!w)return '직원을 찾을 수 없어요.';cancelTask(s,w);s.waiters=s.waiters.filter(w=>w.uid!==id);return null;}
-export function cure(s,id){const w=s.waiters.find(w=>w.uid===id);if(!w||w.infectedUntil<=s.time)return '치료가 필요하지 않아요.';if(s.coins<cureCost(s))return '치료 비용이 부족해요.';s.coins-=cureCost(s);w.infectedUntil=0;return null;}
+export function cure(s,id){const w=s.waiters.find(w=>w.uid===id);if(!w||w.infectedUntil<=s.time)return '치료가 필요하지 않아요.';if(s.coins<cureCost(s))return '치료 비용이 부족해요.';s.coins-=cureCost(s);w.infectedUntil=0;s.notifications=s.notifications.filter(n=>n.type!=='danger'||n.staffUid!==id);return null;}
 
+function wallDoorKeys(s){const guest=zombieEntrance(s),keys=new Set([`west:${s.size-1}`]);keys.add(guest.y===0?`north:${guest.x}`:`west:${guest.y}`);return keys;}
 export function placementProblem(s,type,x,y,dir=0,ignore=null,{ignoreStaff=false}={}){
   if(!Number.isInteger(x)||!Number.isInteger(y)||x<0||y<0||x>=s.size||y>=s.size)return '식당 안에 배치해주세요.';
-  if(atEntrance(s,x,y))return '출입구는 비워주세요.';
-  if(type==='poster'&&x!==0&&y!==0)return '포스터는 뒤쪽 벽면에 붙여주세요.';
-  if(s.objects.some(o=>o.uid!==ignore&&o.x===x&&o.y===y))return '다른 가구와 겹쳐요.';
-  const candidate={uid:ignore||'preview',type,x,y,dir};
+  const candidate={uid:ignore||'preview',type,x,y,dir},cells=furnitureCells(candidate);
+  if(furniture(type)?.wallMounted){
+    if(x!==0&&y!==0)return '벽면을 선택해 걸어주세요.';
+    const slots=wallOccupiedSlots(candidate),keys=new Set(slots.map(slot=>slot.key));
+    if(slots.some(slot=>slot.wallSlot<0||slot.wallSlot>=s.size))return '벽면 안에 장식을 배치해주세요.';
+    if(slots.some(slot=>wallDoorKeys(s).has(slot.key)))return '출입문이 있는 벽면은 비워주세요.';
+    if(s.objects.some(o=>o.uid!==ignore&&furniture(o.type)?.wallMounted&&wallOccupiedSlots(o,{legacy:!o.wallSide}).some(slot=>keys.has(slot.key))))return '같은 벽면 자리에 장식이 있어요.';
+    return null;
+  }
+  if(cells.some(([a,b])=>a<0||b<0||a>=s.size||b>=s.size))return '식당 안에 배치해주세요.';
+  if(cells.some(([a,b])=>atEntrance(s,a,b)))return '출입구는 비워주세요.';
+  if(s.objects.some(o=>o.uid!==ignore&&cells.some(([a,b])=>furnitureOccupies(o,a,b))))return '다른 가구와 겹쳐요.';
   const temp={...s,objects:[...s.objects.filter(o=>o.uid!==ignore),candidate]};
   if(!ignoreStaff&&s.waiters.some(w=>!atTile(w)&&!segmentEnds(w).some(([x,y])=>walkable(temp,x,y))))return '직원이 걷는 칸 옆에 빈 공간을 남겨주세요.';
   // Preserve working approaches without making an already blocked old layout
@@ -468,10 +483,11 @@ export function place(s,{type,x,y,dir=0,existing=null,fromStorage=false,editing=
     if(fromStorage){if(!s.storage.includes(type))return '창고에 가구가 없어요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
     else{if(!furnitureAvailable(s,f))return f.event?'이벤트 기간에만 구매할 수 있어요.':'식당 레벨이 부족해요.';if(s.coins<f.price)return '코인이 부족해요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
   }
-  for(const w of s.waiters)cancelTask(s,w);s.customers=[];for(const c of s.objects){delete c.dirty;delete c.cleaner;}
+  if(!f.wallMounted){for(const w of s.waiters)cancelTask(s,w);s.customers=[];for(const c of s.objects){delete c.dirty;delete c.cleaner;}}
   if(existing){o.x=x;o.y=y;o.dir=dir;}
   else{if(fromStorage)s.storage.splice(s.storage.indexOf(type),1);else{s.coins-=f.price;addXp(s,Math.round(f.price*.25));if(f.category==='table')s.stats.tablesBought++;if(f.category==='chair')s.stats.chairsBought++;}s.objects.push({uid:uid(s),type,x,y,dir});}
-  repairActorPositions(s,{relocateInvalid:true});
+  if(f.wallMounted)Object.assign(existing?o:s.objects.at(-1),wallAttachment({x,y,dir}));
+  else repairActorPositions(s,{relocateInvalid:true});
   return null;
 }
 export function removeFurniture(s,id,sell=false){
@@ -480,7 +496,7 @@ export function removeFurniture(s,id,sell=false){
   if(o.cook)return '가마솥의 음식을 먼저 회수하거나 버려주세요.';
   if(o.stock>0)return '서빙대 재고를 먼저 비워주세요.';
   if(s.transfers.some(t=>t.server===id||t.stove===id))return '운반이 끝난 뒤 시도해주세요.';
-  for(const w of s.waiters)cancelTask(s,w);s.customers=[];
+  if(!furniture(o.type)?.wallMounted){for(const w of s.waiters)cancelTask(s,w);s.customers=[];}
   if(sell)s.coins+=Math.floor(furniture(o.type).price/2);else s.storage.push(o.type);
   s.objects=s.objects.filter(x=>x.uid!==id);return null;
 }
@@ -512,11 +528,38 @@ export function validateSave(raw){
   for(const key of ['coins','hearts','xp','level','hunger','size','seed','nextId','questIndex','questBase','spawnIn','combo','lastServe','feverUntil'])if(!Number.isFinite(s[key]))throw new Error('저장 수치가 손상되었습니다.');
   if(s.coins<0||s.hearts<0||s.xp<0||s.level<1||s.level>1000||!Number.isInteger(s.size)||s.size<8||s.size>16||s.hunger<0||s.hunger>100||s.questIndex<0||s.questIndex>QUESTS.length)throw new Error('저장 범위가 올바르지 않습니다.');
   for(const key of ['objects','waiters','customers','storage','transfers','ownedSkins','notifications'])if(!Array.isArray(s[key]))throw new Error('저장 목록이 손상되었습니다.');
-  if(s.objects.length>256||s.waiters.length<1||s.waiters.length>8||s.customers.length>100||s.storage.length>10000)throw new Error('저장 목록의 크기가 올바르지 않습니다.');
+  if(s.objects.length>s.size*s.size+s.size*2||s.waiters.length<1||s.waiters.length>8||s.customers.length>100||s.storage.length>10000)throw new Error('저장 목록의 크기가 올바르지 않습니다.');
   for(const key of ['mastery','knownRecipes','album','events','eventBooks','stats','settings'])if(!s[key]||typeof s[key]!=='object'||Array.isArray(s[key]))throw new Error('저장 정보가 손상되었습니다.');
   if(!['upcoming','active','ended'].includes(s.events.christmas))throw new Error('이벤트 정보가 올바르지 않습니다.');
-  const ids=new Set(),positions=new Set();
-  for(const o of s.objects){if(!furniture(o.type)||typeof o.uid!=='string'||ids.has(o.uid)||!Number.isInteger(o.x)||!Number.isInteger(o.y)||o.x<0||o.y<0||o.x>=s.size||o.y>=s.size||!Number.isInteger(o.dir)||o.dir<0||o.dir>3)throw new Error('가구 정보가 올바르지 않습니다.');ids.add(o.uid);const k=`${o.x},${o.y}`;if(positions.has(k))throw new Error('가구 위치가 겹칩니다.');positions.add(k);if(o.stock!==undefined&&(!Number.isFinite(o.stock)||o.stock<0||!recipe(o.foodId)))throw new Error('음식 재고 정보가 손상되었습니다.');if(o.cook&&(!recipe(o.cook.foodId)||!['started','readyAt','spoilAt'].every(k=>Number.isFinite(o.cook[k]))))throw new Error('조리 정보가 손상되었습니다.');}
+  const ids=new Set(),positions=new Set(),wallSlots=new Set();
+  // Reserve every original wall claim before relocating a legacy doorway
+  // attachment; a later object must not lose its slot to iteration order.
+  const originalWallClaims=new Map();
+  for(const o of s.objects.filter(o=>furniture(o?.type)?.wallMounted))for(const slot of wallOccupiedSlots(o,{legacy:!o.wallSide})){
+    if(originalWallClaims.has(slot.key)&&originalWallClaims.get(slot.key)!==o.uid)throw new Error('벽면 장식 위치가 겹칩니다.');
+    originalWallClaims.set(slot.key,o.uid);
+  }
+  for(const o of s.objects){
+    if(!furniture(o.type)||typeof o.uid!=='string'||ids.has(o.uid)||!Number.isInteger(o.x)||!Number.isInteger(o.y)||o.x<0||o.y<0||o.x>=s.size||o.y>=s.size||!Number.isInteger(o.dir)||o.dir<0||o.dir>3)throw new Error('가구 정보가 올바르지 않습니다.');
+    ids.add(o.uid);
+    if(furniture(o.type).wallMounted){
+      const legacy=!o.wallSide;
+      if(o.wallSide!==undefined&&(!['north','west'].includes(o.wallSide)||!Number.isInteger(o.wallSlot)||o.wallSlot<0||o.wallSlot>=s.size))throw new Error('벽면 장식 위치가 올바르지 않습니다.');
+      let attachment=wallAttachment(o,{legacy}),slots=wallOccupiedSlots({...o,...attachment});
+      if(legacy&&slots.some(slot=>wallDoorKeys(s).has(slot.key))){
+        const candidates=Array.from({length:s.size},(_,slot)=>slot).sort((a,b)=>Math.abs(a-attachment.wallSlot)-Math.abs(b-attachment.wallSlot));
+        const next=candidates.map(slot=>({...attachment,wallSlot:slot,x:attachment.wallSide==='north'?slot:0,y:attachment.wallSide==='west'?slot:0})).find(a=>wallOccupiedSlots({...o,...a}).every(slot=>slot.wallSlot<s.size&&!wallDoorKeys(s).has(slot.key)&&!wallSlots.has(slot.key)&&(!originalWallClaims.has(slot.key)||originalWallClaims.get(slot.key)===o.uid)));
+        if(next){for(const slot of slots)if(originalWallClaims.get(slot.key)===o.uid)originalWallClaims.delete(slot.key);attachment=next;slots=wallOccupiedSlots({...o,...attachment});for(const slot of slots)originalWallClaims.set(slot.key,o.uid);}
+      }
+      if(slots.some(slot=>slot.wallSlot<0||slot.wallSlot>=s.size))throw new Error('벽면 장식이 벽 밖으로 나갑니다.');
+      if(slots.some(slot=>wallDoorKeys(s).has(slot.key)))throw new Error('벽면 장식이 출입문과 겹칩니다.');
+      if(slots.some(slot=>wallSlots.has(slot.key)))throw new Error('벽면 장식 위치가 겹칩니다.');
+      for(const slot of slots)wallSlots.add(slot.key);if(!legacy)Object.assign(o,attachment);else if(o.x!==attachment.x||o.y!==attachment.y){o.x=attachment.x;o.y=attachment.y;}
+    }
+    for(const[x,y]of furnitureCells(o)){if(x<0||y<0||x>=s.size||y>=s.size)throw new Error('가구가 식당 밖으로 나갑니다.');const k=`${x},${y}`;if(positions.has(k))throw new Error('가구 위치가 겹칩니다.');positions.add(k);}
+    if(o.stock!==undefined&&(!Number.isFinite(o.stock)||o.stock<0||!recipe(o.foodId)))throw new Error('음식 재고 정보가 손상되었습니다.');
+    if(o.cook&&(!recipe(o.cook.foodId)||!['started','readyAt','spoilAt'].every(k=>Number.isFinite(o.cook[k]))))throw new Error('조리 정보가 손상되었습니다.');
+  }
   if(s.seenVisitors===undefined)s.seenVisitors=[...new Set([...Object.keys(s.album),...s.customers.map(c=>c.zombieId).filter(id=>zombie(id))])];
   if(!Array.isArray(s.seenVisitors)||s.seenVisitors.length>ZOMBIES.length||new Set(s.seenVisitors).size!==s.seenVisitors.length||s.seenVisitors.some(id=>typeof id!=='string'||!zombie(id)))throw new Error('손님 방문 기록이 올바르지 않습니다.');
   for(const id of s.storage)if(!furniture(id))throw new Error('창고 정보가 손상되었습니다.');
@@ -553,7 +596,9 @@ export function validateSave(raw){
       occupiedSeats.add(c.seat);
     }
   }
-  for(const t of s.transfers)if(!t||typeof t.uid!=='string'||!s.objects.some(o=>o.uid===t.stove&&o.type==='stove')||!s.objects.some(o=>o.uid===t.server&&o.type==='server')||!recipe(t.foodId))throw new Error('운반 정보가 손상되었습니다.');
+  const tableGuests=new Map();
+  for(const c of s.customers.filter(seated)){const chair=s.objects.find(o=>o.uid===c.seat),table=chair&&tableInFront(s,chair);if(!table)continue;const count=(tableGuests.get(table.uid)||0)+1;tableGuests.set(table.uid,count);if(count>(furniture(table.type)?.seatCapacity??Infinity))throw new Error('식탁 정원 정보가 올바르지 않습니다.');}
+  for(const t of s.transfers)if(!t||typeof t.uid!=='string'||!s.objects.some(o=>o.uid===t.stove&&furniture(o.type)?.category==='stove')||!s.objects.some(o=>o.uid===t.server&&furniture(o.type)?.category==='server')||!recipe(t.foodId))throw new Error('운반 정보가 손상되었습니다.');
   for(const [id,value] of Object.entries(s.knownRecipes))if(!recipe(id)||value!==true)throw new Error('요리책 정보가 손상되었습니다.');
   for(const [k,v] of Object.entries(s.stats)){if(k==='fed'){if(!v||typeof v!=='object'||Object.values(v).some(n=>!Number.isFinite(n)||n<0))throw new Error('판매 기록이 손상되었습니다.');}else if(!Number.isFinite(v)||v<0)throw new Error('통계 정보가 손상되었습니다.');}
   for(const n of s.notifications)if(n?.type==='payment'){for(const key of ['amount','xp','x','y'])if(n[key]!==undefined&&(!Number.isFinite(n[key])||(['amount','xp'].includes(key)&&n[key]<0)))throw new Error('결제 알림 정보가 손상되었습니다.');if(n.favorite!==undefined&&typeof n.favorite!=='boolean')throw new Error('결제 알림 정보가 손상되었습니다.');}
@@ -566,7 +611,7 @@ export function validateSave(raw){
     let x=xs.find(x=>path(s,staffEntrance(s),[x,0],{allowBlockedTarget:false})!==null);
     if(x===undefined)for(const candidateX of xs){
       if(path(s,staffEntrance(s),[candidateX,0])===null)continue;
-      const obstacle=s.objects.find(o=>o.x===candidateX&&o.y===0);if(!obstacle)continue;
+      const obstacle=s.objects.find(o=>furnitureOccupies(o,candidateX,0));if(!obstacle)continue;
       s.zombieEntrance={x:candidateX,y:0};
       let position=null;
       for(let y=0;y<s.size&&!position;y++)for(let gx=0;gx<s.size;gx++){

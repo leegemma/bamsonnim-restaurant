@@ -1,9 +1,9 @@
-import {screenToScene,clampCamera,panCameraBy,zoomCameraAt,wheelZoomFactor} from './camera.js';
+import {screenToScene,clampZoom,clampCamera,panCameraBy,zoomCameraAt,wheelZoomFactor} from './camera.js';
 
-export function createCameraGestures({getCamera,setCamera,getViewport,getBounds,onTap,onHover,onGestureChange,now=()=>Date.now()}){
+export function createCameraGestures({getCamera,setCamera,getViewport,getBounds,getLimits,onTap,onHover,onGestureChange,now=()=>Date.now()}){
   const pointers=new Map();let single=null,pinch=null,tainted=false,blockedUntil=0,gesturing=false;
   const change=value=>{if(value!==gesturing){gesturing=value;onGestureChange?.(value);}};
-  const camera=()=>({...getCamera()}),viewport=()=>getViewport(),bounds=()=>getBounds?.();
+  const camera=()=>({...getCamera()}),viewport=()=>getViewport(),bounds=()=>getBounds?.(),limits=()=>getLimits?.();
   function rebase(){
     single=null;pinch=null;
     if(pointers.size>=2){const [a,b]=[...pointers.values()];pinch={ids:[a.id,b.id],distance:Math.hypot(a.x-b.x,a.y-b.y),mid:{x:(a.x+b.x)/2,y:(a.y+b.y)/2},camera:camera()};tainted=true;change(true);}
@@ -21,10 +21,10 @@ export function createCameraGestures({getCamera,setCamera,getViewport,getBounds,
     if(pinch){
       const a=pointers.get(pinch.ids[0]),b=pointers.get(pinch.ids[1]);if(!a||!b){rebase();return;}if(!pinch.ids.includes(p.id))return;
       const distance=Math.hypot(a.x-b.x,a.y-b.y);if(pinch.distance<1){if(distance>=1)rebase();return;}
-      const mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2},v=viewport(),anchor=screenToScene(pinch.mid,pinch.camera,v),zoom=Math.max(.7,Math.min(1.8,pinch.camera.zoom*distance/pinch.distance));
-      setCamera(clampCamera({zoom,panX:mid.x-v.width/2-(anchor.x-v.width/2)*zoom,panY:mid.y-v.height/2-(anchor.y-v.height/2)*zoom},v,bounds()));return;
+      const mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2},v=viewport(),anchor=screenToScene(pinch.mid,pinch.camera,v,limits()),zoom=clampZoom(pinch.camera.zoom*distance/pinch.distance,limits());
+      setCamera(clampCamera({zoom,panX:mid.x-v.width/2-(anchor.x-v.width/2)*zoom,panY:mid.y-v.height/2-(anchor.y-v.height/2)*zoom},v,bounds(),limits()));return;
     }
-    if(single){const dx=p.x-single.x,dy=p.y-single.y;if(Math.abs(dx)+Math.abs(dy)>8)single.moved=true;if(single.moved){tainted=true;change(true);setCamera(panCameraBy(single.camera,dx,dy,viewport(),bounds()));}}
+    if(single){const dx=p.x-single.x,dy=p.y-single.y;if(Math.abs(dx)+Math.abs(dy)>8)single.moved=true;if(single.moved){tainted=true;change(true);setCamera(panCameraBy(single.camera,dx,dy,viewport(),bounds(),limits()));}}
     // Hover is intentionally idle-only; edit ghosts must not move on a press.
   }
   function finish(p,cancelled=false){
@@ -37,7 +37,7 @@ export function createCameraGestures({getCamera,setCamera,getViewport,getBounds,
   }
   function cancel(){tainted=true;pointers.clear();single=null;pinch=null;blockedUntil=now()+700;change(false);}
   function wheel(deltaY,anchor,deltaMode=0){
-    if(pointers.size){tainted=true;change(true);blockedUntil=now()+700;}setCamera(zoomCameraAt(camera(),wheelZoomFactor(deltaY,deltaMode,viewport()),anchor,viewport(),bounds()));if(pointers.size)rebase();
+    if(pointers.size){tainted=true;change(true);blockedUntil=now()+700;}setCamera(zoomCameraAt(camera(),wheelZoomFactor(deltaY,deltaMode,viewport()),anchor,viewport(),bounds(),limits()));if(pointers.size)rebase();
   }
   function click({detail=0,isTrusted=false}={}){const allowed=detail===0&&!pointers.size&&(now()>=blockedUntil||isTrusted);blockedUntil=0;return allowed;}
   return{down,move,up:p=>finish(p),cancelPointer:p=>finish(p,true),cancel,wheel,click,get active(){return pointers.size>0;},get gesturing(){return gesturing;},get pointerIds(){return[...pointers.keys()];}};

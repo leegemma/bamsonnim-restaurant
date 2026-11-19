@@ -1,60 +1,88 @@
-/* Every viewport uses the HUD slot; notifications never cover the room. */
-.bottom-bar:has(.toast) .restaurant-status,
-.bottom-bar:has(.toast) .bottom-center { display: none; }
-
-.bottom-bar > .toast-stack {
+/* One bounded left rail keeps traffic, ordinary notices and bite actions apart. */
+#notification-rail {
+  position: absolute;
+  left: max(12px, env(safe-area-inset-left));
+  bottom: calc(64px + env(safe-area-inset-bottom));
+  width: min(440px, calc(100% - max(12px, env(safe-area-inset-left)) - max(12px, env(safe-area-inset-right))));
+  max-height: calc(100% - 76px - env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  z-index: 30;
+  pointer-events: none;
+}
+#notification-rail > #traffic-notice {
   position: static;
   transform: none;
-  flex: 1;
-  min-width: 0;
-  width: 0;
-  max-width: 520px;
-  height: 100%;
-  max-height: 100%;
-  align-items: stretch;
-  justify-content: center;
-  gap: 0;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 8px;
+  line-height: 16px;
+  pointer-events: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  flex: 0 0 auto;
+  text-align: start;
+  box-shadow: none;
 }
-.bottom-bar > .toast-stack:empty { display: none; }
-.bottom-bar .toast {
-  display: none;
+#notification-rail > #toasts {
+  position: static;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  width: 100%;
+  max-width: none;
+  max-height: none;
+  overflow: visible;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+#notification-rail > #toasts:empty { display: none; }
+#toasts > .toast {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  order: 0;
   width: 100%;
   min-width: 0;
-  max-height: 40px;
-  padding: 3px 8px;
+  height: 48px;
+  box-sizing: border-box;
+  padding: 0 8px;
   gap: 6px;
   font-size: 12px;
-  line-height: 15px;
+  line-height: 16px;
   text-align: start;
   box-shadow: none;
   animation: none;
-}
-.bottom-bar .toast:last-child { display: flex; }
-.bottom-bar .toast-stack:has(.toast.danger) .toast { display: none; }
-.bottom-bar .toast-stack:has(.toast.danger) .toast.danger:not(:has(~ .toast.danger)) { display: flex; }
-.bottom-bar .toast > span {
-  min-width: 0;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  overflow-wrap: anywhere;
-}
-.bottom-bar .toast.danger { padding-block: 0; }
-.bottom-bar .toast.danger > span {
-  display: block;
-  max-height: 30px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
   pointer-events: auto;
 }
-.bottom-bar .toast button {
+#toasts > .toast.danger { order: 1; }
+#notification-rail .notice-message {
+  flex: 1;
+  min-width: 0;
+  max-height: 32px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  pointer-events: auto;
+}
+#notification-rail .notice-scroll-cue { flex: 0 0 auto; font-size: 14px; line-height: 1; }
+#toasts > .toast button {
   flex-shrink: 0;
   min-width: 44px;
-  min-height: 36px;
+  min-height: 44px;
+  height: 44px;
   padding: 3px 5px;
   box-shadow: none;
+  white-space: nowrap;
 }
-.bottom-bar:has(.toast) .bottom-actions{margin-inline-start:auto}

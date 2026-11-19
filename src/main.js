@@ -32,15 +32,16 @@ import {ASSET_MANIFEST,ASSETS,characterFrame,foodFrame,eatingCharacter} from './
 import {atlasForActor,frameForPose,drawAtlasFrame,getCoverage} from './atlas-preview.js';
 import {isStandalone,fullscreenAvailable,requestFullscreen} from './install-app.js';
 import {furnitureArt} from './furniture-placement.js';
+import {wallAttachment} from './furniture-footprint.js';
 
 const $=(q,root=document)=>root.querySelector(q);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const num=n=>Math.floor(n).toLocaleString('ko-KR');
-function sprite(kind,i,cls=''){if(kind==='workers'){const mapped=workerFrame(i,{infected:cls.split(/\s+/).includes('infected')});kind=mapped.key;i=mapped.index;}if(kind==='characters'){const mapped=characterFrame(i);kind=mapped.key;i=mapped.index;}if(kind==='food'){const mapped=foodFrame(i);kind=mapped.key;i=mapped.index;}const asset=ASSET_MANIFEST[kind],cols=asset?.cols||1,rows=asset?.rows||1;return `<span class="sprite ${cls}" style="${asset?.precoloredInfected?'filter:none;':''}background-image:url('${asset?.url||''}');background-size:${cols*100}% ${rows*100}%;background-position:${cols===1?50:(i%cols)*100/(cols-1)}% ${rows===1?50:Math.floor(i/cols)*100/(rows-1)}%" aria-hidden="true"></span>`;}
+function sprite(kind,i,cls=''){if(kind==='workers'){const mapped=workerFrame(i,{infected:cls.split(/\s+/).includes('infected')});kind=view.failedAssets?.includes(mapped.key)?'workers':mapped.key;i=mapped.index;}if(kind==='characters'){const mapped=characterFrame(i);kind=mapped.key;i=mapped.index;}if(kind==='food'){const mapped=foodFrame(i);kind=mapped.key;i=mapped.index;}const asset=ASSET_MANIFEST[kind],cols=asset?.cols||1,rows=asset?.rows||1;return `<span class="sprite ${cls}" style="${asset?.precoloredInfected?'filter:none;':''}background-image:url('${asset?.url||''}');background-size:${cols*100}% ${rows*100}%;background-position:${cols===1?50:(i%cols)*100/(cols-1)}% ${rows===1?50:Math.floor(i/cols)*100/(rows-1)}%" aria-hidden="true"></span>`;}
 const recipeFoodSources=new WeakMap();
 function recipeFood(r){const {key,index}=foodFrame(r.sprite),frame=view.sprites[key]?.[index];if(!frame)return sprite('food',r.sprite);if(!recipeFoodSources.has(frame))recipeFoodSources.set(frame,frame.toDataURL());return `<img class="sprite recipe-food" src="${recipeFoodSources.get(frame)}" alt="" width="${frame.width}" height="${frame.height}">`;}
-function furnitureThumbnail(f){const art=furnitureArt(f.category,0);return art?`<canvas class="sprite furniture-thumbnail" width="160" height="160" data-furniture-key="${art.key}" data-furniture-index="${art.index}" role="img" aria-label="${f.name}"></canvas>`:f.id==='poster'?'<span class="poster-thumb"></span>':sprite('furniture',f.sprite);}
-function paintFurnitureThumbnails(root=document){for(const canvas of root.querySelectorAll('[data-furniture-key]')){const image=view.sprites[canvas.dataset.furnitureKey]?.[Number(canvas.dataset.furnitureIndex)||0];if(!image)continue;const ctx=canvas.getContext('2d'),scale=Math.min(148/image.width,148/image.height);ctx.clearRect(0,0,160,160);ctx.imageSmoothingEnabled=false;ctx.drawImage(image,(160-image.width*scale)/2,(160-image.height*scale)/2,image.width*scale,image.height*scale);}}
+function furnitureThumbnail(f){const art=furnitureArt(f.category,0,f.id);return art?`<canvas class="sprite furniture-thumbnail" width="160" height="160" data-furniture-key="${art.key}" data-furniture-index="${art.index}" role="img" aria-label="${f.name}"></canvas>`:f.id==='poster'?'<span class="poster-thumb"></span>':sprite('furniture',f.sprite);}
+function paintFurnitureThumbnails(root=document){for(const canvas of root.querySelectorAll('[data-furniture-key]')){const image=view.sprites[canvas.dataset.furnitureKey]?.[Number(canvas.dataset.furnitureIndex)||0];if(!image){if(ASSET_MANIFEST[canvas.dataset.furnitureKey]?.lazy&&!canvas.dataset.assetRequested){canvas.dataset.assetRequested='true';view.ensureAsset(canvas.dataset.furnitureKey).then(ok=>{if(ok)paintFurnitureThumbnails(root);});}continue;}const ctx=canvas.getContext('2d'),scale=Math.min(148/image.width,148/image.height);ctx.clearRect(0,0,160,160);ctx.imageSmoothingEnabled=false;ctx.drawImage(image,(160-image.width*scale)/2,(160-image.height*scale)/2,image.width*scale,image.height*scale);}}
 const coin=()=>sprite('food',15,'mini');const heart=()=>sprite('food',14,'mini');
 let state,loadIssue=null;
 try{const saved=localStorage.getItem(SAVE_KEY);state=saved?E.validateSave(JSON.parse(saved)):E.newGame();}catch(error){loadIssue='저장을 불러오지 못했어요. 기존 파일을 보존하고 새 식당을 열었어요.';try{const old=localStorage.getItem(SAVE_KEY);if(old)localStorage.setItem(`${SAVE_KEY}.recovery`,old);}catch{}state=E.newGame();}
@@ -53,7 +54,7 @@ $('#app').innerHTML=`
 <header class="topbar">
  <a class="brand" href="#" data-act="home" aria-label="밤손님 식당"><span class="brand-mark">${icon('moon',29)}</span><span><strong>밤손님 식당</strong><small>달이 뜨면, 문을 엽니다.</small></span></a>
  <div class="level-block"><span class="eyebrow">식당 레벨</span><span class="level-line"><b id="level">1</b><span class="xp-track"><i id="xp-fill"></i></span><small id="xp">0 / 4</small></span></div>
- <div class="hunger-card"><span class="hunger-label">도시의 허기 <b id="hunger-value">0%</b></span><div class="hunger-track" role="progressbar" aria-label="도시의 허기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hunger-fill"></i></div></div>
+ <div class="hunger-card"><svg class="hunger-face" viewBox="190 30 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="/assets/dokkaebi-bloodshot-v1.png" width="1254" height="1254"/></svg><div class="hunger-track" role="progressbar" aria-label="도시의 허기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hunger-fill"></i></div><b id="hunger-value" aria-hidden="true">0%</b></div>
  <div class="currencies"><div class="currency">${coin()}<span><small>엽전</small><b id="coins">500</b></span><button data-act="daily" class="add" aria-label="오늘의 선물 받기">+</button></div><div class="currency heart">${heart()}<span><small>심장</small><b id="hearts">10</b></span><button data-act="hearts" class="add" aria-label="심장 안내">+</button></div></div>
  <div class="top-actions"><button class="icon-button" data-act="sound" id="sound-button" aria-label="음악 켜기" title="음악 켜기">${icon('sound')}</button><button class="icon-button" data-act="settings" aria-label="설정">${icon('settings')}</button></div>
 </header>
@@ -69,19 +70,19 @@ $('#app').innerHTML=`
  <div class="welcome-note" id="welcome-note"><span class="note-number">첫 번째 밤</span><strong>허기진 손님을 맞을 준비가 됐나요?</strong><p>가마솥의 <b>COOK</b>을 눌러 첫 요리를 골라보세요.</p><button data-act="cookbook">첫 요리 만들기 ${icon('arrow',15)}</button></div>
  <div class="edit-tools" id="edit-tools" hidden></div>
  <section class="shop-dock" id="shop-dock" aria-label="인테리어 상점" hidden></section>
- <p class="traffic-notice" id="traffic-notice" role="status" hidden></p>
+ <section id="notification-rail" aria-label="식당 알림"><p class="traffic-notice" id="traffic-notice" role="status" hidden><span class="notice-message"></span><small class="notice-scroll-cue" aria-hidden="true" hidden>↕</small></p><div class="toast-stack" id="toasts"></div></section>
  <div class="stove-a11y" id="stove-a11y"></div>
 </main>
-<footer class="bottom-bar"><div class="restaurant-status"><span class="status-seal">${icon('home',23)}</span><span><b id="status-title">작은 한옥 식당</b><small id="status-detail"></small></span></div><div class="bottom-center" id="bottom-center"></div><div class="toast-stack" id="toasts"></div><div class="bottom-actions"><button class="button quiet" data-act="debug" aria-label="테스트 도구">${icon('tool',16)}<span>테스트</span></button><button class="button quiet camera-reset" data-act="camera-reset" aria-label="화면 원위치" title="화면 원위치">${icon('rotate',16)}<span id="camera-zoom">100%</span></button><button class="button decorate" data-act="decorate" id="decorate-button">${icon('home',19)}<span>꾸미기</span></button><button class="button primary" data-act="menu">${icon('menu',19)}<span>메뉴</span></button></div></footer>
+<footer class="bottom-bar"><div class="restaurant-status"><span class="status-seal">${icon('home',23)}</span><span><b id="status-title">작은 한옥 식당</b><small id="status-detail"></small></span></div><div class="bottom-center" id="bottom-center"></div><div class="bottom-actions"><button class="button quiet" data-act="debug" aria-label="테스트 도구">${icon('tool',16)}<span>테스트</span></button><button class="button quiet camera-reset" data-act="camera-reset" aria-label="화면 원위치" title="화면 원위치">${icon('rotate',16)}<span id="camera-zoom">100%</span></button><button class="button decorate" data-act="decorate" id="decorate-button">${icon('home',19)}<span>꾸미기</span></button><button class="button primary" data-act="menu">${icon('menu',19)}<span>메뉴</span></button></div></footer>
 <dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-heading"><span class="dialog-overline" id="dialog-overline"></span><button class="close-button" data-act="close" aria-label="창 닫기">${icon('close')}</button><h1 id="dialog-title"></h1><p id="dialog-description"></p></div><div id="dialog-content"></div></dialog>
 <input type="file" id="save-file" accept="application/json,.json" hidden>
 <dialog class="orientation-note" id="orientation-dialog" aria-labelledby="orientation-title">${icon('rotate',36)}<h1 id="orientation-title">가로로 돌려주세요</h1><p>밤손님 식당은 가로 화면으로 플레이해요.<br>기기를 돌리면 식당으로 돌아갑니다.</p></dialog>`;
 const dialog=$('#dialog');
 const syncOrientationGate=installLandscapeMode($('#orientation-dialog'));
 const view=new RestaurantView($('#world'),{
- onSelect(hit){if(edit){const o=state.objects.find(o=>o.uid===hit.uid);if(!o)return;if(o.cook){toast('음식이 있는 가마솥은 이동할 수 없어요.');return;}edit.selected=o.uid;edit.ghost={type:o.type,existing:o.uid,x:o.x,y:o.y,dir:o.dir,locked:true};renderEdit();return;}if(hit.kind==='stove'||hit.kind==='object'&&furniture(state.objects.find(o=>o.uid===hit.uid)?.type)?.category==='stove')openStove(hit.uid);else if(hit.kind==='waiter')open('hire');else if(hit.kind==='object'){const o=state.objects.find(o=>o.uid===hit.uid);if(o?.type==='poster')open('poster');else if(furniture(o?.type)?.category==='chair'){const problem=E.chairSeatProblem?.(state,o);toast(problem||'식탁을 향한 좌석이에요. 손님 한 명이 앉을 수 있어요.');}else if(o?.stock>0)toast(`${recipe(o.foodId).name} · 남은 재고 ${o.stock}개`);}},
- onTile(t){if(edit?.ghost){edit.ghost.x=t.x;edit.ghost.y=t.y;edit.ghost.locked=true;renderEdit();}},
- onHover(t){if(edit?.ghost&&!edit.ghost.locked&&t.x>=0&&t.y>=0&&t.x<state.size&&t.y<state.size){edit.ghost.x=t.x;edit.ghost.y=t.y;updateEditInfo();}},
+ onSelect(hit){if(edit){const o=state.objects.find(o=>o.uid===hit.uid);if(!o)return;if(o.cook){toast('음식이 있는 가마솥은 이동할 수 없어요.');return;}edit.selected=o.uid;const wall=furniture(o.type)?.wallMounted?wallAttachment(o,{legacy:!o.wallSide}):null;edit.ghost={type:o.type,existing:o.uid,x:wall?.x??o.x,y:wall?.y??o.y,dir:wall?.dir??o.dir,locked:true};renderEdit();return;}if(hit.kind==='cure'){requestCure(hit.uid);return;}if(hit.kind==='stove'||hit.kind==='object'&&furniture(state.objects.find(o=>o.uid===hit.uid)?.type)?.category==='stove')openStove(hit.uid);else if(hit.kind==='waiter')open('hire');else if(hit.kind==='object'){const o=state.objects.find(o=>o.uid===hit.uid);if(o?.type==='poster')open('poster');else if(furniture(o?.type)?.category==='chair'){const problem=E.chairSeatProblem?.(state,o);toast(problem||'식탁을 향한 좌석이에요. 손님 한 명이 앉을 수 있어요.');}else if(o?.stock>0)toast(`${recipe(o.foodId).name} · 남은 재고 ${o.stock}개`);}},
+ onTile(t){if(edit?.ghost){edit.ghost.x=t.x;edit.ghost.y=t.y;if(t.dir!==undefined&&furniture(edit.ghost.type)?.wallMounted)edit.ghost.dir=t.dir;edit.ghost.locked=true;renderEdit();}},
+ onHover(t){if(edit?.ghost&&!edit.ghost.locked&&t.x>=0&&t.y>=0&&t.x<state.size&&t.y<state.size){edit.ghost.x=t.x;edit.ghost.y=t.y;if(t.dir!==undefined&&furniture(edit.ghost.type)?.wallMounted)edit.ghost.dir=t.dir;updateEditInfo();}},
 });
 const celebrations=createCelebrations($('#stage'));celebrations.sync(state);
 const occupationWarning=createOccupationWarning($('#stage'));occupationWarning.sync(state);
@@ -89,15 +90,40 @@ let assetsLoading=false;
 async function loadAssets(){assetsLoading=true;$('#asset-status').hidden=false;$('#asset-message').textContent='식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.';$('[data-act="retry-assets"]').hidden=true;await view.load();assetsLoading=false;if(modal?.type==='cookbook'&&modal.view==='book')renderModal();const failed=view.failedAssets||[];$('#asset-status').hidden=!failed.length;if(failed.length){$('#asset-message').textContent=`그림 ${failed.length}개를 불러오지 못했어요. 기본 표시로 계속 플레이하거나 다시 불러오세요.`;$('[data-act="retry-assets"]').hidden=false;}}
 
 function save(){if(reconciling)return true;try{state.savedAt=document.hidden&&hiddenAt?hiddenAt:Date.now();localStorage.setItem(SAVE_KEY,JSON.stringify(state));return true;}catch{toast('저장 공간이 부족해요. 설정에서 저장 파일을 백업해주세요.','danger');return false;}}
-function toast(text,type='info'){const el=document.createElement('div');el.className=`toast ${type}`;el.setAttribute('role',type==='danger'?'alert':'status');const message=document.createElement('span');message.textContent=text;el.append(message);if(type==='danger'){const dismiss=document.createElement('button');dismiss.type='button';dismiss.textContent='닫기';dismiss.setAttribute('aria-label','오류 알림 닫기');dismiss.addEventListener('click',()=>el.remove());el.append(dismiss);}else setTimeout(()=>el.remove(),4400);$('#toasts').append(el);}
+function toast(text,type='info',details={}){
+ const staff=type==='danger'&&typeof details.staffUid==='string'?state.waiters.find(w=>w.uid===details.staffUid&&w.infectedUntil>state.time):null;
+ if(type==='danger'&&details.staffUid&&!staff)return;
+ if(staff)for(const old of $('#toasts').querySelectorAll('[data-staff-uid]'))if(old.dataset.staffUid===staff.uid)old.remove();
+ const el=document.createElement('div');el.className=`toast ${type}`;el.setAttribute('role',type==='danger'?'alert':'status');
+ const message=document.createElement('span');message.className='notice-message';message.textContent=text;const cue=document.createElement('small');cue.className='notice-scroll-cue';cue.textContent='↕';cue.setAttribute('aria-hidden','true');cue.hidden=true;el.append(message,cue);
+ if(staff){el.dataset.staffUid=staff.uid;const cure=document.createElement('button');cure.type='button';cure.dataset.act='cure';cure.dataset.id=staff.uid;cure.textContent=`치료하기(${E.cureCost(state)}원)`;el.append(cure);}
+ if(type==='danger'){const dismiss=document.createElement('button');dismiss.type='button';dismiss.textContent='닫기';dismiss.setAttribute('aria-label',staff?`${staff.name} 감염 알림 닫기`:'오류 알림 닫기');dismiss.addEventListener('click',()=>el.remove());el.append(dismiss);}else setTimeout(()=>el.remove(),4400);
+ $('#toasts').append(el);requestAnimationFrame(syncNoticeOverflow);
+}
+function syncNoticeOverflow(){
+ for(const row of $('#notification-rail').querySelectorAll('.toast, #traffic-notice')){
+  const message=row.querySelector('.notice-message'),cue=row.querySelector('.notice-scroll-cue');if(!message||!cue)continue;
+  cue.hidden=true;const overflow=message.scrollHeight>message.clientHeight||message.scrollWidth>message.clientWidth;
+  cue.hidden=!overflow;message.tabIndex=overflow?0:-1;
+  if(overflow){message.setAttribute('aria-description','위아래로 스크롤하여 전체 메시지를 볼 수 있어요.');message.title='스크롤하여 전체 메시지 보기';}else{message.removeAttribute('aria-description');message.removeAttribute('title');}
+ }
+}
+function syncStaffAlerts(){
+ for(const el of $('#toasts').querySelectorAll('[data-staff-uid]')){
+  const w=state.waiters.find(w=>w.uid===el.dataset.staffUid&&w.infectedUntil>state.time);
+  if(!w){el.remove();continue;}el.querySelector('[data-act="cure"]').textContent=`치료하기(${E.cureCost(state)}원)`;
+ }
+}
 function action(result,message,effect='click'){if(result){toast(result,'danger');sound.effect('danger');return false;}if(message)toast(message);sound.effect(effect);save();updateHUD();return true;}
-function pumpNotifications(){const list=state.notifications,index=list.findIndex(n=>n.id===notificationId),fresh=index<0?list.slice(-1):list.slice(index+1);for(const n of fresh){if(n.type==='new-guest'){celebrations.arrival(n);sound.effect('album');continue;}if(n.type==='payment'){sound.effect('payment');sound.maybePlayMealEndVoice();view.addPaymentEffect(n);const wallet=$('#coins').closest('.currency');wallet.classList.remove('coin-pop');void wallet.offsetWidth;wallet.classList.add('coin-pop');continue;}if(fresh.filter(x=>x.type!=='payment').slice(-2).includes(n)){toast(n.message,n.type);if(n.type!=='cook-start')sound.effect(n.type);}}notificationId=list.at(-1)?.id;}
+const shownBiteNotices=new WeakSet();
+function pumpNotifications(){const list=state.notifications,index=list.findIndex(n=>n.id===notificationId),fresh=index<0?list.filter((n,i)=>i===list.length-1||n.type==='danger'&&n.staffUid):list.slice(index+1);for(const n of fresh){if(n.type==='danger'&&n.staffUid){if(shownBiteNotices.has(n))continue;shownBiteNotices.add(n);}if(n.type==='new-guest'){celebrations.arrival(n);sound.effect('album');continue;}if(n.type==='payment'){sound.effect('payment');sound.maybePlayMealEndVoice();view.addPaymentEffect(n);const wallet=$('#coins').closest('.currency');wallet.classList.remove('coin-pop');void wallet.offsetWidth;wallet.classList.add('coin-pop');continue;}if(n.type==='danger'&&n.staffUid||fresh.filter(x=>x.type!=='payment').slice(-2).includes(n)){toast(n.message,n.type,n);if(n.type!=='cook-start')sound.effect(n.type);}}notificationId=list.at(-1)?.id;}
 function updateHUD(){
+ syncStaffAlerts();requestAnimationFrame(syncNoticeOverflow);
  const cameraPercent=Math.round((view.camera?.zoom||1)*100);$('#camera-zoom').textContent=`${cameraPercent}%`;$('[data-act="camera-reset"]').setAttribute('aria-label',`화면 원위치 · 현재 ${cameraPercent}%`);
  $('#level').textContent=state.level;$('#xp').textContent=`${num(state.xp)} / ${num(xpNeeded(state.level))}`;$('#xp-fill').style.width=`${state.xp/xpNeeded(state.level)*100}%`;$('#coins').textContent=num(state.coins);$('#hearts').textContent=num(state.hearts);
  const q=E.questProgress(state),questComplete=!!q&&q.progress>=q.target;$('.mayor-card').setAttribute('aria-label',q?`시장님의 부탁 · ${q.name} · ${q.progress} / ${q.target}${questComplete?' · 보상 받기':''}`:'시장님의 부탁 · 모든 의뢰를 마쳤어요');$('.mayor-card').classList.toggle('complete',questComplete);
  $('#hunger-value').textContent=`${Math.floor(state.hunger)}%`;$('#hunger-fill').style.width=`${state.hunger}%`;$('.hunger-track').setAttribute('aria-valuenow',Math.floor(state.hunger));$('.hunger-card').classList.toggle('danger',state.hunger>=70);
- const traffic=E.trafficStatus?.(state),notice=$('#traffic-notice');notice.hidden=!(traffic?.congested||traffic?.entryBlocked);if(traffic?.congested||traffic?.entryBlocked){const message=traffic.exitBlocked?'출입문까지 이어지는 통로를 비워주세요. 손님이 나갈 길이 막혔어요.':traffic.admissionBlocked?'출입구가 막혀 새 손님이 기다려요. 입구와 통로를 비워주세요.':traffic.capacityReached?'지금은 식당이 가득 찼어요. 손님이 나가면 새 손님이 들어옵니다.':'손님과 직원이 통로를 양보하고 있어요.';if(notice.textContent!==message)notice.textContent=message;}
+ const traffic=E.trafficStatus?.(state),notice=$('#traffic-notice');notice.hidden=!(traffic?.congested||traffic?.entryBlocked);if(traffic?.congested||traffic?.entryBlocked){const message=traffic.exitBlocked?'출입문까지 이어지는 통로를 비워주세요. 손님이 나갈 길이 막혔어요.':traffic.admissionBlocked?'출입구가 막혀 새 손님이 기다려요. 입구와 통로를 비워주세요.':traffic.capacityReached?'지금은 식당이 가득 찼어요. 손님이 나가면 새 손님이 들어옵니다.':'손님과 직원이 통로를 양보하고 있어요.';const text=notice.querySelector('.notice-message');if(text.textContent!==message)text.textContent=message;}
  const registered=Object.keys(state.album).filter(id=>!zombie(id)?.event).length;$('#album-count').textContent=`${registered}/${ZOMBIES.filter(z=>!z.event).length}`;$('#food-count').textContent=`${Object.keys(state.knownRecipes).filter(id=>!recipe(id)?.event).length}/12`;
  $('#event-label').textContent={upcoming:'다가오는 성탄절',active:'오싹한 성탄절 진행 중',ended:'성탄절의 추억'}[state.events.christmas];$('.scroll-news').setAttribute('aria-label',`계절의 소식 · ${$('#event-label').textContent}`);$('.scroll-news').title=`계절의 소식 · ${$('#event-label').textContent}`;
  $('#status-detail').textContent=`${state.size}×${state.size} · 직원 ${state.waiters.length}명 · ${E.seats(state).length}석`;
@@ -124,7 +150,7 @@ function staffUpgradeCard(w,kind){
 function renderBookShelf(body){
  heading('THE COOK BOOK','밤의 요리책',`레시피 레벨 ${E.recipeLevel(state)} · 책을 골라 요리를 펼쳐보세요.`);
  const perPage=5,pages=Math.ceil(BOOKS.length/perPage);bookShelfPage=Math.max(0,Math.min(bookShelfPage,pages-1));
- body.innerHTML=`<div class="book-shelf-grid">${BOOKS.slice(bookShelfPage*perPage,(bookShelfPage+1)*perPage).map((b,slot)=>{const index=bookShelfPage*perPage+slot,info=bookInfo(index),locked=E.recipeLevel(state)<info.required;return `<button class="book-cover-card ${locked?'locked':''}" data-act="book-open" data-n="${index}" aria-label="${esc(b.name)}${locked?` · 잠김 · 레시피 레벨 ${info.required} 필요`:''}"><span class="book-cover-art"><img class="book-cover-image" src="${esc(b.cover||'/assets/cookbook-cover-blank.png')}" alt="" width="96" height="128"/>${locked?`<span class="book-lock" aria-hidden="true">${icon('lock',26)}</span>`:''}</span><strong>${esc(b.name)}</strong><small>${locked?`레시피 Lv.${info.required}`:`${info.recipes.length}가지 요리`}</small>${b.event?'<span class="book-season">성탄 한정</span>':''}</button>`;}).join('')}</div><div class="book-footer"><button class="icon-button" data-act="book-shelf-page" data-n="-1" aria-label="이전 표지 목록" ${bookShelfPage===0?'disabled':''}><span class="reverse">${icon('arrow',18)}</span></button><span>${bookShelfPage+1} / ${pages} <small class="book-total">${BOOKS.length}요리책 ${RECIPES.length} 레시피</small></span><button class="icon-button" data-act="book-shelf-page" data-n="1" aria-label="다음 표지 목록" ${bookShelfPage===pages-1?'disabled':''}>${icon('arrow',18)}</button></div>`;
+ body.innerHTML=`<div class="book-shelf-grid">${BOOKS.slice(bookShelfPage*perPage,(bookShelfPage+1)*perPage).map((b,slot)=>{const index=bookShelfPage*perPage+slot,info=bookInfo(index),locked=E.recipeLevel(state)<info.required;return `<button class="book-cover-card ${locked?'locked':''}" data-act="book-open" data-n="${index}" aria-label="${esc(b.name)}${locked?` · 잠김 · 레시피 레벨 ${info.required} 필요`:` · ${info.recipes.length}가지 요리`}${b.event?' · 성탄 한정':''}"><span class="book-cover-art"><img class="book-cover-image" src="${esc(b.cover||'/assets/cookbook-cover-blank.png')}" alt="" width="96" height="128"/>${locked?`<span class="book-lock" aria-hidden="true">${icon('lock',26)}</span>`:''}</span><strong>${esc(b.name)}</strong><small>${locked?`레시피 Lv.${info.required}`:`${info.recipes.length}가지 요리`}</small>${b.event?'<span class="book-season">성탄 한정</span>':''}</button>`;}).join('')}</div><div class="book-footer"><button class="icon-button" data-act="book-shelf-page" data-n="-1" aria-label="이전 표지 목록" ${bookShelfPage===0?'disabled':''}><span class="reverse">${icon('arrow',18)}</span></button><span>${bookShelfPage+1} / ${pages} <small class="book-total">${BOOKS.length}요리책 ${RECIPES.length} 레시피</small></span><button class="icon-button" data-act="book-shelf-page" data-n="1" aria-label="다음 표지 목록" ${bookShelfPage===pages-1?'disabled':''}>${icon('arrow',18)}</button></div>`;
 }
 function renderModal(){
  if(!modal)return;const body=$('#dialog-content');
@@ -221,7 +247,7 @@ function renderModal(){
  }else if(modal.type==='help'){
  heading('YOUR FIRST NIGHT','밤손님 영업 안내','처음엔 가마솥 하나부터, 천천히 시작하세요.');body.innerHTML=`<ol class="help-list"><li><b>COOK → 요리 선택</b><p>시간이 지나 초록 체크가 뜨면 눌러주세요. 음식이 서빙대로 바로 옮겨집니다.</p></li><li><b>직원이 서빙과 판매를 도와줘요</b><p>식탁 바로 옆에서 식탁을 향한 의자마다 한 명이 앉아요. 한 칸 식탁은 최대 4명이며, 앉을 자리까지 통로가 필요해요. 식탁 없는 의자는 장식이에요. 음식이 모자라면 도시의 허기가 올라갑니다.</p></li><li><b>반복 조리로 다음 메뉴를 만나요</b><p>음식 숙련도 합계가 레시피 레벨입니다. 식당 레벨은 판매·의뢰 등으로 따로 올라요.</p></li><li><b>식사와 결제까지, 새로운 단골</b><p>접속 중 처음 거래를 마친 좀비가 캐릭터북에 등록됩니다.</p></li><li><b>음식과 직원을 돌봐주세요</b><p>가마솥 음식은 오래 두면 상해요. 붉은 좀비에게 물린 직원은 코인으로 치료하거나 5분 뒤 회복됩니다.</p></li><li><b>가로 화면, 터치 또는 마우스</b><p>꾸미기에서 가구를 고르고 격자 위치를 선택한 뒤 배치하세요. 키보드·좌표 배치를 펼치면 가구를 고를 수 있어요. 바닥의 방향키는 이동, R은 회전, Enter는 확정, Esc는 취소입니다.</p></li></ol>`;
  }else if(modal.type==='confirm'){
- heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML=`<div class="button-row confirm-buttons"><button class="button quiet" data-act="close">취소</button><button class="button primary" data-act="confirm">${modal.label||'확인'}</button></div>`;
+ heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML=`<div class="button-row confirm-buttons"><button class="button quiet" data-act="close">${modal.cancelLabel||'취소'}</button><button class="button primary" data-act="confirm">${modal.label||'확인'}</button></div>`;
  }
  if(modal?.type==='hire')body.querySelector('.staff-list').scrollTop=staffScroll;
  if(modal?.type==='cookbook'){const tabs=body.querySelector('.book-tabs'),selected=tabs?.querySelector('.selected');if(selected){const t=tabs.getBoundingClientRect(),b=selected.getBoundingClientRect();tabs.scrollLeft+=b.left-t.left-Math.max(0,(tabs.clientWidth-b.width)/2);}}
@@ -232,20 +258,44 @@ function paintActorThumbnails(time){for(const canvas of document.querySelectorAl
 document.addEventListener('change',e=>{if(e.target.id==='walk-actor'){walkPreviewActor=e.target.value;if(walkPreviewState==='eat'&&!eatingCharacter(walkPreviewActor))walkPreviewState='sit';renderModal();}if(e.target.id==='walk-direction'){walkPreviewDirection=Number(e.target.value);paintWalkPreview();paintActorThumbnails(0);}if(e.target.id==='walk-state'){walkPreviewState=e.target.value;paintWalkPreview();}});
 
 function questModalKey(){const q=E.questProgress(state);return `${state.questIndex}:${q?.progress??''}:${state.hearts}`;}
-function confirmAction(title,description,callback,label='확인'){open('confirm',{title,description,callback,label});}
+function confirmAction(title,description,callback,label='확인',cancelLabel='취소'){open('confirm',{title,description,callback,label,cancelLabel});}
+function requestCure(uid,feedback=''){
+ const staff=state.waiters.find(w=>w.uid===uid&&w.infectedUntil>state.time);
+ if(!staff){syncStaffAlerts();toast('치료가 필요하지 않아요.');return;}
+ const price=E.cureCost(state);
+ confirmAction('치료하시겠습니까?',`${feedback?`${feedback} `:''}${staff.name} 치료에 ${price}원이 필요해요.`,()=>{
+  const current=state.waiters.find(w=>w.uid===uid&&w.infectedUntil>state.time);
+  if(!current){close();syncStaffAlerts();toast('치료가 필요하지 않아요.');return;}
+  if(E.cureCost(state)!==price){requestCure(uid,'치료 비용이 바뀌었어요. 새 금액을 확인해주세요.');return;}
+  const result=E.cure(state,uid);
+  if(result){requestCure(uid,result);return;}
+  close();syncStaffAlerts();action(null,'다시 건강해졌어요.');
+ },`예(${price}원)`,'아니요');
+}
 
-function startEdit(){close();edit={selected:null,ghost:null};$('#stage').classList.add('editing');$('#shop-dock').hidden=false;$('#edit-tools').hidden=false;renderShop();renderEdit();}
-function finishEdit(){edit=null;$('#stage').classList.remove('editing');$('#shop-dock').hidden=true;$('#edit-tools').hidden=true;save();updateHUD();$('#decorate-button').focus({preventScroll:true});}
+function startEdit(){close();edit={selected:null,ghost:null};$('#stage').classList.add('editing');$('#shop-dock').hidden=false;$('#app > .bottom-bar').inert=true;renderShop();renderEdit();}
+function finishEdit(){edit=null;$('#stage').classList.remove('editing');$('#shop-dock').hidden=true;$('#edit-tools').hidden=true;$('#app > .bottom-bar').inert=false;save();updateHUD();$('#decorate-button').focus({preventScroll:true});}
 function renderShop(){const categories=[['table','테이블'],['chair','의자'],['stove','가마솥'],['server','서빙대'],['decor','장식'],['floor','바닥'],['wall','벽'],['storage','창고'],['expand','확장']];let items='';
  if(shopTab==='expand'){const next=EXPANSIONS.find(x=>x.size>state.size);items=next?`<button class="shop-item expansion-item" data-act="expand"><span>${icon('home',33)}</span><b>${next.size}×${next.size}로 확장</b><small>식당 Lv.${next.level} · ${num(next.price)}코인</small></button>`:'<p class="shop-empty">가장 넓은 식당이에요.</p>';}
  else if(shopTab==='floor'||shopTab==='wall')items=SKINS.filter(x=>x.type===shopTab).map(x=>`<button class="shop-item" data-act="skin" data-id="${x.id}"><span class="skin-swatch" style="background:${x.color}"></span><b>${x.name}</b><small>${state[x.type]===x.id?'사용 중':state.ownedSkins.includes(x.id)?'보유 중':`${num(x.price)}코인 · Lv.${x.level}`}</small></button>`).join('');
  else{const list=shopTab==='storage'?[...new Set(state.storage)].map(id=>furniture(id)):FURNITURE.filter(f=>f.category===shopTab);items=list.map(f=>{const stored=shopTab==='storage',count=state.objects.filter(o=>furniture(o.type)?.category===f.category).length,cap=LIMITS[f.category]?E.limit(state,f.category):null,next=LIMITS[f.category]?.find(([level,value])=>level>state.level&&value>cap),full=cap!==null&&count>=cap,locked=!stored&&(state.level<f.level||f.event&&state.events[f.event]!=='active'),unaffordable=!stored&&state.coins<f.price;const capacity=cap===null?'':`<small class="capacity-note">${count}/${cap}개 설치${full?next?` · Lv.${next[0]}에 ${next[1]}개`:' · 최대 한도':''}</small>`;return `<button class="shop-item ${locked||full?'locked':''}" data-act="buy-furniture" data-id="${f.id}" data-storage="${stored}" ${locked||full||unaffordable?'disabled':''}>${furnitureThumbnail(f)}<b>${f.name}</b><small>${shopTab==='storage'?`보관 ${state.storage.filter(id=>id===f.id).length}개`:locked?f.event?'이벤트 기간 한정':`식당 Lv.${f.level}`:`${num(f.price)}코인${unaffordable?' · 엽전 부족':''}`}</small>${capacity}</button>`;}).join('')||'<p class="shop-empty">아직 보관한 가구가 없어요.</p>';}
  $('#shop-dock').innerHTML=`<div class="shop-tabs">${categories.map(([id,t])=>`<button class="${shopTab===id?'selected':''}" data-act="shop-tab" data-id="${id}">${t}</button>`).join('')}<button class="shop-done" data-act="finish-edit">${icon('check',15)} 꾸미기 완료</button></div><div class="shop-items">${items}</div>`;paintFurnitureThumbnails($('#shop-dock'));
 }
-function updateEditInfo(){const el=$('#edit-info');if(!el||!edit)return;const g=edit.ghost,problem=g?E.placementProblem(state,g.type,g.x,g.y,g.dir,g.existing,{ignoreStaff:true}):null;const seatHint=g&&furniture(g.type)?.category==='chair'&&E.chairSeatProblem?.({...state,objects:state.objects.filter(o=>o.uid!==g.existing)},g);el.textContent=g?(problem||`${furniture(g.type).name} · ${seatHint?`장식 의자 · ${seatHint}`:g.locked?`${g.x+1}, ${g.y+1}칸 선택됨 · 배치 버튼으로 확정`:'원하는 격자를 먼저 눌러주세요'}`):'가구를 선택해 옮기거나 아래에서 새 가구를 골라보세요.';const button=$('[data-act="place"]');if(button)button.disabled=!!problem||!g?.locked;}
-function renderEdit(){if(!edit)return;const focus=document.activeElement,act=focus?.dataset.act,detailsOpen=$('#keyboard-placement')?.open,g=edit.ghost;$('#edit-tools').innerHTML=`<span id="edit-info" role="status"></span>${g?`<div class="button-row"><button class="button primary" data-act="place">${icon('check',17)} 배치</button><button class="button quiet" data-act="rotate">${icon('rotate',17)} 회전</button>${g.existing?`<button class="button quiet" data-act="store">창고</button><button class="button quiet" data-act="sell">판매</button>`:''}<button class="icon-button" data-act="cancel-placement" aria-label="배치 취소">${icon('close')}</button></div>`:''}<details id="keyboard-placement" ${detailsOpen?'open':''}><summary>키보드·좌표 배치</summary><label for="furniture-select">배치된 가구 선택</label><select id="furniture-select"><option value="">가구를 선택하세요</option>${state.objects.map(o=>`<option value="${o.uid}" ${o.uid===g?.existing?'selected':''}>${furniture(o.type).name} · ${o.x+1}, ${o.y+1}칸</option>`).join('')}</select>${g?`<div class="coordinate-fields"><label>가로 칸<input type="number" min="1" max="${state.size}" value="${g.x+1}" data-coordinate="x"></label><label>세로 칸<input type="number" min="1" max="${state.size}" value="${g.y+1}" data-coordinate="y"></label></div><button class="button quiet" data-act="focus-floor">바닥에서 방향키로 이동</button>`:''}<p id="keyboard-help">방향키: 칸 이동 · R: 회전 · Enter: 배치 · Esc: 취소</p></details>`;updateEditInfo();if(act)$(`[data-act="${act}"]`,$('#edit-tools'))?.focus({preventScroll:true});}
+function rotateEditGhost(){const g=edit?.ghost;if(!g)return;if(furniture(g.type)?.wallMounted){const slot=g.x||g.y;g.dir=(g.dir+1)%2;g.x=g.dir?0:slot;g.y=g.dir?slot:0;}else g.dir=(g.dir+1)%4;renderEdit();}
+function updateEditInfo(){
+ const el=$('#edit-info');if(!el||!edit)return;const g=edit.ghost,problem=g?E.placementProblem(state,g.type,g.x,g.y,g.dir,g.existing,{ignoreStaff:true}):null;
+ const seatHint=g&&furniture(g.type)?.category==='chair'&&E.chairSeatProblem?.({...state,objects:state.objects.filter(o=>o.uid!==g.existing)},g);
+ el.textContent=problem||(seatHint?`장식 의자 · ${seatHint}`:'');el.hidden=!el.textContent;
+ const button=$('[data-act="place"]');if(button){button.disabled=!!problem||!g?.locked;button.title=problem||(!g?.locked?'바닥에서 위치를 선택해주세요.':'선택한 위치에 배치');}
+}
+function renderEdit(){
+ if(!edit)return;const tools=$('#edit-tools'),focus=document.activeElement,act=focus?.dataset.act,g=edit.ghost;
+ tools.hidden=!g;
+ tools.innerHTML=g?`<span id="edit-info" role="status" hidden></span><div class="button-row" role="group" aria-label="선택한 가구 조작"><button class="button primary" data-act="place">${icon('check',17)} 배치</button><button class="button quiet" data-act="rotate">${icon('rotate',17)} 회전</button>${g.existing?`<button class="button quiet" data-act="store">창고</button><button class="button quiet" data-act="sell">판매</button>`:''}<button class="icon-button" data-act="cancel-placement" aria-label="배치 취소">${icon('close')}</button></div>`:'';
+ updateEditInfo();if(act)$(`[data-act="${act}"]`,tools)?.focus({preventScroll:true});
+}
 
-document.addEventListener('change',e=>{if(e.target.id!=='furniture-select'||!edit)return;const o=state.objects.find(o=>o.uid===e.target.value);if(!o)return;if(o.cook){toast('음식이 있는 가마솥은 회수한 뒤 옮겨주세요.','danger');return;}edit.selected=o.uid;edit.ghost={type:o.type,existing:o.uid,x:o.x,y:o.y,dir:o.dir,locked:true};renderEdit();$('#world').focus({preventScroll:true});});
+document.addEventListener('change',e=>{if(e.target.id!=='furniture-select'||!edit)return;const o=state.objects.find(o=>o.uid===e.target.value);if(!o)return;if(o.cook){toast('음식이 있는 가마솥은 회수한 뒤 옮겨주세요.','danger');return;}edit.selected=o.uid;const wall=furniture(o.type)?.wallMounted?wallAttachment(o,{legacy:!o.wallSide}):null;edit.ghost={type:o.type,existing:o.uid,x:wall?.x??o.x,y:wall?.y??o.y,dir:wall?.dir??o.dir,locked:true};renderEdit();$('#world').focus({preventScroll:true});});
 
 const stovePresses=new Map();
 let releasedPointerType;
@@ -281,7 +331,7 @@ document.addEventListener('click',async e=>{
  if(act==='close')close();else if(act==='home')close();else if(act==='cookbook')open('cookbook');
  else if(act==='book-open'){const info=bookInfo(n);if(E.recipeLevel(state)<info.required){toast(`레시피 레벨 ${info.required}에 열리는 요리책이에요.`);return;}book=n;page=0;modal.view='book';renderModal();$('[data-act="book-back"]',dialog)?.focus({preventScroll:true});}
  else if(act==='book-back'){modal.view='shelf';bookShelfPage=Math.floor(book/5);renderModal();$(`[data-act="book-open"][data-n="${book}"]`,dialog)?.focus({preventScroll:true});}
- else if(act==='book-shelf-page'){bookShelfPage+=n;renderModal();}
+ else if(act==='book-shelf-page'){bookShelfPage+=n;renderModal();const next=$(`[data-act="book-shelf-page"][data-n="${n}"]`,dialog),target=next&&!next.disabled?next:$(`[data-act="book-shelf-page"][data-n="${-n}"]`,dialog);target?.focus({preventScroll:true});}
  else if(act==='book-tab'){book=n;page=0;modal.view='book';renderModal();}else if(act==='book-page'){page+=n;renderModal();const next=$(`[data-act="book-page"][data-n="${n}"]`,dialog),target=next&&!next.disabled?next:$(`[data-act="book-page"]:not(:disabled)`,dialog);target?.focus({preventScroll:true});}
  else if(act==='event-book'){if(state.events.christmas==='upcoming'){toast('성탄절 요리는 아직 미공개예요.');return;}book=3;page=0;open('cookbook',{view:'book'});}
  else if(act==='cook'){const stove=state.objects.find(o=>o.uid===modal?.stove)||state.objects.find(o=>furniture(o.type)?.category==='stove'&&!o.cook);if(action(E.cook(state,stove?.uid,id),null,'ignite'))close();}
@@ -294,7 +344,7 @@ document.addEventListener('click',async e=>{
  else if(act==='album-tab'){albumTab=id;selectedZombie=ZOMBIES.find(z=>id==='event'?z.event:!z.event).id;renderModal();}else if(act==='guest'){selectedZombie=id;renderModal();}
  else if(act==='hire-now'){if(action(E.hire(state)))renderModal();}
  else if(act==='fire')confirmAction('이 식구와 작별할까요?','고용 비용은 돌려받지 못해요.',()=>{action(E.fire(state,id));open('hire');},'해고하기');
- else if(act==='cure'){if(action(E.cure(state,id),'다시 건강해졌어요.'))renderModal();}
+ else if(act==='cure')requestCure(id);
  else if(act==='claim-quest'){if(action(E.claimQuest(state,id,n)))renderModal();}
  else if(act==='skip-quest'){
   const q=E.questProgress(state);if(!q||q.id!==id||state.questIndex!==n){toast('부탁이 바뀌었어요. 현재 부탁을 다시 확인해주세요.','danger');open('quest');return;}
@@ -304,8 +354,8 @@ document.addEventListener('click',async e=>{
  else if(act==='daily'){action(E.daily(state));}
  else if(act==='decorate'){edit?finishEdit():startEdit();}else if(act==='finish-edit')finishEdit();
  else if(act==='shop-tab'){shopTab=id;renderShop();}
- else if(act==='buy-furniture'){edit.ghost={type:id,x:3,y:3,dir:0,fromStorage:b.dataset.storage==='true'};edit.selected=null;renderEdit();}
- else if(act==='rotate'){if(edit?.ghost){edit.ghost.dir=(edit.ghost.dir+1)%4;renderEdit();}}
+ else if(act==='buy-furniture'){edit.ghost={type:id,x:3,y:furniture(id)?.wallMounted?0:3,dir:0,fromStorage:b.dataset.storage==='true'};edit.selected=null;renderEdit();}
+ else if(act==='rotate')rotateEditGhost();
  else if(act==='cancel-placement'){edit.ghost=null;edit.selected=null;renderEdit();}
  else if(act==='walk-preview-toggle'){walkPreviewPaused=!walkPreviewPaused;b.textContent=walkPreviewPaused?'미리보기 재생':'미리보기 정지';}
  else if(act==='place'){if(edit?.ghost&&action(E.place(state,{...edit.ghost,editing:true}),'가구를 배치했어요.')){edit.ghost=null;edit.selected=null;renderEdit();renderShop();}}
@@ -333,8 +383,8 @@ document.addEventListener('keydown',e=>{
  if(!dialog.open&&e.target.id==='world'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&['+','=','-','0'].includes(e.key)){e.preventDefault();if(e.key==='0')view.resetCamera?.();else view.zoomCamera?.(e.key==='-'?1/1.1:1.1);updateHUD();return;}
  if(dialog.open||!edit||['INPUT','TEXTAREA','SELECT','SUMMARY'].includes(e.target.tagName))return;
  const g=edit.ghost,arrows={ArrowRight:[1,0],ArrowLeft:[-1,0],ArrowDown:[0,1],ArrowUp:[0,-1]};
- if(e.target.id==='world'&&g&&arrows[e.key]){e.preventDefault();const [dx,dy]=arrows[e.key];g.x=Math.max(0,Math.min(state.size-1,g.x+dx));g.y=Math.max(0,Math.min(state.size-1,g.y+dy));g.locked=true;updateEditInfo();for(const input of document.querySelectorAll('[data-coordinate]'))input.value=g[input.dataset.coordinate]+1;}
- else if(e.key.toLowerCase()==='r'&&g){e.preventDefault();g.dir=(g.dir+1)%4;renderEdit();}
+ if(e.target.id==='world'&&g&&arrows[e.key]){e.preventDefault();const [dx,dy]=arrows[e.key];if(furniture(g.type)?.wallMounted){const slot=Math.max(0,Math.min(state.size-1,(g.x||g.y)+(dx||dy)));g.x=g.dir%2?0:slot;g.y=g.dir%2?slot:0;}else{g.x=Math.max(0,Math.min(state.size-1,g.x+dx));g.y=Math.max(0,Math.min(state.size-1,g.y+dy));}g.locked=true;updateEditInfo();for(const input of document.querySelectorAll('[data-coordinate]'))input.value=g[input.dataset.coordinate]+1;}
+ else if(e.key.toLowerCase()==='r'&&g){e.preventDefault();rotateEditGhost();}
  else if(e.key==='Enter'&&g&&e.target.id==='world'){e.preventDefault();$('[data-act="place"]')?.click();}
  else if(e.key==='Escape'){e.preventDefault();if(g){edit.ghost=null;edit.selected=null;renderEdit();$('#world').focus({preventScroll:true});}else finishEdit();}
 });

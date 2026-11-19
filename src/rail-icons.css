@@ -1,4 +1,4 @@
-.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){position:relative;display:grid;place-items:center;width:88px;height:78px;min-width:44px;min-height:44px;padding:6px;border:0;background:transparent;box-shadow:none;cursor:pointer;--rail-outline:#f1e6c8;--rail-shadow-x:2px;--rail-shadow-y:3px;transition:transform .12s ease}
+.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){position:relative;display:grid;place-items:center;width:149.6px;height:132.6px;min-width:44px;min-height:44px;padding:10.2px;border:0;background:transparent;box-shadow:none;cursor:pointer;--rail-outline:#f1e6c8;--rail-shadow-x:2px;--rail-shadow-y:3px;transition:transform .12s ease}
 .left-rail .mayor-card.mayor-icon .mayor-portrait{width:100%;height:100%}
 .left-rail .season-card.scroll-news>img{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;pointer-events:none}
 .left-rail :is(.mayor-card.mayor-icon .mayor-portrait,.season-card.scroll-news>img){filter:drop-shadow(1px 0 var(--rail-outline)) drop-shadow(-1px 0 var(--rail-outline)) drop-shadow(0 1px var(--rail-outline)) drop-shadow(0 -1px var(--rail-outline)) drop-shadow(var(--rail-shadow-x) var(--rail-shadow-y) #071d18)}
@@ -6,6 +6,6 @@
 .left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news):focus-visible :is(.mayor-portrait,img){filter:drop-shadow(2px 0 var(--rail-outline)) drop-shadow(-2px 0 var(--rail-outline)) drop-shadow(0 2px var(--rail-outline)) drop-shadow(0 -2px var(--rail-outline)) drop-shadow(2px 3px #071d18)}
 @media(hover:hover){.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news):hover{transform:translateY(-2px);--rail-outline:#fff0bb;--rail-shadow-y:5px}}
 .left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news):active{transform:translate(2px,3px);--rail-shadow-x:1px;--rail-shadow-y:1px}
-@media(orientation:landscape) and (max-height:500px){.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){width:58px;height:52px;padding:4px}}
-@media(orientation:landscape) and (max-height:280px){.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){width:48px;height:44px;padding:3px}}
+@media(orientation:landscape) and (max-height:500px){.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){width:98.6px;height:88.4px;padding:6.8px}}
+@media(orientation:landscape) and (max-height:280px){.left-rail{flex-direction:row;width:max-content}.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){width:81.6px;height:74.8px;padding:5.1px}}
 @media(prefers-reduced-motion:reduce){.left-rail :is(.mayor-card.mayor-icon,.season-card.scroll-news){transition:none}}
