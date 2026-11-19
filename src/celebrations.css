@@ -24,6 +24,7 @@
 .arrival-zombie{position:relative;z-index:1;display:block;width:145px;height:145px;image-rendering:pixelated;filter:drop-shadow(2px 3px #16292155)}
 .arrival-name{z-index:2;max-width:100%;min-width:190px;text-align:center;font-size:23px;line-height:1.35;padding:5px 14px;background:#f2e6c6;color:#283a2d;border:2px solid #9f8d59;box-shadow:3px 4px #061c1b}
 @media(orientation:landscape) and (max-height:500px){
+ .guest-arrival-zone{bottom:calc(76px + env(safe-area-inset-bottom))}
  .combo-graphic{top:5%}.combo-graphic b{font-size:54px}.combo-graphic img{width:170px}
  .festival-entry{top:10%;width:min(360px,calc(100% - 80px))}
  .fever-banner{top:5px!important;width:max-content!important;max-width:calc(100% - 130px)!important}
