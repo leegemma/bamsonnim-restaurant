@@ -1,5 +1,9 @@
 import {scoreBar,STEP_SECONDS,STEPS_PER_BAR} from './music-score.js';
 
+export const MEAL_END_VOICE_CHANCE=.2;
+export const MEAL_END_VOICE_COOLDOWN=3;
+const MEAL_END_VOICE_URL='/assets/audio/zombie-meal-end-v1.wav';
+
 // Uneven, progressively closer contacts suggest loose coins settling into a pile.
 // This uses its own randomness and never advances the restaurant's saved RNG.
 export function coinStackPattern(random=Math.random){
@@ -13,13 +17,13 @@ export function coinStackPattern(random=Math.random){
 // Layered original retro score, synthesized at the browser's floating-point precision.
 // Timbre is independent of any exported PCM file's bit depth.
 export class Sound{
-  constructor(){this.context=null;this.timer=null;this.beat=0;this.mode='normal';this.playbackMode='normal';this.nextTime=0;this._music=.22;this._effects=.45;this._musicMuted=false;this.suspendTimer=null;}
+  constructor(){this.context=null;this.timer=null;this.beat=0;this.mode='normal';this.playbackMode='normal';this.nextTime=0;this._music=.22;this._effects=.45;this._musicMuted=false;this.suspendTimer=null;this.mealEndVoice=null;this.mealEndVoiceRequest=null;this.mealEndVoiceBuffer=null;this.mealEndVoiceLoading=null;this.mealEndVoiceLastAt=-Infinity;}
   get musicMuted(){return this._musicMuted;}
   set musicMuted(value){this._musicMuted=!!value;if(this.musicBus)this.musicBus.gain.setTargetAtTime(this._musicMuted?0:this._music*.85,this.context.currentTime,.04);}
   get music(){return this._music;}
   set music(value){this._music=Math.max(0,Math.min(1,Number(value)||0));if(this.musicBus)this.musicBus.gain.setTargetAtTime(this._musicMuted?0:this._music*.85,this.context.currentTime,.04);}
   get effects(){return this._effects;}
-  set effects(value){this._effects=Math.max(0,Math.min(1,Number(value)||0));if(this.effectsBus)this.effectsBus.gain.setTargetAtTime(this._effects*.25,this.context.currentTime,.025);}
+  set effects(value){this._effects=Math.max(0,Math.min(1,Number(value)||0));if(this._effects===0)this.stopMealEndVoice();if(this.effectsBus)this.effectsBus.gain.setTargetAtTime(this._effects*.25,this.context.currentTime,.025);}
   setup(context){
     this.context=context;this.bus=context.createGain();this.bus.gain.value=.7;
     const compressor=context.createDynamicsCompressor();compressor.threshold.value=-17;compressor.knee.value=16;compressor.ratio.value=3;compressor.attack.value=.008;compressor.release.value=.23;this.bus.connect(compressor);compressor.connect(context.destination);
@@ -92,6 +96,41 @@ export class Sound{
     }
     this.coinTails.push(endAt);return true;
   }
+  // Share fetch/decode work; a failed request is retryable at the next meal.
+  async loadMealEndVoice(){
+    if(this.mealEndVoiceBuffer)return this.mealEndVoiceBuffer;
+    if(!this.context)return null;
+    if(!this.mealEndVoiceLoading){
+      const context=this.context;
+      this.mealEndVoiceLoading=(async()=>{
+        try{const response=await fetch(MEAL_END_VOICE_URL);if(!response.ok)return null;
+          const buffer=await context.decodeAudioData(await response.arrayBuffer());
+          this.mealEndVoiceBuffer=buffer;return buffer;
+        }catch{return null;}finally{this.mealEndVoiceLoading=null;}
+      })();
+    }
+    return this.mealEndVoiceLoading;
+  }
+  stopMealEndVoice(){
+    this.mealEndVoiceRequest=null;
+    const source=this.mealEndVoice;this.mealEndVoice=null;
+    if(source){try{source.stop();}catch{}source.disconnect();}
+  }
+  async maybePlayMealEndVoice(random=Math.random){
+    const context=this.context;
+    if(context?.state!=='running'||this._effects===0||!this.effectsBus||this.mealEndVoice||this.mealEndVoiceRequest||context.currentTime-this.mealEndVoiceLastAt<MEAL_END_VOICE_COOLDOWN)return false;
+    const request={};this.mealEndVoiceRequest=request;
+    try{
+      if(!(random()<MEAL_END_VOICE_CHANCE))return false;
+      const buffer=await this.loadMealEndVoice();
+      if(!buffer||this.mealEndVoiceRequest!==request||this.context!==context||context.state!=='running'||this._effects===0)return false;
+      const source=context.createBufferSource();source.buffer=buffer;source.playbackRate.value=1;source.connect(this.effectsBus);
+      this.mealEndVoice=source;
+      source.onended=()=>{source.disconnect();if(this.mealEndVoice===source)this.mealEndVoice=null;};
+      try{source.start();}catch{this.mealEndVoice=null;source.disconnect();return false;}
+      this.mealEndVoiceLastAt=context.currentTime;return true;
+    }catch{return false;}finally{if(this.mealEndVoiceRequest===request)this.mealEndVoiceRequest=null;}
+  }
   cookingDoneBell(){
     if(this.context?.state!=='running'||this._effects===0||!this.effectsBus)return false;
     const context=this.context,at=context.currentTime;
@@ -122,5 +161,5 @@ export class Sound{
     return true;
   }
   effect(kind='click'){if(kind==='ignite')return this.igniteWoodFire();if(kind==='done')return this.cookingDoneBell();if(kind==='payment'){this.coinJingle();return;}const notes=kind==='danger'?[50,49,45]:['album','level','mastery'].includes(kind)?[74,77,81,86]:kind==='cook'?[69,74]:[81,86];notes.forEach((n,i)=>this.tone(n,.08,.3,'bell',i*.075));}
-  stop(){if(this.timer)clearInterval(this.timer);this.timer=null;if(!this.context)return;const context=this.context;this.bus.gain.cancelScheduledValues(context.currentTime);this.bus.gain.setTargetAtTime(.0001,context.currentTime,.02);this.suspendTimer=setTimeout(()=>context.suspend(),90);}
+  stop(){this.stopMealEndVoice();if(this.timer)clearInterval(this.timer);this.timer=null;if(!this.context)return;const context=this.context;this.bus.gain.cancelScheduledValues(context.currentTime);this.bus.gain.setTargetAtTime(.0001,context.currentTime,.02);this.suspendTimer=setTimeout(()=>context.suspend(),90);}
 }
