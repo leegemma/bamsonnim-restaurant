@@ -36,6 +36,12 @@
 
 /* Keep recipe art and facts on one shared top edge and remove the old footer. */
 .cookbook .book-page-status{margin-inline-start:auto;white-space:nowrap;font-size:12px;color:#756951}
+/* The open recipe uses its toolbar as the single compact heading. */
+dialog.cookbook:has(.book-reader) .dialog-heading{display:contents}
+dialog.cookbook:has(.book-reader) .dialog-heading>:is(.dialog-overline,h1,p){display:none}
+dialog.cookbook:has(.book-reader) .book-toolbar{min-height:44px;padding-block:4px;padding-inline-end:56px}
+dialog.cookbook:has(.book-reader) .book-toolbar strong{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+dialog.cookbook:has(.book-reader) .close-button{top:6px;right:10px}
 .cookbook .book-reader{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;min-height:0;flex:1}
 .cookbook .book-page-arrow{align-self:center;justify-self:center;width:36px;min-height:44px;background:#e5d8b5;border:1px solid #ad986a;color:#5b5038}
 .cookbook .book-page-arrow:disabled{opacity:.35}

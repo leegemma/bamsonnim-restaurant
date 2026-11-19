@@ -71,11 +71,13 @@ const officePoses=[
     bounds:{x,y,width,height},anchor:{x:anchorX,y:anchorY}};
 });
 
+// The bibimbap bowl continues below its nominal row; stop before the next dish.
+const legacyFoodPoses=Array.from({length:16},(_,index)=>({index,state:'food',source:{x:(index%4)*313.5,y:Math.floor(index/4)*313.5,width:313.5,height:index===8?328:313.5}}));
 export const ASSET_MANIFEST={
   ghostDumplingFood:asset('ghostDumplingFood','유령 얼굴 만둣국',{url:'/assets/food-ghost-dumpling-faces-v1.png',width:1299,height:1211,cols:1,rows:1,type:'food-atlas'}),
   spiderDumplingFood:asset('spiderDumplingFood','거미 두 마리와 거미줄을 더한 찐만두',{url:'/assets/food-spider-dumpling-plus-two-v1.png',width:1246,height:1262,cols:1,rows:1,type:'food-atlas'}),
   hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
-  food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'atlas'}),
+  food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'food-atlas',poses:legacyFoodPoses}),
   emptyDish:asset('emptyDish','식사 후 빈 그릇',{url:'/assets/empty-dish.svg',width:32,height:20,rows:1,trim:false}),
   characters:asset('characters','첫 손님 15종·직원',{width:1254,height:1254,cols:4,type:'atlas'}),
   seatedNeighbors:asset('seatedNeighbors','단골 손님 5종·네 방향 착석',{
