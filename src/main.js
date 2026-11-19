@@ -22,6 +22,8 @@ import {workerFrame} from './worker-art.js';
 import {Sound} from './audio.js';
 import {createCookingDoneCue} from './cooking-done-cue.js';
 import {createCelebrations} from './celebrations.js';
+import {createOccupationWarning} from './occupation-warning.js';
+import './occupation-warning.css';
 import {cookingCountdown} from './cooking-countdown.js';
 import {eatingSpriteFrame,EATING_FPS} from './eating.js';
 import {reconcileAtStartup} from './offline-startup.js';
@@ -82,6 +84,7 @@ const view=new RestaurantView($('#world'),{
  onHover(t){if(edit?.ghost&&!edit.ghost.locked&&t.x>=0&&t.y>=0&&t.x<state.size&&t.y<state.size){edit.ghost.x=t.x;edit.ghost.y=t.y;updateEditInfo();}},
 });
 const celebrations=createCelebrations($('#stage'));celebrations.sync(state);
+const occupationWarning=createOccupationWarning($('#stage'));occupationWarning.sync(state);
 let assetsLoading=false;
 async function loadAssets(){assetsLoading=true;$('#asset-status').hidden=false;$('#asset-message').textContent='식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.';$('[data-act="retry-assets"]').hidden=true;await view.load();assetsLoading=false;if(modal?.type==='cookbook'&&modal.view==='book')renderModal();const failed=view.failedAssets||[];$('#asset-status').hidden=!failed.length;if(failed.length){$('#asset-message').textContent=`그림 ${failed.length}개를 불러오지 못했어요. 기본 표시로 계속 플레이하거나 다시 불러오세요.`;$('[data-act="retry-assets"]').hidden=false;}}
 
@@ -101,6 +104,7 @@ function updateHUD(){
  const stock=state.objects.reduce((n,o)=>n+(o.stock||0),0);$('#bottom-center').innerHTML=`<span class="open-dot"></span>${stock?`준비된 음식 <b>${num(stock)}개</b>`:'따뜻한 요리를 준비해주세요'}${speed!==1?`<span class="speed-badge">${speed}×</span>`:''}`;
  $('#welcome-note').hidden=state.tutorial>=1||!!edit;const feverRemaining=Math.max(0,state.feverUntil-state.time);$('#fever-banner').hidden=feverRemaining<=0||!!edit;$('#fever-title').textContent=`남은 시간 ${cookingCountdown(feverRemaining)}`;$('#fever-progress').value=feverRemaining;
  celebrations.update(state,!!edit);
+ occupationWarning.update(state,{editing:!!edit,reconciling});
  sound.music=state.settings.music;sound.effects=state.settings.sfx;sound.mode=state.feverUntil>state.time?'fever':state.hunger>75?'danger':'normal';
  const musicPlaying=!!sound.timer&&!sound.musicMuted&&sound.music>0&&sound.context?.state==='running',soundButton=$('#sound-button');soundButton.setAttribute('aria-label',musicPlaying?'음악 끄기':'음악 켜기');soundButton.setAttribute('aria-pressed',String(musicPlaying));soundButton.title=musicPlaying?'음악 끄기':'음악 켜기';soundButton.classList.toggle('muted',!musicPlaying);
  const stoveRoot=$('#stove-a11y'),objects=view.accessibleObjects(state),ids=new Set(objects.map(o=>o.uid));
@@ -309,7 +313,7 @@ document.addEventListener('click',async e=>{
  else if(act==='sell'){const uid=edit.ghost.existing;confirmAction('가구를 판매할까요?',`구매 가격의 50%인 ${Math.floor(furniture(edit.ghost.type).price/2)}코인을 돌려받아요.`,()=>{if(action(E.removeFurniture(state,uid,true))){edit.ghost=null;edit.selected=null;close();renderShop();renderEdit();}});}
  else if(act==='skin'){action(E.applySkin(state,id));renderShop();}else if(act==='expand'){action(E.expand(state));renderShop();}
  else if(act==='speed'){speed=n;renderModal();updateHUD();}
- else if(act==='skip'){const start=state.coins,sold=state.stats.sold;E.advance(state,n,{offline:true});doneCue.sync(state);notificationId=state.notifications.at(-1)?.id;save();open('offline',{report:{seconds:n,coins:state.coins-start,sold:state.stats.sold-sold,done:state.objects.filter(o=>E.stoveStatus(state,o)==='done').length,spoiled:state.objects.filter(o=>E.stoveStatus(state,o)==='spoiled').length,infected:state.waiters.filter(w=>w.infectedUntil>state.time).length}});updateHUD();}
+ else if(act==='skip'){const start=state.coins,sold=state.stats.sold;E.advance(state,n,{offline:true});occupationWarning.sync(state);doneCue.sync(state);notificationId=state.notifications.at(-1)?.id;save();open('offline',{report:{seconds:n,coins:state.coins-start,sold:state.stats.sold-sold,done:state.objects.filter(o=>E.stoveStatus(state,o)==='done').length,spoiled:state.objects.filter(o=>E.stoveStatus(state,o)==='spoiled').length,infected:state.waiters.filter(w=>w.infectedUntil>state.time).length}});updateHUD();}
  else if(act==='set-event'){E.setEvent(state,id);save();renderModal();updateHUD();if(!reconciling)pumpNotifications();}
  else if(act==='grant'){state.coins+=10000;state.hearts+=100;action(null,'테스트 재화를 지급했어요.');}
  else if(act==='unlock'){state.level=Math.max(30,...ZOMBIES.filter(z=>!z.event).map(z=>z.level));state.xp=0;for(const r of RECIPES){state.mastery[r.id]=r.milestones.at(-1);state.knownRecipes[r.id]=true;}action(null,`식당 Lv.${state.level} · 모든 요리 숙련도 3. 손님 도감은 직접 채워보세요.`);}
@@ -341,11 +345,11 @@ async function recoverAfterReturn(){
  try{
   do{const since=hiddenAt;hiddenAt=null;if(since)state.savedAt=since;const result=await reconcileAtStartup(state);state=result.state;if(result.report){if(report){report.coins+=result.report.coins;report.sold+=result.report.sold;report.levels+=result.report.levels;report.seconds+=result.report.seconds;report.done=result.report.done;report.spoiled=result.report.spoiled;report.infected=result.report.infected;}else report=result.report;}}while(!document.hidden&&hiddenAt);
   notificationId=state.notifications.at(-1)?.id;
- }finally{doneCue.sync(state);reconciling=false;lastFrame=performance.now();$('#app').inert=false;overlay.remove();save();updateHUD();focus?.focus?.({preventScroll:true});if(report)open('offline',{report});}
+ }finally{doneCue.sync(state);occupationWarning.sync(state);reconciling=false;lastFrame=performance.now();$('#app').inert=false;overlay.remove();save();updateHUD();focus?.focus?.({preventScroll:true});if(report)open('offline',{report});}
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden){hiddenAt=Date.now();save();sound.context?.suspend();}else{lastFrame=performance.now();if(sound.timer&&sound.context)sound.start().catch(()=>{});if(hiddenAt&&!reconciling)recoverAfterReturn();}});
 window.addEventListener('pagehide',save);setInterval(()=>{if(!document.hidden)save();},5000);
 function frame(now){const elapsed=Math.min(.25,(now-lastFrame)/1000);lastFrame=now;const audible=!document.hidden&&!paused&&!edit&&!reconciling,before=doneCue.scan(state,{audible});if(audible)E.advance(state,elapsed*speed);const after=doneCue.scan(state,{audible});if(before.play||after.play)sound.effect('done');if(!reconciling)view.draw(state,edit,now/1000,!paused&&!document.hidden);if(modal?.type==='gallery'&&!walkPreviewPaused){const meta=atlasForActor(walkPreviewActor);if(meta)paintWalkPreview(walkPreviewState==='eat'?Math.floor(now/1000*EATING_FPS)%3:previewFrame(meta,now/1000));paintActorThumbnails(now/1000);}if(now-lastUI>350){updateHUD();if(!reconciling)pumpNotifications();if(modal&&(['stove','hire'].includes(modal.type)||modal.type==='quest'&&questModalKey()!==renderedQuestKey)){const focus=document.activeElement,act=focus?.dataset.act,id=focus?.dataset.id,kind=focus?.dataset.kind;renderModal();if(act)[...dialog.querySelectorAll('[data-act]')].find(el=>el.dataset.act===act&&el.dataset.id===id&&el.dataset.kind===kind)?.focus({preventScroll:true});}lastUI=now;}requestAnimationFrame(frame);}
 loadAssets();updateHUD();requestAnimationFrame(frame);if(loadIssue)toast(loadIssue,'danger');if(offline)open('offline',{report:offline});save();
 // Test hook deliberately exposes only this browser-local test game.
-window.__BAMSONNIM__={get state(){return state;},engine:E,view,sound,save,open,pause(value=true){paused=value;lastFrame=performance.now();updateHUD();},advance(seconds,offline=false){E.advance(state,seconds,{offline});if(offline)doneCue.sync(state);save();updateHUD();},get edit(){return edit;}};
+window.__BAMSONNIM__={get state(){return state;},engine:E,view,sound,save,open,pause(value=true){paused=value;lastFrame=performance.now();updateHUD();},advance(seconds,offline=false){E.advance(state,seconds,{offline});if(offline){doneCue.sync(state);occupationWarning.sync(state);}save();updateHUD();},get edit(){return edit;}};

@@ -17,6 +17,21 @@ const cache=new WeakMap();
 const poses=[ [{stride:-1,lift:.12},{stride:1,lift:-.65}], [{stride:0,lift:-.3},{stride:0,lift:0}], [{stride:1,lift:-.65},{stride:-1,lift:.12}], [{stride:0,lift:0},{stride:0,lift:-.3}] ];
 const canvas=(base,width,height)=>{const out=base.ownerDocument.createElement('canvas');out.width=width;out.height=height;return out;};
 
+// A split through a one-pixel inner trouser edge can leave a detached thread
+// when the two feet cross. Remove only tiny detached packets below the hem;
+// the protected torso and the complete shoe packets are never touched.
+function removeDetachedThreads(out,width,height,footTop,scale){
+ const seen=new Uint8Array(width*height),limit=Math.ceil(40*scale*scale);
+ for(let y=footTop;y<height;y++)for(let x=0;x<width;x++){
+  const start=y*width+x;if(seen[start]||out.data[start*4+3]<=20)continue;
+  const queue=[start];seen[start]=1;let anchored=y===footTop;
+  for(let n=0;n<queue.length;n++){const i=queue[n],xx=i%width,yy=Math.floor(i/width);if(yy===footTop)anchored=true;
+   for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const nx=xx+dx,ny=yy+dy;if(nx<0||nx>=width||ny<footTop||ny>=height)continue;const j=ny*width+nx;if(!seen[j]&&out.data[j*4+3]>20){seen[j]=1;queue.push(j);}}
+  }
+  if(!anchored&&queue.length<limit)for(const i of queue)out.data.fill(0,i*4,i*4+4);
+ }
+}
+
 export function workerWalkRig(base,{appearance=0,infected=false}={}){
  if(!Number.isInteger(appearance)||appearance<0||appearance>=WORKER_WALK_RIGS.length)throw Error('Invalid worker walk appearance');
  const measured=infected&&appearance===0&&base.height>700?INFECTED_WORKER_WALK_RIG:WORKER_WALK_RIGS[appearance];
@@ -53,6 +68,7 @@ export function getWorkerWalkFrame(base,{appearance=0,infected=false,phase=0,mov
      }
     }
    }
+   removeDetachedThreads(out,width,height,rig.footTop,base.height/400);
    ctx.putImageData(out,0,0);frames.push({image,offsetX:-padding,offsetY:0,baseWidth:base.width,baseHeight:base.height,phase:frame,rig});
   }
   variants.set(key,frames);
