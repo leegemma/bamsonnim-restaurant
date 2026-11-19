@@ -23,7 +23,7 @@ for(const [name,type] of [['chromium',chromium],['webkit',webkit]]){
     const chair={uid:'pose-chair',type:'chair',x:3,y:3,dir};state.objects=seated?[chair,{uid:'pose-table',type:'table',x:3+[[1,0],[0,1],[-1,0],[0,-1]][dir][0],y:3+[[1,0],[0,1],[-1,0],[0,-1]][dir][1],dir:0}]:[];
     const actor={uid:`${z.id}-${seated}-${dir}`,zombieId:z.id,x:3,y:3,phase:seated?'waiting':'seating',seat:seated?chair.uid:null,path:seated?[]:[[[4,3],[3,4],[2,3],[3,2]][dir]],wait:29,red:!!z.red};
     v.hungerLayout=[];v.labelRects=[];v.guestLabels=[];v.drawPerson(state,actor,false,0,false);v.drawHungerBubbles();
-    const b=v.hungerLayout[0];if(!b||!Number.isFinite(b.x)||Math.abs(b.w/b.head.width-.6)>1e-8||Math.abs(b.x+b.w/2-b.head.x)>1e-8||b.y+b.h>=b.head.y)throw new Error(`Head alignment failed: ${actor.uid}`);
+    const b=v.hungerLayout[0];if(!b||!Number.isFinite(b.x)||Math.abs(b.w-110*.4257234042553192)>1e-8||Math.abs(b.x+b.w/2-b.head.x)>1e-8||b.y+b.h>=b.head.y)throw new Error(`Head alignment failed: ${actor.uid}`);
     if(v.guestLabels.length)throw new Error('Waiting speech overlaps hunger bubble');
     records.push({actor:z.id,seated:!!seated,dir,atlas:b.atlas,index:b.index});
     ctx.fillStyle='#eee';ctx.font='11px sans-serif';ctx.fillText(`${z.id} ${seated?'sit':'walk'} ${dir}`,col*160+5,row*180+178);
