@@ -77,6 +77,7 @@ export const ASSET_MANIFEST={
   ghostDumplingFood:asset('ghostDumplingFood','유령 얼굴 만둣국',{url:'/assets/food-ghost-dumpling-faces-v1.png',width:1299,height:1211,cols:1,rows:1,type:'food-atlas'}),
   spiderDumplingFood:asset('spiderDumplingFood','거미 두 마리와 거미줄을 더한 찐만두',{url:'/assets/food-spider-dumpling-plus-two-v1.png',width:1246,height:1262,cols:1,rows:1,type:'food-atlas'}),
   hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
+  favoriteThought:asset('favoriteThought','좋아하는 음식을 받은 손님의 초록 하트',{url:'/assets/favorite-green-heart-cloud-v1.png',width:1312,height:1199,rows:1}),
   food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'food-atlas',poses:legacyFoodPoses}),
   emptyDish:asset('emptyDish','식사 후 빈 그릇',{url:'/assets/empty-dish.svg',width:32,height:20,rows:1,trim:false}),
   characters:asset('characters','첫 손님 15종·직원',{width:1254,height:1254,cols:4,type:'atlas'}),
@@ -161,7 +162,7 @@ export const ASSET_MANIFEST={
   folklore:asset('folklore','처녀귀신·삼신할머니·호랑이·머슴',{width:1247,height:1261,cols:2,type:'atlas'}),
   hahoe:asset('hahoe','하회탈',{width:1254,height:1254}),
   femaleidol:asset('femaleidol','백금발 여자 아이돌',{width:1222,height:1287}),
-  dokkaebi:asset('dokkaebi','도깨비',{width:1254,height:1254}),
+  dokkaebi:asset('dokkaebi','도깨비',{url:'/assets/dokkaebi-bloodshot-v1.png',width:1254,height:1254}),
   kongjwi:asset('kongjwi','가난한 콩쥐·개구리',{width:1254,height:1254}),
   walk1:asset('walk1','행인 기존 걷기 1',{url:'/assets/wanderer-walk/frame-1.png',width:1254,height:1254,type:'animation-frame'}),
   walk2:asset('walk2','행인 기존 걷기 2',{url:'/assets/wanderer-walk/frame-2.png',width:1254,height:1254,type:'animation-frame'}),
@@ -189,6 +190,9 @@ for(const pose of seatedPoses){const [x,y]=neighborHips[pose.row][pose.column];p
 for(const [dir,[x,y]]of [[278,486],[361,486],[334,500],[278,501]].entries())officePoses[dir].hip={x,y};
 
 for(const atlas of ZOMBIE_ATLASES)ASSET_MANIFEST[atlas.key]=atlas;
+// Derivative artwork keeps every pose and anchor from the original atlases.
+Object.assign(ASSET_MANIFEST.zombieDokkaebi,{url:'/assets/zombies/dokkaebi-directional-bloodshot-v1.png'});
+Object.assign(ASSET_MANIFEST.zombieStudent,{url:'/assets/zombies/student-directional-pigtail-part-v1.png'});
 for(const atlas of FOOD_ATLASES)ASSET_MANIFEST[atlas.key]=atlas;
 for(const atlas of EATING_ATLASES)ASSET_MANIFEST[atlas.key]=atlas;
 if(BACKGROUND_SCENE){Object.assign(ASSET_MANIFEST.night,BACKGROUND_SCENE.base,{metadataUrl:'/assets/background-fx.json'});for(const atlas of BACKGROUND_SCENE.assets)ASSET_MANIFEST[atlas.key]=atlas;}
