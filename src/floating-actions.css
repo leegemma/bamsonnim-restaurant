@@ -22,3 +22,5 @@
 @media (orientation: landscape) and (max-height: 500px) {
   #stage.editing > #edit-tools { bottom: calc(64px + var(--floating-actions-lift) + env(safe-area-inset-bottom)); }
 }
+/* Keep traffic status clear of the actions clustered on the opposite side. */
+#traffic-notice{left:max(12px,env(safe-area-inset-left));right:auto;bottom:max(8px,env(safe-area-inset-bottom));max-width:min(440px,calc(100% - max(12px,env(safe-area-inset-left)) - max(12px,env(safe-area-inset-right))));transform:none;text-align:start}

@@ -1,5 +1,7 @@
 // Hunger is derived from the service phase; counter stock is not a delivery.
 export const needsHungerBubble=actor=>!actor.removed&&['queue','seating','waiting'].includes(actor.phase);
+// Equal-weight median of 35 customer types, four directions and two postures.
+export const HUNGER_BUBBLE_TILE_RATIO=0.4257234042553192;
 
 // Measure the visible upper silhouette, excluding transparent atlas padding,
 // arms and ground companions. Explicit head polygons bound the scan when present.
@@ -14,10 +16,10 @@ export function visibleHeadBounds({width,height,alpha},polygon=null){
  return headRight<headLeft?null:{x:(headLeft+headRight+1)/2,y:top,width:headRight-headLeft+1};
 }
 
-export function hungerBubbleGeometry(head,placement,aspect){
+export function hungerBubbleGeometry(head,placement,aspect,uniformWidth=null){
  const {x,y,width,height,sourceWidth,sourceHeight,flip=false}=placement;
  const center=x+(flip?sourceWidth-head.x:head.x)*width/sourceWidth;
  const headTop=y+head.y*height/sourceHeight,headWidth=head.width*width/sourceWidth;
- const w=headWidth*.6,h=w*aspect,gap=headWidth*.015;
+ const w=uniformWidth??headWidth*.6,h=w*aspect,gap=headWidth*.015;
  return {x:center-w/2,y:headTop-gap-h,w,h,head:{x:center,y:headTop,width:headWidth}};
 }

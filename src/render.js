@@ -3,7 +3,7 @@ import {stoveStatus,placementProblem,seats} from './engine.js';
 import {walkingPose} from './walking.js';
 import {lockDirectionalHeads} from './sprite-heads.js';
 import {guestDialogue} from './guest-dialogue.js';
-import {needsHungerBubble,visibleHeadBounds,hungerBubbleGeometry} from './hunger-bubble.js';
+import {needsHungerBubble,visibleHeadBounds,hungerBubbleGeometry,HUNGER_BUBBLE_TILE_RATIO} from './hunger-bubble.js';
 import {splitGroundCompanions} from './sprite-companions.js';
 import {eatingAnimationFrame,eatingSpriteFrame} from './eating.js';
 import {registerEatingFrames} from './eating-registration.js';
@@ -303,7 +303,7 @@ export class RestaurantView{
     if(!waiter&&needsHungerBubble(a)&&image&&this.sprites.hungerThought?.[0]){
       this.hungerHeads??=new WeakMap();let head=this.hungerHeads.get(image);
       if(head===undefined){head=visibleHeadBounds(this.hitMask(image),ASSET_MANIFEST[atlas]?.poses?.[index]?.headPolygon);this.hungerHeads.set(image,head);}
-      if(head){const thought=this.sprites.hungerThought[0];bubble={uid:a.uid,atlas,index,...hungerBubbleGeometry(head,{...placement,sourceWidth:image.width,sourceHeight:image.height},thought.height/thought.width)};this.hungerLayout?.push(bubble);}
+      if(head){const thought=this.sprites.hungerThought[0];bubble={uid:a.uid,atlas,index,...hungerBubbleGeometry(head,{...placement,sourceWidth:image.width,sourceHeight:image.height},thought.height/thought.width,t*HUNGER_BUBBLE_TILE_RATIO)};this.hungerLayout?.push(bubble);}
     }
     if(a.red)this.label('!',bubble?bubble.head.x+bubble.head.width*.65:p.x,bubble?bubble.head.y:p.y-h-1,{small:true,background:'#b65d4f',border:'#efbd82'});
     else if(waiter&&a.infectedUntil>s.time)this.label('치료',p.x,p.y-h,{small:true,background:'#8d5f66'});
