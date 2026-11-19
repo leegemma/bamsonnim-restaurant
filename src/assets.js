@@ -1,3 +1,4 @@
+import {APPROVED_ZOMBIE_ACTORS,APPROVED_ZOMBIE_ATLASES,APPROVED_EATING_ATLASES,APPROVED_ZOMBIE_PORTRAITS} from './approved-zombie-atlases.js';
 import {ZOMBIE_ATLASES} from './zombie-atlases.generated.js';
 import {QUARTER_FURNITURE} from './quarter-furniture.generated.js';
 import {FOOD_ATLASES} from './food-atlases.generated.js';
@@ -189,7 +190,7 @@ const neighborHips=[
 for(const pose of seatedPoses){const [x,y]=neighborHips[pose.row][pose.column];pose.hip={x,y};}
 for(const [dir,[x,y]]of [[278,486],[361,486],[334,500],[278,501]].entries())officePoses[dir].hip={x,y};
 
-for(const atlas of ZOMBIE_ATLASES)ASSET_MANIFEST[atlas.key]=atlas;
+for(const atlas of [...ZOMBIE_ATLASES,...APPROVED_ZOMBIE_ATLASES,...APPROVED_EATING_ATLASES,...APPROVED_ZOMBIE_PORTRAITS])ASSET_MANIFEST[atlas.key]=atlas;
 // Derivative artwork keeps every pose and anchor from the original atlases.
 Object.assign(ASSET_MANIFEST.zombieDokkaebi,{url:'/assets/zombies/dokkaebi-directional-bloodshot-v1.png'});
 Object.assign(ASSET_MANIFEST.zombieStudent,{url:'/assets/zombies/student-directional-pigtail-part-v1.png'});
@@ -200,11 +201,11 @@ if(QUARTER_FURNITURE){ASSET_MANIFEST[QUARTER_FURNITURE.key]=QUARTER_FURNITURE;fo
 if(ZOMBIE_ATLASES.some(a=>a.actorId==='wanderer'))for(const key of ['wandererDirectional','walk1','walk2','walk3','walk4'])ASSET_MANIFEST[key].archived=true;
 export function directionalCharacter(actorId){
   const id=({'santa-scholar':'scholar','snow-bride':'bride',red:'dokkaebi'})[actorId]||actorId;
-  const generated=ZOMBIE_ATLASES.find(asset=>asset.actorId===id);
+  const generated=[...ZOMBIE_ATLASES,...APPROVED_ZOMBIE_ATLASES].find(asset=>asset.actorId===id);
   if(generated)return generated;
   return id==='wanderer'?ASSET_MANIFEST.wandererDirectional:null;
 }
-export function eatingCharacter(actorId){return EATING_ATLASES.find(a=>a.actorId===actorId)||null;}
+export function eatingCharacter(actorId){return [...EATING_ATLASES,...APPROVED_EATING_ATLASES].find(a=>a.actorId===actorId)||null;}
 
 export const ASSETS=Object.fromEntries(Object.entries(ASSET_MANIFEST).map(([key,value])=>[key,value.url]));
 
@@ -219,6 +220,8 @@ export function foodFrame(spriteIndex=0){
 // Shared sprite routing: sprite 15 is the waiter, 16 starts the extra guests.
 export function characterFrame(spriteIndex=0){
   const sprite=Number.isInteger(spriteIndex)?spriteIndex:0;
+  const approved=APPROVED_ZOMBIE_ACTORS.find(a=>a.sprite===sprite);
+  if(approved)return {key:`approved-${approved.actorId}-portrait`,index:0};
   const updatedActor={7:'hiker',30:'santa',31:'shaman',32:'lounge-singer',33:'clown'}[sprite];
   if(updatedActor){const atlas=ZOMBIE_ATLASES.find(a=>a.actorId===updatedActor);if(atlas)return {key:atlas.key,index:0};}
   if(sprite===16)return {key:'delinquent',index:0};

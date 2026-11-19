@@ -27,8 +27,8 @@ test('incomplete atlas registration does not count as completed four-direction c
  const result=getCoverage(['partial'],{resolveAtlas:()=>meta,manifest:{}});assert.equal(result.walking,0);assert.equal(result.sitting,0);assert.equal(result.complete,0);assert.deepEqual(result.unregistered,[]);assert.equal(result.entries[0].walkPoses,31);assert.equal(result.entries[0].sitPoses,3);
 });
 
-test('the general roster reports all 32 IDs with no borrowed completion for unknown IDs',()=>{
- const result=getCoverage(ZOMBIES);assert.equal(result.total,32);assert.equal(result.entries.length,32);assert.ok(result.entries.find(e=>e.id==='wanderer').complete);
- assert.equal(result.walking+result.missingWalk.length,32);assert.equal(result.sitting+result.missingSit.length,32);
+test('the general roster reports all 35 IDs with no borrowed completion for unknown IDs',()=>{
+ const result=getCoverage(ZOMBIES);assert.equal(result.total,35);assert.equal(result.entries.length,35);assert.ok(result.entries.find(e=>e.id==='wanderer').complete);
+ assert.equal(result.walking+result.missingWalk.length,35);assert.equal(result.sitting+result.missingSit.length,35);
  const unknown=getCoverage(['still-generating']);assert.equal(unknown.complete,0);assert.deepEqual(unknown.unregistered,['still-generating']);
 });

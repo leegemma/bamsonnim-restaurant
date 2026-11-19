@@ -1,0 +1,57 @@
+{
+  "actorId": "nz-golf-man",
+  "originConceptId": "zombie-concept-001",
+  "approvalScope": "These three characters only: user requested game integration after reviewing their completed motions. Other production actors remain unregistered.",
+  "approvedPackageVersion": "v1",
+  "packageManifestSHA256": "b025a97ae7a5fcaa5742348a54e598373ddbe032b1bef08a8b0312926b6e0a77",
+  "finalReviewSHA256": "efc2cd7cb89823c13b53e71a48bd28b7bcdf59d5cc278cd6e9abfea6eb9703ec",
+  "sourceSHA256": "5d7ba7aad926ea573d099f7517104a46925a547ec3bd66a8756483a3ca93c95f",
+  "cellWidth": 280,
+  "cellHeight": 300,
+  "referenceHeight": 213,
+  "footAnchor": {
+    "x": 140,
+    "y": 280
+  },
+  "seatedHip": {
+    "x": 140,
+    "y": 220
+  },
+  "animation": {
+    "walking": {
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    "eating": {
+      "fps": 5,
+      "sequence": [
+        "sit0",
+        "eat1",
+        "eat2"
+      ]
+    }
+  },
+  "runtimeRegistrationMode": "preRegistered",
+  "files": [
+    {
+      "name": "walk-sit.png",
+      "sourceFile": "walk-sit.png",
+      "sha256": "0491a19bc093ba4f7923bf1def884ad574311d022322890a1519ecb6169a3bf5"
+    },
+    {
+      "name": "eating.png",
+      "sourceFile": "eating.png",
+      "sha256": "bff19cc651c83544df2d7f06ec00d4639c167b0f3831c6572b5237c869bb8f40"
+    },
+    {
+      "name": "portrait.png",
+      "sourceFile": "source.png",
+      "sha256": "5d7ba7aad926ea573d099f7517104a46925a547ec3bd66a8756483a3ca93c95f"
+    }
+  ]
+}

@@ -132,6 +132,12 @@ ZOMBIES.push(
  {"id":"lounge-singer","name":"밤무대 가수","favorite":null,"description":"흰 반짝이 모자와 호피 재킷, 마이크와 탬버린. 선글라스 한쪽 렌즈가 깨져 좀비 눈알이 보여요. 한 끼 후에 앙코르!","sprite":32,"level":31},
  {"id":"clown","name":"삐에로","favorite":null,"description":"물방울무늬 옷과 빨간 코, 손에는 강아지 모양 풍선.","sprite":33,"level":32},
 );
+// Scoped approval: only these three completed actors join the existing roster.
+ZOMBIES.push(
+ {id:'nz-baduk-player',name:'남자 바둑기사',favorite:'xmas-soup',description:'바둑돌을 챙겨 온 기사. 대국 전에 따뜻한 만둣국 한 그릇.',sprite:34,level:12},
+ {id:'nz-golf-man',name:'골프 남자',favorite:'gimbap',description:'골프채를 곁에 두고 쉬어 가요. 김밥을 먹고 다음 홀로.',sprite:35,level:8},
+ {id:'nz-futsal-man',name:'풋살 남자',favorite:'skewer',description:'공은 발옆에 두고 잠깐 식사. 떡꼬치로 경기 뒤 허기를 달래요.',sprite:36,level:4},
+);
 export const DIRECTIONS=[[1,0],[0,1],[-1,0],[0,-1]];
 export const FURNITURE=[
  {id:'table',name:'오래된 소반',category:'table',price:100,level:1,sprite:0,description:'손님에게 따뜻한 한 끼를.'},

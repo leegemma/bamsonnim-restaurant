@@ -46,7 +46,19 @@ export class RestaurantView{
     }};
     await Promise.all(Array.from({length:Math.min(4,queue.length)},worker));this.alignWalkFrames();this.alignEatingFrames();this.ready=true;
   }
-  alignEatingFrames(){this.eatingRegistrations={};for(const meta of Object.values(ASSET_MANIFEST).filter(a=>a.type==='eating-atlas')){const base=ASSET_MANIFEST[meta.baseAtlas];if(this.sprites[meta.key]?.length&&this.sprites[base?.key]?.length)this.eatingRegistrations[meta.key]=registerEatingFrames(this.sprites[meta.key],meta,this.sprites[base.key],base);}}
+  alignEatingFrames(){
+    this.eatingRegistrations={};
+    for(const meta of Object.values(ASSET_MANIFEST).filter(a=>a.type==='eating-atlas')){
+      const base=ASSET_MANIFEST[meta.baseAtlas];
+      if(!this.sprites[meta.key]?.length||!this.sprites[base?.key]?.length)continue;
+      if(meta.preRegistered&&(!meta.poses?.length||this.sprites[meta.key].length!==meta.poses.length||meta.poses.some((p,i)=>!Number.isFinite(p.hip?.x)||!Number.isFinite(p.hip?.y)||this.sprites[meta.key][i].width!==meta.cell?.width||this.sprites[meta.key][i].height!==meta.cell?.height)))throw new Error(`승인 먹기 아틀라스 좌표가 올바르지 않습니다: ${meta.key}`);
+      // Approved final canvases already share their canonical seated hip.
+      // Preserve the cut RGBA instead of applying raw-art registration again.
+      this.eatingRegistrations[meta.key]=meta.preRegistered
+        ?meta.poses.map(p=>({hip:p.hip,baseIndex:p.dir*(base.walkFrames+1)+base.frames.sit,preRegistered:true}))
+        :registerEatingFrames(this.sprites[meta.key],meta,this.sprites[base.key],base);
+    }
+  }
   async getAssetSource(key){
     const cached=this.images[key];if(cached instanceof HTMLImageElement)return cached;
     if(!ASSETS[key])return null;const image=new Image();image.src=ASSETS[key];await image.decode();return image;
@@ -63,6 +75,7 @@ export class RestaurantView{
       for(let y=2;y<c.height-2;y++)for(let x=2;x<c.width-2;x++)if(pixels.data[(y*c.width+x)*4+3]>80){minX=Math.min(minX,x);minY=Math.min(minY,y);maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);}
       const out=document.createElement('canvas');out.width=Math.max(1,maxX-minX+1);out.height=Math.max(1,maxY-minY+1);if(minX<c.width)out.getContext('2d').drawImage(c,minX,minY,out.width,out.height,0,0,out.width,out.height);this.sprites[key].push(out);
     }
+    if(asset.preRegistered)return;
     this.headLocks??={};this.headLocks[key]=lockDirectionalHeads(this.sprites[key],asset);
     this.companions??={};this.companions[key]=splitGroundCompanions(this.sprites[key],asset);
   }
