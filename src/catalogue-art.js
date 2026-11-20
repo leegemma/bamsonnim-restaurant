@@ -1,5 +1,6 @@
 import {CATALOGUE_ENTRIES} from './catalogue-expansion.js';
 import {CATALOGUE_IMAGE_BOUNDS} from './catalogue-image-bounds.js';
+import {QUARTER_FURNITURE} from './quarter-furniture.generated.js';
 // Anchors are local to the measured alpha crop. Four-facing chairs keep the
 // correct seat/front layer instead of stretching a front drawing backwards.
 const contacts={
@@ -40,7 +41,13 @@ export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
   const cell=directional?[0,1,3,2][dir]:0,col=directional?cell%2:0,row=directional?Math.floor(cell/2):0,cols=directional?2:1,region=info?.cells[cell]?.source||{x:Math.floor(col*width/cols),y:Math.floor(row*height/cols),width:Math.floor((col+1)*width/cols)-Math.floor(col*width/cols),height:Math.floor((row+1)*height/cols)-Math.floor(row*height/cols)},bounds=info?.cells[cell]?.bounds||{x:0,y:0,width:region.width,height:region.height},crop=wallCrops[entry.id],source=crop||{x:region.x+bounds.x,y:region.y+bounds.y,width:bounds.width,height:bounds.height},w=source.width,h=source.height;
   const pose={index:dir,itemId:entry.id,category:entry.category,dir,source,groundCenter:{x:w*.5,y:h*contact.groundY},groundWidth:w*contact.groundWidth,footprint:contact.footprint,mirrorOdd:!directional&&entry.category!=='chair'};
   if(entry.id==='decor-window-red-curtains')pose.clipPolygons=[windowOutline.map(([x,y])=>[x-source.x,y-source.y])];
-  if(entry.category==='chair'){pose.seatAnchor={x:w*.5,y:h*contact.seatY};const front=dir<2?Math.min(.95,contact.seatY+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
+  if(entry.category==='chair'){pose.seatAnchor={x:w*.5,y:h*contact.seatY};
+   // Match the legacy chair's actual seat-to-ground height for this view.
+   // Scale the whole drawing uniformly around the ground anchor; changing
+   // only the seated actor's anchor would leave a visibly tall chair behind.
+   const reference=QUARTER_FURNITURE.poses.find(p=>p.category==='chair'&&p.dir===dir),target=(reference.groundCenter.y-reference.seatAnchor.y)*reference.footprint/reference.groundWidth;
+   pose.footprint=target*pose.groundWidth/(pose.groundCenter.y-pose.seatAnchor.y);
+   const front=dir<2?Math.min(.95,contact.seatY+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
   if(['table','stove','server'].includes(entry.category))pose.surfaceAnchor={x:w*.5,y:h*contact.surfaceY};
   poses.push(pose);
  }
