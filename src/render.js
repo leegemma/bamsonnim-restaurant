@@ -6,6 +6,7 @@ import {drawStaffSantaHat} from './staff-seasonal.js';
 import {christmasActive,seasonalBackdrop} from './seasonal-scene.js';
 import {lockDirectionalHeads} from './sprite-heads.js';
 import {guestDialogue} from './guest-dialogue.js';
+import {needsHungryExitThought,drawHungryExitFace} from './hungry-exit-thought.js';
 import {needsFavoriteThought} from './favorite-thought.js';
 import {needsHungerBubble,visibleHeadBounds,hungerBubbleGeometry,HUNGER_BUBBLE_TILE_RATIO} from './hunger-bubble.js';
 import {splitGroundCompanions} from './sprite-companions.js';
@@ -295,7 +296,7 @@ export class RestaurantView{
     }
   }
   drawHungerBubbles(){
-    for(const box of this.hungerLayout){const image=this.sprites[box.thought||'hungerThought']?.[0];if(image){this.ctx.drawImage(image,box.x,box.y,box.w,box.h);this.labelRects.push(box);}}
+    for(const box of this.hungerLayout){const image=this.sprites[box.thought||'hungerThought']?.[0];if(image){this.ctx.drawImage(image,box.x,box.y,box.w,box.h);if(box.hungryExit)drawHungryExitFace(this.ctx,box,this.sprites.hungryExitFace?.[0]);this.labelRects.push(box);}}
   }
   addPaymentEffect(event){if(![event.amount,event.xp,event.x,event.y].every(Number.isFinite))return;this.paymentEffects.push({amount:event.amount,xp:event.xp,x:event.x,y:event.y,favorite:!!event.favorite,tip:Number.isFinite(event.tip)?event.tip:0,startedAt:performance.now()/1000});this.paymentEffects=this.paymentEffects.slice(-20);}
   drawPaymentEffects(clock){
@@ -370,16 +371,17 @@ export class RestaurantView{
     if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.38);}
     if(chair&&!chair.seatObject)this.drawChairFront(chair);
     let bubble=null;
-    const favoriteThought=!waiter&&needsFavoriteThought(a,zombie(a.zombieId)?.favorite,s.time+(s.fraction||0));
+    const hungryExit=!waiter&&needsHungryExitThought(a);
+    const favoriteThought=!hungryExit&&!waiter&&needsFavoriteThought(a,zombie(a.zombieId)?.favorite,s.time+(s.fraction||0));
     const thoughtKey=favoriteThought?'favoriteThought':'hungerThought';
-    if(!waiter&&(needsHungerBubble(a)||favoriteThought)&&image&&this.sprites[thoughtKey]?.[0]){
+    if(!waiter&&(needsHungerBubble(a)||favoriteThought||hungryExit)&&image&&this.sprites[thoughtKey]?.[0]){
       this.hungerHeads??=new WeakMap();let head=this.hungerHeads.get(image);
       if(head===undefined){head=visibleHeadBounds(this.hitMask(image),ASSET_MANIFEST[atlas]?.poses?.[index]?.headPolygon);this.hungerHeads.set(image,head);}
-      if(head){const thought=this.sprites[thoughtKey][0];bubble={uid:a.uid,atlas,index,thought:thoughtKey,...hungerBubbleGeometry(head,{...placement,sourceWidth:image.width,sourceHeight:image.height},thought.height/thought.width,t*HUNGER_BUBBLE_TILE_RATIO)};this.hungerLayout?.push(bubble);}
+      if(head){const thought=this.sprites[thoughtKey][0];bubble={uid:a.uid,atlas,index,thought:thoughtKey,hungryExit,...hungerBubbleGeometry(head,{...placement,sourceWidth:image.width,sourceHeight:image.height},thought.height/thought.width,t*HUNGER_BUBBLE_TILE_RATIO)};this.hungerLayout?.push(bubble);}
     }
     if(a.red)this.actorMarkers?.push({text:'!',x:bubble?bubble.head.x+bubble.head.width*.65:p.x,y:bubble?bubble.head.y:placement.y-this.tile*.04,options:{kind:'hostile',background:'#b65d4f',border:'#efbd82'}});
     else if(waiter&&a.infectedUntil>s.time){const marker=worldMarkerMetrics(t,this.camera.zoom);this.actorMarkers?.push({uid:a.uid,text:'치료',x:p.x,y:santaHat?santaHat.y-marker.gap-3*marker.pixel:placement.y-this.tile*.04,options:{kind:'cure',background:'#8d5f66'}});}
-    else if(!waiter&&!needsHungerBubble(a)&&!favoriteThought){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.worldLabel(line,p.x,p.y-h,{...options,kind:'dialogue'});}}
+    else if(!waiter&&!needsHungerBubble(a)&&!favoriteThought&&!hungryExit){const line=guestDialogue(a,{favorite:zombie(a.zombieId)?.favorite===a.foodId,time:s.time+(s.fraction||0)});if(line){const options={...(a.phase==='waiting'?{background:'#8b633d'}:{})};if(this.guestLabels)this.guestLabels.push({text:line,x:p.x,y:p.y-h,options});else this.worldLabel(line,p.x,p.y-h,{...options,kind:'dialogue'});}}
     if(waiter)this.hits.push({kind:'waiter',uid:a.uid,x:p.x-w/2,y:y-h,w,h,flip,mask:this.hitMask(image)});
   }
   drawMeal(s,customer){const seat=seats(s).find(item=>item.uid===customer.seat);if(!seat?.table)return;const table=seat.table,shape=furnitureFootprint(table),cx=table.x+(shape.width-1)/2,cy=table.y+(shape.height-1)/2,dx=seat.chair.x-cx,dy=seat.chair.y-cy,p=this.world(cx+dx*.4,cy+dy*.4);const center=this.world(cx,cy),surface=this.furnitureGeometry(table)?.surface||{x:center.x,y:center.y-this.tile*.39};this.drawFoodOnSurface(customer.foodId,surface.x+p.x-center.x,surface.y+p.y-center.y,this.tile*.38);}

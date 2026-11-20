@@ -88,5 +88,5 @@
 }
 
 /* Keep bite actions easy to tap while their visible frames stay compact. */
-#toasts > .toast[data-staff-uid] > button{position:relative;isolation:isolate;background:transparent;border:0;padding:0 6px;font-size:12px}
-#toasts > .toast[data-staff-uid] > button::before{content:'';position:absolute;inset:7px 0;z-index:-1;background:#f1e6c8;border:2px solid #704134;pointer-events:none}
+#toasts > .toast:is([data-staff-uid],.heart-shortage) > button{position:relative;isolation:isolate;background:transparent;border:0;padding:0 6px;font-size:12px}
+#toasts > .toast:is([data-staff-uid],.heart-shortage) > button::before{content:'';position:absolute;inset:7px 0;z-index:-1;background:#f1e6c8;border:2px solid #704134;pointer-events:none}

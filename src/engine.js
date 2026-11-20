@@ -250,25 +250,25 @@ function createCustomer(s,offline=false){
   if(entryBlocked(s)||exitTrafficBlocked(s))return false;
   const def=chooseCustomer(s),c={uid:uid(s),zombieId:def.id,...zombieEntrance(s),phase:'queue',wait:0,path:[],seat:null,red:!!def.red,enteredAt:s.time};s.customers.push(c);if(!offline)announceGuest(s,c);s.zombieDoorOpenedAt=s.time;return true;
 }
-function leave(s,c){c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,customerExit(s,c),{allowBlockedTarget:false})||[];traffic(c).exitDistance=c.path.length;c.seat=null;}
+function leave(s,c,reason=c.departureReason||'other'){c.departureReason=reason;c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,customerExit(s,c),{allowBlockedTarget:false})||[];traffic(c).exitDistance=c.path.length;c.seat=null;}
 function releaseInactiveSeats(s){
   for(const c of s.customers){
     if(!['seating','waiting'].includes(c.phase))continue;
     const chair=resolveSeat(s,c.seat);if(chair&&tableInFront(s,chair)&&(c.phase!=='seating'||path(s,c,[chair.x,chair.y])!==null))continue;
     for(const w of s.waiters.filter(w=>w.task?.kind==='serve'&&w.task.customer===c.uid))cancelTask(s,w);
-    c.worker=null;leave(s,c);
+    c.worker=null;leave(s,c,'reconfigured');
   }
 }
 export function trafficStatus(s){
   const leaving=s.customers.filter(c=>c.phase==='leaving'),capacity=seats(s).length+1,oldestLeaving=Math.max(0,...leaving.map(c=>s.time-(c.leavingAt??s.time))),oldestSeating=Math.max(0,...s.customers.filter(c=>c.phase==='seating').map(c=>s.time-(c.seatingAt??s.time))),congested=oldestLeaving>=8||oldestSeating>=20||s.customers.length>capacity;
   return{congested,customers:s.customers.length,capacity,leaving:leaving.length,oldestLeaving,oldestSeating,entryBlocked:entryBlocked(s),admissionBlocked:entryBlocked(s)||exitTrafficBlocked(s),capacityReached:s.customers.length>=capacity,exitBlocked:congested&&leaving.some(c=>path(s,c,customerExit(s,c),{allowBlockedTarget:false})===null)};
 }
-function angry(s,c,queue=false){s.hunger=Math.min(100,s.hunger+(queue?4:8));s.combo=0;if(c.red){const w=s.waiters.filter(w=>w.infectedUntil<=s.time).sort((a,b)=>Math.hypot(a.x-c.x,a.y-c.y)-Math.hypot(b.x-c.x,b.y-c.y))[0];if(w){c.phase='chasing';c.target=w.uid;c.seat=null;c.chaseTime=0;c.path=[];return;}}leave(s,c);}
+function angry(s,c,queue=false){c.departureReason='hungry';s.hunger=Math.min(100,s.hunger+(queue?4:8));s.combo=0;if(c.red){const w=s.waiters.filter(w=>w.infectedUntil<=s.time).sort((a,b)=>Math.hypot(a.x-c.x,a.y-c.y)-Math.hypot(b.x-c.x,b.y-c.y))[0];if(w){c.phase='chasing';c.target=w.uid;c.seat=null;c.chaseTime=0;c.path=[];return;}}leave(s,c);}
 function pay(s,c,offline){
   const r=recipe(c.foodId);if(!r)return;
   const fav=zombie(c.zombieId)?.favorite===r.id,base=r.price*(c.portion||1),xp=Math.round(base*(fav?1.5:1)),coins=Math.round(base*(fav?1.5:1)*(s.feverUntil>s.time?2:1));const tip=(c.tipChance||0)>0&&random(s)<c.tipChance?Math.max(1,Math.ceil(coins*.2)):0,paid=coins+tip;s.coins+=paid;s.stats.earned+=paid;if(tip)s.stats.tips=(s.stats.tips||0)+tip;s.stats.sold++;s.stats.fed[c.zombieId]=(s.stats.fed[c.zombieId]||0)+1;addXp(s,xp);
   if(!offline&&!c.red){if(!s.album[c.zombieId])notify(s,`캐릭터북 등록 · ${zombie(c.zombieId).name}`, 'album');s.album[c.zombieId]=(s.album[c.zombieId]||0)+1;}
-  const seat=resolveSeat(s,c.seat);if(seat)seat.dirty=true;s.tutorial=Math.max(s.tutorial,3);leave(s,c);
+  const seat=resolveSeat(s,c.seat);if(seat)seat.dirty=true;s.tutorial=Math.max(s.tutorial,3);leave(s,c,'served');
   if(!offline)notify(s,`손님이 ${paid}코인을 냈어요.${tip?` 팁 +${tip}코인!`:''}`,'payment',{amount:paid,tip,xp,x:c.x,y:c.y,favorite:fav});
 }
 function hasFood(s){return s.objects.some(o=>furniture(o.type)?.category==='server'&&o.stock>0);}
@@ -418,7 +418,7 @@ function step(s,dt,offline){
       const seat=available.find(x=>path(s,c,[x.chair.x,x.chair.y])!==null);
       if(seat){c.seat=seat.uid;c.path=path(s,c,[seat.chair.x,seat.chair.y]);c.phase='seating';c.seatingAt=s.time;c.wait=0;}
       else{c.wait+=dt;if(c.wait>=20)angry(s,c,true);}
-    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=resolveSeat(s,c.seat);if(!chair)leave(s,c);else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.x=chair.x;c.y=chair.y;c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
+    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=resolveSeat(s,c.seat);if(!chair)leave(s,c,'reconfigured');else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.x=chair.x;c.y=chair.y;c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
     else if(c.phase==='waiting'){
       c.wait+=dt;const worker=s.waiters.find(w=>w.uid===c.worker),service=worker?.task?.kind==='serve'&&worker.task.customer===c.uid?worker.task:null,patience=c.red?25:45;
       // Carrying a meal gives a short grace period, not unlimited patience. A

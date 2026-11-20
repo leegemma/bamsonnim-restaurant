@@ -79,6 +79,7 @@ export const ASSET_MANIFEST={
   ghostDumplingFood:asset('ghostDumplingFood','유령 얼굴 만둣국',{url:'/assets/food-ghost-dumpling-faces-v1.png',width:1299,height:1211,cols:1,rows:1,type:'food-atlas'}),
   wormGimmariFood:asset('wormGimmariFood','벌레 김말이',{url:'/assets/food-worm-gimmari-v1.png',width:1448,height:1086,cols:1,rows:1,type:'food-atlas'}),
   spiderDumplingFood:asset('spiderDumplingFood','거미 두 마리와 거미줄을 더한 찐만두',{url:'/assets/food-spider-dumpling-plus-two-v1.png',width:1246,height:1262,cols:1,rows:1,type:'food-atlas'}),
+  hungryExitFace:asset('hungryExitFace','밥을 못 먹고 떠나는 손님의 도깨비 얼굴',{url:'/assets/dokkaebi-bloodshot-v1.png',width:1254,height:1254,cols:1,rows:1,type:'portrait-atlas',poses:[{source:{x:190,y:30,width:700,height:650}}]}),
   hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
   favoriteThought:asset('favoriteThought','좋아하는 음식을 받은 손님의 초록 하트',{url:'/assets/favorite-green-heart-cloud-v1.png',width:1312,height:1199,rows:1}),
   food:asset('food','기괴한 한식·재화',{width:1254,height:1254,cols:4,type:'food-atlas',poses:legacyFoodPoses}),

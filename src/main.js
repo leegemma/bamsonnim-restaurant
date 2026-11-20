@@ -1,3 +1,4 @@
+import {isHeartShortageMessage,HEART_SHORTAGE_TIMEOUT} from './heart-shortage-notice.js';
 import './mayor-tutorial.css';
 import {createMayorTutorial} from './mayor-tutorial-ui.js';
 import {tutorialActive,tutorialStove,chooseTutorialStove,restartTutorial} from './mayor-tutorial.js';
@@ -69,7 +70,7 @@ $('#app').innerHTML=`
  <div class="asset-status" id="asset-status" role="status"><span id="asset-message">식당 그림을 준비하고 있어요. 메뉴는 지금 사용할 수 있어요.</span><button class="button quiet" data-act="retry-assets" hidden>그림 다시 불러오기</button></div>
  <aside class="left-rail">
   <button class="mayor-card mayor-icon" data-act="quest" aria-label="시장님의 부탁 보기"><svg class="mayor-portrait" viewBox="650 0 250 174" aria-hidden="true"><image href="/assets/characters.png" width="1254" height="1254"/></svg></button>
-  <button class="season-card scroll-news" data-act="events" aria-label="계절의 소식 · 다가오는 성탄절" title="계절의 소식"><img src="/assets/season-scroll-icon.png" width="96" height="96" alt=""><span id="event-label" hidden>다가오는 성탄절</span></button>
+  <button class="season-card scroll-news" data-act="events" aria-label="계절의 소식 · 다가오는 성탄절" title="계절의 소식"><img src="/assets/season-scroll-joseon-v2.png" width="96" height="96" alt=""><span id="event-label" hidden>다가오는 성탄절</span></button>
  </aside>
  <div class="right-rail"><button class="round-action" data-act="album" aria-label="캐릭터북 열기">${icon('people',23)}<small>밤손님</small><b id="album-count">0/29</b></button><button class="round-action" data-act="cookbook" aria-label="요리책 열기">${icon('book',23)}<small>요리책</small><b id="food-count">0/12</b></button></div>
  <div class="fever-banner" id="fever-banner" hidden><img class="festival-heading" src="/assets/moon-festival-banner.png" width="2172" height="724" alt="달밤의 축제"><div class="festival-status"><strong id="fever-title"></strong><span class="festival-effects">판매 코인 ×2 · 손님 ×3</span></div><progress id="fever-progress" max="30" value="30" aria-label="축제 남은 시간"></progress></div>
@@ -101,11 +102,12 @@ function toast(text,type='info',details={}){
  const staff=type==='danger'&&typeof details.staffUid==='string'?state.waiters.find(w=>w.uid===details.staffUid&&w.infectedUntil>state.time):null;
  if(type==='danger'&&details.staffUid&&!staff)return;
  if(staff)for(const old of $('#toasts').querySelectorAll('[data-staff-uid]'))if(old.dataset.staffUid===staff.uid)old.remove();
- const el=document.createElement('div');el.className=`toast ${type}`;el.setAttribute('role',type==='danger'?'alert':'status');
+ const heartShortage=type==='danger'&&isHeartShortageMessage(text);
+ const el=document.createElement('div');el.className=`toast ${type}${heartShortage?' heart-shortage':''}`;el.setAttribute('role',type==='danger'?'alert':'status');
  const message=document.createElement('span');message.className='notice-message';message.textContent=text;const cue=document.createElement('small');cue.className='notice-scroll-cue';cue.textContent='↕';cue.setAttribute('aria-hidden','true');cue.hidden=true;el.append(message,cue);
  if(staff){el.dataset.staffUid=staff.uid;const cure=document.createElement('button');cure.type='button';cure.dataset.act='cure';cure.dataset.id=staff.uid;cure.textContent=`치료하기(${E.cureCost(state)}원)`;el.append(cure);}
- if(type==='danger'){const dismiss=document.createElement('button');dismiss.type='button';dismiss.textContent='닫기';dismiss.setAttribute('aria-label',staff?`${staff.name} 감염 알림 닫기`:'오류 알림 닫기');dismiss.addEventListener('click',()=>el.remove());el.append(dismiss);}else setTimeout(()=>el.remove(),4400);
- if(staff)setTimeout(()=>el.remove(),5000);
+ if(type==='danger'){const dismiss=document.createElement('button');dismiss.type='button';dismiss.textContent='닫기';dismiss.setAttribute('aria-label',staff?`${staff.name} 감염 알림 닫기`:heartShortage?'심장 부족 알림 닫기':'오류 알림 닫기');dismiss.addEventListener('click',()=>el.remove());el.append(dismiss);}else setTimeout(()=>el.remove(),4400);
+ if(staff||heartShortage)setTimeout(()=>el.remove(),heartShortage?HEART_SHORTAGE_TIMEOUT:5000);
  $('#toasts').append(el);requestAnimationFrame(syncNoticeOverflow);
 }
 function syncNoticeOverflow(){
