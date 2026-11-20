@@ -93,3 +93,25 @@
 @media (max-width: 480px) {
   .topbar #hunger-value { margin-inline-start: auto; }
 }
+/* Mobile: use the title's space for restaurant level and visible XP progress. */
+@media (max-height: 500px), (max-width: 700px) {
+ .topbar{height:auto;flex-wrap:wrap;row-gap:4px}
+ .topbar>.brand,.topbar #sound-button{display:none}
+ .topbar>.level-block{display:flex;flex:0 1 150px;min-width:100px;align-items:center}
+ .topbar .level-block>.eyebrow{display:none}
+ .topbar .level-line{display:grid;grid-template-columns:auto minmax(40px,1fr);align-items:center;column-gap:6px;row-gap:3px;width:100%;margin:0}
+ .topbar .level-line>b{grid-column:1;grid-row:1/3;font-size:18px;line-height:1;white-space:nowrap}
+ .topbar .level-line>b::before{content:'Lv.';font-size:11px;margin-right:3px}
+ .topbar .level-line>.xp-track{display:block;grid-column:2;grid-row:1;width:100%;height:9px;margin:0}
+ .topbar .level-line>small{display:block;grid-column:2;grid-row:2;font-size:10px;line-height:1.2;white-space:nowrap}
+ .topbar .currencies{min-width:max-content}
+}
+@media (max-width:640px) and (orientation:landscape) {
+ .topbar>.level-block{flex-basis:84px;min-width:64px}
+ .topbar .level-line{grid-template-columns:minmax(0,1fr);row-gap:4px}
+ .topbar .level-line>b{grid-column:1;grid-row:1;font-size:16px}
+ .topbar .level-line>.xp-track{grid-column:1;grid-row:2;min-width:40px}
+ .topbar .level-line>small{display:none}
+ .topbar .hunger-card{flex-basis:80px;min-width:78px}
+ .topbar .hunger-track{display:none}
+}

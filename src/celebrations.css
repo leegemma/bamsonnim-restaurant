@@ -41,3 +41,12 @@
  .guest-arrival{width:230px}.arrival-title{max-height:40px}.arrival-portrait{width:96px;height:64px;margin-top:-6px}.arrival-zombie{width:64px;height:64px}.arrival-name{font-size:15px;line-height:1.2;min-width:140px;padding:2px 8px}
 }
 @media(prefers-reduced-motion:reduce){.festival-lights i{animation:none}}
+
+/* Notifications fit their actual remaining scene, including a wrapped mobile HUD. */
+.guest-arrival-zone{container:arrival-space / size}
+@container arrival-space (max-height:175px){
+ .guest-arrival{width:230px}.arrival-title{max-height:40px}.arrival-portrait{width:96px;height:64px;margin-top:-6px}.arrival-zombie{width:64px;height:64px}.arrival-name{font-size:15px;line-height:1.2;min-width:140px;padding:2px 8px}
+}
+@container arrival-space (max-height:100px){
+ .guest-arrival{width:190px}.arrival-title{max-height:24px}.arrival-portrait{width:64px;height:32px;margin-top:-4px}.arrival-zombie{width:32px;height:32px}.arrival-name{font-size:12px;line-height:1.2;min-width:128px;padding:2px 8px}
+}
