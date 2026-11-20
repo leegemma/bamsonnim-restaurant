@@ -5,3 +5,25 @@
 .event-unrevealed-dish svg{width:min(100%,80px);height:auto;aspect-ratio:1}
 .event-teaser p{margin:12px 0 0;font-size:12px;line-height:1.7;color:var(--paper-muted)}
 @media(max-width:700px){.event-teaser{margin:16px 20px 0}.event-teaser-grid{gap:8px}.event-teaser h3{margin-bottom:8px;font-size:15px}}
+
+@media (max-height: 500px), (max-width: 700px) {
+  .events .dialog-heading { padding: 7px 46px 6px 12px; }
+  .events .dialog-heading h1 { font-size: 18px; }
+  .events .dialog-heading p { font-size: 11px; line-height: 1.3; }
+  .events .event-hero { margin: 8px 12px; padding: 7px 12px; }
+  .events .event-hero h2 { margin: 3px 0; font-size: 20px; line-height: 1.2; }
+  .events .event-hero p { margin-top: 4px; font-size: 11px; line-height: 1.3; }
+  .events .event-snow { top: 3px; right: 14px; }
+  .events .event-snow svg { width: 56px; height: 56px; }
+  .events .event-teaser { margin: 8px 12px 0; }
+  .events .event-teaser h3 { margin-bottom: 4px; font-size: 14px; line-height: 1.3; }
+  .events .event-teaser-grid { max-width: 360px; gap: 8px; }
+  .events .event-unrevealed-dish svg { width: min(100%, 56px); }
+  .events .event-teaser p { margin-top: 5px; font-size: 11px; line-height: 1.4; }
+  .events .event-items { gap: 16px; padding-inline: 12px; }
+  .events .event-items .sprite { width: 48px; height: 48px; }
+  .events .event-items b { font-size: 12px; }
+  .events .event-rules { margin: 8px 12px; font-size: 11px; line-height: 1.4; }
+  .events #dialog-content > .button-row { margin: 8px 12px 10px; gap: 6px; flex-wrap: wrap; }
+  .events #dialog-content > .button-row .button { min-height: 32px; padding: 5px 8px; font-size: 12px; }
+}

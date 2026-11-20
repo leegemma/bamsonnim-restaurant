@@ -130,7 +130,7 @@ dialog.orientation-note[open] {
     scrollbar-width: auto;
   }
   .album .guest-detail > * { flex-shrink: 0; }
-  .album .guest-detail > .sprite { width: 80px; height: 80px; flex-shrink: 0; margin-bottom: 4px; }
+  .album .guest-detail > .sprite { width: 96px; height: 96px; flex-shrink: 0; margin-bottom: 4px; }
   .album .guest-detail h2 { font-size: 18px; margin: 4px 0; }
   .album .guest-detail > p { min-height: 0; margin: 4px 0 8px; font-size: 12px; line-height: 1.45; }
   .album .guest-condition { padding: 8px; }
@@ -175,7 +175,7 @@ dialog.orientation-note[open] {
   .album-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: 8px; }
   .album-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .album .guest-detail { max-height: 34dvh; border-left: 0; border-top: 1px solid #cbbe99; padding: 8px 0 0; }
-  .album .guest-detail > .sprite { width: 64px; height: 64px; }
+  .album .guest-detail > .sprite { width: 76.8px; height: 76.8px; }
   .settings .settings-row { flex-wrap: wrap; }
   .settings .settings-row > span { flex: 1 1 140px; }
   .events .event-items { gap: 16px; flex-wrap: wrap; }
@@ -185,3 +185,12 @@ dialog.orientation-note[open] {
 
 /* The removed scene status line frees a little room above both HUD rails. */
 .left-rail, .right-rail { transform: translateY(-20px); }
+
+/* The seasonal announcement is a compact mobile card, not a full-screen page. */
+@media (max-height: 500px), (max-width: 700px) {
+  dialog.events[open] {
+    width: min(700px, calc((100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) * .85));
+    max-width: min(700px, calc((100vw - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)) * .85));
+    max-height: calc((100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) * .85);
+  }
+}
