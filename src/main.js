@@ -1,6 +1,4 @@
 import './mayor-tutorial.css';
-import './cure-confirm.css';
-import './stove-compact.css';
 import {createMayorTutorial} from './mayor-tutorial-ui.js';
 import {tutorialActive,tutorialStove,chooseTutorialStove,restartTutorial} from './mayor-tutorial.js';
 import './style.css';
@@ -18,6 +16,9 @@ import './rail-icons.css';
 import './staff-upgrades.css';
 import './floating-actions.css';
 import './season-teaser.css';
+import './cure-confirm.css';
+import './stove-compact.css';
+import './compact-dialogs.css';
 import {installLandscapeMode} from './orientation.js';
 import {RECIPES,BOOKS,ZOMBIES,FURNITURE,SKINS,EXPANSIONS,LIMITS,SAVE_KEY,WALK_ANIMATION,recipe,zombie,furniture,formatTime,xpNeeded} from './data.js';
 import * as E from './engine.js';
@@ -255,6 +256,7 @@ function renderModal(){
  heading('YOUR FIRST NIGHT','밤손님 영업 안내','처음엔 가마솥 하나부터, 천천히 시작하세요.');body.innerHTML=`<ol class="help-list"><li><b>COOK → 요리 선택</b><p>시간이 지나 초록 체크가 뜨면 눌러주세요. 음식이 서빙대로 바로 옮겨집니다.</p></li><li><b>직원이 서빙과 판매를 도와줘요</b><p>식탁 바로 옆에서 식탁을 향한 의자마다 한 명이 앉아요. 한 칸 식탁은 최대 4명이며, 앉을 자리까지 통로가 필요해요. 식탁 없는 의자는 장식이에요. 음식이 모자라면 도시의 허기가 올라갑니다.</p></li><li><b>반복 조리로 다음 메뉴를 만나요</b><p>음식 숙련도 합계가 레시피 레벨입니다. 식당 레벨은 판매·의뢰 등으로 따로 올라요.</p></li><li><b>식사와 결제까지, 새로운 단골</b><p>접속 중 처음 거래를 마친 좀비가 캐릭터북에 등록됩니다.</p></li><li><b>음식과 직원을 돌봐주세요</b><p>가마솥 음식은 오래 두면 상해요. 붉은 좀비에게 물린 직원은 코인으로 치료하거나 5분 뒤 회복됩니다.</p></li><li><b>가로 화면, 터치 또는 마우스</b><p>꾸미기에서 가구를 고르고 격자 위치를 선택한 뒤 배치하세요. 키보드·좌표 배치를 펼치면 가구를 고를 수 있어요. 바닥의 방향키는 이동, R은 회전, Enter는 확정, Esc는 취소입니다.</p></li></ol><div class="tutorial-replay-row"><button class="button primary" data-act="tutorial-replay">시장님 안내 다시 보기</button><p>식당의 진행과 재화는 그대로 유지됩니다.</p></div>`;
  }else if(modal.type==='confirm'){
  heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML='<div class="button-row confirm-buttons"><button class="button quiet" data-act="close"></button><button class="button primary" data-act="confirm"></button></div>';body.querySelector('[data-act="close"]').textContent=modal.cancelLabel||'취소';body.querySelector('[data-act="confirm"]').textContent=modal.label||'확인';
+ if(!Number.isFinite(modal.curePrice))dialog.classList.add(`confirm-${['short','standard','long'].includes(modal.confirmSize)?modal.confirmSize:'standard'}`);
  if(Number.isFinite(modal.curePrice)){dialog.classList.add('cure-confirm');const amount=`<span class="cure-amount" aria-label="엽전 ${modal.curePrice}개">${coin()}<span aria-hidden="true">${num(modal.curePrice)}</span></span>`;$('#dialog-description').innerHTML=`${modal.cureFeedback?`${esc(modal.cureFeedback)} `:''}${esc(modal.cureStaffName)} 치료에 ${amount}이 필요해요.`;body.querySelector('[data-act="confirm"]').innerHTML=`예 ${amount}`;}
  }
  if(modal?.type==='hire')body.querySelector('.staff-list').scrollTop=staffScroll;
@@ -349,16 +351,16 @@ document.addEventListener('click',async e=>{
  else if(act==='instant'){if(action(E.instant(state,id)))renderModal();}
  else if(act==='collect'){if(action(E.collect(state,id),'요리를 서빙대로 옮겼어요.'))close();}
  else if(act==='recover'){if(action(E.recover(state,id),'음식을 되살렸어요.'))renderModal();}
- else if(act==='discard')confirmAction('음식을 버릴까요?','조리 비용은 돌려받지 못해요.',()=>{action(E.discard(state,id));close();});
+ else if(act==='discard')confirmAction('음식을 버릴까요?','조리 비용은 돌려받지 못해요.',()=>{action(E.discard(state,id));close();},'확인','취소',{confirmSize:'short'});
  else if(act==='album-tab'){albumTab=id;selectedZombie=ZOMBIES.find(z=>id==='event'?z.event:!z.event).id;renderModal();}else if(act==='guest'){selectedZombie=id;renderModal();}
  else if(act==='hire-now'){if(action(E.hire(state)))renderModal();}
- else if(act==='fire')confirmAction('이 식구와 작별할까요?','고용 비용은 돌려받지 못해요.',()=>{action(E.fire(state,id));open('hire');},'해고하기');
+ else if(act==='fire')confirmAction('이 식구와 작별할까요?','고용 비용은 돌려받지 못해요.',()=>{action(E.fire(state,id));open('hire');},'해고하기','취소',{confirmSize:'short'});
  else if(act==='cure')requestCure(id);
  else if(act==='claim-quest'){if(action(E.claimQuest(state,id,n)))renderModal();}
  else if(act==='skip-quest'){
   const q=E.questProgress(state);if(!q||q.id!==id||state.questIndex!==n){toast('부탁이 바뀌었어요. 현재 부탁을 다시 확인해주세요.','danger');open('quest');return;}
   const unchanged=q.stat==='size'?'식당 크기는 바뀌지 않아요.':q.stat==='tablesBought'?'테이블은 추가되지 않아요.':q.stat==='cooked'?'요리가 만들어지지는 않아요.':'음식이 서빙되지는 않아요.';
-  confirmAction('심장으로 부탁을 완료할까요?',`심장 ${q.skip}개를 사용하고 ${num(q.coins)}코인과 ${q.xp} XP를 받아요. ${unchanged}`,()=>{action(E.skipQuest(state,id,n));open('quest');},`심장 ${q.skip}개로 완료`);
+  confirmAction('심장으로 부탁을 완료할까요?',`심장 ${q.skip}개를 사용하고 ${num(q.coins)}코인과 ${q.xp} XP를 받아요. ${unchanged}`,()=>{action(E.skipQuest(state,id,n));open('quest');},`심장 ${q.skip}개로 완료`,'취소',{confirmSize:'long'});
  }
  else if(act==='daily'){action(E.daily(state));}
  else if(act==='decorate'){edit?finishEdit():startEdit();}else if(act==='finish-edit')finishEdit();
@@ -383,11 +385,11 @@ document.addEventListener('click',async e=>{
  else if(act==='sound'){if(!sound.timer){sound.musicMuted=false;await sound.start();}else sound.musicMuted=!sound.musicMuted;updateHUD();}
  else if(act==='export'){save();const url=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=`밤손님식당-${new Date().toISOString().slice(0,10)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('저장 파일을 내보냈어요.');}
  else if(act==='import')$('#save-file').click();
- else if(act==='reset')confirmAction('식당을 처음부터 시작할까요?','모든 진행과 수집 기록이 초기화됩니다. 필요하면 먼저 저장 파일을 내보내주세요.',()=>{state=E.newGame();notificationId=null;speed=1;paused=false;save();close();if(edit)finishEdit();updateHUD();},'초기화');
+ else if(act==='reset')confirmAction('식당을 처음부터 시작할까요?','모든 진행과 수집 기록이 초기화됩니다. 필요하면 먼저 저장 파일을 내보내주세요.',()=>{state=E.newGame();notificationId=null;speed=1;paused=false;save();close();if(edit)finishEdit();updateHUD();},'초기화','취소',{confirmSize:'long'});
  else if(act==='confirm'){const callback=modal?.type==='confirm'?modal.callback:null;if(typeof callback==='function'){modal.callback=null;callback();}}
 });
 document.addEventListener('input',e=>{if(e.target.dataset.setting){state.settings[e.target.dataset.setting]=Number(e.target.value);sound.music=state.settings.music;sound.effects=state.settings.sfx;save();}});
-$('#save-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2_000_000)throw new Error('저장 파일이 너무 큽니다.');const imported=E.validateSave(JSON.parse(await file.text()));confirmAction('이 저장 파일로 바꿀까요?',`식당 레벨 ${imported.level} · ${num(imported.coins)}코인. 현재 진행을 덮어씁니다.`,()=>{state=imported;const report=E.reconcileOffline(state);notificationId=state.notifications.at(-1)?.id;save();if(edit)finishEdit();report?open('offline',{report}):close();updateHUD();});}catch(err){toast(`불러오기 실패: ${err.message}`,'danger');}e.target.value='';});
+$('#save-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2_000_000)throw new Error('저장 파일이 너무 큽니다.');const imported=E.validateSave(JSON.parse(await file.text()));confirmAction('이 저장 파일로 바꿀까요?',`식당 레벨 ${imported.level} · ${num(imported.coins)}코인. 현재 진행을 덮어씁니다.`,()=>{state=imported;const report=E.reconcileOffline(state);notificationId=state.notifications.at(-1)?.id;save();if(edit)finishEdit();report?open('offline',{report}):close();updateHUD();},'확인','취소',{confirmSize:'long'});}catch(err){toast(`불러오기 실패: ${err.message}`,'danger');}e.target.value='';});
 document.addEventListener('keydown',e=>{
  if(!dialog.open&&e.target.id==='world'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&['+','=','-','0'].includes(e.key)){e.preventDefault();if(e.key==='0')view.resetCamera?.();else view.zoomCamera?.(e.key==='-'?1/1.1:1.1);updateHUD();return;}
  if(dialog.open||!edit||['INPUT','TEXTAREA','SELECT','SUMMARY'].includes(e.target.tagName))return;
