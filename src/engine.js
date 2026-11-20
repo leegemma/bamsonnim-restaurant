@@ -1,3 +1,4 @@
+import {isNajeon,normalizeSavedNajeon,najeonServiceCells} from './najeon-layout.js';
 import {newTutorial,validateTutorial,tutorialCooked,tutorialStocked,tutorialServed} from './mayor-tutorial.js';
 import {SAVE_VERSION,OFFLINE_CAP,RECIPES,ZOMBIES,FURNITURE,SKINS,WAITER_NAMES,WAITER_NAME_UPDATES,LIMITS,EXPANSIONS,QUESTS,DIRECTIONS,recipe,zombie,furniture,xpNeeded} from './data.js';
 import {furnitureCells,furnitureOccupies,wallAttachment,wallSlotKey,wallOccupiedSlots} from './furniture-footprint.js';
@@ -131,11 +132,12 @@ export function path(s,from,to,{allowBlockedTarget=true}={}){
   }
   return null;
 }
+function serviceSides(o){return najeonServiceCells(o)||DIRECTIONS.map(([dx,dy])=>[o.x+dx,o.y+dy]);}
 function accessPath(s,actor,o){
-  let best=null;for(const [dx,dy]of DIRECTIONS){const x=o.x+dx,y=o.y+dy;if(!walkable(s,x,y))continue;const route=path(s,actor,[x,y],{allowBlockedTarget:false});if(route!==null&&(!best||route.length<best.length))best=route;}return best;
+  let best=null;for(const [x,y]of serviceSides(o)){if(!walkable(s,x,y))continue;const route=path(s,actor,[x,y],{allowBlockedTarget:false});if(route!==null&&(!best||route.length<best.length))best=route;}return best;
 }
 function setRoute(s,actor,o){const p=accessPath(s,actor,o);if(p===null)return false;actor.path=p;return true;}
-function beside(actor,o){return Math.abs(Math.abs(actor.x-o.x)+Math.abs(actor.y-o.y)-1)<1e-6;}
+function beside(actor,o){return isNajeon(o)?serviceSides(o).some(([x,y])=>Math.hypot(actor.x-x,actor.y-y)<1e-6):Math.abs(Math.abs(actor.x-o.x)+Math.abs(actor.y-o.y)-1)<1e-6;}
 function workerTarget(s,w){const t=w.task;if(!t)return null;if(t.kind==='clean')return resolveSeat(s,t.chair);if(t.kind==='transfer'){const x=s.transfers.find(x=>x.uid===t.transfer);return s.objects.find(o=>o.uid===(t.phase==='pickup'?x?.stove:x?.server));}return t.phase==='pickup'?s.objects.find(o=>o.uid===t.server):resolveSeat(s,s.customers.find(c=>c.uid===t.customer)?.seat);}
 function higherPriority(a,b){
   const rank=x=>x.phase==='leaving'?5:x.phase==='chasing'?4:x.phase?x.phase==='queue'?1:3:x.task?2:0;
@@ -330,7 +332,7 @@ function safeParkingTile(s,point,claims){
   const before=new Set([...blockedTiles(s),...claims]),component=parkingComponent(s,point,before);if(component.size<3)return false;
   const after=new Set(before);after.add(point.join(','));const neighbor=DIRECTIONS.map(([dx,dy])=>[point[0]+dx,point[1]+dy]).find(p=>walkable(s,...p,after));
   if(!neighbor||parkingComponent(s,neighbor,after).size!==component.size-1)return false;
-  for(const o of s.objects.filter(o=>['server','stove'].includes(furniture(o.type)?.category))){const sides=DIRECTIONS.map(([dx,dy])=>[o.x+dx,o.y+dy]);if(sides.some(p=>walkable(s,...p,before))&&!sides.some(p=>walkable(s,...p,after)))return false;}
+  for(const o of s.objects.filter(o=>['server','stove'].includes(furniture(o.type)?.category))){const sides=serviceSides(o);if(sides.some(p=>walkable(s,...p,before))&&!sides.some(p=>walkable(s,...p,after)))return false;}
   return true;
 }
 function parkIdle(s,w){
@@ -499,8 +501,8 @@ export function place(s,{type,x,y,dir=0,existing=null,fromStorage=false,editing=
     else{if(!furnitureAvailable(s,f))return f.event?'이벤트 기간에만 구매할 수 있어요.':'식당 레벨이 부족해요.';if(s.coins<f.price)return '코인이 부족해요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
   }
   if(!f.wallMounted){for(const w of s.waiters)cancelTask(s,w);s.customers=[];for(const c of s.objects){delete c.dirty;delete c.cleaner;if(furniture(c.type)?.seatCount===2)c.seatStates=newSeatStates();}}
-  if(existing){o.x=x;o.y=y;o.dir=dir;}
-  else{if(fromStorage)s.storage.splice(s.storage.indexOf(type),1);else{s.coins-=f.price;addXp(s,Math.round(f.price*.25));if(f.category==='table')s.stats.tablesBought++;if(f.category==='chair')s.stats.chairsBought++;}let objectId=uid(s);if(f.seatCount===2){const reserved=new Set([...s.objects.map(o=>o.uid),...allSeatSlots(s).map(slot=>slot.uid)]);while(reserved.has(objectId)||[0,1].some(i=>reserved.has(`${objectId}::seat:${i}`)))objectId=uid(s);}s.objects.push({uid:objectId,type,x,y,dir,...(f.seatCount===2?{seatStates:newSeatStates()}: {})});}
+  if(existing){o.x=x;o.y=y;o.dir=dir;if(isNajeon(o))o.najeonLayout=2;}
+  else{if(fromStorage)s.storage.splice(s.storage.indexOf(type),1);else{s.coins-=f.price;addXp(s,Math.round(f.price*.25));if(f.category==='table')s.stats.tablesBought++;if(f.category==='chair')s.stats.chairsBought++;}let objectId=uid(s);if(f.seatCount===2){const reserved=new Set([...s.objects.map(o=>o.uid),...allSeatSlots(s).map(slot=>slot.uid)]);while(reserved.has(objectId)||[0,1].some(i=>reserved.has(`${objectId}::seat:${i}`)))objectId=uid(s);}s.objects.push({uid:objectId,type,x,y,dir,...(isNajeon({type})?{najeonLayout:2}:{}),...(f.seatCount===2?{seatStates:newSeatStates()}: {})});}
   if(f.wallMounted)Object.assign(existing?o:s.objects.at(-1),wallAttachment({x,y,dir}));
   else repairActorPositions(s,{relocateInvalid:true});
   return null;
@@ -555,6 +557,7 @@ export function validateSave(raw){
     originalWallClaims.set(slot.key,o.uid);
   }
   for(const o of s.objects){
+    normalizeSavedNajeon(o);
     if(!furniture(o.type)||typeof o.uid!=='string'||ids.has(o.uid)||!Number.isInteger(o.x)||!Number.isInteger(o.y)||o.x<0||o.y<0||o.x>=s.size||o.y>=s.size||!Number.isInteger(o.dir)||o.dir<0||o.dir>3)throw new Error('가구 정보가 올바르지 않습니다.');
     ids.add(o.uid);
     if(furniture(o.type).seatCount===2){

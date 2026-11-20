@@ -1,8 +1,9 @@
+import {najeonShape} from './najeon-layout.js';
 import {furniture} from './data.js';
 
 // The saved x/y is always the leading corner; odd rotations swap the sides.
 // Existing furniture has the same single-cell occupancy as before.
-export function furnitureFootprint(object){if(furniture(object.type)?.wallMounted)return{width:0,height:0};const base=furniture(object.type)?.occupancy||[1,1],odd=(object.dir||0)%2;return{width:base[odd?1:0],height:base[odd?0:1]};}
+export function furnitureFootprint(object){const najeon=najeonShape(object);if(najeon)return najeon;if(furniture(object.type)?.wallMounted)return{width:0,height:0};const base=furniture(object.type)?.occupancy||[1,1],odd=(object.dir||0)%2;return{width:base[odd?1:0],height:base[odd?0:1]};}
 export function furnitureCells(object){const {width,height}=furnitureFootprint(object),cells=[];for(let y=0;y<height;y++)for(let x=0;x<width;x++)cells.push([object.x+x,object.y+y]);return cells;}
 export function furnitureOccupies(object,x,y){const {width,height}=furnitureFootprint(object);return x>=object.x&&x<object.x+width&&y>=object.y&&y<object.y+height;}
 

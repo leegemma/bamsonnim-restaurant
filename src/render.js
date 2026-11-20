@@ -1,3 +1,4 @@
+import {najeonRenderArt} from './najeon-layout.js';
 import {ASSETS,SKINS,WALK_ANIMATION,recipe,zombie,furniture,DIRECTIONS} from './data.js';
 import {stoveStatus,placementProblem,seats,seatedDirection,seatSlots,resolveSeat} from './engine.js';
 import {walkingPose} from './walking.js';
@@ -139,7 +140,7 @@ export class RestaurantView{
   drawActorMarkers(){for(const marker of this.actorMarkers){const rect=this.worldLabel(marker.text,marker.x,marker.y,marker.options);if(marker.uid)this.hits.push(cureMarkerHit(marker.uid,rect,this.camera.zoom));}}
   furnitureDepth(o){const shape=furnitureFootprint(o);return o.x+o.y+(shape.width+shape.height-2)/2;}
   furnitureGeometry(o){
-    const category=furniture(o.type)?.category,art=furnitureArt(category,o.dir||0,o.type);if(art&&ASSET_MANIFEST[art.key]?.lazy&&!this.sprites[art.key]?.length)this.ensureAsset(art.key);const image=art&&this.sprites[art.key]?.[art.index],shape=furnitureFootprint(o),point=this.world(o.x+Math.max(0,shape.width-1)/2,o.y+Math.max(0,shape.height-1)/2),flip=art?.itemId?!!art.mirrorOdd&&o.dir%2===1:['stove','server'].includes(category)&&o.dir%2===1;
+    const category=furniture(o.type)?.category,art=najeonRenderArt(o,furnitureArt(category,o.dir||0,o.type));if(art&&ASSET_MANIFEST[art.key]?.lazy&&!this.sprites[art.key]?.length)this.ensureAsset(art.key);const image=art&&this.sprites[art.key]?.[art.index],shape=furnitureFootprint(o),point=this.world(o.x+Math.max(0,shape.width-1)/2,o.y+Math.max(0,shape.height-1)/2),flip=art?.itemId?!!art.mirrorOdd&&o.dir%2===1:['stove','server'].includes(category)&&o.dir%2===1;
     return placedFurniture(art,image,point,this.tile,flip);
   }
   serverFoodLayout(o){
