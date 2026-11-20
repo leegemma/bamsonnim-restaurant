@@ -102,6 +102,7 @@ function toast(text,type='info',details={}){
  const message=document.createElement('span');message.className='notice-message';message.textContent=text;const cue=document.createElement('small');cue.className='notice-scroll-cue';cue.textContent='↕';cue.setAttribute('aria-hidden','true');cue.hidden=true;el.append(message,cue);
  if(staff){el.dataset.staffUid=staff.uid;const cure=document.createElement('button');cure.type='button';cure.dataset.act='cure';cure.dataset.id=staff.uid;cure.textContent=`치료하기(${E.cureCost(state)}원)`;el.append(cure);}
  if(type==='danger'){const dismiss=document.createElement('button');dismiss.type='button';dismiss.textContent='닫기';dismiss.setAttribute('aria-label',staff?`${staff.name} 감염 알림 닫기`:'오류 알림 닫기');dismiss.addEventListener('click',()=>el.remove());el.append(dismiss);}else setTimeout(()=>el.remove(),4400);
+ if(staff)setTimeout(()=>el.remove(),5000);
  $('#toasts').append(el);requestAnimationFrame(syncNoticeOverflow);
 }
 function syncNoticeOverflow(){
@@ -143,7 +144,7 @@ function updateHUD(){
 }
 function openStove(id){const o=state.objects.find(o=>o.uid===id);if(!o)return;if(E.stoveStatus(state,o)==='empty'){open('cookbook',{stove:id});return;}if(E.stoveStatus(state,o)==='done'){action(E.collect(state,id),'요리를 서빙대로 옮겼어요.');return;}open('stove',{stove:id});}
 function open(type,data={}){if(type==='cookbook'&&tutorialActive(state)&&['stove','recipe'].includes(state.guidedTutorial.step)){const stove=state.objects.find(o=>o.uid===data.stove)||tutorialStove(state);if(stove&&!stove.cook){chooseTutorialStove(state,stove.uid);data={...data,stove:stove.uid,view:'book'};book=0;page=0;save();}}const changed=modal?.type!==type;previousFocus=dialog.open?previousFocus:document.activeElement;modal={type,...data};if(type==='gallery')walkPreviewPaused=matchMedia('(prefers-reduced-motion: reduce)').matches;if(!dialog.open)dialog.showModal();renderModal();if(changed){dialog.scrollTop=0;$('#dialog-content').scrollTop=0;}syncOrientationGate();}
-function close(){dialog.close();modal=null;previousFocus?.focus?.();}
+function close(){dialog.close();modal=null;(previousFocus?.isConnected?previousFocus:$('#world'))?.focus?.();}
 dialog.addEventListener('cancel',()=>{modal=null;});
 function heading(overline,title,description=''){ $('#dialog-overline').textContent=overline;$('#dialog-title').textContent=title;$('#dialog-description').textContent=description;dialog.className=modal?.type||'';}
 function bookInfo(index){const recipes=RECIPES.filter(r=>r.book===index);return{recipes,required:Math.min(...recipes.map(r=>r.required)),mastered:recipes.filter(r=>E.stars(state,r.id)===3).length};}
