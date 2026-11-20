@@ -228,8 +228,8 @@ function completeCooking(s,foodId){
 }
 
 function chooseCustomer(s){
-  if(s.hunger>=70&&random(s)<.15+(s.hunger-70)/100)return {id:'red',name:'붉은 좀비',sprite:0,red:true};
-  let pool=ZOMBIES.filter(z=>s.level>=z.level&&(!z.event?(z.favorite?stars(s,z.favorite)>=3:true):(s.events[z.event]==='active'?(z.favorite?stars(s,z.favorite)>=3:true):!!s.album[z.id])));
+  if(s.hunger>=100&&random(s)<.15+(s.hunger-70)/100)return {id:'red',name:'붉은 좀비',sprite:0,red:true};
+  let pool=ZOMBIES.filter(z=>z.id!=='dokkaebi'&&s.level>=z.level&&(!z.event?(z.favorite?stars(s,z.favorite)>=3:true):(s.events[z.event]==='active'?(z.favorite?stars(s,z.favorite)>=3:true):!!s.album[z.id])));
   if(s.feverUntil>s.time)pool=pool.filter(z=>z.id==='wanderer');
   const available=s.objects.filter(o=>o.stock>0).map(o=>o.foodId);const weighted=pool.flatMap(z=>Array(z.id==='wanderer'?3:available.includes(z.favorite)?4:1).fill(z));return weighted[Math.floor(random(s)*weighted.length)]||ZOMBIES[0];
 }
