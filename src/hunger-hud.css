@@ -1,10 +1,11 @@
 /* One shared outer height keeps the resource and action groups aligned. */
 .topbar {
   --hud-height: 48px;
-  min-height: 62px;
-  padding-block: 6px;
-  padding-left: max(10px, env(safe-area-inset-left));
-  padding-right: max(10px, env(safe-area-inset-right));
+  min-height: calc(62px + env(safe-area-inset-top, 0px));
+  padding-top: calc(6px + env(safe-area-inset-top, 0px));
+  padding-bottom: 6px;
+  padding-left: max(var(--hud-inline-padding, 10px), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--hud-inline-padding, 10px), env(safe-area-inset-right, 0px));
   gap: 12px;
   align-items: center;
 }
@@ -59,7 +60,7 @@
   .topbar .currency b { font-size: 16px; }
 }
 @media (max-width: 640px) {
-  .topbar { padding-inline: 6px; }
+  .topbar { --hud-inline-padding: 6px; }
   .topbar .brand { min-width: 0; gap: 0; }
   .topbar .brand > span:last-child, .topbar .level-block { display: none; }
   .topbar .hunger-card { flex-basis: 116px; min-width: 104px; }
@@ -67,7 +68,7 @@
   .topbar .currency b { font-size: 14px; }
 }
 @media (max-width: 480px) {
-  .topbar { height: auto; min-height: 112px; flex-wrap: wrap; justify-content: space-between; }
+  .topbar { height: auto; min-height: calc(112px + env(safe-area-inset-top, 0px)); flex-wrap: wrap; justify-content: space-between; }
   .topbar > .brand { display: none; }
   .topbar > .hunger-card { flex: 0 0 100%; }
   .topbar .hunger-track { flex-basis: 72px; width: 72px; max-width: 72px; }

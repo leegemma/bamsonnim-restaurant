@@ -16,7 +16,7 @@
 .festival-lights i:nth-child(2){left:45%;top:5%;background:radial-gradient(ellipse,#59cebd55,transparent 70%);animation-delay:-3s}
 .festival-lights i:nth-child(3){left:15%;top:40%;background:radial-gradient(ellipse,#e68c9b44,transparent 70%);animation-delay:-5s}
 @keyframes lantern-light-drift{to{transform:translate(22%,-12%) rotate(25deg)}}
-.guest-arrival-zone{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.guest-arrival-zone{position:absolute;inset:0 env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);display:grid;place-items:center;pointer-events:none}
 .guest-arrival{width:min(400px,calc(100% - 28px));display:flex;flex-direction:column;align-items:center;transform-origin:center;filter:drop-shadow(0 4px 3px #061b1b55)}
 .arrival-title{display:block;width:100%;height:auto;max-height:94px;object-fit:contain;z-index:2}
 .arrival-portrait{position:relative;display:grid;place-items:center;width:194px;height:150px;margin-top:-4px}
@@ -24,12 +24,16 @@
 .arrival-zombie{position:relative;z-index:1;display:block;width:145px;height:145px;image-rendering:pixelated;filter:drop-shadow(2px 3px #16292155)}
 .arrival-name{z-index:2;max-width:100%;min-width:190px;text-align:center;font-size:23px;line-height:1.35;padding:5px 14px;background:#f2e6c6;color:#283a2d;border:2px solid #9f8d59;box-shadow:3px 4px #061c1b}
 @media(orientation:landscape) and (max-height:500px){
- .guest-arrival-zone{bottom:calc(76px + env(safe-area-inset-bottom))}
+ .guest-arrival-zone{bottom:calc(60px + env(safe-area-inset-bottom,0px))}
  .combo-graphic{top:5%}.combo-graphic b{font-size:54px}.combo-graphic img{width:170px}
  .festival-entry{top:10%;width:min(360px,calc(100% - 80px))}
  .fever-banner{top:5px!important;width:min(228px,calc(100% - 130px))!important;max-width:calc(100% - 130px)!important}
  .festival-heading{display:block;width:100%;max-height:62px}.festival-status{padding:3px 8px;gap:3px 8px}.festival-effects{font-size:10px!important}.fever-banner progress{margin-top:2px}
  .guest-arrival{width:280px;max-width:calc(100% - 28px)}.arrival-title{max-height:65px}.arrival-portrait{width:138px;height:104px;margin-top:-8px}.arrival-zombie{width:102px;height:102px}.arrival-portrait:before{inset:18px 0 0}.arrival-name{font-size:18px;min-width:150px;padding:3px 10px}
+}
+/* Short browser viewports also need room above the home-indicator controls. */
+@media(orientation:landscape) and (max-height:340px){
+ .arrival-title{max-height:54px}.arrival-portrait{width:120px;height:90px}.arrival-zombie{width:88px;height:88px}
 }
 @media(orientation:landscape) and (max-height:280px){
  .combo-graphic{top:1%}.combo-graphic b{font-size:43px}.combo-graphic img{width:140px}

@@ -1,3 +1,5 @@
+/* Center modal controls inside the usable rectangle, including asymmetric notches. */
+dialog:not(.orientation-note){left:env(safe-area-inset-left,0px);right:env(safe-area-inset-right,0px);top:env(safe-area-inset-top,0px);bottom:env(safe-area-inset-bottom,0px);max-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 20px)}
 /* Use the available mobile viewport for content rather than oversized headings. */
 dialog.orientation-note:not([open]) { display: none; }
 dialog.orientation-note[open] {
@@ -13,7 +15,7 @@ dialog.orientation-note[open] {
   height: 100dvh;
   max-height: none;
   margin: 0;
-  padding: 24px;
+  padding: max(24px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-right, 0px)) max(24px, env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
   border: 0;
   box-shadow: none;
   background: #112d2b;
