@@ -79,6 +79,10 @@ const SNACK_BALANCE = {
 };
 for(const r of RECIPES)if(Object.hasOwn(SNACK_BALANCE,r.id))Object.assign(r,SNACK_BALANCE[r.id]);
 
+// Move only chapter membership; saved recipe IDs and all runtime values stay intact.
+const SECOND_BOOK_RECIPES=new Set(['pancake','noodle','cookie','human-suyuk','yukgaejang','hell-dakbokkeum','human-kimchi-jjim','human-leg-kalguksu','eyeball-squid-sundae']);
+for(const r of RECIPES)if(SECOND_BOOK_RECIPES.has(r.id))r.book=1;
+
 export const BOOKS = [
   {name:'무덤 앞 분식집',subtitle:'작고 소중한 첫 끼',color:'#ba6a43',symbol:'一',cover:'/assets/cookbook-grave-bunsik.png'},
   {name:'수상한 한 상',subtitle:'단골을 부르는 손맛',color:'#76885c',symbol:'二',cover:'/assets/cookbook-suspicious-table.png'},

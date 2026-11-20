@@ -13,8 +13,8 @@ for(const [name,type] of [['chromium',chromium],['webkit',webkit]]){
   async function checkLabels(){
    for(const card of await page.locator('[data-act="book-open"]').all()){
     const index=Number(await card.getAttribute('data-n')),label=await card.getAttribute('aria-label'),count=RECIPES.filter(r=>r.book===index).length;
-    assert.ok(label.includes(`${count}가지 요리`));if(BOOKS[index].event)assert.ok(label.includes('성탄 한정'));
-    const snapshot=await card.ariaSnapshot();assert.ok(snapshot.includes(`${count}가지 요리`));labels.set(index,label);
+    if(count)assert.ok(label.includes(`${count}가지 요리`));else{assert.match(label,/잠김 · 준비 중/);assert.equal(await card.isDisabled(),true);}if(BOOKS[index].event)assert.ok(label.includes('성탄 한정'));
+    const snapshot=await card.ariaSnapshot();assert.ok(snapshot.includes(count?`${count}가지 요리`:'준비 중'));labels.set(index,label);
    }
   }
   await checkLabels();const initialScroll=await page.locator('#dialog').evaluate(d=>d.scrollTop);
@@ -26,7 +26,7 @@ for(const [name,type] of [['chromium',chromium],['webkit',webkit]]){
   }
   assert.equal(labels.size,BOOKS.length);await page.keyboard.press('Escape');await page.waitForFunction(()=>!document.querySelector('#dialog').open);assert.equal(await page.evaluate(()=>document.activeElement.dataset.act),'cookbook');
   await page.evaluate(()=>{const g=window.__BAMSONNIM__;g.state.mastery={};g.open('cookbook');});
-  for(const card of await page.locator('.book-cover-card.locked').all())assert.match(await card.getAttribute('aria-label'),/잠김 · 레시피 레벨 \d+ 필요/);
+  for(const card of await page.locator('.book-cover-card.locked').all())assert.match(await card.getAttribute('aria-label'),await card.isDisabled()?/잠김 · 준비 중/:/잠김 · 레시피 레벨 \d+ 필요/);
   const season=page.locator('[data-act="book-open"]').filter({has:page.locator('.book-season')});assert.ok((await season.getAttribute('aria-label')).includes('성탄 한정'));
   assert.deepEqual(errors,[]);console.log(JSON.stringify({browser:name,viewport,books:labels.size,keyboard:'next/next edge/back/back edge; focus retained and no scroll jump PASS',labels:[...labels],pageErrors:errors}));await page.close();
  }}finally{await browser.close();}
