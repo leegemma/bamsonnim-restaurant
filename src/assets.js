@@ -77,6 +77,7 @@ const officePoses=[
 const legacyFoodPoses=Array.from({length:16},(_,index)=>({index,state:'food',source:{x:(index%4)*313.5,y:Math.floor(index/4)*313.5,width:313.5,height:index===8?328:313.5}}));
 export const ASSET_MANIFEST={
   ghostDumplingFood:asset('ghostDumplingFood','유령 얼굴 만둣국',{url:'/assets/food-ghost-dumpling-faces-v1.png',width:1299,height:1211,cols:1,rows:1,type:'food-atlas'}),
+  wormGimmariFood:asset('wormGimmariFood','벌레 김말이',{url:'/assets/food-worm-gimmari-v1.png',width:1448,height:1086,cols:1,rows:1,type:'food-atlas'}),
   spiderDumplingFood:asset('spiderDumplingFood','거미 두 마리와 거미줄을 더한 찐만두',{url:'/assets/food-spider-dumpling-plus-two-v1.png',width:1246,height:1262,cols:1,rows:1,type:'food-atlas'}),
   hungerThought:asset('hungerThought','배고픈 손님의 수저 생각 구름 D',{url:'/assets/hunger-thought-d-v1.png',width:1312,height:1199,rows:1}),
   favoriteThought:asset('favoriteThought','좋아하는 음식을 받은 손님의 초록 하트',{url:'/assets/favorite-green-heart-cloud-v1.png',width:1312,height:1199,rows:1}),
@@ -220,6 +221,7 @@ export const ASSETS=Object.fromEntries(Object.entries(ASSET_MANIFEST).map(([key,
 
 export function foodFrame(spriteIndex=0){
   const index=Number.isInteger(spriteIndex)?spriteIndex:0;
+  if(index===45)return{key:'wormGimmariFood',index:0};
   if(index===13)return{key:'ghostDumplingFood',index:0};
   if(index===18)return{key:'spiderDumplingFood',index:0};
   const atlas=FOOD_ATLASES.find(a=>index>=a.startSprite&&index<a.startSprite+a.count);

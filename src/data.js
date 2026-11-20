@@ -57,6 +57,9 @@ RECIPES.push(
   {"id":"fried-ears","name":"바삭 귀튀김","description":"사람 귀를 얇게 튀겨 바삭한 한입 안주로 냈어요.","duration":28800,"servings":500,"coins":0,"hearts":2,"sprite":43,"book":0,"required":117,"price":1,"portion":25,"milestones":[1,3,5]},
   {"id":"hell-pizza-bun","name":"지옥 피자호빵","description":"둥근 호빵을 가르면 붉은 피자 소스와 치즈, 작은 거미가 빼꼼.","duration":420,"servings":154,"coins":0,"hearts":3,"sprite":44,"book":10,"required":120,"price":2,"portion":8,"milestones":[3,8,10]},
 );
+// Append new dishes so existing recipe order, IDs and sprite indexes stay stable.
+RECIPES.push({id:'worm-gimmari',name:'벌레 김말이',description:'바삭한 김말이 튀김 속을 가느다란 벌레들이 가득 채웠어요.',duration:600,servings:60,coins:60,hearts:0,sprite:45,book:0,required:15,price:6,portion:3,milestones:[3,8,10]});
+
 // Approved first-book balance. Apply after legacy derived fields to preserve mastery and portion.
 const SNACK_BALANCE = {
   "rice":{"duration":12,"servings":6,"coins":0,"hearts":0,"price":1},

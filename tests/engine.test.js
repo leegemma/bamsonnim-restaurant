@@ -40,7 +40,7 @@ function longRunGame(count=4,seed=67291){
 }
 
 test('content IDs are unique and every favorite resolves to an available food',()=>{
- assert.equal(RECIPES.filter(r=>!r.event).length,42);assert.equal(ZOMBIES.filter(z=>!z.event).length,35);
+ assert.equal(RECIPES.filter(r=>!r.event).length,43);assert.equal(ZOMBIES.filter(z=>!z.event).length,35);
  assert.equal(new Set(ZOMBIES.map(z=>z.id)).size,ZOMBIES.length);
  for(const z of ZOMBIES)if(z.favorite)assert.ok(recipe(z.favorite));
 });

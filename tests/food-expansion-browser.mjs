@@ -7,7 +7,7 @@ try{
  const context=await browser.newContext({viewport:{width:844,height:390},hasTouch:true,isMobile:true}),page=await context.newPage(),errors=[];
  await page.addInitScript(()=>{window.foodPointers=[];document.addEventListener('pointerdown',e=>foodPointers.push(e.pointerType),true);});page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base);await page.waitForFunction(()=>window.__BAMSONNIM__?.view.ready);await page.evaluate(()=>document.fonts.ready);
- const recipes=await page.evaluate(async()=>{window.__BAMSONNIM__.pause();return(await import('/src/data.js')).RECIPES;});assert.equal(recipes.length,43);
+ const recipes=await page.evaluate(async()=>{window.__BAMSONNIM__.pause();return(await import('/src/data.js')).RECIPES;});assert.equal(recipes.length,44);
  for(const viewport of [{width:844,height:390},{width:568,height:320},{width:568,height:240}]){
   await page.setViewportSize(viewport);await page.locator('[data-act="cookbook"]').first().tap();const seen=[],tabs=[];
   for(let book=0;book<11;book++){

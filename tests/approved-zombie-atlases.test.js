@@ -8,7 +8,7 @@ import {walkingPose} from '../src/walking.js';
 test('only the three scoped actors append stable sprite routes and existing recipe gates',()=>{
  assert.deepEqual(ZOMBIES.slice(-3).map(z=>[z.id,z.sprite,z.level,z.favorite]),[
   ['nz-baduk-player',34,12,'xmas-soup'],['nz-golf-man',35,8,'gimbap'],['nz-futsal-man',36,4,'skewer']]);
- assert.equal(RECIPES.length,43);
+ assert.equal(RECIPES.length,44);
  for(const a of APPROVED_ZOMBIE_ACTORS){const mapped=characterFrame(a.sprite);assert.equal(mapped.index,0);assert.equal(ASSET_MANIFEST[mapped.key].actorId,a.actorId);assert.match(ASSET_MANIFEST[mapped.key].url,/portrait.png$/);}
  assert.equal(characterFrame(0).key,'characters');assert.equal(characterFrame(33).key,'zombieClown');
 });
