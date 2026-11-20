@@ -65,11 +65,22 @@ export function instant(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook|
 export function discard(s,id){const o=s.objects.find(o=>o.uid===id);if(!o?.cook||o.cook.collecting)return '이미 운반 중이에요.';delete o.cook;return null;}
 export function recover(s,id){const o=s.objects.find(o=>o.uid===id);if(stoveStatus(s,o)!=='spoiled')return '상한 음식이 없어요.';if(s.hearts<1)return '심장 1개가 필요해요.';s.hearts--;o.cook.readyAt=s.time;o.cook.spoilAt=s.time+180;return null;}
 
-function tableInFront(s,chair){const direction=DIRECTIONS[chair.dir||0];return direction?s.objects.find(o=>furniture(o.type)?.category==='table'&&furnitureOccupies(o,chair.x+direction[0],chair.y+direction[1])):null;}
+function chairTableConnection(s,chair){
+  // Backless seats choose a stable cardinal side, independent of saved art
+  // rotation and object array order, even when several tables are adjacent.
+  for(const direction of furniture(chair.type)?.backless?[0,1,2,3]:[chair.dir||0]){
+    const delta=DIRECTIONS[direction];if(!delta)continue;
+    const table=s.objects.find(o=>furniture(o.type)?.category==='table'&&furnitureOccupies(o,chair.x+delta[0],chair.y+delta[1]));
+    if(table)return{table,direction};
+  }
+  return null;
+}
+function tableInFront(s,chair){return chairTableConnection(s,chair)?.table||null;}
+export function seatedDirection(s,chair){return chair?chairTableConnection(s,chair)?.direction??chair.dir??0:null;}
 export function chairSeatProblem(s,chair){
   if(typeof chair==='string')chair=s.objects.find(o=>o.uid===chair);
   if(!chair||furniture(chair.type)?.category!=='chair')return '의자를 선택해주세요.';
-  if(!tableInFront(s,chair))return '의자가 바라보는 앞 칸에 식탁이 필요해요.';
+  if(!tableInFront(s,chair))return furniture(chair.type)?.backless?'스툴 옆 칸에 식탁이 필요해요.':'의자가 바라보는 앞 칸에 식탁이 필요해요.';
   if(!chairReachable(reachableTiles(s,{x:0,y:s.size-1}),chair))return '의자로 가는 통로가 막혀 있어요.';
   return null;
 }

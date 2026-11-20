@@ -1,5 +1,5 @@
 import {ASSETS,SKINS,WALK_ANIMATION,recipe,zombie,furniture,DIRECTIONS} from './data.js';
-import {stoveStatus,placementProblem,seats} from './engine.js';
+import {stoveStatus,placementProblem,seats,seatedDirection} from './engine.js';
 import {walkingPose} from './walking.js';
 import {drawWorkerWalk} from './worker-walk.js';
 import {drawStaffSantaHat} from './staff-seasonal.js';
@@ -324,9 +324,9 @@ export class RestaurantView{
     const artId=!waiter&&(a.red||a.zombieId==='red')?'dokkaebi':a.zombieId;
     const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(artId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
     c.fillStyle='#17282644';c.beginPath();c.ellipse(p.x,p.y+3,t*.18,t*.075,0,0,Math.PI*2);c.fill();
-    const chair=isSeated?s.objects.find(o=>o.uid===a.seat):null;
+    const chair=isSeated?s.objects.find(o=>o.uid===a.seat):null,chairFacing=seatedDirection(s,chair);
     const directionalMeta=!waiter?directionalCharacter(artId):null,entry=zombieEntrance(s),queuedAtDoor=!waiter&&a.phase==='queue'&&!a.path?.length&&Math.hypot(a.x-entry.x,a.y-entry.y)<1e-6;
-    const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chair?.dir??null,idleDirection:queuedAtDoor?1:null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
+    const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chairFacing,idleDirection:queuedAtDoor?1:null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
     if(pose)this.walkingStates.set(a,pose);
     let flip=pose?pose.flip:queuedAtDoor?true:walking&&(a.path[0][0]-a.x)-(a.path[0][1]-a.y)<0;
     const appearance=a.appearance??Math.max(0,s.waiters.indexOf(a)),workerArt=waiter?workerFrame(appearance,{infected:a.infectedUntil>s.time}):null;
@@ -335,7 +335,7 @@ export class RestaurantView{
     const seatedRow=ASSET_MANIFEST.seatedNeighbors?.actorRows?.[artId],officeSeat=artId==='office'&&!!this.sprites.seatedOffice?.length,dedicatedSeat=!waiter&&isSeated&&!!chair&&(officeSeat||seatedRow!==undefined&&!!this.sprites.seatedNeighbors?.length);
     let h=t*(short?.8:waiter?1.02:1.07),w;
     if(directional){const frameCount=directionalMeta.walkFrames||directionalMeta.frames.walk.length;atlas=directionalMeta.key;index=pose.direction*(frameCount+1)+(isSeated?frameCount:pose.frame);flip=false;}
-    else if(dedicatedSeat){atlas=officeSeat?'seatedOffice':'seatedNeighbors';index=(officeSeat?0:seatedRow*4)+(chair.dir||0);flip=false;}
+    else if(dedicatedSeat){atlas=officeSeat?'seatedOffice':'seatedNeighbors';index=(officeSeat?0:seatedRow*4)+(chairFacing||0);flip=false;}
     if(directional&&chair&&a.phase==='eating'){const extra=eatingCharacter(artId);if(extra&&this.sprites[extra.key]?.length){const selected=eatingSpriteFrame(directionalMeta,extra,pose.direction,eatingAnimationFrame(a,s.time+(s.fraction||0),{reducedMotion:this.motionPreference.matches}));if(selected){atlas=selected.key;index=selected.index;}}}
     const image=this.sprites[atlas]?.[index];
     // Scale uniformly: preserve the actual character silhouette instead of
