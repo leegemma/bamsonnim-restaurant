@@ -59,7 +59,7 @@ let offline=recovery.report,edit=null,modal=null,book=0,page=0,bookShelfPage=0,s
 let renderedQuestKey=null;
 const sound=new Sound(),doneCue=createCookingDoneCue();doneCue.sync(state);
 $('#app').innerHTML=`
-<header class="topbar">
+<header class="topbar" aria-label="식당 상태">
  <a class="brand" href="#" data-act="home" aria-label="밤손님 식당"><span class="brand-mark">${icon('moon',29)}</span><span><strong>밤손님 식당</strong><small>달이 뜨면, 문을 엽니다.</small></span></a>
  <div class="level-block"><span class="eyebrow">식당 레벨</span><span class="level-line"><b id="level">1</b><span class="xp-track" role="progressbar" aria-label="다음 식당 레벨까지 경험치" aria-valuemin="0"><i id="xp-fill"></i></span><small id="xp">0 / 4</small></span></div>
  <div class="hunger-card"><svg class="hunger-face" viewBox="190 30 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href="/assets/dokkaebi-bloodshot-v1.png" width="1254" height="1254"/></svg><div class="hunger-track" role="progressbar" aria-label="도시의 허기" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="hunger-fill"></i></div><b id="hunger-value" aria-hidden="true">0%</b></div>
