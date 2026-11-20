@@ -1,3 +1,4 @@
+import {MAYOR_QUESTS_EXTRA} from './mayor-quests-extra.js';
 import {FURNITURE_ADDITIONS,SKIN_ADDITIONS} from './catalogue-expansion.js';
 // Keep content IDs stable: save files reference these IDs, never translated names.
 export const SAVE_VERSION = 1;
@@ -82,6 +83,15 @@ for(const r of RECIPES)if(Object.hasOwn(SNACK_BALANCE,r.id))Object.assign(r,SNAC
 // Move only chapter membership; saved recipe IDs and all runtime values stay intact.
 const SECOND_BOOK_RECIPES=new Set(['pancake','noodle','cookie','human-suyuk','yukgaejang','hell-dakbokkeum','human-kimchi-jjim','human-leg-kalguksu','eyeball-squid-sundae']);
 for(const r of RECIPES)if(SECOND_BOOK_RECIPES.has(r.id))r.book=1;
+// Swap chapter membership while retaining recipe order, unlocks and mastery.
+for(const r of RECIPES){if(r.book===1)r.book=2;else if(r.book===2)r.book=1;}
+// Apply the approved economy after legacy portions/milestones are calculated.
+const SUSPICIOUS_TABLE_BALANCE={
+ liver:{duration:2700,servings:120,coins:240,hearts:0,price:12},
+ kimchi:{duration:3600,servings:150,coins:360,hearts:0,price:14},
+};
+for(const r of RECIPES)if(Object.hasOwn(SUSPICIOUS_TABLE_BALANCE,r.id))Object.assign(r,SUSPICIOUS_TABLE_BALANCE[r.id]);
+
 
 export const BOOKS = [
   {name:'무덤 앞 분식집',subtitle:'작고 소중한 첫 끼',color:'#ba6a43',symbol:'一',cover:'/assets/cookbook-grave-bunsik.png'},
@@ -195,6 +205,7 @@ export const QUESTS=[
  {id:'expand6',name:'식당 확장 14×14',description:'식당을 14×14로 확장하세요.',stat:'size',target:14,coins:6000,xp:6000,absolute:true,skip:80},
  {id:'expand7',name:'식당 확장 15×15',description:'식당을 15×15로 확장하세요.',stat:'size',target:15,coins:9000,xp:9000,absolute:true,skip:90},
  {id:'expand8',name:'식당 확장 16×16',description:'식당을 16×16로 확장하세요.',stat:'size',target:16,coins:15000,xp:15000,absolute:true,skip:100},
+ ...MAYOR_QUESTS_EXTRA,
 ];
 export const recipe=id=>RECIPES.find(r=>r.id===id);
 export const zombie=id=>ZOMBIES.find(z=>z.id===id);
