@@ -3,7 +3,7 @@ const finite=(n,fallback=0)=>Number.isFinite(n)?n:fallback;
 export function clampZoom(n,limits){const min=finite(limits?.minZoom,CAMERA_MIN_ZOOM),max=Math.max(min,finite(limits?.maxZoom,CAMERA_MAX_ZOOM));return Math.max(min,Math.min(max,finite(n,1)));}
 const bounded=clampZoom;
 export function gameplayTile(viewport,size){const {width:W,height:H}=viewport,n=Math.max(1,finite(size,8));return Math.max(22,Math.min(83,(W-(W<800?165:260))/n,H<400?(H-30)/(n*.5+1.5):(H-155)/(n/2)));}
-export function gameplayCameraLimits(viewport,size){const baseTile=gameplayTile(viewport,size),desiredTile=Math.max(70,Math.min(140,Math.min(viewport.width,viewport.height)*.28));return{minZoom:CAMERA_MIN_ZOOM,maxZoom:Math.max(1.4,Math.min(3.2,desiredTile/baseTile))};}
+export function gameplayCameraLimits(viewport,size,{editing=false}={}){const baseTile=gameplayTile(viewport,size),desiredTile=Math.max(70,Math.min(140,Math.min(viewport.width,viewport.height)*.28)),normalMax=Math.max(1.4,Math.min(3.2,desiredTile/baseTile));return{minZoom:CAMERA_MIN_ZOOM,maxZoom:editing?Math.max(3,normalMax):normalMax};}
 export const createCamera=()=>({zoom:1,panX:0,panY:0});
 
 export function cameraTransform(camera,viewport,limits){

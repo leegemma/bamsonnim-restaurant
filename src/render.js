@@ -98,7 +98,7 @@ export class RestaurantView{
 
   measure(){
     const r=this.canvas.getBoundingClientRect(),next={width:r.width,height:r.height};this.camera??=createCamera();
-    if(r.width>0&&r.height>0){if(this.roomSize)this.cameraLimits=gameplayCameraLimits(next,this.roomSize);Object.assign(this.camera,resizeCamera(this.camera,this.cameraViewport||next,next,undefined,this.cameraLimits));this.cameraViewport=next;this.cameraBounds=null;if(this.gestures?.input.active)this.gestures.cancel();}
+    if(r.width>0&&r.height>0){if(this.roomSize)this.cameraLimits=gameplayCameraLimits(next,this.roomSize,{editing:!!this.edit});Object.assign(this.camera,resizeCamera(this.camera,this.cameraViewport||next,next,undefined,this.cameraLimits));this.cameraViewport=next;this.cameraBounds=null;if(this.gestures?.input.active)this.gestures.cancel();}
     this.width=r.width;this.height=r.height;this.backgroundFxClip=undefined;
     if(r.width<=700&&window.innerWidth>window.innerHeight){
       const rail=this.canvas.parentElement?.querySelector('.right-rail')?.getBoundingClientRect();
@@ -203,7 +203,7 @@ export class RestaurantView{
   }
   draw(s,edit,clock,playing=true){
     if(!this.width)return;const effectClock=clock;if(this.motionPreference.matches)clock=0;this.animating=playing&&!edit;const c=this.ctx,W=this.width,H=this.height,dpr=this.dpr||1;this.edit=edit;this.hits=[];c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
-    const availableH=H-(edit?150:0);this.roomSize=s.size;this.cameraLimits=gameplayCameraLimits(this.viewport(),s.size);this.tile=gameplayTile({width:W,height:availableH},s.size);const n=s.size;this.origin={x:W*(W<750?.57:.575),y:(availableH-n*this.tile/2)/2+(availableH<400?this.tile*.6:58)};
+    const availableH=H-(edit?150:0);this.roomSize=s.size;this.cameraLimits=gameplayCameraLimits(this.viewport(),s.size,{editing:!!edit});this.tile=gameplayTile({width:W,height:availableH},s.size);const n=s.size;this.origin={x:W*(W<750?.57:.575),y:(availableH-n*this.tile/2)/2+(availableH<400?this.tile*.6:58)};
     const left=this.world(-.5,n-.5),right=this.world(n-.5,-.5),front=this.world(n-.5,n-.5),back=this.world(-.5,-.5);
     this.cameraBounds={x:left.x-20,y:back.y-this.tile*1.4-18,width:right.x-left.x+40,height:front.y+55-(back.y-this.tile*1.4-18)};this.commitCamera(this.camera);
     const matrix=cameraTransform(this.camera,this.viewport(),this.cameraLimits),visible=visibleSceneRect(this.camera,this.viewport(),this.cameraLimits);c.imageSmoothingEnabled=false;
