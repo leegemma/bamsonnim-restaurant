@@ -1,0 +1,11 @@
+dialog.cure-confirm[open]{width:min(448px,46.8vw);max-width:min(448px,46.8vw)}
+.cure-confirm .dialog-heading{padding:14px}
+.cure-confirm .dialog-overline{display:none}
+.cure-confirm .dialog-heading h1{padding-inline-end:32px;margin:0 0 10px;font-size:18px;line-height:1.4;letter-spacing:0;overflow-wrap:anywhere}
+.cure-confirm .dialog-heading p{font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.cure-confirm .close-button{top:4px;right:4px;width:44px;height:44px}
+.cure-confirm .confirm-buttons{padding:12px;gap:8px}
+.cure-confirm .confirm-buttons .button{min-height:44px;padding:8px 12px;font-size:13px}
+.cure-confirm .cure-amount{display:inline-flex;align-items:center;gap:4px;vertical-align:middle;white-space:nowrap}
+.cure-confirm .cure-amount .mini{width:20px;height:20px}
+@media(max-width:480px){.cure-confirm .confirm-buttons .button{width:100%}}

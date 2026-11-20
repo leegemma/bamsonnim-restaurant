@@ -1,4 +1,6 @@
 import './mayor-tutorial.css';
+import './cure-confirm.css';
+import './stove-compact.css';
 import {createMayorTutorial} from './mayor-tutorial-ui.js';
 import {tutorialActive,tutorialStove,chooseTutorialStove,restartTutorial} from './mayor-tutorial.js';
 import './style.css';
@@ -200,7 +202,7 @@ function renderModal(){
  modal.renderedCook=o.cook;
  modal.renderedStatus=status;
  heading('IN THE KITCHEN',r.name,status==='cooking'?'가마솥에서 맛있게 끓고 있어요.':status==='spoiled'?'너무 오래 기다린 음식이 상했어요.':'완성된 음식을 서빙대로 옮겨주세요.');
- body.innerHTML=`<div class="stove-dialog">${sprite('food',r.sprite,'large-food')}<h2>${status==='cooking'?`<span class="cook-countdown">${cookingCountdown(remaining)}</span> 후 완성`:status==='done'?'완성됐어요!':status==='spoiled'?'상한 음식':'서빙대로 운반 중'}</h2><p>${status==='cooking'?`완성 후 ${formatTime(o.cook.spoilAt-o.cook.readyAt)} 안에 회수해주세요.`:'서빙대로 옮긴 음식은 상하지 않아요.'}</p>${status==='cooking'?`<progress class="cook-progress" max="${r.duration}" value="${progress}" aria-label="조리 진행률"></progress>`:''}<div class="button-row">${status==='cooking'?`<button class="button primary" data-act="instant" data-id="${o.uid}">${heart()} 심장으로 즉시 완성</button>`:status==='done'?`<button class="button primary" data-act="collect" data-id="${o.uid}">서빙대로 옮기기</button>`:status==='spoiled'?`<button class="button primary" data-act="recover" data-id="${o.uid}">${heart()} 1 · 음식 되살리기</button>`:''}${status!=='collecting'?`<button class="button quiet" data-act="discard" data-id="${o.uid}">음식 버리기</button>`:''}</div></div>`;
+ body.innerHTML=`<div class="stove-dialog">${sprite('food',r.sprite,'large-food')}<h2>${status==='cooking'?`<span class="cook-countdown">${cookingCountdown(remaining)}</span> 후 완성`:status==='done'?'완성됐어요!':status==='spoiled'?'상한 음식':'서빙대로 운반 중'}</h2><p>${status==='cooking'?`완성 후 ${formatTime(o.cook.spoilAt-o.cook.readyAt)} 안에 회수해주세요.`:'서빙대로 옮긴 음식은 상하지 않아요.'}</p>${status==='cooking'?`<progress class="cook-progress" max="${r.duration}" value="${progress}" aria-label="조리 진행률"></progress>`:''}<div class="button-row">${status==='cooking'?`<button class="button primary" data-act="instant" data-id="${o.uid}">${heart()} 즉시완성</button>`:status==='done'?`<button class="button primary" data-act="collect" data-id="${o.uid}">서빙대로 옮기기</button>`:status==='spoiled'?`<button class="button primary" data-act="recover" data-id="${o.uid}">${heart()} 1 · 음식 되살리기</button>`:''}${status!=='collecting'?`<button class="button quiet" data-act="discard" data-id="${o.uid}">버리기</button>`:''}</div></div>`;
  }else if(modal.type==='album'){
  heading('THE GUEST BOOK','밤손님 캐릭터북','한 끼를 대접하고, 식사와 결제까지 마치면 기록됩니다.');
  const list=ZOMBIES.filter(z=>albumTab==='event'?!!z.event:!z.event),z=zombie(selectedZombie)||list[0],known=!!state.album[z.id];
@@ -252,7 +254,8 @@ function renderModal(){
  }else if(modal.type==='help'){
  heading('YOUR FIRST NIGHT','밤손님 영업 안내','처음엔 가마솥 하나부터, 천천히 시작하세요.');body.innerHTML=`<ol class="help-list"><li><b>COOK → 요리 선택</b><p>시간이 지나 초록 체크가 뜨면 눌러주세요. 음식이 서빙대로 바로 옮겨집니다.</p></li><li><b>직원이 서빙과 판매를 도와줘요</b><p>식탁 바로 옆에서 식탁을 향한 의자마다 한 명이 앉아요. 한 칸 식탁은 최대 4명이며, 앉을 자리까지 통로가 필요해요. 식탁 없는 의자는 장식이에요. 음식이 모자라면 도시의 허기가 올라갑니다.</p></li><li><b>반복 조리로 다음 메뉴를 만나요</b><p>음식 숙련도 합계가 레시피 레벨입니다. 식당 레벨은 판매·의뢰 등으로 따로 올라요.</p></li><li><b>식사와 결제까지, 새로운 단골</b><p>접속 중 처음 거래를 마친 좀비가 캐릭터북에 등록됩니다.</p></li><li><b>음식과 직원을 돌봐주세요</b><p>가마솥 음식은 오래 두면 상해요. 붉은 좀비에게 물린 직원은 코인으로 치료하거나 5분 뒤 회복됩니다.</p></li><li><b>가로 화면, 터치 또는 마우스</b><p>꾸미기에서 가구를 고르고 격자 위치를 선택한 뒤 배치하세요. 키보드·좌표 배치를 펼치면 가구를 고를 수 있어요. 바닥의 방향키는 이동, R은 회전, Enter는 확정, Esc는 취소입니다.</p></li></ol><div class="tutorial-replay-row"><button class="button primary" data-act="tutorial-replay">시장님 안내 다시 보기</button><p>식당의 진행과 재화는 그대로 유지됩니다.</p></div>`;
  }else if(modal.type==='confirm'){
- heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML=`<div class="button-row confirm-buttons"><button class="button quiet" data-act="close">${modal.cancelLabel||'취소'}</button><button class="button primary" data-act="confirm">${modal.label||'확인'}</button></div>`;
+ heading('한 번 더 확인해주세요',modal.title,modal.description);body.innerHTML='<div class="button-row confirm-buttons"><button class="button quiet" data-act="close"></button><button class="button primary" data-act="confirm"></button></div>';body.querySelector('[data-act="close"]').textContent=modal.cancelLabel||'취소';body.querySelector('[data-act="confirm"]').textContent=modal.label||'확인';
+ if(Number.isFinite(modal.curePrice)){dialog.classList.add('cure-confirm');const amount=`<span class="cure-amount" aria-label="엽전 ${modal.curePrice}개">${coin()}<span aria-hidden="true">${num(modal.curePrice)}</span></span>`;$('#dialog-description').innerHTML=`${modal.cureFeedback?`${esc(modal.cureFeedback)} `:''}${esc(modal.cureStaffName)} 치료에 ${amount}이 필요해요.`;body.querySelector('[data-act="confirm"]').innerHTML=`예 ${amount}`;}
  }
  if(modal?.type==='hire')body.querySelector('.staff-list').scrollTop=staffScroll;
  if(modal?.type==='cookbook'){const tabs=body.querySelector('.book-tabs'),selected=tabs?.querySelector('.selected');if(selected){const t=tabs.getBoundingClientRect(),b=selected.getBoundingClientRect();tabs.scrollLeft+=b.left-t.left-Math.max(0,(tabs.clientWidth-b.width)/2);}}
@@ -263,7 +266,7 @@ function paintActorThumbnails(time){for(const canvas of document.querySelectorAl
 document.addEventListener('change',e=>{if(e.target.id==='walk-actor'){walkPreviewActor=e.target.value;if(walkPreviewState==='eat'&&!eatingCharacter(walkPreviewActor))walkPreviewState='sit';renderModal();}if(e.target.id==='walk-direction'){walkPreviewDirection=Number(e.target.value);paintWalkPreview();paintActorThumbnails(0);}if(e.target.id==='walk-state'){walkPreviewState=e.target.value;paintWalkPreview();}});
 
 function questModalKey(){const q=E.questProgress(state);return `${state.questIndex}:${q?.progress??''}:${state.hearts}`;}
-function confirmAction(title,description,callback,label='확인',cancelLabel='취소'){open('confirm',{title,description,callback,label,cancelLabel});}
+function confirmAction(title,description,callback,label='확인',cancelLabel='취소',details={}){open('confirm',{title,description,callback,label,cancelLabel,...details});}
 function requestCure(uid,feedback=''){
  const staff=state.waiters.find(w=>w.uid===uid&&w.infectedUntil>state.time);
  if(!staff){syncStaffAlerts();toast('치료가 필요하지 않아요.');return;}
@@ -275,7 +278,7 @@ function requestCure(uid,feedback=''){
   const result=E.cure(state,uid);
   if(result){requestCure(uid,result);return;}
   close();syncStaffAlerts();action(null,'다시 건강해졌어요.');
- },`예(${price}원)`,'아니요');
+ },`예(${price}원)`,'아니요',{curePrice:price,cureStaffName:staff.name,cureFeedback:feedback});
 }
 
 function startEdit(){close();edit={selected:null,ghost:null};$('#stage').classList.add('editing');$('#shop-dock').hidden=false;$('#app > .bottom-bar').inert=true;renderShop();renderEdit();}

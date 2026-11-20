@@ -1,0 +1,9 @@
+dialog.stove[open]{width:min(400px,calc(100vw - 24px))}
+.stove .stove-dialog .button-row .button{min-height:44px}
+@media(max-width:420px){
+ .stove .stove-dialog{grid-template-columns:64px minmax(0,1fr);gap:8px 10px;padding:10px 12px}
+ .stove .stove-dialog>.sprite{width:64px;height:64px}
+ .stove .stove-dialog h2{font-size:17px}
+ .stove .stove-dialog .button-row{flex-wrap:wrap}
+ .stove .stove-dialog .button-row .button{min-width:0;white-space:normal}
+}
