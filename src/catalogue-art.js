@@ -1,5 +1,6 @@
 import {CATALOGUE_ENTRIES} from './catalogue-expansion.js';
 import {CATALOGUE_IMAGE_BOUNDS} from './catalogue-image-bounds.js';
+import {calibrateServer} from './catalogue-server-calibration.js';
 import {calibrateTable} from './catalogue-table-calibration.js';
 import {CHAIR_CONTACTS} from './catalogue-chair-contacts.js';
 import {QUARTER_FURNITURE} from './quarter-furniture.generated.js';
@@ -17,7 +18,7 @@ const contacts={
  'table-log':{groundY:.95,surfaceY:.22,groundWidth:.65,footprint:.66},
  'table-dabang':{groundY:.89,surfaceY:.22,groundWidth:.84,footprint:.74},
  'stove-kettle-bbq':{groundY:.89,surfaceY:.31,groundWidth:.83,footprint:.82},
- 'stove-overhead-grill':{groundY:.94,surfaceY:.72,groundWidth:.92,footprint:.84},
+ 'stove-overhead-grill':{groundY:.94,surfaceY:.72,groundWidth:.92,footprint:.756},
  'stove-portable-butane':{groundY:.84,surfaceY:.31,groundWidth:.92,footprint:.78},
  'serving-cart-stainless':{groundY:.90,surfaceY:.16,groundWidth:.94,footprint:.88},
  'serving-robot':{groundY:.93,surfaceY:.43,groundWidth:.94,footprint:.76},
@@ -66,6 +67,7 @@ export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
    const front=dir<2?Math.min(.95,pose.seatAnchor.y/h+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
   if(['table','stove','server'].includes(entry.category))pose.surfaceAnchor={x:w*.5,y:h*contact.surfaceY};
   if(entry.category==='table')calibrateTable(pose,entry.id,source);
+  if(entry.category==='server')calibrateServer(pose,entry.id,source);
   poses.push(pose);
  }
  return{...base,type:'furniture-atlas',directional,shareFrames:entry.id==='stool-log',poses};

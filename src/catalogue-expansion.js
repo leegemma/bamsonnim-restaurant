@@ -5,7 +5,7 @@ const definitions=[
  ['stool-plastic-blue','파란 플라스틱 스툴','chair','stool-plastic-blue-shortlegs-v3.png'],
  ['stool-plastic-red','빨간 플라스틱 스툴','chair','stool-plastic-red-shortlegs-v3.png'],
  ['chair-shell-white','하얀 쉘 의자','chair','chair-shell-white-shortlegs-v2.png'],
- ['table-folding-blue','파란 접이식 식탁','table','table-folding-blue-basetable-v3.png'],
+ ['table-folding-blue','파란 접이식 식탁','table','table-folding-blue-quarterlegs-v4.png'],
  ['table-log','통나무 식탁','table','table-log-basetable-v2.png'],
  ['stool-log','통나무 스툴','chair','stool-log-shortbody-v2.png'],
  ['sofa-dabang-single','다방 일인 소파','chair','sofa-dabang-single-v1.png'],
@@ -14,15 +14,15 @@ const definitions=[
  ['stove-kettle-bbq','케틀 바비큐 그릴','stove','stove-kettle-bbq-v1.png'],
  ['stove-overhead-grill','상부 히터 전기 그릴','stove','stove-overhead-grill-v1.png'],
  ['stove-portable-butane','휴대용 부탄 가스레인지','stove','stove-portable-butane-v1.png'],
- ['serving-cart-stainless','스테인리스 서빙 카트','server','serving-cart-stainless-v1.png'],
+ ['serving-cart-stainless','스테인리스 서빙 카트','server','serving-cart-stainless-quarter-v2.png'],
  ['wallpaper-rose','장미 벽지','wall','wallpaper-rose-v1.png'],
  ['wallpaper-orange-flower','주황 꽃 벽지','wall','wallpaper-orange-flower-v1.png'],
  ['decor-industrial-floor-fan','산업용 바닥 선풍기','decor','decor-industrial-floor-fan-v1.png'],
  ['decor-pedestal-fan-orange','주황 날개 선풍기','decor','decor-pedestal-fan-orange-v1.png'],
  ['decor-aquarium','산호 수족관','decor','decor-aquarium-v1.png'],
- ['serving-robot','로봇 서빙대','server','serving-robot-v1.png'],
+ ['serving-robot','로봇 서빙대','server','serving-robot-quarter-v3.png'],
  ['floor-yellow-vinyl','노란 장판','floor','floor-yellow-vinyl-v1.png'],
- ['serving-cabinet-najeon','나전 서빙장','server','serving-cabinet-najeon-v1.png'],
+ ['serving-cabinet-najeon','나전 서빙장','server','serving-cabinet-najeon-two-cell-v2.png'],
  ['table-bentwood-natural','내추럴 곡목 식탁','table','table-bentwood-natural-basetable-v2.png'],
  ['table-bentwood-black','검정 곡목 식탁','table','table-bentwood-black-basetable-v2.png'],
  ['chair-dining-black','검정 다이닝 의자','chair','chair-dining-black-shortlegs-v2.png'],
@@ -51,5 +51,5 @@ const definitions=[
 ];
 export const CATALOGUE_ENTRIES=definitions.map(([id,name,category,asset])=>({id,name,category,asset,artKey:`catalogue-${id}`}));
 const prices={chair:50,table:100,stove:400,server:300,decor:150},sprites={chair:1,table:0,stove:5,server:6,decor:9};
-export const FURNITURE_ADDITIONS=CATALOGUE_ENTRIES.filter(e=>!['wall','floor'].includes(e.category)).map(({asset,...e})=>({...e,price:prices[e.category],level:1,sprite:sprites[e.category],...(e.id==='sofa-dabang-double'?{price:100,seatCount:2,occupancy:[1,2],description:'두 칸을 차지하는 2인용 소파예요. 각 자리 앞에 식탁을 놓아주세요.'}:{}),...(['stool-plastic-blue','stool-plastic-red','stool-log'].includes(e.id)?{backless:true,description:'어느 방향으로 놓아도 옆 식탁을 이용할 수 있어요.'}:{}),...(e.category==='table'?{seatCapacity:1,description:'한 명이 앉는 식탁이에요.'}:{}),...(['decor-aquarium','decor-christmas-village','table-bbq-wood-wide'].includes(e.id)?{occupancy:[2,1],description:'두 칸을 차지해요. 회전해 세로로 놓을 수 있어요.'}:e.id==='decor-christmas-trees'?{occupancy:[2,2],description:'네 칸을 차지하는 성탄 장식이에요.'}:{}),...(['decor-landscape-poster','decor-ink-bird-flower','decor-window-red-curtains','decor-sunflower-painting','decor-wooden-menu-boards','decor-bamboo-blind','decor-graffiti-wall-panel'].includes(e.id)?{wallMounted:true,wallSpan:e.id==='decor-bamboo-blind'?2:e.id==='decor-graffiti-wall-panel'?4:1,description:'벽에 걸어주세요. 아래 바닥은 자유롭게 쓸 수 있어요.'}:{})}));
+export const FURNITURE_ADDITIONS=CATALOGUE_ENTRIES.filter(e=>!['wall','floor'].includes(e.category)).map(({asset,...e})=>({...e,price:prices[e.category],level:1,sprite:sprites[e.category],...(e.id==='sofa-dabang-double'?{price:100,seatCount:2,occupancy:[1,2],description:'두 칸을 차지하는 2인용 소파예요. 각 자리 앞에 식탁을 놓아주세요.'}:{}),...(['stool-plastic-blue','stool-plastic-red','stool-log'].includes(e.id)?{backless:true,description:'어느 방향으로 놓아도 옆 식탁을 이용할 수 있어요.'}:{}),...(e.category==='table'?{seatCapacity:1,description:'한 명이 앉는 식탁이에요.'}:{}),...(['decor-aquarium','decor-christmas-village','table-bbq-wood-wide','serving-cabinet-najeon'].includes(e.id)?{occupancy:[2,1],description:'두 칸을 차지해요. 회전해 세로로 놓을 수 있어요.'}:e.id==='decor-christmas-trees'?{occupancy:[2,2],description:'네 칸을 차지하는 성탄 장식이에요.'}:{}),...(['decor-landscape-poster','decor-ink-bird-flower','decor-window-red-curtains','decor-sunflower-painting','decor-wooden-menu-boards','decor-bamboo-blind','decor-graffiti-wall-panel'].includes(e.id)?{wallMounted:true,wallSpan:e.id==='decor-bamboo-blind'?2:e.id==='decor-graffiti-wall-panel'?4:1,description:'벽에 걸어주세요. 아래 바닥은 자유롭게 쓸 수 있어요.'}:{})}));
 export const SKIN_ADDITIONS=CATALOGUE_ENTRIES.filter(e=>['wall','floor'].includes(e.category)).map(e=>({id:e.id,name:e.name,type:e.category,textureKey:e.artKey,color:e.category==='wall'?'#efe5c8':'#dca84f',price:e.category==='wall'?1200:1000,level:e.category==='wall'?5:4,...(e.id==='floor-yellow-vinyl'?{sheetCells:3}:{})}));
