@@ -8,8 +8,8 @@ const directions=[
 ];
 export const APPROVED_ZOMBIE_ACTORS=[
  {actorId:'nz-baduk-player',originId:'extra-zombie-050',name:'남자 바둑기사',sprite:34,referenceHeight:235},
- {actorId:'nz-golf-man',originId:'zombie-concept-001',name:'골프 남자',sprite:35,referenceHeight:213},
- {actorId:'nz-futsal-man',originId:'zombie-concept-002',name:'풋살 남자',sprite:36,referenceHeight:216},
+ {actorId:'nz-golf-man',originId:'zombie-concept-001',name:'골프좀비',sprite:35,referenceHeight:213},
+ {actorId:'nz-futsal-man',originId:'zombie-concept-002',name:'풋살좀비',sprite:36,referenceHeight:216},
 ];
 function atlas(actor,eating=false){
  const cols=eating?2:4,rows=4,key=`approved-${actor.actorId}-${eating?'eating':'walk-sit'}`;

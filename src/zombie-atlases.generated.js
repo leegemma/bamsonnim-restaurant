@@ -4347,7 +4347,7 @@ export const ZOMBIE_ATLASES=[
   {
     "key": "zombieFemaleIdol",
     "actorId": "female-idol",
-    "name": "백금발 여자 아이돌 · 네 방향 세 포즈 걷기·앉기",
+    "name": "여아이돌좀비 · 네 방향 세 포즈 걷기·앉기",
     "url": "/assets/zombies/female-idol-directional-shuffle.png",
     "width": 1254,
     "height": 1254,

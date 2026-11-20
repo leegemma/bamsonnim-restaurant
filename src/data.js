@@ -119,7 +119,7 @@ ZOMBIES.push(
  {id:'tiger',name:'멍한 호랑이',favorite:'rice',description:'한입 먹어 팥소가 보이는 찹쌀떡을 쥐고 두 발로 어슬렁. 무섭게 생기려다 깜빡했어요.',sprite:24,level:24},
  {id:'farmhand',name:'머슴',favorite:'kimchi',description:'걷은 소매와 해진 작업 한복. 일은 잠깐 미루고 새참부터.',sprite:25,level:25},
  {id:'hahoe',name:'하회탈',favorite:null,description:'비대칭 웃음의 갈색 하회탈. 탈 아래에는 수상한 초록 손님이 있어요.',sprite:26,level:26},
- {id:'female-idol',name:'백금발 여자 아이돌',favorite:'cookie',description:'무릎까지 오는 백금발 양갈래. 흰 버클 무대 의상과 체인, 검은 끈 롱부츠.',sprite:27,level:27},
+ {id:'female-idol',name:'여아이돌좀비',favorite:'cookie',description:'무릎까지 오는 백금발 양갈래. 흰 버클 무대 의상과 체인, 검은 끈 롱부츠.',sprite:27,level:27},
  {id:'dokkaebi',name:'도깨비',favorite:'pancake',description:'빨간 피부에 뿔 두 개, 노란 무늬옷과 돌기 방망이. 밥 나와라 뚝딱!',sprite:28,level:28},
  {id:'kongjwi',name:'가난한 콩쥐',favorite:'rice',description:'해진 붉은 치마와 땋은 머리, 낡은 바가지. 작은 개구리와 언제나 함께 다녀요.',sprite:29,level:29},
 );
@@ -136,8 +136,8 @@ ZOMBIES.push(
 // Scoped approval: only these three completed actors join the existing roster.
 ZOMBIES.push(
  {id:'nz-baduk-player',name:'남자 바둑기사',favorite:'xmas-soup',description:'바둑돌을 챙겨 온 기사. 대국 전에 따뜻한 만둣국 한 그릇.',sprite:34,level:12},
- {id:'nz-golf-man',name:'골프 남자',favorite:'gimbap',description:'골프채를 곁에 두고 쉬어 가요. 김밥을 먹고 다음 홀로.',sprite:35,level:8},
- {id:'nz-futsal-man',name:'풋살 남자',favorite:'skewer',description:'공은 발옆에 두고 잠깐 식사. 떡꼬치로 경기 뒤 허기를 달래요.',sprite:36,level:4},
+ {id:'nz-golf-man',name:'골프좀비',favorite:'gimbap',description:'골프채를 곁에 두고 쉬어 가요. 김밥을 먹고 다음 홀로.',sprite:35,level:8},
+ {id:'nz-futsal-man',name:'풋살좀비',favorite:'skewer',description:'공은 발옆에 두고 잠깐 식사. 떡꼬치로 경기 뒤 허기를 달래요.',sprite:36,level:4},
 );
 export const DIRECTIONS=[[1,0],[0,1],[-1,0],[0,-1]];
 export const FURNITURE=[

@@ -170,7 +170,7 @@ export const ASSET_MANIFEST={
   diver:asset('diver','해녀',{width:1254,height:1254}),
   folklore:asset('folklore','처녀귀신·삼신할머니·호랑이·머슴',{width:1247,height:1261,cols:2,type:'atlas'}),
   hahoe:asset('hahoe','하회탈',{width:1254,height:1254}),
-  femaleidol:asset('femaleidol','백금발 여자 아이돌',{width:1222,height:1287}),
+  femaleidol:asset('femaleidol','여아이돌좀비',{width:1222,height:1287}),
   dokkaebi:asset('dokkaebi','도깨비',{url:'/assets/dokkaebi-bloodshot-v1.png',width:1254,height:1254}),
   kongjwi:asset('kongjwi','가난한 콩쥐·개구리',{width:1254,height:1254}),
   walk1:asset('walk1','행인 기존 걷기 1',{url:'/assets/wanderer-walk/frame-1.png',width:1254,height:1254,type:'animation-frame'}),
