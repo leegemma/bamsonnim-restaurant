@@ -10,6 +10,7 @@ const contacts={
  'stool-plastic-red':{groundY:.86,seatY:.20,groundWidth:.94,footprint:.48},
  'stool-log':{groundY:.94,seatY:.20,groundWidth:.94,footprint:.47},
  'sofa-dabang-single':{groundY:.89,seatY:.57,groundWidth:.94,footprint:.64},
+ 'sofa-dabang-double':{groundY:.90,seatY:.60,groundWidth:.94,footprint:1.2},
  'table-folding-blue':{groundY:.88,surfaceY:.19,groundWidth:.88,footprint:.76},
  'table-log':{groundY:.95,surfaceY:.22,groundWidth:.65,footprint:.66},
  'table-dabang':{groundY:.89,surfaceY:.22,groundWidth:.84,footprint:.74},
@@ -42,11 +43,24 @@ export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
   const pose={index:dir,itemId:entry.id,category:entry.category,dir,source,groundCenter:{x:w*.5,y:h*contact.groundY},groundWidth:w*contact.groundWidth,footprint:contact.footprint,mirrorOdd:!directional&&entry.category!=='chair'};
   if(entry.id==='decor-window-red-curtains')pose.clipPolygons=[windowOutline.map(([x,y])=>[x-source.x,y-source.y])];
   if(entry.category==='chair'){pose.seatAnchor={x:w*.5,y:h*contact.seatY};
+   if(entry.id==='sofa-dabang-double'){
+    const anchors=[[[.75,.51],[.42,.71]],[[.58,.71],[.25,.51]],[[.25,.73],[.58,.49]],[[.42,.49],[.75,.73]]][dir];
+    pose.seatAnchors=anchors.map(([x,y])=>({x:w*x,y:h*y}));
+    pose.seatAnchor={x:pose.seatAnchors.reduce((sum,p)=>sum+p.x,0)/2,y:pose.seatAnchors.reduce((sum,p)=>sum+p.y,0)/2};
+   }
    // Match the legacy chair's actual seat-to-ground height for this view.
    // Scale the whole drawing uniformly around the ground anchor; changing
    // only the seated actor's anchor would leave a visibly tall chair behind.
    const reference=QUARTER_FURNITURE.poses.find(p=>p.category==='chair'&&p.dir===dir),target=(reference.groundCenter.y-reference.seatAnchor.y)*reference.footprint/reference.groundWidth;
-   pose.footprint=target*pose.groundWidth/(pose.groundCenter.y-pose.seatAnchor.y);
+   if(pose.seatAnchors){
+    // Two logical cell centers project half a tile across and a quarter down.
+    // Fit the actual cushion pair uniformly, then register its ground plane
+    // so both seats retain the legacy seat height, rather than scaling a
+    // two-person couch around a single center seat.
+    const [a,b]=pose.seatAnchors,dx=b.x-a.x,dy=b.y-a.y,[wx,wy]=[[-.5,.25],[-.5,-.25],[.5,-.25],[.5,.25]][dir],scalePerTile=(dx*wx+dy*wy)/(dx*dx+dy*dy);
+    pose.footprint=scalePerTile*pose.groundWidth;
+    pose.groundCenter={x:pose.seatAnchor.x,y:pose.seatAnchor.y+target/scalePerTile};
+   }else pose.footprint=target*pose.groundWidth/(pose.groundCenter.y-pose.seatAnchor.y);
    const front=dir<2?Math.min(.95,contact.seatY+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
   if(['table','stove','server'].includes(entry.category))pose.surfaceAnchor={x:w*.5,y:h*contact.surfaceY};
   poses.push(pose);

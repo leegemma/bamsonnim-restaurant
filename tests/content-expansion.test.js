@@ -114,7 +114,7 @@ function findSpawn(id,level,status='upcoming',album={}){for(let seed=0;seed<1024
 
 test('legacy recipe fields and book identities stay compatible except the explicit first-book relocations',()=>{
  assert.equal(SAVE_VERSION,1);assert.equal(SAVE_KEY,'bamsonnim.restaurant.v1');assert.deepEqual(RECIPES.slice(0,14),BASELINE_RECIPES.map(r=>{const relocated=RELOCATED_TO_FIRST_BOOK.has(r.id)?{...r,book:0}:r;if(r.id!=='xmas-soup')return relocated;const {event,...ordinary}=relocated;return {...ordinary,description:'뜨끈한 국물에 둥둥 떠다니는 유령 만두.'};}).map(r=>({...r,...APPROVED_BALANCE.get(r.id)})));assert.deepEqual(BOOKS.slice(0,4).map(({cover,...book})=>book),BASELINE_BOOKS);
- for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['검정 짧은 머리','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old);}
+ for(const old of BASELINE_ZOMBIES){const current=zombie(old.id);assert.ok(current);if(old.id==='hiker'){const {description,...rest}=current,{description:previous,...before}=old;assert.deepEqual(rest,before);for(const token of ['검정 짧은 머리','붉은 렌즈 선글라스','주황','자주','회색 상의','검정 바지','배낭','등산 스틱'])assert.ok(description.includes(token));}else assert.deepEqual(current,old.id==='female-idol'?{...old,name:'여아이돌좀비'}:old);}
 });
 
 test('the expanded recipe registry has forty-two normal and one event recipe with valid runtime fields',()=>{

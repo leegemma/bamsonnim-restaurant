@@ -3,6 +3,8 @@ import {SAVE_VERSION,OFFLINE_CAP,RECIPES,ZOMBIES,FURNITURE,SKINS,WAITER_NAMES,WA
 import {furnitureCells,furnitureOccupies,wallAttachment,wallSlotKey,wallOccupiedSlots} from './furniture-footprint.js';
 import {staffEntrance,zombieEntrance,zombieExit,customerExit,atEntrance} from './entrances.js';
 export {staffEntrance,zombieEntrance} from './entrances.js';
+import {seatSlots,allSeatSlots,resolveSeat,newSeatStates} from './seat-slots.js';
+export {seatSlots,allSeatSlots,resolveSeat} from './seat-slots.js';
 
 const trafficState=new WeakMap();
 const seated=c=>['seating','waiting','eating'].includes(c.phase);
@@ -78,7 +80,8 @@ function chairTableConnection(s,chair){
 function tableInFront(s,chair){return chairTableConnection(s,chair)?.table||null;}
 export function seatedDirection(s,chair){return chair?chairTableConnection(s,chair)?.direction??chair.dir??0:null;}
 export function chairSeatProblem(s,chair){
-  if(typeof chair==='string')chair=s.objects.find(o=>o.uid===chair);
+  if(typeof chair==='string')chair=resolveSeat(s,chair)||s.objects.find(o=>o.uid===chair);
+  if(furniture(chair?.type)?.seatCount===2&&!chair.seatObject){const problems=seatSlots(chair).map(slot=>chairSeatProblem(s,slot));return problems.some(problem=>problem===null)?null:problems[0];}
   if(!chair||furniture(chair.type)?.category!=='chair')return '의자를 선택해주세요.';
   if(!tableInFront(s,chair))return furniture(chair.type)?.backless?'스툴 옆 칸에 식탁이 필요해요.':'의자가 바라보는 앞 칸에 식탁이 필요해요.';
   if(!chairReachable(reachableTiles(s,{x:0,y:s.size-1}),chair))return '의자로 가는 통로가 막혀 있어요.';
@@ -87,7 +90,7 @@ export function chairSeatProblem(s,chair){
 function chairReachable(reachable,chair){return reachable.has(tileKey(chair.x,chair.y))||DIRECTIONS.some(([dx,dy])=>reachable.has(tileKey(chair.x+dx,chair.y+dy)));}
 export function seats(s){
   const out=[],reachable=reachableTiles(s,{x:0,y:s.size-1});
-  for(const c of s.objects.filter(o=>furniture(o.type)?.category==='chair')){
+  for(const c of allSeatSlots(s)){
     if(!chairReachable(reachable,c))continue;
     const t=tableInFront(s,c);if(!t)continue;
     // One tile has four adjacent sides; saved seat IDs remain chair UIDs.
@@ -133,7 +136,7 @@ function accessPath(s,actor,o){
 }
 function setRoute(s,actor,o){const p=accessPath(s,actor,o);if(p===null)return false;actor.path=p;return true;}
 function beside(actor,o){return Math.abs(Math.abs(actor.x-o.x)+Math.abs(actor.y-o.y)-1)<1e-6;}
-function workerTarget(s,w){const t=w.task;if(!t)return null;if(t.kind==='clean')return s.objects.find(o=>o.uid===t.chair);if(t.kind==='transfer'){const x=s.transfers.find(x=>x.uid===t.transfer);return s.objects.find(o=>o.uid===(t.phase==='pickup'?x?.stove:x?.server));}return s.objects.find(o=>o.uid===(t.phase==='pickup'?t.server:s.customers.find(c=>c.uid===t.customer)?.seat));}
+function workerTarget(s,w){const t=w.task;if(!t)return null;if(t.kind==='clean')return resolveSeat(s,t.chair);if(t.kind==='transfer'){const x=s.transfers.find(x=>x.uid===t.transfer);return s.objects.find(o=>o.uid===(t.phase==='pickup'?x?.stove:x?.server));}return t.phase==='pickup'?s.objects.find(o=>o.uid===t.server):resolveSeat(s,s.customers.find(c=>c.uid===t.customer)?.seat);}
 function higherPriority(a,b){
   const rank=x=>x.phase==='leaving'?5:x.phase==='chasing'?4:x.phase?x.phase==='queue'?1:3:x.task?2:0;
   if(rank(a)!==rank(b))return rank(a)>rank(b);
@@ -144,7 +147,7 @@ function higherPriority(a,b){
 function missionRoute(s,actor){
   if(actor.task){const target=workerTarget(s,actor);return target?accessPath(s,actor,target):null;}
   if(actor.phase==='leaving')return path(s,actor,customerExit(s,actor),{allowBlockedTarget:false});
-  if(actor.phase==='seating'){const chair=s.objects.find(o=>o.uid===actor.seat);return chair?path(s,actor,[chair.x,chair.y]):null;}
+  if(actor.phase==='seating'){const chair=resolveSeat(s,actor.seat);return chair?path(s,actor,[chair.x,chair.y]):null;}
   const parking=trafficState.get(actor)?.parking;if(parking)return path(s,actor,[parking.x,parking.y],{avoidActors:true});
   return actor.path?.length?path(s,actor,actor.path.at(-1),{avoidActors:true}):[];
 }
@@ -155,7 +158,7 @@ function move(s,actor,dt,speed){
   let distance=dt*speed;
   while(distance>1e-6&&actor.path?.length){
     const next=actor.path[0];if(atTile(actor)&&Math.abs(next[0]-actor.x)+Math.abs(next[1]-actor.y)>1.001)actor.path.unshift(Math.abs(next[0]-actor.x)>1e-6?[actor.x+Math.sign(next[0]-actor.x),actor.y]:[actor.x,actor.y+Math.sign(next[1]-actor.y)]);
-    const [x,y]=actor.path[0],chair=actor.phase==='seating'&&s.objects.find(o=>o.uid===actor.seat),seatTarget=actor.path.length===1&&chair?.x===x&&chair?.y===y;
+    const [x,y]=actor.path[0],chair=actor.phase==='seating'&&resolveSeat(s,actor.seat),seatTarget=actor.path.length===1&&chair?.x===x&&chair?.y===y;
     if(!walkable(s,x,y)&&!seatTarget){
       state.blocked+=dt;
       if(!atTile(actor)){const back=segmentEnds(actor).find(([a,b])=>walkable(s,a,b));if(back){actor.path=[back];continue;}}
@@ -175,7 +178,7 @@ function freePosition(s,from,{ignore=null,avoidEntry=false,spread=false}={}){
   return candidates.sort((a,b)=>score(b)-score(a))[0]||null;
 }
 function repairActorPositions(s,{relocateInvalid=false}={}){
-  for(const c of s.customers)if(['waiting','eating'].includes(c.phase)){const chair=s.objects.find(o=>o.uid===c.seat);if(chair){c.x=chair.x;c.y=chair.y;}}
+  for(const c of s.customers)if(['waiting','eating'].includes(c.phase)){const chair=resolveSeat(s,c.seat);if(chair){c.x=chair.x;c.y=chair.y;}}
   // Shared floor coordinates are intentional. Only an explicit furniture edit
   // keeps the established repair for a worker covered by the newly placed art.
   if(relocateInvalid)for(const w of s.waiters){
@@ -251,7 +254,7 @@ function leave(s,c){c.phase='leaving';c.leavingAt=s.time;c.path=path(s,c,custome
 function releaseInactiveSeats(s){
   for(const c of s.customers){
     if(!['seating','waiting'].includes(c.phase))continue;
-    const chair=s.objects.find(o=>o.uid===c.seat);if(chair&&tableInFront(s,chair)&&(c.phase!=='seating'||path(s,c,[chair.x,chair.y])!==null))continue;
+    const chair=resolveSeat(s,c.seat);if(chair&&tableInFront(s,chair)&&(c.phase!=='seating'||path(s,c,[chair.x,chair.y])!==null))continue;
     for(const w of s.waiters.filter(w=>w.task?.kind==='serve'&&w.task.customer===c.uid))cancelTask(s,w);
     c.worker=null;leave(s,c);
   }
@@ -265,7 +268,7 @@ function pay(s,c,offline){
   const r=recipe(c.foodId);if(!r)return;
   const fav=zombie(c.zombieId)?.favorite===r.id,base=r.price*(c.portion||1),xp=Math.round(base*(fav?1.5:1)),coins=Math.round(base*(fav?1.5:1)*(s.feverUntil>s.time?2:1));const tip=(c.tipChance||0)>0&&random(s)<c.tipChance?Math.max(1,Math.ceil(coins*.2)):0,paid=coins+tip;s.coins+=paid;s.stats.earned+=paid;if(tip)s.stats.tips=(s.stats.tips||0)+tip;s.stats.sold++;s.stats.fed[c.zombieId]=(s.stats.fed[c.zombieId]||0)+1;addXp(s,xp);
   if(!offline&&!c.red){if(!s.album[c.zombieId])notify(s,`캐릭터북 등록 · ${zombie(c.zombieId).name}`, 'album');s.album[c.zombieId]=(s.album[c.zombieId]||0)+1;}
-  const seat=s.objects.find(o=>o.uid===c.seat);if(seat)seat.dirty=true;s.tutorial=Math.max(s.tutorial,3);leave(s,c);
+  const seat=resolveSeat(s,c.seat);if(seat)seat.dirty=true;s.tutorial=Math.max(s.tutorial,3);leave(s,c);
   if(!offline)notify(s,`손님이 ${paid}코인을 냈어요.${tip?` 팁 +${tip}코인!`:''}`,'payment',{amount:paid,tip,xp,x:c.x,y:c.y,favorite:fav});
 }
 function hasFood(s){return s.objects.some(o=>furniture(o.type)?.category==='server'&&o.stock>0);}
@@ -284,7 +287,7 @@ function cancelTask(s,w){
   if(t.kind==='transfer'){
     const x=s.transfers.find(x=>x.uid===t.transfer);if(x){x.worker=null;if(t.picked){const target=s.objects.find(o=>o.uid===x.server);if(target){target.foodId=x.foodId;target.stock=(target.stock||0)+recipe(x.foodId).servings;completeCooking(s,x.foodId);}finishTransfer(s,x);}}
   }
-  if(t.kind==='clean')for(const c of s.objects)if(c.cleaner===w.uid)c.cleaner=null;
+  if(t.kind==='clean')for(const c of allSeatSlots(s))if(c.cleaner===w.uid)c.cleaner=null;
   w.task=null;settleWorker(s,w,true);
   if(t.kind==='serve')refreshServerReservation(s,t.server);
 }
@@ -295,25 +298,25 @@ function assign(s,w){
     for(const o of servers){const reserved=s.waiters.reduce((n,other)=>n+(other.task?.kind==='serve'&&other.task.phase==='pickup'&&other.task.server===o.uid?1:0),0),available=(o.stock||0)-reserved;if(available<1||!setRoute(s,w,o))continue;w.task={kind:'serve',customer:c.uid,server:o.uid,foodId:o.foodId,portion:1,phase:'pickup',work:0};c.worker=w.uid;s.serveCursor=(counters.indexOf(o)+1)%counters.length;return;}
   }
   // A legacy meal may finish on a now-inactive chair; its dish still gets cleaned.
-  const chairs=s.objects.filter(o=>furniture(o.type)?.category==='chair'&&o.dirty&&!o.cleaner&&accessPath(s,w,o)!==null).slice(0,staffCleaningCapacity(w));
+  const chairs=allSeatSlots(s).filter(o=>o.dirty&&!o.cleaner&&accessPath(s,w,o)!==null).slice(0,staffCleaningCapacity(w));
   if(chairs.length&&setRoute(s,w,chairs[0])){for(const chair of chairs)chair.cleaner=w.uid;w.task={kind:'clean',chair:chairs[0].uid,chairs:chairs.map(o=>o.uid),completed:0,work:0};}
 }
 // Rebuild claims from live tasks, including legacy single-chair saves. Invalid,
 // removed or duplicate queue entries never leave a chair reserved indefinitely.
 function reconcileCleaningReservations(s){
-  for(const o of s.objects)if(o.cleaner)o.cleaner=null;
+  for(const o of allSeatSlots(s))if(o.cleaner)o.cleaner=null;
   for(const w of s.waiters){
     const t=w.task;if(t?.kind!=='clean')continue;
     const previous=t.chair,chairs=[],capacity=Math.max(0,staffCleaningCapacity(w)-(t.completed||0));
     for(const id of t.chairs||[t.chair]){
-      const chair=s.objects.find(o=>o.uid===id&&furniture(o.type)?.category==='chair');
+      const chair=resolveSeat(s,id);
       if(chairs.length>=capacity)break;
       if(!chair?.dirty||chair.cleaner||chairs.includes(id))continue;
       chair.cleaner=w.uid;chairs.push(id);
     }
     t.chairs=chairs;t.chair=chairs[0];t.completed??=0;
     if(!chairs.length){cancelTask(s,w);continue;}
-    if(previous!==t.chair){t.work=0;if(!setRoute(s,w,s.objects.find(o=>o.uid===t.chair)))cancelTask(s,w);}
+    if(previous!==t.chair){t.work=0;if(!setRoute(s,w,resolveSeat(s,t.chair)))cancelTask(s,w);}
   }
 }
 function parkingComponent(s,from,blocked){
@@ -334,9 +337,9 @@ function parkIdle(s,w){
   const state=traffic(w);if(state.idleSince===undefined)state.idleSince=s.time;
   if(state.parking||s.time-state.idleSince<1.5||s.time<(state.nextParkAt||0))return;state.nextParkAt=s.time+2;
   const counters=s.objects.filter(o=>furniture(o.type)?.category==='server');if(!counters.length)return;
-  const claims=new Set(s.waiters.filter(other=>other!==w).map(other=>trafficState.get(other)?.parking).filter(Boolean).map(p=>tileKey(p.x,p.y))),blocked=blockedTiles(s),occupied=new Set([...blockedTiles(s),...actors(s).filter(a=>a!==w).flatMap(a=>[...actorTiles(a)])]),chairs=s.objects.filter(o=>furniture(o.type)?.category==='chair');
+  const claims=new Set(s.waiters.filter(other=>other!==w).map(other=>trafficState.get(other)?.parking).filter(Boolean).map(p=>tileKey(p.x,p.y))),blocked=blockedTiles(s),occupied=new Set([...blockedTiles(s),...actors(s).filter(a=>a!==w).flatMap(a=>[...actorTiles(a)])]),chairs=allSeatSlots(s);
   const routes=new Set(actors(s).filter(a=>a!==w).flatMap(a=>(a.path||[]).map(p=>p.join(',')))),layout={...s,customers:[],waiters:[]},door={x:0,y:s.size-1};
-  for(const o of s.objects){const category=furniture(o.type)?.category,route=category==='chair'?path(layout,door,[o.x,o.y]):['server','stove'].includes(category)?accessPath(layout,door,o):null;for(const p of route||[])routes.add(p.join(','));}
+  for(const o of s.objects){const category=furniture(o.type)?.category;for(const target of category==='chair'?seatSlots(o):[o]){const route=category==='chair'?path(layout,door,[target.x,target.y]):['server','stove'].includes(category)?accessPath(layout,door,o):null;for(const p of route||[])routes.add(p.join(','));}}
   const choices=[];
   for(let x=0;x<s.size;x++)for(let y=0;y<s.size;y++){
     const key=tileKey(x,y),distance=Math.min(...counters.map(o=>Math.abs(o.x-x)+Math.abs(o.y-y)));
@@ -379,12 +382,12 @@ function updateWorker(s,w,dt,offline){
       c.phase='eating';c.foodId=t.foodId;c.portion=t.portion;c.eatUntil=s.time+6;c.worker=null;if(staffTipChance(w)>0){c.tipChance=staffTipChance(w);c.tipStaffName=w.name;}w.task=null;refreshServerReservation(s,t.server);addCombo(s,offline);tutorialServed(s,t.foodId);
     }
   }else{
-    const chair=s.objects.find(o=>o.uid===t.chair);
+    const chair=resolveSeat(s,t.chair);
     if(!chair||chair.cleaner!==w.uid||!chair.dirty){cancelTask(s,w);return;}
     if(!beside(w,chair)){if(!setRoute(s,w,chair))cancelTask(s,w);return;}
     chair.dirty=false;chair.cleaner=null;t.chairs.shift();t.completed++;
     if(!t.chairs.length){w.task=null;return;}
-    t.chair=t.chairs[0];const next=s.objects.find(o=>o.uid===t.chair);
+    t.chair=t.chairs[0];const next=resolveSeat(s,t.chair);
     if(!next||!setRoute(s,w,next))cancelTask(s,w);
   }
 }
@@ -415,7 +418,7 @@ function step(s,dt,offline){
       const seat=available.find(x=>path(s,c,[x.chair.x,x.chair.y])!==null);
       if(seat){c.seat=seat.uid;c.path=path(s,c,[seat.chair.x,seat.chair.y]);c.phase='seating';c.seatingAt=s.time;c.wait=0;}
       else{c.wait+=dt;if(c.wait>=20)angry(s,c,true);}
-    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=s.objects.find(o=>o.uid===c.seat);if(!chair)leave(s,c);else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.x=chair.x;c.y=chair.y;c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
+    }else if(c.phase==='seating'){if(move(s,c,dt,c.red?1.2:1.6)){const chair=resolveSeat(s,c.seat);if(!chair)leave(s,c);else if(Math.hypot(c.x-chair.x,c.y-chair.y)<1e-6){c.x=chair.x;c.y=chair.y;c.phase='waiting';c.wait=0;}else c.path=path(s,c,[chair.x,chair.y])||[];}}
     else if(c.phase==='waiting'){
       c.wait+=dt;const worker=s.waiters.find(w=>w.uid===c.worker),service=worker?.task?.kind==='serve'&&worker.task.customer===c.uid?worker.task:null,patience=c.red?25:45;
       // Carrying a meal gives a short grace period, not unlimited patience. A
@@ -476,8 +479,8 @@ export function placementProblem(s,type,x,y,dir=0,ignore=null,{ignoreStaff=false
   if(before.has(tileKey(guestDoor.x,guestDoor.y))&&!reachable.has(tileKey(guestDoor.x,guestDoor.y)))return '두 출입문을 잇는 통로를 비워주세요.';
   if(ignoreStaff&&s.waiters.length&&![...reachable].some(key=>key!==tileKey(door.x,door.y)))return '직원이 설 빈 바닥을 남겨주세요.';
   for(const o of temp.objects){const category=furniture(o.type)?.category;if(!['stove','server'].includes(category))continue;const old=s.objects.find(old=>old.uid===o.uid);if((o.uid===candidate.uid||old&&accessPath(s,door,old)!==null)&&accessPath(temp,door,o)===null)return '직원이 지나다닐 통로가 필요해요.';}
-  for(const chair of temp.objects.filter(o=>furniture(o.type)?.category==='chair')){
-    const old=s.objects.find(o=>o.uid===chair.uid),active=!!tableInFront(temp,chair),newSeat=active&&(chair.uid===candidate.uid||!old||!tableInFront(s,old)),preserve=chair.uid!==candidate.uid&&old&&chairReachable(before,old);
+  for(const chair of allSeatSlots(temp)){
+    const owner=chair.seatObject?.uid||chair.uid,old=resolveSeat(s,chair.uid),active=!!tableInFront(temp,chair),newSeat=active&&(owner===candidate.uid||!old||!tableInFront(s,old)),preserve=owner!==candidate.uid&&old&&chairReachable(before,old);
     if((newSeat||preserve)&&!chairReachable(reachable,chair))return '손님과 직원이 의자 옆 빈 바닥까지 갈 수 없어요.';
   }
   return null;
@@ -495,9 +498,9 @@ export function place(s,{type,x,y,dir=0,existing=null,fromStorage=false,editing=
     if(fromStorage){if(!s.storage.includes(type))return '창고에 가구가 없어요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
     else{if(!furnitureAvailable(s,f))return f.event?'이벤트 기간에만 구매할 수 있어요.':'식당 레벨이 부족해요.';if(s.coins<f.price)return '코인이 부족해요.';if(LIMITS[f.category]&&s.objects.filter(o=>furniture(o.type)?.category===f.category).length>=limit(s,f.category))return '현재 레벨의 설치 한도에 도달했어요.';}
   }
-  if(!f.wallMounted){for(const w of s.waiters)cancelTask(s,w);s.customers=[];for(const c of s.objects){delete c.dirty;delete c.cleaner;}}
+  if(!f.wallMounted){for(const w of s.waiters)cancelTask(s,w);s.customers=[];for(const c of s.objects){delete c.dirty;delete c.cleaner;if(furniture(c.type)?.seatCount===2)c.seatStates=newSeatStates();}}
   if(existing){o.x=x;o.y=y;o.dir=dir;}
-  else{if(fromStorage)s.storage.splice(s.storage.indexOf(type),1);else{s.coins-=f.price;addXp(s,Math.round(f.price*.25));if(f.category==='table')s.stats.tablesBought++;if(f.category==='chair')s.stats.chairsBought++;}s.objects.push({uid:uid(s),type,x,y,dir});}
+  else{if(fromStorage)s.storage.splice(s.storage.indexOf(type),1);else{s.coins-=f.price;addXp(s,Math.round(f.price*.25));if(f.category==='table')s.stats.tablesBought++;if(f.category==='chair')s.stats.chairsBought++;}let objectId=uid(s);if(f.seatCount===2){const reserved=new Set([...s.objects.map(o=>o.uid),...allSeatSlots(s).map(slot=>slot.uid)]);while(reserved.has(objectId)||[0,1].some(i=>reserved.has(`${objectId}::seat:${i}`)))objectId=uid(s);}s.objects.push({uid:objectId,type,x,y,dir,...(f.seatCount===2?{seatStates:newSeatStates()}: {})});}
   if(f.wallMounted)Object.assign(existing?o:s.objects.at(-1),wallAttachment({x,y,dir}));
   else repairActorPositions(s,{relocateInvalid:true});
   return null;
@@ -554,6 +557,10 @@ export function validateSave(raw){
   for(const o of s.objects){
     if(!furniture(o.type)||typeof o.uid!=='string'||ids.has(o.uid)||!Number.isInteger(o.x)||!Number.isInteger(o.y)||o.x<0||o.y<0||o.x>=s.size||o.y>=s.size||!Number.isInteger(o.dir)||o.dir<0||o.dir>3)throw new Error('가구 정보가 올바르지 않습니다.');
     ids.add(o.uid);
+    if(furniture(o.type).seatCount===2){
+      if(o.seatStates===undefined)o.seatStates=newSeatStates();
+      if(!Array.isArray(o.seatStates)||o.seatStates.length!==2||o.seatStates.some(slot=>!slot||typeof slot!=='object'||Array.isArray(slot)||typeof slot.dirty!=='boolean'||slot.cleaner!==undefined&&slot.cleaner!==null&&typeof slot.cleaner!=='string'))throw new Error('소파 좌석 상태가 올바르지 않습니다.');
+    }else if(o.seatStates!==undefined)throw new Error('소파 좌석 상태가 올바르지 않습니다.');
     if(furniture(o.type).wallMounted){
       const legacy=!o.wallSide;
       if(o.wallSide!==undefined&&(!['north','west'].includes(o.wallSide)||!Number.isInteger(o.wallSlot)||o.wallSlot<0||o.wallSlot>=s.size))throw new Error('벽면 장식 위치가 올바르지 않습니다.');
@@ -572,6 +579,7 @@ export function validateSave(raw){
     if(o.stock!==undefined&&(!Number.isFinite(o.stock)||o.stock<0||!recipe(o.foodId)))throw new Error('음식 재고 정보가 손상되었습니다.');
     if(o.cook&&(!recipe(o.cook.foodId)||!['started','readyAt','spoilAt'].every(k=>Number.isFinite(o.cook[k]))))throw new Error('조리 정보가 손상되었습니다.');
   }
+  const slotIds=allSeatSlots(s).map(slot=>slot.uid);if(new Set(slotIds).size!==slotIds.length)throw new Error('좌석 식별 정보가 중복되었습니다.');
   if(s.seenVisitors===undefined)s.seenVisitors=[...new Set([...Object.keys(s.album),...s.customers.map(c=>c.zombieId).filter(id=>zombie(id))])];
   if(!Array.isArray(s.seenVisitors)||s.seenVisitors.length>ZOMBIES.length||new Set(s.seenVisitors).size!==s.seenVisitors.length||s.seenVisitors.some(id=>typeof id!=='string'||!zombie(id)))throw new Error('손님 방문 기록이 올바르지 않습니다.');
   for(const id of s.storage)if(!furniture(id))throw new Error('창고 정보가 손상되었습니다.');
@@ -604,12 +612,12 @@ export function validateSave(raw){
     if((c.zombieId!=='red'&&!zombie(c.zombieId))||!Number.isFinite(c.x)||!Number.isFinite(c.y)||!validPath(c.path)||!['queue','seating','waiting','eating','chasing','leaving'].includes(c.phase)||!Number.isFinite(c.wait))throw new Error('손님 정보가 손상되었습니다.');
     for(const key of ['enteredAt','seatingAt','leavingAt'])if(c[key]!==undefined&&(!Number.isFinite(c[key])||c[key]<0))throw new Error('손님 이동 시간이 손상되었습니다.');
     if(['seating','waiting','eating'].includes(c.phase)){
-      if(!s.objects.some(o=>o.uid===c.seat&&furniture(o.type)?.category==='chair')||occupiedSeats.has(c.seat))throw new Error('손님 좌석 정보가 손상되었습니다.');
+      if(!resolveSeat(s,c.seat)||occupiedSeats.has(c.seat))throw new Error('손님 좌석 정보가 손상되었습니다.');
       occupiedSeats.add(c.seat);
     }
   }
   const tableGuests=new Map();
-  for(const c of s.customers.filter(seated)){const chair=s.objects.find(o=>o.uid===c.seat),table=chair&&tableInFront(s,chair);if(!table)continue;const count=(tableGuests.get(table.uid)||0)+1;tableGuests.set(table.uid,count);if(count>(furniture(table.type)?.seatCapacity??Infinity))throw new Error('식탁 정원 정보가 올바르지 않습니다.');}
+  for(const c of s.customers.filter(seated)){const chair=resolveSeat(s,c.seat),table=chair&&tableInFront(s,chair);if(!table)continue;const count=(tableGuests.get(table.uid)||0)+1;tableGuests.set(table.uid,count);if(count>(furniture(table.type)?.seatCapacity??Infinity))throw new Error('식탁 정원 정보가 올바르지 않습니다.');}
   for(const t of s.transfers)if(!t||typeof t.uid!=='string'||!s.objects.some(o=>o.uid===t.stove&&furniture(o.type)?.category==='stove')||!s.objects.some(o=>o.uid===t.server&&furniture(o.type)?.category==='server')||!recipe(t.foodId))throw new Error('운반 정보가 손상되었습니다.');
   for(const [id,value] of Object.entries(s.knownRecipes))if(!recipe(id)||value!==true)throw new Error('요리책 정보가 손상되었습니다.');
   for(const [k,v] of Object.entries(s.stats)){if(k==='fed'){if(!v||typeof v!=='object'||Object.values(v).some(n=>!Number.isFinite(n)||n<0))throw new Error('판매 기록이 손상되었습니다.');}else if(!Number.isFinite(v)||v<0)throw new Error('통계 정보가 손상되었습니다.');}

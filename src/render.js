@@ -1,5 +1,5 @@
 import {ASSETS,SKINS,WALK_ANIMATION,recipe,zombie,furniture,DIRECTIONS} from './data.js';
-import {stoveStatus,placementProblem,seats,seatedDirection} from './engine.js';
+import {stoveStatus,placementProblem,seats,seatedDirection,seatSlots,resolveSeat} from './engine.js';
 import {walkingPose} from './walking.js';
 import {drawWorkerWalk} from './worker-walk.js';
 import {drawStaffSantaHat} from './staff-seasonal.js';
@@ -150,7 +150,11 @@ export class RestaurantView{
     const {key,index}=foodFrame(recipe(foodId)?.sprite||0),im=this.sprites[key]?.[index],h=im?width*im.height/im.width:width;
     this.sprite(key,index,x,y+h*.14,width,h,options);
   }
-  chairGeometry(o){return this.furnitureGeometry(o);}
+  chairGeometry(o){
+    if(!o.seatObject)return this.furnitureGeometry(o);
+    const placed=this.furnitureGeometry(o.seatObject),anchor=placed.meta.seatAnchors?.[o.seatIndex]||placed.meta.seat;
+    return{...placed,seat:{x:placed.x+placed.w*anchor.x/placed.meta.width,y:placed.y+placed.h*anchor.y/placed.meta.height}};
+  }
   drawChairFront(chair){
     const {meta,im,x,y,w,h}=this.chairGeometry(chair);if(!im||!meta.front)return;
     const c=this.ctx;c.save();c.beginPath();meta.front.forEach(([px,py],i)=>{const a=x+w*px/meta.width,b=y+h*py/meta.height;i?c.lineTo(a,b):c.moveTo(a,b);});c.closePath();c.clip();c.drawImage(im,x,y,w,h);c.restore();
@@ -238,13 +242,14 @@ export class RestaurantView{
     // Warm pools of lantern light stay behind the game objects.
     for(const o of s.objects.filter(o=>['lantern','xmas-lantern','stove'].includes(o.type))){const p=this.world(o.x,o.y),g=c.createRadialGradient(p.x,p.y,1,p.x,p.y,this.tile*1.3);g.addColorStop(0,'#ffd58024');g.addColorStop(1,'#ffd58000');c.fillStyle=g;c.fillRect(p.x-this.tile*1.3,p.y-this.tile*1.3,this.tile*2.6,this.tile*2.6);}
     if(edit)for(let x=0;x<n;x++)for(let y=0;y<n;y++){const p=[this.world(x-.5,y-.5),this.world(x+.5,y-.5),this.world(x+.5,y+.5),this.world(x-.5,y+.5)];this.polygon(p,'#c3d58b08','#e3e2a33b');}
-    const entities=s.objects.map(o=>{const shape=furnitureFootprint(o);return{kind:'object',value:o,depth:furniture(o.type)?.wallMounted?-1000+o.x+o.y:this.furnitureDepth(o)+.1};});
+    const entities=s.objects.map(o=>{const shape=furnitureFootprint(o),double=furniture(o.type)?.seatCount===2;return{kind:'object',value:o,depth:furniture(o.type)?.wallMounted?-1000+o.x+o.y:double?Math.min(...seatSlots(o).map(slot=>slot.x+slot.y))-.1:this.furnitureDepth(o)+.1};});
+    if(!edit)for(const o of s.objects.filter(o=>furniture(o.type)?.seatCount===2))entities.push({kind:'chair-front',value:o,depth:Math.max(...seatSlots(o).map(slot=>slot.x+slot.y))+.4});
     for(const seat of seats(s))if(seat.chair.dirty)entities.push({kind:'empty-dish',value:seat,depth:this.furnitureDepth(seat.table)+.2});
     for(const w of edit?[]:s.waiters)entities.push({kind:'waiter',value:w,depth:w.x+w.y+.3});
     for(const z of edit?[]:s.customers){entities.push({kind:'customer',value:z,depth:z.x+z.y+.3});if(z.phase==='eating'){const seat=seats(s).find(item=>item.uid===z.seat);if(seat?.table)entities.push({kind:'meal',value:z,depth:this.furnitureDepth(seat.table)+.2});}}
     entities.sort((a,b)=>a.depth-b.depth);
     this.guestLabels=[];this.labelRects=[];this.hungerLayout=[];this.worldLabels=[];this.actorMarkers=[];this.staffSeasonalHats=[];
-    for(const e of entities){if(e.kind==='object')this.drawObject(s,e.value,clock,edit);else if(e.kind==='meal')this.drawMeal(s,e.value);else if(e.kind==='empty-dish')this.drawEmptyDish(e.value);else this.drawPerson(s,e.value,e.kind==='waiter',clock);}
+    for(const e of entities){if(e.kind==='object')this.drawObject(s,e.value,clock,edit);else if(e.kind==='meal')this.drawMeal(s,e.value);else if(e.kind==='empty-dish')this.drawEmptyDish(e.value);else if(e.kind==='chair-front')this.drawChairFront(e.value);else this.drawPerson(s,e.value,e.kind==='waiter',clock);}
     // Controls share one layout pass, with each displaced badge tied to its pot.
     this.stoveControls=this.stoveControlLayout(s);
     if(!edit){
@@ -324,7 +329,7 @@ export class RestaurantView{
     const artId=!waiter&&(a.red||a.zombieId==='red')?'dokkaebi':a.zombieId;
     const c=this.ctx,p=this.world(a.x,a.y),walking=!!a.path?.length,bob=walking?Math.sin(clock*12)*1.7:Math.sin(clock*2+a.x)*.6,t=this.tile,def=waiter?null:zombie(artId),isSeated=['waiting','eating'].includes(a.phase),short=def?.id==='prince';
     c.fillStyle='#17282644';c.beginPath();c.ellipse(p.x,p.y+3,t*.18,t*.075,0,0,Math.PI*2);c.fill();
-    const chair=isSeated?s.objects.find(o=>o.uid===a.seat):null,chairFacing=seatedDirection(s,chair);
+    const chair=isSeated?resolveSeat(s,a.seat):null,chairFacing=seatedDirection(s,chair);
     const directionalMeta=!waiter?directionalCharacter(artId):null,entry=zombieEntrance(s),queuedAtDoor=!waiter&&a.phase==='queue'&&!a.path?.length&&Math.hypot(a.x-entry.x,a.y-entry.y)<1e-6;
     const pose=directionalMeta?walkingPose(a,this.walkingStates.get(a),{reducedMotion:this.motionPreference.matches,active,time:s.time+(s.fraction||0),seatedDirection:chairFacing,idleDirection:queuedAtDoor?1:null,frameCount:directionalMeta.walkFrames||directionalMeta.frames.walk.length,fps:directionalMeta.fps||7,keys:null,sequence:directionalMeta.sequence||null}):null;
     if(pose)this.walkingStates.set(a,pose);
@@ -363,7 +368,7 @@ export class RestaurantView{
     const santaHat=waiter?drawStaffSantaHat(c,s,placement,appearance):null;if(santaHat)this.staffSeasonalHats?.push({uid:a.uid,appearance,...santaHat});
     if(waiter){const trayX=p.x+(flip?-1:1)*t*.15,trayY=y-h*.22,tray=this.sprites.waiterTray?.[0],scale=tray?t*.46/tray.width:1,anchor=ASSET_MANIFEST.waiterTray?.foodAnchor;if(tray)this.sprite('waiterTray',0,trayX,trayY,t*.46,null,{flip});const foodY=tray&&anchor?trayY-(tray.height-anchor.y)*scale:trayY-t*.13;if(a.task?.picked&&['transfer','serve'].includes(a.task.kind)&&recipe(a.task.foodId))this.drawFoodOnSurface(a.task.foodId,trayX,foodY,t*.4);}
     if(a.phase==='eating'&&chair&&!seats(s).find(seat=>seat.uid===a.seat)?.table){const seat=this.chairGeometry(chair).seat,[dx,dy]=DIRECTIONS[chair.dir||0];this.drawFoodOnSurface(a.foodId,seat.x+(dx-dy)*t*.12,seat.y+(dx+dy)*t*.06,t*.38);}
-    if(chair)this.drawChairFront(chair);
+    if(chair&&!chair.seatObject)this.drawChairFront(chair);
     let bubble=null;
     const favoriteThought=!waiter&&needsFavoriteThought(a,zombie(a.zombieId)?.favorite,s.time+(s.fraction||0));
     const thoughtKey=favoriteThought?'favoriteThought':'hungerThought';
