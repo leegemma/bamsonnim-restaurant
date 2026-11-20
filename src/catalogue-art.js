@@ -1,5 +1,7 @@
 import {CATALOGUE_ENTRIES} from './catalogue-expansion.js';
 import {CATALOGUE_IMAGE_BOUNDS} from './catalogue-image-bounds.js';
+import {calibrateTable} from './catalogue-table-calibration.js';
+import {CHAIR_CONTACTS} from './catalogue-chair-contacts.js';
 import {QUARTER_FURNITURE} from './quarter-furniture.generated.js';
 // Anchors are local to the measured alpha crop. Four-facing chairs keep the
 // correct seat/front layer instead of stretching a front drawing backwards.
@@ -43,14 +45,14 @@ export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
   const pose={index:dir,itemId:entry.id,category:entry.category,dir,source,groundCenter:{x:w*.5,y:h*contact.groundY},groundWidth:w*contact.groundWidth,footprint:contact.footprint,mirrorOdd:!directional&&entry.category!=='chair'};
   if(entry.id==='decor-window-red-curtains')pose.clipPolygons=[windowOutline.map(([x,y])=>[x-source.x,y-source.y])];
   if(entry.category==='chair'){pose.seatAnchor={x:w*.5,y:h*contact.seatY};
+   const measured=CHAIR_CONTACTS[entry.id]?.[dir];
+   if(measured){const [x,seatY,groundY]=measured;pose.seatAnchor={x,y:seatY};pose.groundCenter={x,y:groundY};}
    if(entry.id==='sofa-dabang-double'){
-    const anchors=[[[.75,.51],[.42,.71]],[[.58,.71],[.25,.51]],[[.25,.73],[.58,.49]],[[.42,.49],[.75,.73]]][dir];
+    const anchors=[[[.71,.53],[.37,.698]],[[.63,.698],[.29,.53]],[[.29,.70],[.63,.50]],[[.37,.50],[.71,.70]]][dir];
     pose.seatAnchors=anchors.map(([x,y])=>({x:w*x,y:h*y}));
     pose.seatAnchor={x:pose.seatAnchors.reduce((sum,p)=>sum+p.x,0)/2,y:pose.seatAnchors.reduce((sum,p)=>sum+p.y,0)/2};
    }
-   // Match the legacy chair's actual seat-to-ground height for this view.
-   // Scale the whole drawing uniformly around the ground anchor; changing
-   // only the seated actor's anchor would leave a visibly tall chair behind.
+   // The two-seat sofa fits both logical cell centers to its real cushions.
    const reference=QUARTER_FURNITURE.poses.find(p=>p.category==='chair'&&p.dir===dir),target=(reference.groundCenter.y-reference.seatAnchor.y)*reference.footprint/reference.groundWidth;
    if(pose.seatAnchors){
     // Two logical cell centers project half a tile across and a quarter down.
@@ -60,9 +62,10 @@ export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
     const [a,b]=pose.seatAnchors,dx=b.x-a.x,dy=b.y-a.y,[wx,wy]=[[-.5,.25],[-.5,-.25],[.5,-.25],[.5,.25]][dir],scalePerTile=(dx*wx+dy*wy)/(dx*dx+dy*dy);
     pose.footprint=scalePerTile*pose.groundWidth;
     pose.groundCenter={x:pose.seatAnchor.x,y:pose.seatAnchor.y+target/scalePerTile};
-   }else pose.footprint=target*pose.groundWidth/(pose.groundCenter.y-pose.seatAnchor.y);
-   const front=dir<2?Math.min(.95,contact.seatY+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
+   }
+   const front=dir<2?Math.min(.95,pose.seatAnchor.y/h+.09):0;pose.frontPolygon=[[0,h*front],[w,h*front],[w,h],[0,h]];}
   if(['table','stove','server'].includes(entry.category))pose.surfaceAnchor={x:w*.5,y:h*contact.surfaceY};
+  if(entry.category==='table')calibrateTable(pose,entry.id,source);
   poses.push(pose);
  }
  return{...base,type:'furniture-atlas',directional,shareFrames:entry.id==='stool-log',poses};
