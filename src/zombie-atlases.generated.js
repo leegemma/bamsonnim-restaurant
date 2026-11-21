@@ -31112,7 +31112,7 @@ export const ZOMBIE_ATLASES=[
     "key": "zombieSauna",
     "actorId": "sauna",
     "name": "찜질방 아줌마 · 네 방향 세 포즈 걷기·앉기",
-    "url": "/assets/zombies/sauna-directional-shuffle.png",
+    "url": "/assets/zombies/sauna-directional-towel-rear-v2.png",
     "width": 1254,
     "height": 1254,
     "type": "directional-atlas",

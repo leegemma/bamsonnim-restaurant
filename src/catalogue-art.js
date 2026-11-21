@@ -26,9 +26,14 @@ const contacts={
  'table-bbq-wood-wide':{groundY:.89,surfaceY:.19,groundWidth:.94,footprint:1.38},
  'table-aluminum-floral-soban':{groundY:.91,surfaceY:.27,groundWidth:.94,footprint:.74},
  'decor-aquarium':{groundY:.88,groundWidth:.95,footprint:1.38},
+ 'decor-orca-aquarium':{groundY:.88,groundWidth:.95,footprint:1.38},
  'decor-christmas-village':{groundY:.88,groundWidth:.95,footprint:1.38},
  'decor-christmas-trees':{groundY:.88,groundWidth:.95,footprint:1.78},
 };
+// Native support-plane centres, in sheet coordinates. The taller screen bounds
+// come from the corrected 2:1 planes; keep the existing world width/footprint.
+const aquariumGroundCenters=[[297.5,442],[956,442],[297.5,1069],[956,1069]];
+const orcaAquariumGroundCenters=[[296.5,452],[957.5,452.5],[296.5,1078],[957,1079]];
 // Native source rectangles remove rejected baked glow without modifying PNGs.
 const wallCrops={
  'decor-landscape-poster':{x:198,y:253,width:630,height:1186},
@@ -40,10 +45,14 @@ const windowOutline=[[202,92],[1328,92],[1338,111],[1335,159],[1280,169],[1282,2
 export const CATALOGUE_ASSETS=CATALOGUE_ENTRIES.map(entry=>{
  const info=CATALOGUE_IMAGE_BOUNDS[entry.asset],width=info?.width||1254,height=info?.height||1254,base={key:entry.artKey,name:entry.name,url:'/assets/'+entry.asset,width,height,lazy:true,trim:false};
  if(['wall','floor'].includes(entry.category))return{...base,type:entry.category+'-texture',cols:1,rows:1};
- const directional=(entry.category==='chair'&&entry.id!=='stool-log')||['decor-aquarium','decor-christmas-village','table-bbq-wood-wide'].includes(entry.id),count=directional||entry.category==='chair'?4:1,contact=contacts[entry.id]||{groundY:.90,seatY:.50,surfaceY:.22,groundWidth:.92,footprint:entry.category==='chair'?.53:entry.category==='table'?.74:entry.category==='decor'?.68:.84},poses=[];
+ const directional=(entry.category==='chair'&&entry.id!=='stool-log')||['decor-aquarium','decor-orca-aquarium','decor-christmas-village','table-bbq-wood-wide'].includes(entry.id),count=directional||entry.category==='chair'?4:1,contact=contacts[entry.id]||{groundY:.90,seatY:.50,surfaceY:.22,groundWidth:.92,footprint:entry.category==='chair'?.53:entry.category==='table'?.74:entry.category==='decor'?.68:.84},poses=[];
  for(let dir=0;dir<count;dir++){
-  const cell=directional?[0,1,3,2][dir]:0,col=directional?cell%2:0,row=directional?Math.floor(cell/2):0,cols=directional?2:1,region=info?.cells[cell]?.source||{x:Math.floor(col*width/cols),y:Math.floor(row*height/cols),width:Math.floor((col+1)*width/cols)-Math.floor(col*width/cols),height:Math.floor((row+1)*height/cols)-Math.floor(row*height/cols)},bounds=info?.cells[cell]?.bounds||{x:0,y:0,width:region.width,height:region.height},crop=wallCrops[entry.id],source=crop||{x:region.x+bounds.x,y:region.y+bounds.y,width:bounds.width,height:bounds.height},w=source.width,h=source.height;
+  const cell=directional?(['decor-aquarium','decor-orca-aquarium'].includes(entry.id)?[0,1,2,3]:[0,1,3,2])[dir]:0,col=directional?cell%2:0,row=directional?Math.floor(cell/2):0,cols=directional?2:1,region=info?.cells[cell]?.source||{x:Math.floor(col*width/cols),y:Math.floor(row*height/cols),width:Math.floor((col+1)*width/cols)-Math.floor(col*width/cols),height:Math.floor((row+1)*height/cols)-Math.floor(row*height/cols)},bounds=info?.cells[cell]?.bounds||{x:0,y:0,width:region.width,height:region.height},crop=wallCrops[entry.id],source=crop||{x:region.x+bounds.x,y:region.y+bounds.y,width:bounds.width,height:bounds.height},w=source.width,h=source.height;
   const pose={index:dir,itemId:entry.id,category:entry.category,dir,source,groundCenter:{x:w*.5,y:h*contact.groundY},groundWidth:w*contact.groundWidth,footprint:contact.footprint,mirrorOdd:!directional&&entry.category!=='chair'};
+  if(['decor-aquarium','decor-orca-aquarium'].includes(entry.id)){
+   const [x,y]=(entry.id==='decor-orca-aquarium'?orcaAquariumGroundCenters:aquariumGroundCenters)[cell];
+   pose.groundCenter={x:x-source.x,y:y-source.y};
+  }
   if(entry.id==='decor-window-red-curtains')pose.clipPolygons=[windowOutline.map(([x,y])=>[x-source.x,y-source.y])];
   if(entry.category==='chair'){pose.seatAnchor={x:w*.5,y:h*contact.seatY};
    const measured=CHAIR_CONTACTS[entry.id]?.[dir];
