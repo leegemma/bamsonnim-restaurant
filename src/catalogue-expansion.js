@@ -21,7 +21,7 @@ const definitions=[
  ['decor-pedestal-fan-orange','주황 날개 선풍기','decor','decor-pedestal-fan-orange-v1.png'],
  ['decor-aquarium','산호 수족관','decor','decor-aquarium-quarterview-v5.png'],
  ['decor-orca-aquarium','범고래 수족관','decor','decor-orca-aquarium-quarterview-v2.png'],
- ['serving-robot','로봇 서빙대','server','serving-robot-quarter-v3.png'],
+ ['serving-robot','로봇 서빙대','server','serving-robot-quarter-short-native-tray-v1.png'],
  ['floor-yellow-vinyl','노란 장판','floor','floor-yellow-vinyl-v1.png'],
  ['serving-cabinet-najeon','나전 서빙장','server','serving-cabinet-najeon-two-cell-v2.png'],
  ['table-bentwood-natural','내추럴 곡목 식탁','table','table-bentwood-natural-basetable-v2.png'],

@@ -25,13 +25,13 @@ const contacts={
  'serving-cabinet-najeon':{groundY:.91,surfaceY:.16,groundWidth:.94,footprint:.86},
  'table-bbq-wood-wide':{groundY:.89,surfaceY:.19,groundWidth:.94,footprint:1.38},
  'table-aluminum-floral-soban':{groundY:.91,surfaceY:.27,groundWidth:.94,footprint:.74},
- 'decor-aquarium':{groundY:.88,groundWidth:.95,footprint:1.38},
- 'decor-orca-aquarium':{groundY:.88,groundWidth:.95,footprint:1.38},
+ 'decor-aquarium':{groundY:.88,groundWidth:.95,footprint:1.15},
+ 'decor-orca-aquarium':{groundY:.88,groundWidth:.95,footprint:1.15},
  'decor-christmas-village':{groundY:.88,groundWidth:.95,footprint:1.38},
  'decor-christmas-trees':{groundY:.88,groundWidth:.95,footprint:1.78},
 };
 // Native support-plane centres, in sheet coordinates. The taller screen bounds
-// come from the corrected 2:1 planes; keep the existing world width/footprint.
+// come from the corrected 2:1 planes; the aquarium scales above fit two tiles.
 const aquariumGroundCenters=[[297.5,442],[956,442],[297.5,1069],[956,1069]];
 const orcaAquariumGroundCenters=[[296.5,452],[957.5,452.5],[296.5,1078],[957,1079]];
 // Native source rectangles remove rejected baked glow without modifying PNGs.

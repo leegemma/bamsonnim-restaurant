@@ -1,5 +1,6 @@
 // Measured alpha bounds and integer atlas partitions; approved PNGs stay intact.
 export const CATALOGUE_IMAGE_BOUNDS={
+"serving-robot-quarter-short-native-tray-v1.png":{"width":1254,"height":1254,"cells":[{"cell":0,"source":{"x":0,"y":0,"width":1254,"height":1254},"bounds":{"x":373,"y":219,"width":496,"height":942}}]},
 "table-folding-blue-quarterlegs-v4.png":{"width":1254,"height":1254,"cells":[{"cell":0,"source":{"x":0,"y":0,"width":1254,"height":1254},"bounds":{"x":288,"y":409,"width":678,"height":536}}]},
 "serving-cart-stainless-quarter-v2.png":{"width":1254,"height":1254,"cells":[{"cell":0,"source":{"x":0,"y":0,"width":1254,"height":1254},"bounds":{"x":281,"y":167,"width":756,"height":962}}]},
 "serving-robot-quarter-v3.png":{"width":1254,"height":1254,"cells":[{"cell":0,"source":{"x":0,"y":0,"width":1254,"height":1254},"bounds":{"x":373,"y":124,"width":494,"height":1035}}]},
